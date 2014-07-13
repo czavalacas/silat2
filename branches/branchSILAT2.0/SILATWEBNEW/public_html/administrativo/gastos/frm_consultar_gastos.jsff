@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:adfsilat="/webapp/untitled1.taglib">
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_administrativo_gastos_frm_conulstar_gastos-->
+    <f:view>
+        <af:panelGroupLayout layout="scroll" inlineStyle="margin:0px 0px 0px 43px;">
+            <af:panelGroupLayout halign="left">
+                <af:spacer height="10"/>
+                <af:outputText value="Consultar Gastos" id="otTitulo"
+                               binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.otTitulo}"
+                               styleClass="titulos2"/>
+                <af:spacer height="10"/>
+            </af:panelGroupLayout>
+            <af:subform id="s1" binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.s1}"
+                        defaultCommand="::btnBuscar"/>
+            <af:panelGridLayout id="pgl1"
+                                binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.pgl1}">
+                <af:gridRow marginTop="5px" marginBottom="5px" height="auto" id="gr1"
+                            binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gr1}">
+                    <af:gridCell marginStart="5px" width="auto" id="gc1"
+                                 binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gc1}">
+                        <af:panelFormLayout id="pfl1"
+                                            binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.pfl1}">
+                            <af:selectOneChoice label="Tipo Gasto" id="choiceTipoGasto"
+                                                unselectedLabel="::Seleccionar Tipo Gasto::" autoSubmit="true"
+                                                binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.choiceTipoGasto}"
+                                                value="#{beanSessionScopedConsultarGastos.nidTipoGasto}"
+                                                labelStyle="text-align: left;">
+                                <f:selectItems value="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.tipoGastos}"
+                                               id="si1"
+                                               binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.si1}"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice label="Modo Pago" id="choiceModoPago"
+                                                unselectedLabel="::Seleccionar Modo Pago::"
+                                                binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.choiceModoPago}"
+                                                value="#{beanSessionScopedConsultarGastos.nidModalidadPago}"
+                                                autoSubmit="true" labelStyle="text-align: left;">
+                                <f:selectItems value="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.modalidadPago}"
+                                               id="si2"
+                                               binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.si2}"/>
+                            </af:selectOneChoice>
+                            <af:inputDate label="Fecha Minima" id="inputDateFechaMinimaid1"
+                                          binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.inputDateFechaMinimaid1}"
+                                          value="#{beanSessionScopedConsultarGastos.fechaGastoMin}" autoSubmit="true"
+                                          labelStyle="text-align: left;"/>
+                            <af:inputDate label="Fecha Maxima" id="inputDateFechaMaxima"
+                                          binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.inputDateFechaMaxima}"
+                                          value="#{beanSessionScopedConsultarGastos.fechaGastoMax}" autoSubmit="true"/>
+                            <af:selectOneChoice label="Flota" id="soc1"
+                                                binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.soc1}"
+                                                value="#{beanSessionScopedConsultarGastos.nidFlotaCombustible}"
+                                                labelStyle="text-align: left;">
+                                <f:selectItems value="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.listaFlotasLubal}"
+                                               id="si7"
+                                               binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.si7}"/>
+                            </af:selectOneChoice>
+                        </af:panelFormLayout>
+                    </af:gridCell>
+                    <af:gridCell marginStart="1px" marginEnd="1px" width="auto" id="gc2"
+                                 binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gc2}">
+                        <af:panelGridLayout id="pgl2"
+                                            binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.pgl2}">
+                            <af:gridRow marginTop="1px" marginBottom="1px" height="auto" id="gr2"
+                                        binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gr2}">
+                                <af:gridCell marginStart="22px" width="50%" id="gc3"
+                                             binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gc3}">
+                                    <af:selectOneChoice label="Monto" id="choiceSimboloMonto"
+                                                        unselectedLabel="::Seleccionar Tipo::" autoSubmit="true"
+                                                        binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.choiceSimboloMonto}"
+                                                        value="#{beanSessionScopedConsultarGastos.simboloGasto}"
+                                                        labelStyle="text-align: left;">
+                                        <af:selectItem label="MAYOR A" id="si4"
+                                                       binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.si4}"
+                                                       value=">"/>
+                                        <af:selectItem label="MENOR A" id="si5"
+                                                       binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.si5}"
+                                                       value="&lt;"/>
+                                        <af:selectItem label="IGUAL A" id="si6"
+                                                       binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.si6}"
+                                                       value="="/>
+                                    </af:selectOneChoice>
+                                </af:gridCell>
+                                <af:gridCell marginStart="100px" marginEnd="1px" width="50%" id="gc4"
+                                             binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gc4}">
+                                    <af:inputText id="inputTextMonto"
+                                                  binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.inputTextMonto}"
+                                                  value="#{beanSessionScopedConsultarGastos.montoGeneral}"
+                                                  autoSubmit="true" labelStyle="text-align: left;">
+                                        <f:validator validatorId="decimalValidator"/>
+                                        <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                          minIntegerDigits="1" maxIntegerDigits="6"/>
+                                    </af:inputText>
+                                </af:gridCell>
+                            </af:gridRow>
+                        </af:panelGridLayout>
+                        <af:panelFormLayout id="pfl2"
+                                            binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.pfl2}">
+                            <af:inputText label="Proveedor" id="inputTextProveedor"
+                                          binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.inputTextProveedor}"
+                                          disabled="true" labelStyle="text-align: left;"/>
+                            <af:commandButton text="Buscar Proveedor" id="btnBuscarProveedor"
+                                              binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.btnBuscarProveedor}">
+                                <af:showPopupBehavior popupId="popupProveedor" triggerType="click" align="endAfter"
+                                                      alignId="btnBuscarProveedor"/>
+                            </af:commandButton>
+                            <af:inputText label="Detalle" id="inputTextDetalle"
+                                          binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.inputTextDetalle}"
+                                          value="#{beanSessionScopedConsultarGastos.detalle}" autoSubmit="true"
+                                          labelStyle="text-align: left;"/>
+                            <af:inputText label="Factura" id="inputTextFactura"
+                                          binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.inputTextFactura}"
+                                          value="#{beanSessionScopedConsultarGastos.cidFactura}" autoSubmit="true"
+                                          labelStyle="text-align: left;"/>
+                        </af:panelFormLayout>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+            <af:panelGroupLayout id="pgl4"
+                                 binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.pgl4}">
+                <af:panelGridLayout id="pgl3"
+                                    binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.pgl3}">
+                    <af:gridRow marginTop="1px" marginBottom="1px" height="auto" id="gr3"
+                                binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gr3}">
+                        <af:gridCell marginStart="1px" width="auto" id="gc5"
+                                     binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gc5}">
+                            <af:commandButton text="Buscar" id="btnBuscar"
+                                              binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.btnBuscar}"
+                                              action="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.filtrarGastos}"/>
+                        </af:gridCell>
+                        <af:gridCell marginStart="1px" width="auto" id="gc6"
+                                     binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gc6}">
+                            <af:commandButton text="Limpiar" id="btnLimpiar"
+                                              binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.btnLimpiar}"
+                                              actionListener="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.limpiar}"/>
+                        </af:gridCell>
+                        <af:gridCell marginStart="1px" width="auto" id="gc7"
+                                     binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gc7}">
+                            <af:commandButton text="Anular" id="btnAnular"
+                                              binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.btnAnular}"
+                                              action="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.AnularGasto}"
+                                              disabled="true"/>
+                        </af:gridCell>
+                        <af:gridCell marginStart="1px" marginEnd="1px" width="auto" id="gc8"
+                                     binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.gc8}">
+                            <af:commandButton text="Exportar Excel" id="btnExportarExcel"
+                                              binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.btnExportarExcel}"
+                                              rendered="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.permisoExportarExcel}">
+                                <af:exportCollectionActionListener type="excelHTML" exportedId="tbGast"
+                                                                   filename="gastos.xls" title="Lubal Gastos"/>
+                            </af:commandButton>
+                        </af:gridCell>
+                        <af:gridCell marginStart="1px" marginEnd="1px" width="auto">
+                            <af:commandButton text="Ver Imagen" id="btnImg"
+                                              binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.btnImg}"
+                                              actionListener="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.abrirPopImg}"
+                                              disabled="true"/>
+                        </af:gridCell>
+                    </af:gridRow>
+                </af:panelGridLayout>
+            </af:panelGroupLayout>
+            <af:panelCollection inlineStyle="width:inherit;">
+                <f:facet name="menus"/>
+                <f:facet name="toolbar">
+                    <af:toolbar></af:toolbar>
+                </f:facet>
+                <f:facet name="statusbar"/>
+                <af:table var="row" rowBandingInterval="0" id="tbGast" emptyText="No hay resultados de busqueda"
+                          binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.tbGast}"
+                          varStatus="vs" value="#{beanSessionScopedConsultarGastos.listGasto}"
+                          selectionListener="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.seleccionarGasto}"
+                          rowSelection="single" inlineStyle="width:inherit; margin:0px 50px 0px 0px;" width="inherit;"
+                          columnStretching="column:c1">
+                    <af:column width="15" frozen="true">
+                        <af:outputText value="#{vs.index + 1}"/>
+                    </af:column>
+                    <af:column sortProperty="tipoGasto.descripcionTipoGasto" sortable="true" headerText="Tipo Gasto"
+                               id="c1" width="120">
+                        <af:outputText value="#{row.tipoGasto.descripcionTipoGasto}" id="ot2"/>
+                    </af:column>
+                    <af:column sortProperty="modalidadPago.descripcionModalidadPago" sortable="true"
+                               headerText="Modalidad Pago" id="c2" width="90">
+                        <af:outputText value="#{row.modalidadPago.descripcionModalidadPago}" id="ot3"/>
+                    </af:column>
+                    <af:column sortProperty="fechaGasto" sortable="true" headerText="Fecha" id="c3" width="60"
+                               align="center">
+                        <af:outputText value="#{row.fechaGasto}" id="ot4">
+                            <af:convertDateTime pattern="dd/MM/yyyy"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="DMontoGeneral" sortable="true" headerText="Monto" id="c4" width="100"
+                               align="right">
+                        <af:outputText value="#{row.DMontoGeneral}" id="ot5">
+                            <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="CRazonSocial" sortable="true" headerText="Proveedor" id="c5" width="120">
+                        <af:outputText value="#{row.CRazonSocial}" id="ot6"/>
+                    </af:column>
+                    <af:column sortProperty="cidFactura" sortable="true" headerText="Factura" id="c6" width="90">
+                        <af:outputText value="#{row.cidFactura}" id="ot7"/>
+                    </af:column>
+                    <af:column sortProperty="c_detalle" sortable="true" headerText="Detalle" id="c7" width="190">
+                        <af:outputText value="#{row.c_detalle}" id="ot8"/>
+                    </af:column>
+                    <af:column sortProperty="c_banco" sortable="true" headerText="Banco" id="c13" width="90">
+                        <af:outputText value="#{row.c_banco}" id="ot13"/>
+                    </af:column>
+                    <af:column sortProperty="nroCheque" sortable="true" headerText="Cheque" id="c14" width="100">
+                        <af:outputText value="#{row.nroCheque}" id="ot14"/>
+                    </af:column>
+                    <af:column headerText="Flota" width="190">
+                        <af:outputText value="#{row.adFlota.CDescFlota}     #{row.adFlota.CPlaca}"/>
+                    </af:column>
+                </af:table>
+            </af:panelCollection>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="popupProveedor"
+                      binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.popupProveedor}">
+                <af:dialog id="d1" binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.d1}"
+                           title="Seleccionar Proveedor" type="ok">
+                    <af:table var="row" rowBandingInterval="0" id="tbProv"
+                              binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.tbProv}"
+                              rowSelection="single"
+                              value="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.listaProveedores}"
+                              varStatus="vs"
+                              selectionListener="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.seleccionarProveedor}"
+                              emptyText="No hay resultados de su busqueda">
+                        <af:column width="15" frozen="true">
+                            <af:outputText value="#{vs.index + 1}"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="RUC" id="c8">
+                            <af:outputText value="#{row.CRuc}" id="ot9"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="Razon Social" id="c9">
+                            <af:outputText value="#{row.CRazonSocial}" id="ot10"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="Telefono" id="c10">
+                            <af:outputText value="#{row.adParty.CTelf}" id="ot11"/>
+                        </af:column>
+                    </af:table>
+                </af:dialog>
+            </af:popup>
+            <af:popup contentDelivery="lazy" autoCancel="disabled" id="popImg"
+                      binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.popImg}">
+                <af:dialog id="d2" binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.d2}"
+                           type="ok">
+                    <af:panelGroupLayout layout="scroll" inlineStyle="height:600px; width:500px;">
+                        <af:image id="imgGasto" source="#{sessionScope.beanSessionScopedConsultarGastos.rutaImagenServ}"
+                                  binding="#{backingBeanScope.backing_administrativo_gastos_frm_conulstar_gastos.imgGasto}"/>
+                    </af:panelGroupLayout>
+                </af:dialog>
+            </af:popup>
+        </af:panelGroupLayout>
+    </f:view>
+</ui:composition>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<skins xmlns="http://myfaces.apache.org/trinidad/skin">
+  <skin>
+    <id>skin_lubal.desktop</id>
+    <family>skin_lubal</family>
+    <extends>fusionFx-simple-v2.1.desktop</extends>
+    <render-kit-id>org.apache.myfaces.trinidad.desktop</render-kit-id>
+    <style-sheet-name>skins/skin_lubal/skin_lubal.css</style-sheet-name>
+    <bundle-name>siat/view.skinBundle</bundle-name>
+  </skin>
+</skins>

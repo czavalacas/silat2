@@ -1,0 +1,1237 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">a90ba506-354b-4f36-bdb9-543ad7294274</identifier>
+  </ID>
+  <name>TRDNOTA</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">dcb0b25e-6d1d-4d93-bb83-00e8f5084863</identifier>
+      </ID>
+      <name>NID_NOTA</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">378828e1-8c97-452c-b596-c8dd39c23b66</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_NOTA</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDNOTA</name>
+                  <identifier class="java.math.BigDecimal">14897</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">CORRELATIVO DE LA NOTA</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_NOTA</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">91e5c169-24ac-40fd-82be-4921a6d746a9</identifier>
+      </ID>
+      <name>C_TIPO_NOTA</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">ead5198a-20c7-47a3-b6ce-fe02e27cd630</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">1</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_TIPO_NOTA</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDNOTA</name>
+                  <identifier class="java.math.BigDecimal">14897</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">TIPO DE NOTA (CREDITO = C, DEBITO = D)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_TIPO_NOTA</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ba1a6034-ded2-4f88-aeaa-a9be3906694a</identifier>
+      </ID>
+      <name>D_MONTO</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">92894444-c0d5-4d7f-a158-a902473ea635</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">6</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>D_MONTO</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDNOTA</name>
+                  <identifier class="java.math.BigDecimal">14897</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">MONTO DE LA NOTA</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>D_MONTO</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">8565a9f6-ac0e-479a-bc2b-5e3f9c3f7e48</identifier>
+      </ID>
+      <name>N_ESTADO_NOTA</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">95bce059-9cb8-4e97-bdfd-5ac268fca7dd</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">1</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>N_ESTADO_NOTA</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDNOTA</name>
+                  <identifier class="java.math.BigDecimal">14897</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">ESTADO DE LA NOTA (VIGENTE = 1, NO VIGENTE = 2)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>N_ESTADO_NOTA</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">a07eea88-8997-4963-bb44-135cc446709d</identifier>
+      </ID>
+      <name>NID_FACTURA</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">961a4e02-5b81-4411-94ef-4cba7b951a2c</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_FACTURA</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDNOTA</name>
+                  <identifier class="java.math.BigDecimal">14897</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">CORRELATIVO DE FACTURA</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_FACTURA</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">8e38169c-67d7-44c0-9b8f-a7b8538f2ba8</identifier>
+      </ID>
+      <name>CK_TRDNOTA_01</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">2dc6c53d-db37-4f10-838b-2ee4c35b3a6d</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.Comparison">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">7004098d-0e2e-40ed-abc2-e5c7c83aadb3</identifier>
+            </ID>
+            <comparator>44</comparator>
+            <leftExpression class="oracle.javatools.db.sql.ColumnUsage">
+              <ID class="oracle.javatools.db.IdentifierBasedID">
+                <identifier class="java.lang.String">f6fc525d-c4ec-4a32-b678-c8ab924467ee</identifier>
+              </ID>
+              <objectID class="oracle.javatools.db.IdentifierBasedID">
+                <name>NID_NOTA</name>
+                <identifier class="java.lang.String">dcb0b25e-6d1d-4d93-bb83-00e8f5084863</identifier>
+                <parent class="oracle.javatools.db.IdentifierBasedID">
+                  <name>TRDNOTA</name>
+                  <identifier class="java.lang.String">a90ba506-354b-4f36-bdb9-543ad7294274</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </objectID>
+              <outerJoin>false</outerJoin>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>CK_TRDNOTA_01</name>
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>TRDNOTA</name>
+                            <identifier class="java.math.BigDecimal">14897</identifier>
+                            <schemaName>LUBAL</schemaName>
+                            <type>TABLE</type>
+                          </parent>
+                          <subType>CheckConstraint</subType>
+                          <type>CONSTRAINT</type>
+                        </parent>
+                        <type>WHERE</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </parent>
+                    <type>SQLFragment</type>
+                  </value>
+                </entry>
+              </properties>
+              <qualified>false</qualified>
+            </leftExpression>
+            <priorOnLeft>false</priorOnLeft>
+            <priorOnRight>false</priorOnRight>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_TRDNOTA_01</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>TRDNOTA</name>
+                        <identifier class="java.math.BigDecimal">14897</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_TRDNOTA_01</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDNOTA</name>
+                  <identifier class="java.math.BigDecimal">14897</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_TRDNOTA_01</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">f2165820-08cf-49aa-90ff-d72f6b0afe4b</identifier>
+      </ID>
+      <name>CK_TRDNOTA_02</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">258258d7-a79a-4b95-857e-09f957eeb95f</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.WhereObject">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">29bf1501-0365-4ab8-8f61-c6b64b2ec5ec</identifier>
+            </ID>
+            <arguments>
+              <argument class="oracle.javatools.db.sql.Comparison">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">d78ea9f9-4a44-4a28-a550-d21d819a57e1</identifier>
+                </ID>
+                <comparator>5</comparator>
+                <leftExpression class="oracle.javatools.db.sql.ColumnUsage">
+                  <ID class="oracle.javatools.db.IdentifierBasedID">
+                    <identifier class="java.lang.String">d7f8b735-5547-4272-b8cb-d9f5e2415c7f</identifier>
+                  </ID>
+                  <objectID class="oracle.javatools.db.IdentifierBasedID">
+                    <name>C_TIPO_NOTA</name>
+                    <identifier class="java.lang.String">91e5c169-24ac-40fd-82be-4921a6d746a9</identifier>
+                    <parent class="oracle.javatools.db.IdentifierBasedID">
+                      <name>TRDNOTA</name>
+                      <identifier class="java.lang.String">a90ba506-354b-4f36-bdb9-543ad7294274</identifier>
+                      <schemaName>LUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <type>COLUMN</type>
+                  </objectID>
+                  <outerJoin>false</outerJoin>
+                  <properties>
+                    <entry>
+                      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                      <value class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <parent class="oracle.javatools.db.ReferenceID">
+                                <name>CK_TRDNOTA_02</name>
+                                <parent class="oracle.javatools.db.ReferenceID">
+                                  <name>TRDNOTA</name>
+                                  <identifier class="java.math.BigDecimal">14897</identifier>
+                                  <schemaName>LUBAL</schemaName>
+                                  <type>TABLE</type>
+                                </parent>
+                                <subType>CheckConstraint</subType>
+                                <type>CONSTRAINT</type>
+                              </parent>
+                              <type>WHERE</type>
+                            </parent>
+                            <type>WHERE</type>
+                          </parent>
+                          <type>SQLFragment</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </value>
+                    </entry>
+                  </properties>
+                  <qualified>false</qualified>
+                </leftExpression>
+                <priorOnLeft>false</priorOnLeft>
+                <priorOnRight>false</priorOnRight>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_TRDNOTA_02</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>TRDNOTA</name>
+                              <identifier class="java.math.BigDecimal">14897</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>WHERE</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+                <rightExpression class="oracle.javatools.db.sql.SimpleSQLFragment">
+                  <ID class="oracle.javatools.db.IdentifierBasedID">
+                    <identifier class="java.lang.String">39c9ae0d-dd43-4df8-bd46-f3c5ede26177</identifier>
+                  </ID>
+                  <SQLText>&apos;C&apos;</SQLText>
+                  <properties>
+                    <entry>
+                      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                      <value class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <parent class="oracle.javatools.db.ReferenceID">
+                                <name>CK_TRDNOTA_02</name>
+                                <parent class="oracle.javatools.db.ReferenceID">
+                                  <name>TRDNOTA</name>
+                                  <identifier class="java.math.BigDecimal">14897</identifier>
+                                  <schemaName>LUBAL</schemaName>
+                                  <type>TABLE</type>
+                                </parent>
+                                <subType>CheckConstraint</subType>
+                                <type>CONSTRAINT</type>
+                              </parent>
+                              <type>WHERE</type>
+                            </parent>
+                            <type>WHERE</type>
+                          </parent>
+                          <type>SQLFragment</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </value>
+                    </entry>
+                  </properties>
+                </rightExpression>
+              </argument>
+              <argument class="oracle.javatools.db.sql.Comparison">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">0275f361-942e-4b97-8b5b-aa6d70ff4812</identifier>
+                </ID>
+                <comparator>5</comparator>
+                <leftExpression class="oracle.javatools.db.sql.ColumnUsage">
+                  <ID class="oracle.javatools.db.IdentifierBasedID">
+                    <identifier class="java.lang.String">c15e490f-8e4e-49ba-ae95-af6f9a28939d</identifier>
+                  </ID>
+                  <objectID class="oracle.javatools.db.IdentifierBasedID">
+                    <name>C_TIPO_NOTA</name>
+                    <identifier class="java.lang.String">91e5c169-24ac-40fd-82be-4921a6d746a9</identifier>
+                    <parent class="oracle.javatools.db.IdentifierBasedID">
+                      <name>TRDNOTA</name>
+                      <identifier class="java.lang.String">a90ba506-354b-4f36-bdb9-543ad7294274</identifier>
+                      <schemaName>LUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <type>COLUMN</type>
+                  </objectID>
+                  <outerJoin>false</outerJoin>
+                  <properties>
+                    <entry>
+                      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                      <value class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <parent class="oracle.javatools.db.ReferenceID">
+                                <name>CK_TRDNOTA_02</name>
+                                <parent class="oracle.javatools.db.ReferenceID">
+                                  <name>TRDNOTA</name>
+                                  <identifier class="java.math.BigDecimal">14897</identifier>
+                                  <schemaName>LUBAL</schemaName>
+                                  <type>TABLE</type>
+                                </parent>
+                                <subType>CheckConstraint</subType>
+                                <type>CONSTRAINT</type>
+                              </parent>
+                              <type>WHERE</type>
+                            </parent>
+                            <type>WHERE</type>
+                          </parent>
+                          <type>SQLFragment</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </value>
+                    </entry>
+                  </properties>
+                  <qualified>false</qualified>
+                </leftExpression>
+                <priorOnLeft>false</priorOnLeft>
+                <priorOnRight>false</priorOnRight>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_TRDNOTA_02</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>TRDNOTA</name>
+                              <identifier class="java.math.BigDecimal">14897</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>WHERE</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+                <rightExpression class="oracle.javatools.db.sql.SimpleSQLFragment">
+                  <ID class="oracle.javatools.db.IdentifierBasedID">
+                    <identifier class="java.lang.String">c34b36e7-105a-4b83-a598-fe3c621605ec</identifier>
+                  </ID>
+                  <SQLText>&apos;D&apos;</SQLText>
+                  <properties>
+                    <entry>
+                      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                      <value class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <parent class="oracle.javatools.db.ReferenceID">
+                                <name>CK_TRDNOTA_02</name>
+                                <parent class="oracle.javatools.db.ReferenceID">
+                                  <name>TRDNOTA</name>
+                                  <identifier class="java.math.BigDecimal">14897</identifier>
+                                  <schemaName>LUBAL</schemaName>
+                                  <type>TABLE</type>
+                                </parent>
+                                <subType>CheckConstraint</subType>
+                                <type>CONSTRAINT</type>
+                              </parent>
+                              <type>WHERE</type>
+                            </parent>
+                            <type>WHERE</type>
+                          </parent>
+                          <type>SQLFragment</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </value>
+                    </entry>
+                  </properties>
+                </rightExpression>
+              </argument>
+            </arguments>
+            <operator>373</operator>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_TRDNOTA_02</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>TRDNOTA</name>
+                        <identifier class="java.math.BigDecimal">14897</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>WHERE</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_TRDNOTA_02</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDNOTA</name>
+                  <identifier class="java.math.BigDecimal">14897</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_TRDNOTA_02</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ade14522-1e90-4936-97bc-27c07d594d15</identifier>
+      </ID>
+      <name>CK_TRDNOTA_03</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">ec0534bc-78bb-46b3-8c68-ceb06104513d</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.SetOperation">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">63d7679d-56c0-46dd-8387-d7349aaf146c</identifier>
+            </ID>
+            <arguments>
+              <argument class="oracle.javatools.db.sql.ColumnUsage">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">1dc380d9-7970-4a50-9a91-fdde939594a8</identifier>
+                </ID>
+                <objectID class="oracle.javatools.db.IdentifierBasedID">
+                  <name>N_ESTADO_NOTA</name>
+                  <identifier class="java.lang.String">8565a9f6-ac0e-479a-bc2b-5e3f9c3f7e48</identifier>
+                  <parent class="oracle.javatools.db.IdentifierBasedID">
+                    <name>TRDNOTA</name>
+                    <identifier class="java.lang.String">a90ba506-354b-4f36-bdb9-543ad7294274</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <type>COLUMN</type>
+                </objectID>
+                <outerJoin>false</outerJoin>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_TRDNOTA_03</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>TRDNOTA</name>
+                              <identifier class="java.math.BigDecimal">14897</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+                <qualified>false</qualified>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">0a8b7317-aeb3-478e-b58d-f942b449f988</identifier>
+                </ID>
+                <SQLText>1</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_TRDNOTA_03</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>TRDNOTA</name>
+                              <identifier class="java.math.BigDecimal">14897</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">e7a3337f-1c59-4235-a0dd-5b8a2e1288cf</identifier>
+                </ID>
+                <SQLText>2</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_TRDNOTA_03</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>TRDNOTA</name>
+                              <identifier class="java.math.BigDecimal">14897</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+            </arguments>
+            <operator>705</operator>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_TRDNOTA_03</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>TRDNOTA</name>
+                        <identifier class="java.math.BigDecimal">14897</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_TRDNOTA_03</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDNOTA</name>
+                  <identifier class="java.math.BigDecimal">14897</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_TRDNOTA_03</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">fbcdd542-1922-40ab-9ede-e4233eeb9ba1</identifier>
+      </ID>
+      <name>FK_NOTA</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_FACTURA</name>
+          <identifier class="java.lang.String">a07eea88-8997-4963-bb44-135cc446709d</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>TRDNOTA</name>
+            <identifier class="java.lang.String">a90ba506-354b-4f36-bdb9-543ad7294274</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>FK_NOTA</name>
+            <childObjectNames>
+              <childObjectName>NID_FACTURA</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>FACTURA_PRIMARY_KEY</name>
+        <identifier class="java.lang.String">ccaea261-b497-4a2b-96d4-485fa017a15a</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>TRMFACT</name>
+          <identifier class="java.lang.String">15c0a760-6aa9-4848-8f10-a27ba01cce84</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">016b3cde-3466-4950-8abe-8ce3dfb700b6</identifier>
+      </ID>
+      <name>NOTA_PRIMARY_KEY</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_NOTA</name>
+          <identifier class="java.lang.String">dcb0b25e-6d1d-4d93-bb83-00e8f5084863</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>TRDNOTA</name>
+            <identifier class="java.lang.String">a90ba506-354b-4f36-bdb9-543ad7294274</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.IdentifierBasedID">
+        <name>NOTA_PRIMARY_KEY</name>
+        <identifier class="java.lang.String">93077906-8d59-45b0-a110-01d1eb0f80cf</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>TRDNOTA</name>
+          <identifier class="java.lang.String">a90ba506-354b-4f36-bdb9-543ad7294274</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NOTA_PRIMARY_KEY</name>
+            <childObjectNames>
+              <childObjectName>NID_NOTA</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">93077906-8d59-45b0-a110-01d1eb0f80cf</identifier>
+      </ID>
+      <name>NOTA_PRIMARY_KEY</name>
+      <columnExpressions>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">2727a36a-67f5-47d9-8bdd-90083b714aa0</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">63545f05-503a-4b8d-a95a-d837b859b9c2</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>NID_NOTA</name>
+              <identifier class="java.lang.String">dcb0b25e-6d1d-4d93-bb83-00e8f5084863</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>TRDNOTA</name>
+                <identifier class="java.lang.String">a90ba506-354b-4f36-bdb9-543ad7294274</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>NOTA_PRIMARY_KEY</name>
+                      <identifier class="java.math.BigDecimal">14915</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>TRDNOTA</name>
+                        <identifier class="java.math.BigDecimal">14897</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>LUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>NOTA_PRIMARY_KEY</name>
+                  <identifier class="java.math.BigDecimal">14915</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>TRDNOTA</name>
+                    <identifier class="java.math.BigDecimal">14897</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>LUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NOTA_PRIMARY_KEY</name>
+            <identifier class="java.math.BigDecimal">14915</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDNOTA</name>
+              <identifier class="java.math.BigDecimal">14897</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>LUBAL</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">452e7baf-5d48-43b7-bc9f-af4744ef6eb5</identifier>
+            </ID>
+            <bufferMode>DEFAULT</bufferMode>
+            <initialExtent>65536</initialExtent>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <maxExtent>2147483645</maxExtent>
+            <minExtent>1</minExtent>
+            <percentFree>10</percentFree>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>NOTA_PRIMARY_KEY</name>
+                    <identifier class="java.math.BigDecimal">14915</identifier>
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>TRDNOTA</name>
+                      <identifier class="java.math.BigDecimal">14897</identifier>
+                      <schemaName>LUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <schemaName>LUBAL</schemaName>
+                    <type>INDEX</type>
+                  </parent>
+                  <type>OracleStorageProperties</type>
+                </value>
+              </entry>
+            </properties>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>USERS</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>LUBAL</name>
+      </schema>
+      <systemGenerated>false</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>Comment</key>
+      <value class="java.lang.String">TABLA DE LAS NOTAS DE CREDITO O DEBITO DE LAS FACTURAS</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>TRDNOTA</name>
+        <identifier class="java.math.BigDecimal">14897</identifier>
+        <schemaName>LUBAL</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">53ffd02a-e763-4dba-b360-9fb7f0c05d14</identifier>
+        </ID>
+        <bufferMode>DEFAULT</bufferMode>
+        <initialExtent>65536</initialExtent>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <maxExtent>2147483645</maxExtent>
+        <minExtent>1</minExtent>
+        <percentFree>10</percentFree>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>TRDNOTA</name>
+                <identifier class="java.math.BigDecimal">14897</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>OracleStorageProperties</type>
+            </value>
+          </entry>
+        </properties>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>USERS</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>LUBAL</name>
+  </schema>
+</table>

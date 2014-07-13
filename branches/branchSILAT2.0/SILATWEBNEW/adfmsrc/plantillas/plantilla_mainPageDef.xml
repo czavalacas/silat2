@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="plantilla_mainPageDef"
+                Package="plantillas">
+  <parameters>
+    <parameter id="paraID" value="#{bindings.paraID.value}"/>
+  </parameters>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="dynamicRegion1" taskFlowId="${BackingBean_Region.dynamicTaskFlowId}" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <methodIterator Binds="getCrearArbolNuevo.result" DataControl="LN_C_SFPermisosBeanLocal" RangeSize="25"
+                    BeanClass="silat.servicios_negocio.Beans.BeanPermisos" id="getCrearArbolNuevoIterator"/>
+  </executables>
+  <bindings>
+  <methodAction id="getCrearArbolNuevo" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getCrearArbolNuevo" IsViewObjectMethod="false" DataControl="LN_C_SFPermisosBeanLocal"
+                  InstanceName="data.LN_C_SFPermisosBeanLocal.dataProvider"
+                  ReturnName="data.LN_C_SFPermisosBeanLocal.methodResults.getCrearArbolNuevo_LN_C_SFPermisosBeanLocal_dataProvider_getCrearArbolNuevo_result">
+      <NamedData NDName="nidRol"
+                 NDValue=""
+                 NDType="java.math.BigDecimal" NDOption="3"/>
+      <NamedData NDName="nombUser"
+                 NDValue=""
+                 NDType="java.lang.String" NDOption="3"/>
+    </methodAction>
+    <tree IterBinding="getCrearArbolNuevoIterator" id="BeanPermisos">
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanPermisos" Name="BeanPermisos0">
+        <AttrNames>
+          <Item Value="CDescPermiso"/>
+          <Item Value="CIcono"/>
+          <Item Value="CUrl"/>
+          <Item Value="CIndFld"/>
+          <Item Value="habilidad"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="listaHijos"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>     
+  </bindings>
+</pageDefinition>

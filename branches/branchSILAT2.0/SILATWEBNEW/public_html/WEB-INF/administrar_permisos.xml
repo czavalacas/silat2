@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="administrar_permisos">
+    <default-activity>frm_administrar_permisos</default-activity>
+    <view id="frm_administrar_permisos">
+      <page>/administrativo/permisos/frm_administrar_permisos.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

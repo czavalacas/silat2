@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="11.1.2.62.94" id="DataBindings"
+             SeparateXMLFiles="false" Package="siat.view" ClientType="Generic">
+    <definitionFactories>
+        <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+                 className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+        <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+    </definitionFactories>
+    <pageMap>
+        <page path="/seguridad/frm_login.jspx" usageId="siat_view_frm_loginPageDef"/>
+        <page path="/bienvenida/frm_main.jsf" usageId="siat_view_plantilla_mainPageDef"/>
+        <page path="/combo.jsff" usageId="siat_view_comboPageDef"/>
+        <page path="/transporte/frm_registrar_orden_servicio.jsff"
+              usageId="siat_view_frm_registrar_orden_servicioPageDef"/>
+        <page path="/transporte/Consultar_Orden_Servicio.jsff" usageId="siat_view_Consultar_Orden_ServicioPageDef"/>
+        <page path="/transporte/frm_actualizar_orden_servicio.jsff"
+              usageId="siat_view_frm_actualizar_orden_servicioPageDef"/>
+        <page path="/transporte/frm_consultar_orden_servicio.jsff"
+              usageId="siat_view_frm_consultar_orden_servicioPageDef"/>
+        <page path="/transporte/guia/frm_registrar_guia.jsff" usageId="siat_view_frm_registrar_guiaPageDef"/>
+        <page path="/transporte/cliente/frm_registrar_cliente.jsff" usageId="siat_view_frm_registrar_clientePageDef"/>
+        <page path="/bienvenida/chat.jsf" usageId="siat_view_chatPageDef"/>
+        <page path="/transporte/cliente/frm_consultar_cliente.jsff" usageId="siat_view_frm_consultar_clientePageDef"/>
+        <page path="/transporte/cliente/frm_actualizar_cliente.jsff" usageId="siat_view_frm_actualizar_clientePageDef"/>
+        <page path="/transporte/guia/frm_consultar_guia.jsff" usageId="siat_view_frm_consultar_guiaPageDef"/>
+        <page path="/transporte/factura/frm_registrar_factura.jsff" usageId="siat_view_frm_registrar_facturaPageDef"/>
+    </pageMap>
+    <pageDefinitionUsages>
+        <page id="siat_view_frm_loginPageDef" path="seguridad.frm_loginPageDef"/>
+        <page id="siat_view_tetPageDef" path="siat.view.pageDefs.tetPageDef"/>
+        <page id="siat_view_plantilla_mainPageDef" path="plantillas.plantilla_mainPageDef"/>
+        <page id="siat_view_adfc_config___ExecutePageDef" path="siat.view.pageDefs.adfc_config___ExecutePageDef"/>
+        <page id="siat_view_comboPageDef" path="siat.view.pageDefs.comboPageDef"/>
+        <page id="siat_view_frm_registrar_orden_servicioPageDef" path="transporte.frm_registrar_orden_servicioPageDef"/>
+        <page id="siat_view_Consultar_Orden_ServicioPageDef" path="transporte.Consultar_Orden_ServicioPageDef"/>
+        <page id="siat_view_frm_actualizar_orden_servicioPageDef"
+              path="transporte.frm_actualizar_orden_servicioPageDef"/>
+        <page id="siat_view_frm_consultar_orden_servicioPageDef" path="transporte.frm_consultar_orden_servicioPageDef"/>
+        <page id="siat_view_frm_registrar_guiaPageDef" path="transporte.guia.frm_registrar_guiaPageDef"/>
+        <page id="siat_view_frm_registrar_clientePageDef" path="transporte.cliente.frm_registrar_clientePageDef"/>
+        <page id="siat_view_chatPageDef" path="bienvenida.chatPageDef"/>
+        <page id="siat_view_frm_consultar_clientePageDef" path="transporte.cliente.frm_consultar_clientePageDef"/>
+        <page id="siat_view_frm_actualizar_clientePageDef" path="transporte.cliente.frm_actualizar_clientePageDef"/>
+        <page id="siat_view_frm_consultar_guiaPageDef" path="transporte.guia.frm_consultar_guiaPageDef"/>
+        <page id="siat_view_frm_registrar_facturaPageDef" path="transporte.factura.frm_registrar_facturaPageDef"/>
+    </pageDefinitionUsages>
+    <dataControlUsages>
+        <dc id="LN_C_SFDireccionLocal" path="silat.servicios_negocio.LN_C_SFDireccionLocal"/>
+        <dc id="LN_T_SFFlotaLocal" path="silat.servicios_negocio.LN_T_SFFlotaLocal"/>
+        <dc id="LN_T_SFChoferLocal" path="silat.servicios_negocio.LN_T_SFChoferLocal"/>
+        <dc id="LN_C_SFGuiaLocal" path="silat.servicios_negocio.LN_C_SFGuiaLocal"/>
+        <dc id="LN_C_SFManifiestoLocal" path="silat.servicios_negocio.LN_C_SFManifiestoLocal"/>
+        <dc id="LN_C_SFRelacionEmpresaLocal" path="silat.servicios_negocio.LN_C_SFRelacionEmpresaLocal"/>
+        <dc id="LN_C_SFUtilsLocal" path="silat.servicios_negocio.LN_C_SFUtilsLocal"/>
+        <dc id="LN_C_SFEmpresasLocal" path="silat.servicios_negocio.LN_C_SFEmpresasLocal"/>
+        <dc id="LN_C_SFRutasLocal" path="silat.servicios_negocio.LN_C_SFRutasLocal"/>
+        <dc id="BDL_C_SFEmpresasLocal" path="silat.servicios_negocio.BDL_C_SFEmpresasLocal"/>
+        <dc id="LN_C_SFOrdenServicioLocal" path="silat.servicios_negocio.LN_C_SFOrdenServicioLocal"/>
+        <dc id="BDL_T_SFOrdenServicioLocal" path="silat.servicios_negocio.BDL_T_SFOrdenServicioLocal"/>
+        <dc id="LN_C_SFRolLocal" path="silat.servicios_negocio.LN_C_SFRolLocal"/>
+        <dc id="LN_C_SFUsuarioLocal" path="silat.servicios_negocio.LN_C_SFUsuarioLocal"/>
+        <dc id="LN_C_SFPermisosBeanLocal" path="silat.servicios_negocio.LN_C_SFPermisosBeanLocal"/>
+    </dataControlUsages>
+</Application>

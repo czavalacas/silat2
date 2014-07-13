@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:adfsilat="/webapp/untitled1.taglib">
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_administrativo_permisos_frm_administrar_permisos-->
+    <f:view>
+        <af:panelGroupLayout layout="scroll" inlineStyle="margin:0px 0px 0px 43px;">
+            <af:panelGroupLayout halign="left">
+               <af:spacer height="10"/>
+                    <af:outputText id="ouputTitle" value="Administrar Permisos"
+                                   styleClass="titulos2"
+                                   binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.ouputTitle}"/>
+                <af:spacer height="10"/>
+            </af:panelGroupLayout>    
+            <af:outputText id="outUsuario"
+                           inlineStyle="color:Navy; font-family:Arial, Helvetica, sans-serif; font-weight:bold; text-align:center; font-size:small;"
+                           binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.outUsuario}"/>
+            <af:outputText id="outUsuario2"
+                           inlineStyle="color:Navy; font-family:Arial, Helvetica, sans-serif; font-weight:bold; text-align:center; font-size:small;"
+                           binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.outUsuario2}"/>
+            <af:panelGridLayout id="pgl1"
+                                binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.pgl1}">
+                <af:gridRow marginTop="1px" marginBottom="1px" height="auto" id="gr1"
+                            binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.gr1}">
+                    <af:gridCell marginStart="1px" id="gc1"
+                                 binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.gc1}">
+                        <af:commandButton text="Seleccionar Usuario" id="btnVerUsuarios"
+                                          binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.btnVerUsuarios}"
+                                          action="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.mostrarUsuarios}"/>
+                    </af:gridCell>
+                    <af:gridCell marginStart="1px" id="gc2"
+                                 binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.gc2}">
+                        <af:commandButton text="Resetear Permisos" id="btnResetPerm" disabled="true"
+                                          binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.btnResetPerm}"
+                                          action="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.resetearPermisos}"/>
+                    </af:gridCell>
+                    <af:gridCell marginStart="1px" marginEnd="1px" id="gc3"
+                                 binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.gc3}">
+                        <af:commandButton text="Grabar Permisos" id="btnGrabarPerm"
+                                          binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.btnGrabarPerm}"
+                                          action="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.openPopConfirmGrabarPermisos}"
+                                          disabled="true"/>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+            <af:treeTable value="#{beanSessionScopedAdministrarPermisos.permisosTree}" var="row" rowBandingInterval="0"
+                          id="treePer"
+                          binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.treePer}"
+                          width="420" inlineStyle="width:420px; height:600px;" initiallyExpanded="true"
+                          emptyText="No hay permisos">
+                <f:facet name="nodeStamp">
+                    <af:column sortable="false" headerText="Permisos" align="start" id="c1" width="320">
+                        <af:outputText value="#{row.CDescPermiso}" id="ot1"/>
+                    </af:column>
+                </f:facet>
+                <af:column width="60" headerText="Seleccionar" align="center">
+                    <af:selectBooleanCheckbox id="sbcPerm" selected="#{row.hasPermiso}"
+                                              valueChangeListener="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.permisoCheckedVCE}"
+                                              shortDesc="#{row.nidPermiso}" autoSubmit="true"></af:selectBooleanCheckbox>
+                </af:column>
+            </af:treeTable>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="popupUsuarios"
+                      binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.popupUsuarios}">
+                <af:dialog id="dialogUsuarios"
+                           binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.dialogUsuarios}"
+                           title="Seleccionar Usuario" type="ok">
+                    <af:table var="row" rowBandingInterval="0" id="t1"
+                              binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.t1}"
+                              value="#{beanSessionScopedAdministrarPermisos.listUsuarios}" rowSelection="single"
+                              varStatus="vs"
+                               inlineStyle="height:120px;" width="470"
+                              selectionListener="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.seleccionarUsuario}">
+                        <af:column width="25">
+                            <af:outputText value="#{vs.index + 1}"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="Apellidos" id="c2" width="133">
+                            <af:outputText value="#{row.CApellidos}" id="ot2"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="Nombres" id="c3" width="77">
+                            <af:outputText value="#{row.CNombres}" id="ot3"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="Usuario" id="c4" width="105">
+                            <af:outputText value="#{row.CUsuario}" id="ot4" converter="upperConverter"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="Rol" id="c5" width="105">
+                            <af:outputText value="#{row.CCargo}" id="ot5"/>
+                        </af:column>
+                    </af:table>                   
+                </af:dialog>
+            </af:popup>
+            <af:popup id="popConf"
+                      binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.popConf}">
+                <af:dialog id="diaConf"
+                           binding="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.diaConf}"
+                           title="Confirmacion de Registro de Permisos"
+                           dialogListener="#{backingBeanScope.backing_administrativo_permisos_frm_administrar_permisos.dialogPermisosListener}">
+                        <af:outputText value="Desea Grabar los permisos?" id="grabPerm"/>
+                </af:dialog>
+            </af:popup>
+        </af:panelGroupLayout>
+    </f:view>
+</ui:composition>

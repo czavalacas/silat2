@@ -1,0 +1,1299 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">79638b5d-834f-4240-b779-31cc51097d23</identifier>
+  </ID>
+  <name>ADDGAST</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">c7cd1809-435b-430c-8f2e-1e31ca7bc495</identifier>
+      </ID>
+      <name>NID_GASTO</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">d8531132-233d-4170-8231-cc48b1b8f6de</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_GASTO</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">NUMERO IDENTIFICACION DEL GASTO</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_GASTO</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ffbdedce-8f4c-4a7f-806f-ab3fae96807e</identifier>
+      </ID>
+      <name>N_TIPO_GASTO</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">b3d6954c-ae57-4723-a4af-ca36091e5de7</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">1</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>N_TIPO_GASTO</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">TIPO DE GASTO (LUZ = 1, AGUA = 2, TELEFONO = 3, ALQUILER = 4, SUELDOS = 5, COCHERA = 6, NEXTEL = 7, OTROS = 8)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>N_TIPO_GASTO</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">b11862f6-eabc-42fc-8c7a-a65fd76f4db7</identifier>
+      </ID>
+      <name>D_MONTO_GENERAL</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">c345df95-3369-4b3a-a9ed-caeb35240be0</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">6</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>D_MONTO_GENERAL</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">MONTO DEL GASTO</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>D_MONTO_GENERAL</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">7ca8b296-ef24-4221-9fbd-8b4402df3b9c</identifier>
+      </ID>
+      <name>D_COMBUSTIBLE</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">1614ce6b-20c7-4d26-a175-de9444865b4f</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">6</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>D_COMBUSTIBLE</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">MONTO GASTADO EN COMBUSTIBLE</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>D_COMBUSTIBLE</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ad52eaa1-93f0-4498-b50a-f051b7cd6097</identifier>
+      </ID>
+      <name>D_BIATICOS</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">c8c83d10-25b9-4970-b315-2fe1549f74d5</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">6</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>D_BIATICOS</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">MONTO GASTADO EN BIATICOS</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>D_BIATICOS</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">41d45d1e-3ebc-440c-a4a8-bf352b23e118</identifier>
+      </ID>
+      <name>D_MANTENIMIENTO</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">3bb85b6b-4967-4fe6-8821-aaa0705e84e9</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">6</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>D_MANTENIMIENTO</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">MONTO GASTADO EN MANTENIMIENTO</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>D_MANTENIMIENTO</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">8cc4c66c-99ac-45e1-b3e0-0b8e6542e907</identifier>
+      </ID>
+      <name>D_PEAJES</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">12f56fdc-25e7-42d5-990b-67f59a0a4fee</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">6</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>D_PEAJES</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">MONTO GASTADO EN PEAJES</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>D_PEAJES</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">965ac539-029a-4edc-8379-8246e39a3e84</identifier>
+      </ID>
+      <name>D_OTROS</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">0cb638fc-1a14-4648-afa1-03dd13d38b1a</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">6</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>D_OTROS</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">MONTO GASTADO EN OTROS</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>D_OTROS</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">af046e85-19d5-40f7-890a-c9d34e82931c</identifier>
+      </ID>
+      <name>F_FEC_GASTO</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">8e576009-1cb0-446e-bff0-4b3660ba6745</identifier>
+        </ID>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>DATE</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>F_FEC_GASTO</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">FECHA DEL GASTO</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>F_FEC_GASTO</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">18b05878-c8c3-4f4a-ba8f-c2a0bebc5a0c</identifier>
+      </ID>
+      <name>C_PLACA</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">19786399-67a0-40da-9180-929415413b1b</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">255</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_PLACA</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">PLACA DEL VEHICULO</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_PLACA</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">3b97a241-5c3a-4575-abba-f3f3b329b489</identifier>
+      </ID>
+      <name>CK_ADDGAST_01</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">102925a9-a99c-49fb-9848-71f855718d75</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.SetOperation">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">bf3454c1-a63c-427f-b4bd-e726fde9e216</identifier>
+            </ID>
+            <arguments>
+              <argument class="oracle.javatools.db.sql.ColumnUsage">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">2dccf6a3-5e99-40be-ab3d-75094543114e</identifier>
+                </ID>
+                <objectID class="oracle.javatools.db.IdentifierBasedID">
+                  <name>N_TIPO_GASTO</name>
+                  <identifier class="java.lang.String">ffbdedce-8f4c-4a7f-806f-ab3fae96807e</identifier>
+                  <parent class="oracle.javatools.db.IdentifierBasedID">
+                    <name>ADDGAST</name>
+                    <identifier class="java.lang.String">79638b5d-834f-4240-b779-31cc51097d23</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <type>COLUMN</type>
+                </objectID>
+                <outerJoin>false</outerJoin>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDGAST_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDGAST</name>
+                              <identifier class="java.math.BigDecimal">14892</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+                <qualified>false</qualified>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">bedf38ed-b279-4fe0-b34a-e45bb58ce773</identifier>
+                </ID>
+                <SQLText>1</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDGAST_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDGAST</name>
+                              <identifier class="java.math.BigDecimal">14892</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">71202a10-e033-4bd3-8388-9861dc87c00f</identifier>
+                </ID>
+                <SQLText>2</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDGAST_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDGAST</name>
+                              <identifier class="java.math.BigDecimal">14892</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">36ea832e-4e49-4baf-89cb-e24ef1c5cafb</identifier>
+                </ID>
+                <SQLText>3</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDGAST_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDGAST</name>
+                              <identifier class="java.math.BigDecimal">14892</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">e446f8bd-705e-4843-8189-e3705982e5c7</identifier>
+                </ID>
+                <SQLText>4</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDGAST_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDGAST</name>
+                              <identifier class="java.math.BigDecimal">14892</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">fa981872-5d77-4c43-a509-114417d97123</identifier>
+                </ID>
+                <SQLText>5</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDGAST_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDGAST</name>
+                              <identifier class="java.math.BigDecimal">14892</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">4a6cea03-b80a-421c-8cd4-2e2afadfc07c</identifier>
+                </ID>
+                <SQLText>6</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDGAST_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDGAST</name>
+                              <identifier class="java.math.BigDecimal">14892</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">6adcbfe5-af0e-487d-a9e8-4968c0382650</identifier>
+                </ID>
+                <SQLText>7</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDGAST_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDGAST</name>
+                              <identifier class="java.math.BigDecimal">14892</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">a439d008-706f-4a86-9711-cb888ccbe736</identifier>
+                </ID>
+                <SQLText>8</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDGAST_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDGAST</name>
+                              <identifier class="java.math.BigDecimal">14892</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+            </arguments>
+            <operator>705</operator>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_ADDGAST_01</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDGAST</name>
+                        <identifier class="java.math.BigDecimal">14892</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_ADDGAST_01</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDGAST</name>
+                  <identifier class="java.math.BigDecimal">14892</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_ADDGAST_01</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">a578cb23-5fa0-4192-b302-bd8ee0d3ea09</identifier>
+      </ID>
+      <name>FK_ADDGAST</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>C_PLACA</name>
+          <identifier class="java.lang.String">18b05878-c8c3-4f4a-ba8f-c2a0bebc5a0c</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDGAST</name>
+            <identifier class="java.lang.String">79638b5d-834f-4240-b779-31cc51097d23</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>FK_ADDGAST</name>
+            <childObjectNames>
+              <childObjectName>C_PLACA</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>FLOTA_PRIMARY_KEY</name>
+        <identifier class="java.lang.String">1678f32e-043c-4b3c-9ba7-e80f09ecfcaf</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ADMFLOT</name>
+          <identifier class="java.lang.String">e2fcc16c-1fc8-4b5e-8288-e83cdcaaf341</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">97d7640d-dfa2-4499-a1a0-aecd3e7ea8f0</identifier>
+      </ID>
+      <name>GASTO_PRIMARY_KEY</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_GASTO</name>
+          <identifier class="java.lang.String">c7cd1809-435b-430c-8f2e-1e31ca7bc495</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDGAST</name>
+            <identifier class="java.lang.String">79638b5d-834f-4240-b779-31cc51097d23</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.IdentifierBasedID">
+        <name>GASTO_PRIMARY_KEY</name>
+        <identifier class="java.lang.String">bb85bdb6-822f-45f5-9427-9100e7395900</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ADDGAST</name>
+          <identifier class="java.lang.String">79638b5d-834f-4240-b779-31cc51097d23</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>GASTO_PRIMARY_KEY</name>
+            <childObjectNames>
+              <childObjectName>NID_GASTO</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">bb85bdb6-822f-45f5-9427-9100e7395900</identifier>
+      </ID>
+      <name>GASTO_PRIMARY_KEY</name>
+      <columnExpressions>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">10485cd3-64c4-4fc7-941d-f4cfa1394ad3</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">55e22afb-2464-47df-84c3-43eb5b3fa222</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>NID_GASTO</name>
+              <identifier class="java.lang.String">c7cd1809-435b-430c-8f2e-1e31ca7bc495</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>ADDGAST</name>
+                <identifier class="java.lang.String">79638b5d-834f-4240-b779-31cc51097d23</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>GASTO_PRIMARY_KEY</name>
+                      <identifier class="java.math.BigDecimal">14909</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDGAST</name>
+                        <identifier class="java.math.BigDecimal">14892</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>LUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>GASTO_PRIMARY_KEY</name>
+                  <identifier class="java.math.BigDecimal">14909</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>ADDGAST</name>
+                    <identifier class="java.math.BigDecimal">14892</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>LUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>GASTO_PRIMARY_KEY</name>
+            <identifier class="java.math.BigDecimal">14909</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDGAST</name>
+              <identifier class="java.math.BigDecimal">14892</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>LUBAL</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">07d45004-9614-44c6-aed5-683bfa660817</identifier>
+            </ID>
+            <bufferMode>DEFAULT</bufferMode>
+            <initialExtent>65536</initialExtent>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <maxExtent>2147483645</maxExtent>
+            <minExtent>1</minExtent>
+            <percentFree>10</percentFree>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>GASTO_PRIMARY_KEY</name>
+                    <identifier class="java.math.BigDecimal">14909</identifier>
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>ADDGAST</name>
+                      <identifier class="java.math.BigDecimal">14892</identifier>
+                      <schemaName>LUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <schemaName>LUBAL</schemaName>
+                    <type>INDEX</type>
+                  </parent>
+                  <type>OracleStorageProperties</type>
+                </value>
+              </entry>
+            </properties>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>USERS</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>LUBAL</name>
+      </schema>
+      <systemGenerated>false</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>Comment</key>
+      <value class="java.lang.String">TABLA DETALLE DE LOS GASTOS DE LA EMPRESA</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>ADDGAST</name>
+        <identifier class="java.math.BigDecimal">14892</identifier>
+        <schemaName>LUBAL</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">f4430d20-ff70-47bc-bd9e-524f5ebbf92f</identifier>
+        </ID>
+        <bufferMode>DEFAULT</bufferMode>
+        <initialExtent>65536</initialExtent>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <maxExtent>2147483645</maxExtent>
+        <minExtent>1</minExtent>
+        <percentFree>10</percentFree>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>ADDGAST</name>
+                <identifier class="java.math.BigDecimal">14892</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>OracleStorageProperties</type>
+            </value>
+          </entry>
+        </properties>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>USERS</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>LUBAL</name>
+  </schema>
+</table>

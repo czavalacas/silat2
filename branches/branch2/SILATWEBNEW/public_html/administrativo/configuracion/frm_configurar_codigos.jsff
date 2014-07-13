@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <f:view>
+        <af:panelGroupLayout layout="scroll" inlineStyle="margin:0px 0px 0px 43px;">
+            <af:panelGroupLayout halign="left">
+                <af:spacer height="10"/>
+                 <af:outputText value="Configurar Codigos" id="otTitulo"
+                                styleClass="titulos2"/>
+                <af:spacer height="10"/>
+             </af:panelGroupLayout>
+            <af:subform id="sfConfC" defaultCommand="btnActualizar"
+                        binding="#{backingBeanScope.frm_configurar_codigos.sfConfC}">
+                <af:panelFormLayout>
+                    <af:inputText label="Serie" id="itSerie" value="#{beanSessionConfigCodigos.codUN}" disabled="true"
+                                  labelStyle="text-align:left;"
+                                  binding="#{backingBeanScope.frm_configurar_codigos.itSerie}"/>
+                    <af:selectOneChoice label="Tipo de Documento" disabled="true"
+                                        requiredMessageDetail="Seleccione un tipo de Documento" id="socTipDoc" autoSubmit="true"
+                                        binding="#{backingBeanScope.frm_configurar_codigos.socTipDoc}"
+                                        value="#{beanSessionConfigCodigos.doc}">
+                        <af:selectItem label="Guia" value="G" id="siTipDoc1"
+                                       binding="#{backingBeanScope.frm_configurar_codigos.siTipDoc1}"/>
+                        <af:selectItem label="Factura" value="F" id="siTipDoc2"
+                                       binding="#{backingBeanScope.frm_configurar_codigos.siTipDoc2}"/>
+                    </af:selectOneChoice>
+                    <af:inputText label="Codigo" id="itCod"
+                                  binding="#{backingBeanScope.frm_configurar_codigos.itCod}" maximumLength="6"
+                                  required="true" showRequired="true" labelStyle="text-align:left;"
+                                  value="#{beanSessionConfigCodigos.codigo}"/>
+                    <af:commandButton text="Cambiar Codigo" id="btnActualizar"
+                                      binding="#{backingBeanScope.frm_configurar_codigos.btnActualizar}"
+                                      action="#{backingBeanScope.frm_configurar_codigos.btnActualizar_action}"/>
+                </af:panelFormLayout>
+            </af:subform>
+            <af:separator/>
+            <af:table value="#{beanSessionConfigCodigos.lstCodigos}" var="row" rowBandingInterval="0" id="tbCodig"
+                      binding="#{backingBeanScope.frm_configurar_codigos.tbCodig}"
+                      selectionListener="#{backingBeanScope.frm_configurar_codigos.selectCodigo}" rowSelection="single">
+                <af:column sortable="true" headerText="Serie" align="start" id="c4" sortProperty="cidunin" width="50">
+                    <af:outputText value="#{row.cidunin}" id="ot4"/>
+                </af:column>
+                <af:column sortable="true" headerText="Codigo" align="start" id="c5" sortProperty="codigo">
+                    <af:outputText value="#{row.codigo}" id="ot5"/>
+                </af:column>
+                <af:column sortable="true" headerText="Documento" align="start" id="c6" sortProperty="descTipDoc">
+                    <af:outputText value="#{row.descTipDoc}" id="ot6"/>
+                </af:column>
+            </af:table>
+        </af:panelGroupLayout>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:frm_configurar_codigos-->
+</ui:composition>

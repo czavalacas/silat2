@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="frm_error.jspx" id="d1" binding="#{backingBeanScope.backing_frm_error.d1}"
+                     inlineStyle="background-color:Menu;">
+            <af:form id="f1" binding="#{backingBeanScope.backing_frm_error.f1}">
+                <af:panelStretchLayout id="psl1" binding="#{backingBeanScope.backing_frm_error.psl1}">
+                    <f:facet name="center">
+                        <af:panelGroupLayout layout="scroll" id="pgl1"
+                                             binding="#{backingBeanScope.backing_frm_error.pgl1}"
+                                             inlineStyle="text-align:center; vertical-align:middle;">
+                            <af:group id="g1" binding="#{backingBeanScope.backing_frm_error.g1}">
+                                <af:image source="/recursos/img/errorPage.png" shortDesc="err" id="i1"
+                                      binding="#{backingBeanScope.backing_frm_error.i1}"
+                                          inlineStyle="vertical-align:middle; margin:100px 0px 0px 0px;"/>
+                            </af:group>        
+                        </af:panelGroupLayout>
+                        <!-- id="af_one_column_stretched"   -->
+                    </f:facet>
+                </af:panelStretchLayout>
+            </af:form>
+        </af:document>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_frm_error-->
+</jsp:root>

@@ -1,0 +1,1835 @@
+<<<<<<< .mine
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">9767980f-471c-4a71-bb31-ebec717c6dc7</identifier>
+  </ID>
+  <name>ADDRELA</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">6079ed5f-7220-4d78-93e9-eea7287bb375</identifier>
+      </ID>
+      <name>NID_PARTY_1</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">e535c506-cdd6-4e34-a3d0-ff0ca51b062a</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_PARTY_1</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">EMPRESA QUE TIENE UNA RELACION</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_PARTY_1</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">1a02116c-44a7-4e7d-8b0b-15cd8e69faf7</identifier>
+      </ID>
+      <name>NID_PARTY_2</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">a85e73d1-1c60-444f-ab9b-0fd25b1366b6</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_PARTY_2</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">EMPRESA 2 RELACIONADA CON EMPRESA 1</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_PARTY_2</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">6dbc7f71-6111-4eee-bcf4-c8b39b0dc519</identifier>
+      </ID>
+      <name>N_TIPREL</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">fc641e24-c330-4d1e-b881-f9bab9b42518</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">3</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>N_TIPREL</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">TIPO DE RELACION DE LAS 2 EMPRESAS (PROVEEDOR = 1, CLIENTE = 2, SOCIO = 3)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>N_TIPREL</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">06b6943a-6f7a-4cb7-b847-dfa795d1368d</identifier>
+      </ID>
+      <name>C_ESTREG</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">3bad44ae-bf2d-4465-a7da-a90d14f193c0</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">1</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_ESTREG</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">ESTADO DEL REGISTRO (ACTIVO = 1, INACTIVO = 2)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_ESTREG</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">33efa5c9-5fac-4b93-ab84-79d764d5dec2</identifier>
+      </ID>
+      <name>N_CORREL</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">f6dc659d-0af8-40ac-8496-92ade5c4c0dc</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>N_CORREL</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">CORRELATIVO DE RELACION</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>N_CORREL</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">4fdb8d43-e376-473e-bbd1-27bbcacb9d36</identifier>
+      </ID>
+      <name>CK_ADDRELA_01</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">4ff25026-f217-4b99-87b3-f6afd901c52d</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.SetOperation">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">7fb30dcf-29e5-47f5-80cd-1a86da20a3d9</identifier>
+            </ID>
+            <arguments>
+              <argument class="oracle.javatools.db.sql.ColumnUsage">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">219632f4-c362-4800-875f-8a8a8f9ff6ab</identifier>
+                </ID>
+                <objectID class="oracle.javatools.db.IdentifierBasedID">
+                  <name>C_ESTREG</name>
+                  <identifier class="java.lang.String">06b6943a-6f7a-4cb7-b847-dfa795d1368d</identifier>
+                  <parent class="oracle.javatools.db.IdentifierBasedID">
+                    <name>ADDRELA</name>
+                    <identifier class="java.lang.String">9767980f-471c-4a71-bb31-ebec717c6dc7</identifier>
+                    <schemaName>ULUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>COLUMN</type>
+                </objectID>
+                <outerJoin>false</outerJoin>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDRELA_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDRELA</name>
+                              <identifier class="java.math.BigDecimal">80213</identifier>
+                              <schemaName>ULUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+                <qualified>false</qualified>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">7a7c18e6-e361-495b-a12b-b00b11b0d02f</identifier>
+                </ID>
+                <SQLText>&apos;1&apos;</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDRELA_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDRELA</name>
+                              <identifier class="java.math.BigDecimal">80213</identifier>
+                              <schemaName>ULUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">d0100dce-3b54-48a6-a90d-e731a7808e9a</identifier>
+                </ID>
+                <SQLText>&apos;0&apos;</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDRELA_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDRELA</name>
+                              <identifier class="java.math.BigDecimal">80213</identifier>
+                              <schemaName>ULUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+            </arguments>
+            <operator>705</operator>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_ADDRELA_01</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDRELA</name>
+                        <identifier class="java.math.BigDecimal">80213</identifier>
+                        <schemaName>ULUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_ADDRELA_01</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_ADDRELA_01</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">b463cf6e-ef62-4228-83c9-175ece5d501a</identifier>
+      </ID>
+      <name>RE_ADDRELA_ADDEMPR_01</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_PARTY_1</name>
+          <identifier class="java.lang.String">6079ed5f-7220-4d78-93e9-eea7287bb375</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDRELA</name>
+            <identifier class="java.lang.String">9767980f-471c-4a71-bb31-ebec717c6dc7</identifier>
+            <schemaName>ULUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>ULUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>RE_ADDRELA_ADDEMPR_01</name>
+            <childObjectNames>
+              <childObjectName>NID_PARTY_1</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.ReferenceID">
+        <name>EMPRESA_PRIMARY_KEY</name>
+        <childObjectNames>
+          <childObjectName>NID_PARTY</childObjectName>
+        </childObjectNames>
+        <parent class="oracle.javatools.db.ReferenceID">
+          <name>ADDEMPR</name>
+          <identifier class="java.math.BigDecimal">74686</identifier>
+          <schemaName>ULUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <subType>PKConstraint</subType>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">c40edce1-5e02-4001-929a-b4fc5d905d10</identifier>
+      </ID>
+      <name>RE_ADDRELA_ADDEMPR_02</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_PARTY_2</name>
+          <identifier class="java.lang.String">1a02116c-44a7-4e7d-8b0b-15cd8e69faf7</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDRELA</name>
+            <identifier class="java.lang.String">9767980f-471c-4a71-bb31-ebec717c6dc7</identifier>
+            <schemaName>ULUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>ULUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>RE_ADDRELA_ADDEMPR_02</name>
+            <childObjectNames>
+              <childObjectName>NID_PARTY_2</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.ReferenceID">
+        <name>EMPRESA_PRIMARY_KEY</name>
+        <childObjectNames>
+          <childObjectName>NID_PARTY</childObjectName>
+        </childObjectNames>
+        <parent class="oracle.javatools.db.ReferenceID">
+          <name>ADDEMPR</name>
+          <identifier class="java.math.BigDecimal">74686</identifier>
+          <schemaName>ULUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <subType>PKConstraint</subType>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ab212c8d-b804-4a46-a4fd-56f2dac1e461</identifier>
+      </ID>
+      <name>RE_ADDRELA_ADMTIRE_03</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>N_TIPREL</name>
+          <identifier class="java.lang.String">6dbc7f71-6111-4eee-bcf4-c8b39b0dc519</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDRELA</name>
+            <identifier class="java.lang.String">9767980f-471c-4a71-bb31-ebec717c6dc7</identifier>
+            <schemaName>ULUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>ULUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>RE_ADDRELA_ADMTIRE_03</name>
+            <childObjectNames>
+              <childObjectName>N_TIPREL</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>ADMTIRE_PK</name>
+        <identifier class="java.lang.String">1be44f85-54df-4a58-af9b-6ac2014849fb</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ADMTIRE</name>
+          <identifier class="java.lang.String">0207823a-0423-4d26-a238-5a9ca8b2450f</identifier>
+          <schemaName>ULUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>ULUBAL</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">b2af28d3-001b-40f3-9b97-79fe0dbeb99e</identifier>
+      </ID>
+      <name>ADDRELA_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>N_CORREL</name>
+          <identifier class="java.lang.String">33efa5c9-5fac-4b93-ab84-79d764d5dec2</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDRELA</name>
+            <identifier class="java.lang.String">9767980f-471c-4a71-bb31-ebec717c6dc7</identifier>
+            <schemaName>ULUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>ULUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.IdentifierBasedID">
+        <name>ADDRELA_PK</name>
+        <identifier class="java.lang.String">61f741f4-1c1e-4f5c-9255-222175339044</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ADDRELA</name>
+          <identifier class="java.lang.String">9767980f-471c-4a71-bb31-ebec717c6dc7</identifier>
+          <schemaName>ULUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>ULUBAL</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>ADDRELA_PK</name>
+            <childObjectNames>
+              <childObjectName>N_CORREL</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">61f741f4-1c1e-4f5c-9255-222175339044</identifier>
+      </ID>
+      <name>ADDRELA_PK</name>
+      <columnExpressions>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">ecbbb85d-1243-4bb6-b9ef-97997d727fb9</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">2dc020a3-a38a-4168-b3e3-5bd20492db23</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>N_CORREL</name>
+              <identifier class="java.lang.String">33efa5c9-5fac-4b93-ab84-79d764d5dec2</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>ADDRELA</name>
+                <identifier class="java.lang.String">9767980f-471c-4a71-bb31-ebec717c6dc7</identifier>
+                <schemaName>ULUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <schemaName>ULUBAL</schemaName>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>ADDRELA_PK</name>
+                      <identifier class="java.math.BigDecimal">80217</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDRELA</name>
+                        <identifier class="java.math.BigDecimal">80213</identifier>
+                        <schemaName>ULUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>ULUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA_PK</name>
+                  <identifier class="java.math.BigDecimal">80217</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>ADDRELA</name>
+                    <identifier class="java.math.BigDecimal">80213</identifier>
+                    <schemaName>ULUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>ADDRELA_PK</name>
+            <identifier class="java.math.BigDecimal">80217</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>ULUBAL</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">ea0f2362-3665-46e4-9e00-63dd1eed7663</identifier>
+            </ID>
+            <bufferMode>DEFAULT</bufferMode>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <percentFree>10</percentFree>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>ADDRELA_PK</name>
+                    <identifier class="java.math.BigDecimal">80217</identifier>
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>ADDRELA</name>
+                      <identifier class="java.math.BigDecimal">80213</identifier>
+                      <schemaName>ULUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <schemaName>ULUBAL</schemaName>
+                    <type>INDEX</type>
+                  </parent>
+                  <type>OracleStorageProperties</type>
+                </value>
+              </entry>
+            </properties>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>USERS</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>ULUBAL</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>Comment</key>
+      <value class="java.lang.String">TABLA DE RELACIONES ENTRE EMPRESAS</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>ADDRELA</name>
+        <identifier class="java.math.BigDecimal">80213</identifier>
+        <schemaName>ULUBAL</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">f33c4c7c-1b18-4f02-8b89-87ab9b69f497</identifier>
+        </ID>
+        <bufferMode>DEFAULT</bufferMode>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <percentFree>10</percentFree>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>ADDRELA</name>
+                <identifier class="java.math.BigDecimal">80213</identifier>
+                <schemaName>ULUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>OracleStorageProperties</type>
+            </value>
+          </entry>
+        </properties>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>USERS</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>ULUBAL</name>
+  </schema>
+</table>
+=======
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">40ba4d82-d382-4332-9c7d-d71e6cb46392</identifier>
+  </ID>
+  <name>ADDRELA</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">94b77ff4-1064-4d2c-b8a0-c1d055cd8229</identifier>
+      </ID>
+      <name>NID_PARTY_1</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">f56a78cc-8501-4a8e-90c8-e93536febfa6</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_PARTY_1</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">EMPRESA QUE TIENE UNA RELACION</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_PARTY_1</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">2d44b380-8fff-4e07-b8f8-3e79abd23e5c</identifier>
+      </ID>
+      <name>NID_PARTY_2</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">d0494075-7280-450f-9046-010441d47b8c</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_PARTY_2</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">EMPRESA 2 RELACIONADA CON EMPRESA 1</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_PARTY_2</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">d4f9f008-df72-49c5-bb06-9faef2c27e35</identifier>
+      </ID>
+      <name>N_TIPREL</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">62c12533-9841-48f7-8284-d25384dbc305</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">3</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>N_TIPREL</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">TIPO DE RELACION DE LAS 2 EMPRESAS (PROVEEDOR = 1, CLIENTE = 2, SOCIO = 3)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>N_TIPREL</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">2dba85db-ccba-4148-b7e0-fd55033966cf</identifier>
+      </ID>
+      <name>C_ESTREG</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">00f42159-11e7-4ffe-88a2-53fa939876d1</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">1</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_ESTREG</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">ESTADO DEL REGISTRO (ACTIVO = 1, INACTIVO = 2)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_ESTREG</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">b1336159-04a1-4bad-90c3-a789a8369a35</identifier>
+      </ID>
+      <name>N_CORREL</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">03077ec3-8bce-4a46-939c-b44d566f1a2b</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>N_CORREL</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">CORRELATIVO DE RELACION</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>N_CORREL</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">cc6cf52b-285d-4a86-9b46-d7d2647db027</identifier>
+      </ID>
+      <name>CK_ADDRELA_01</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">99dfc5f8-9d73-42ff-8f8a-124e76b3b35b</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.SetOperation">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">22a18a8f-67c0-46a7-8612-1396aa46d1fc</identifier>
+            </ID>
+            <arguments>
+              <argument class="oracle.javatools.db.sql.ColumnUsage">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">0e839cf3-46cb-4e75-a349-1a7198ddabfa</identifier>
+                </ID>
+                <objectID class="oracle.javatools.db.IdentifierBasedID">
+                  <name>C_ESTREG</name>
+                  <identifier class="java.lang.String">2dba85db-ccba-4148-b7e0-fd55033966cf</identifier>
+                  <parent class="oracle.javatools.db.IdentifierBasedID">
+                    <name>ADDRELA</name>
+                    <identifier class="java.lang.String">40ba4d82-d382-4332-9c7d-d71e6cb46392</identifier>
+                    <schemaName>ULUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>COLUMN</type>
+                </objectID>
+                <outerJoin>false</outerJoin>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDRELA_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDRELA</name>
+                              <identifier class="java.math.BigDecimal">80213</identifier>
+                              <schemaName>ULUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+                <qualified>false</qualified>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">041306cd-fce0-412b-bcc1-6a0a8c5f5248</identifier>
+                </ID>
+                <SQLText>&apos;1&apos;</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDRELA_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDRELA</name>
+                              <identifier class="java.math.BigDecimal">80213</identifier>
+                              <schemaName>ULUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">bbfca3d5-1d07-4641-8989-30423eba11c7</identifier>
+                </ID>
+                <SQLText>&apos;0&apos;</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_ADDRELA_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>ADDRELA</name>
+                              <identifier class="java.math.BigDecimal">80213</identifier>
+                              <schemaName>ULUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+            </arguments>
+            <operator>705</operator>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_ADDRELA_01</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDRELA</name>
+                        <identifier class="java.math.BigDecimal">80213</identifier>
+                        <schemaName>ULUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_ADDRELA_01</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA</name>
+                  <identifier class="java.math.BigDecimal">80213</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_ADDRELA_01</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">310230bd-b0f4-497f-846e-710feebe12dc</identifier>
+      </ID>
+      <name>RE_ADDRELA_ADDEMPR_01</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_PARTY_1</name>
+          <identifier class="java.lang.String">94b77ff4-1064-4d2c-b8a0-c1d055cd8229</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDRELA</name>
+            <identifier class="java.lang.String">40ba4d82-d382-4332-9c7d-d71e6cb46392</identifier>
+            <schemaName>ULUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>ULUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>RE_ADDRELA_ADDEMPR_01</name>
+            <childObjectNames>
+              <childObjectName>NID_PARTY_1</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.ReferenceID">
+        <name>EMPRESA_PRIMARY_KEY</name>
+        <childObjectNames>
+          <childObjectName>NID_PARTY</childObjectName>
+        </childObjectNames>
+        <parent class="oracle.javatools.db.ReferenceID">
+          <name>ADDEMPR</name>
+          <identifier class="java.math.BigDecimal">74686</identifier>
+          <schemaName>ULUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <subType>PKConstraint</subType>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">aecb37b7-c65e-489a-971f-8fca5cb2c430</identifier>
+      </ID>
+      <name>RE_ADDRELA_ADDEMPR_02</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_PARTY_2</name>
+          <identifier class="java.lang.String">2d44b380-8fff-4e07-b8f8-3e79abd23e5c</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDRELA</name>
+            <identifier class="java.lang.String">40ba4d82-d382-4332-9c7d-d71e6cb46392</identifier>
+            <schemaName>ULUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>ULUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>RE_ADDRELA_ADDEMPR_02</name>
+            <childObjectNames>
+              <childObjectName>NID_PARTY_2</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.ReferenceID">
+        <name>EMPRESA_PRIMARY_KEY</name>
+        <childObjectNames>
+          <childObjectName>NID_PARTY</childObjectName>
+        </childObjectNames>
+        <parent class="oracle.javatools.db.ReferenceID">
+          <name>ADDEMPR</name>
+          <identifier class="java.math.BigDecimal">74686</identifier>
+          <schemaName>ULUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <subType>PKConstraint</subType>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">e167b21c-82b6-4bd3-a286-b4760159f1d0</identifier>
+      </ID>
+      <name>RE_ADDRELA_ADMTIRE_03</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>N_TIPREL</name>
+          <identifier class="java.lang.String">d4f9f008-df72-49c5-bb06-9faef2c27e35</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDRELA</name>
+            <identifier class="java.lang.String">40ba4d82-d382-4332-9c7d-d71e6cb46392</identifier>
+            <schemaName>ULUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>ULUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>RE_ADDRELA_ADMTIRE_03</name>
+            <childObjectNames>
+              <childObjectName>N_TIPREL</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>ADMTIRE_PK</name>
+        <identifier class="java.lang.String">57f4b02f-c434-4918-8225-138e8d875e2b</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ADMTIRE</name>
+          <identifier class="java.lang.String">5acdbe4d-77a3-4737-9c9e-965a0ca7b317</identifier>
+          <schemaName>ULUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>ULUBAL</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">19786eab-6875-4179-9e39-0367e9eac43d</identifier>
+      </ID>
+      <name>ADDRELA_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>N_CORREL</name>
+          <identifier class="java.lang.String">b1336159-04a1-4bad-90c3-a789a8369a35</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDRELA</name>
+            <identifier class="java.lang.String">40ba4d82-d382-4332-9c7d-d71e6cb46392</identifier>
+            <schemaName>ULUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>ULUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.IdentifierBasedID">
+        <name>ADDRELA_PK</name>
+        <identifier class="java.lang.String">1091957c-94e7-43c3-ac25-ffb6d2342133</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ADDRELA</name>
+          <identifier class="java.lang.String">40ba4d82-d382-4332-9c7d-d71e6cb46392</identifier>
+          <schemaName>ULUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>ULUBAL</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>ADDRELA_PK</name>
+            <childObjectNames>
+              <childObjectName>N_CORREL</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">1091957c-94e7-43c3-ac25-ffb6d2342133</identifier>
+      </ID>
+      <name>ADDRELA_PK</name>
+      <columnExpressions>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">cc823c08-666d-444d-8dae-b6dd05f5fee6</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">ed57a51a-4d8a-4e4b-9059-811138a2aa0d</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>N_CORREL</name>
+              <identifier class="java.lang.String">b1336159-04a1-4bad-90c3-a789a8369a35</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>ADDRELA</name>
+                <identifier class="java.lang.String">40ba4d82-d382-4332-9c7d-d71e6cb46392</identifier>
+                <schemaName>ULUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <schemaName>ULUBAL</schemaName>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>ADDRELA_PK</name>
+                      <identifier class="java.math.BigDecimal">80217</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDRELA</name>
+                        <identifier class="java.math.BigDecimal">80213</identifier>
+                        <schemaName>ULUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>ULUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDRELA_PK</name>
+                  <identifier class="java.math.BigDecimal">80217</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>ADDRELA</name>
+                    <identifier class="java.math.BigDecimal">80213</identifier>
+                    <schemaName>ULUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>ADDRELA_PK</name>
+            <identifier class="java.math.BigDecimal">80217</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDRELA</name>
+              <identifier class="java.math.BigDecimal">80213</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>ULUBAL</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">3c502d15-9955-4763-9bab-e0898ac95316</identifier>
+            </ID>
+            <bufferMode>DEFAULT</bufferMode>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <percentFree>10</percentFree>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>ADDRELA_PK</name>
+                    <identifier class="java.math.BigDecimal">80217</identifier>
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>ADDRELA</name>
+                      <identifier class="java.math.BigDecimal">80213</identifier>
+                      <schemaName>ULUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <schemaName>ULUBAL</schemaName>
+                    <type>INDEX</type>
+                  </parent>
+                  <type>OracleStorageProperties</type>
+                </value>
+              </entry>
+            </properties>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>USERS</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>ULUBAL</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>Comment</key>
+      <value class="java.lang.String">TABLA DE RELACIONES ENTRE EMPRESAS</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>ADDRELA</name>
+        <identifier class="java.math.BigDecimal">80213</identifier>
+        <schemaName>ULUBAL</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">c9974ebd-7cd1-43ab-8abc-1b044559a45f</identifier>
+        </ID>
+        <bufferMode>DEFAULT</bufferMode>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <percentFree>10</percentFree>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>ADDRELA</name>
+                <identifier class="java.math.BigDecimal">80213</identifier>
+                <schemaName>ULUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>OracleStorageProperties</type>
+            </value>
+          </entry>
+        </properties>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>USERS</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>ULUBAL</name>
+  </schema>
+</table>
+>>>>>>> .r107

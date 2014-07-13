@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="registrar_prefactura">
+    <default-activity>registrar_pre_factura</default-activity>
+    <view id="registrar_pre_factura">
+      <page>/transporte/factura/registrar_pre_factura.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

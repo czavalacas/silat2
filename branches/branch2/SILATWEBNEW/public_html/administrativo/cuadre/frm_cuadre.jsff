@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:adfsilat="/webapp/untitled1.taglib">
+
+<f:view>
+            <af:panelGroupLayout layout="scroll" inlineStyle="margin:0px 0px 0px 43px;">
+                 <af:panelGroupLayout halign="left">
+                    <af:spacer height="10"/>
+                    <af:outputText value="Consulta de Ingresos / Egresos" id="otTitulo"
+                                   styleClass="titulos2"
+                                   binding="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.otTitulo}"/>
+                       <af:spacer height="10"/>
+                    </af:panelGroupLayout>
+            <af:subform id="sfrmCu" binding="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.sfrmCu}"
+                        defaultCommand="btnBuscar">
+                <af:panelFormLayout id="pflCuad"
+                                    binding="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.pflCuad}">
+                    <af:inputDate label="Fecha Min" id="idFecMin" labelStyle="text-align: left;"
+                                  binding="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.idFecMin}"
+                                  value="#{beanSessionScopedCuadre.fecMin}">
+                        <af:convertDateTime pattern="dd/MM/yyyy"/>
+                    </af:inputDate>
+                    <af:inputDate label="Fecha Max" id="idFecMax"
+                                  binding="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.idFecMax}"
+                                  value="#{beanSessionScopedCuadre.fecMax}" labelStyle="text-align: left;">
+                        <af:convertDateTime pattern="dd/MM/yyyy"/>
+                    </af:inputDate>
+                </af:panelFormLayout>
+                <af:spacer height="10"/>
+                <af:panelGridLayout>
+                    <af:gridRow>
+                        <af:gridCell marginStart="1px" marginEnd="1px" width="auto">
+                            <af:commandButton text="Buscar" id="btnBuscar"
+                                              binding="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.btnBuscar}"
+                                              action="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.mostrarCuadre}"/>
+                        </af:gridCell>
+                        <af:gridCell marginStart="1px" marginEnd="1px" width="auto">
+                            <af:commandButton text="Limpiar" id="btnLimpiar"
+                                              binding="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.btnLimpiar}"
+                                              action="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.resetearBusqueda}"/>
+                        </af:gridCell>                        
+                        <af:gridCell marginStart="1px" marginEnd="1px" width="auto">
+                            <af:commandButton text="Exportar a Excel" id="btnExp" immediate="true"
+                                              binding="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.btnExp}">
+                                <af:fileDownloadActionListener filename="cuadre.csv" contentType="text/csv"
+                                                               method="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.exportData}"/>
+                            </af:commandButton>
+                        </af:gridCell>
+                    </af:gridRow>
+                </af:panelGridLayout>
+            </af:subform>
+            <af:spacer height="10"/>
+            <af:treeTable value="#{beanSessionScopedCuadre.permisosTree}" var="row" rowBandingInterval="0"
+                          id="treeCua" width="500" inlineStyle="width:420px; height:400px;" initiallyExpanded="true"
+                          emptyText="No hay Ingresos o Egresos"
+                          binding="#{backingBeanScope.backing_administrativo_cuadre_frm_cuadre.treeCua}"
+                          summary="Ingresos/Egresos" rowSelection="single">
+                <f:facet name="nodeStamp">
+                    <af:column sortable="false" headerText="Modalidad" id="c1" width="170" rowHeader="unstyled">
+                        <af:outputText value="#{row.descCuadre}" id="ot1"/>
+                    </af:column>
+                </f:facet>
+               <!-- <af:column sortable="false" headerText="Descripcion" align="start" id="c2">
+                    <af:outputText value="#{row.descCuadre}" id="ot2"/>
+                </af:column> -->
+                <af:column sortable="false" headerText="Ingreso S/." align="center" id="c3" inlineStyle="text-align:right;">
+                    <af:outputText value="#{row.ingreso}" id="ot3" inlineStyle="color:Green;">
+                        <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortable="false" headerText="Egreso S/." align="center" id="c4" inlineStyle="text-align:right;">
+                    <af:outputText value="#{row.egreso}" id="ot4" inlineStyle="color:Red;">
+                        <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/> 
+                    </af:outputText>
+                </af:column>
+                 <af:column sortable="false" headerText="Balance S/." align="center"
+                            inlineStyle="text-align:center; font-weight:bolder;">
+                    <af:outputText value="#{row.balance}" inlineStyle="#{row.color}">
+                        <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                    </af:outputText>
+                </af:column>
+            </af:treeTable>
+        </af:panelGroupLayout>
+</f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_administrativo_cuadre_frm_cuadre-->
+</ui:composition>

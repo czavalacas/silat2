@@ -1,0 +1,5 @@
+#summary One-sentence summary of this page.
+
+<code>
+update addclav cl set cl.c_clave = pkg_seguridad.get_hash('lcalixto','123','1') where cl.nid_clave = 2;
+</code>

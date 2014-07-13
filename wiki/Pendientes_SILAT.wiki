@@ -1,0 +1,10 @@
+#summary Resumen de los pendientes
+
+  # Cambiar las comparaciones de string strVariable.equals("string") por "string".equals(strVariable)
+  # No usar sequence, sino stmcodi
+  # Uso del logger
+  # Agregar indices
+  # Usar el setParameter
+  # Mejorar los queries
+  # Uso de suggestItems
+  # En registrar Guia, quitar lo que es manifiesto, crearle su propia pantalla o en el mismo consultar manifiesto

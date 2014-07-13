@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.94" id="tetPageDef"
+                Package="siat.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="dynamicRegion1" taskFlowId="${regionName.dynamicTaskFlowId}" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

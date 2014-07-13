@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <f:view>
+        <af:panelGroupLayout layout="scroll" inlineStyle="margin:0px 0px 0px 43px;">
+             <af:panelGroupLayout halign="left">
+              <af:spacer height="10"/>
+                    <af:outputText value="Consultar Facturas" id="otTitulo"
+                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.otTitulo}"
+                                   styleClass="titulos2"/>
+                 <af:spacer height="10"/>
+                </af:panelGroupLayout>
+            <af:subform id="sfrm" binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.sfrm}"
+                        defaultCommand="btnBuscar">
+                <af:panelGridLayout id="pgl1"
+                                    binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.pgl1}">
+                    <af:gridRow marginTop="5px" marginBottom="3px" height="auto" id="gr1"
+                                binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.gr1}">
+                        <af:gridCell marginStart="1px" width="auto" id="gc1"
+                                     binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.gc1}">
+                            <af:panelFormLayout id="pfl1"
+                                                binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.pfl1}">
+                                <af:inputDate label="Fecha Min" id="idFecMin"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.idFecMin}"
+                                              value="#{beanSessionScopeConsFactura.fecMin}"/>
+                                <af:inputDate label="Fecha Max" id="idFecMax"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.idFecMax}"
+                                              value="#{beanSessionScopeConsFactura.fecMax}"/>
+                                <af:inputText label="Factura" id="itCodFac"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.itCodFac}"
+                                              value="#{beanSessionScopeConsFactura.codFact}"/>
+                                <af:inputText label="Guia" id="itGuias"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.itGuias}"
+                                              value="#{beanSessionScopeConsFactura.codGuia}"/>
+                                <af:inputText label="Cliente" id="itClie"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.itClie}"
+                                              value="#{beanSessionScopeConsFactura.cliente}"/>
+                            </af:panelFormLayout>
+                        </af:gridCell>
+                        <af:gridCell marginStart="1px" marginEnd="1px" width="auto" id="gc2"
+                                     binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.gc2}">
+                            <af:panelFormLayout id="pfl2"
+                                                binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.pfl2}">
+                                <af:selectOneChoice id="socCanSubTot" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                                    binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.socCanSubTot}"
+                                                    value="#{beanSessionScopeConsFactura.simboloSubTotal}">
+                                    <af:selectItem label="SubTotal mayor a" value=">" id="si1"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.si1}"/>
+                                    <af:selectItem label="SubTotal menor a" value="&lt;" id="si2"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.si2}"/>
+                                    <af:selectItem label="SubTotal igual a" value="=" id="si3"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.si3}"/>
+                                </af:selectOneChoice>
+                                <af:inputText label="SubTotal" id="itSubTot" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.itSubTot}"
+                                              value="#{beanSessionScopeConsFactura.subTotal}">
+                                              <f:validator validatorId="decimalValidator"/>
+                                                <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                     minIntegerDigits="1" maxIntegerDigits="6"/>
+                                </af:inputText>
+                                <af:selectOneChoice id="socCanTot" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                                    binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.socCanTot}"
+                                                    value="#{beanSessionScopeConsFactura.simboloTotal}">
+                                    <af:selectItem label="Total mayor a" value=">" id="si4"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.si4}"/>
+                                    <af:selectItem label="Total menor a" value="&lt;" id="si5"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.si5}"/>
+                                    <af:selectItem label="Total igual a" value="=" id="si6"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.si6}"/>
+                                </af:selectOneChoice>
+                                <af:inputText label="Total" id="itTotal" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.itTotal}"
+                                              value="#{beanSessionScopeConsFactura.total}">
+                                              <f:validator validatorId="decimalValidator"/>
+                                                <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                     minIntegerDigits="1" maxIntegerDigits="6"/>
+                                </af:inputText>
+                                <af:selectOneChoice label="Estado" id="socEst" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                                    binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.socEst}"
+                                                    value="#{beanSessionScopeConsFactura.estadoFactura}">
+                                    <f:selectItems value="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.lstEstados}"
+                                                   id="siEst"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.siEst}"/>
+                                </af:selectOneChoice>
+                                <af:selectOneChoice label="Serie" id="socUN"
+                                                    binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.socUN}"
+                                                    value="#{beanSessionScopeConsFactura.cidUn}">
+                                    <f:selectItems value="#{sessionScope.beanSessionScopeConsFactura.listaUNs}"
+                                                   id="siUN"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.siUN}"/>
+                                </af:selectOneChoice>
+                            </af:panelFormLayout>
+                        </af:gridCell>
+                        <af:gridCell marginStart="1px" marginEnd="1px" width="auto">
+                            <af:panelFormLayout>
+                                <af:selectOneChoice label="Nota" id="socNotBusq" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                                    binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.socNotBusq}"
+                                                    value="#{beanSessionScopeConsFactura.busqTipNota}">
+                                    <af:selectItem label="Credito" value="C" id="sicr"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.sicr}"/>
+                                    <af:selectItem label="Debito" value="D" id="side"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.side}"/>
+                                </af:selectOneChoice>
+                                <af:selectOneChoice id="socMonNot" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                                    binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.socMonNot}"
+                                                    value="#{beanSessionScopeConsFactura.simbNota}">
+                                    <af:selectItem label="Nota menor a" value="&lt;" id="siNot"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.siNot}"/>
+                                    <af:selectItem label="Nota mayor a" value=">" id="siMay"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.siMay}"/>
+                                    <af:selectItem label="Nota igual a" value="=" id="siIg"
+                                                   binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.siIg}"/>
+                                </af:selectOneChoice>
+                                <af:inputText label="Monto Nota" id="itMonNotBus" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.itMonNotBus}"
+                                              value="#{beanSessionScopeConsFactura.busqMontoNota}">
+                                              <f:validator validatorId="decimalValidator"/>
+                                                <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                                  minIntegerDigits="1" maxIntegerDigits="6"/>
+                                </af:inputText>
+                            </af:panelFormLayout>
+                        </af:gridCell>
+                    </af:gridRow>
+                </af:panelGridLayout>
+                
+                <af:panelGroupLayout>
+                         <af:commandButton text="Buscar" id="btnBuscar"
+                                           binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.btnBuscar}"
+                                           action="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.buscarFacturas}"/>
+                         <af:commandButton text="Refrescar/Limpiar" id="btnLimpiar"
+                                           binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.btnLimpiar}"
+                                           actionListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.limpiar}"/>
+                         <af:commandButton text="Ver Factura" id="btnVerFact" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                           binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.btnVerFact}"
+                                           actionListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.verFactura}"
+                                           disabled="true"/>
+                        <af:commandButton text="Anular Factura" id="btnAnular" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.btnAnular}"
+                                          disabled="true">
+                            <af:showPopupBehavior popupId="::popAnular" triggerType="action"/>
+                        </af:commandButton>
+                        <af:commandButton text="Pagar" id="btnPagar" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.btnPagar}"
+                                          actionListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.pagarFact}"
+                                          disabled="true"/>
+                        <af:commandButton text="Agregar Nota" id="btnNota" rendered="#{beanSessionScopeConsFactura.renderIsContador}"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.btnNota}"
+                                          actionListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.agregarNota}"
+                                          disabled="true"/>
+                        <af:commandButton text="Actualizar" id="btnActFact" disabled="true" rendered="#{beanSessionScopeConsFactura.renderIsContador || 
+                                                                                                        beanSessionScopeConsFactura.renderBtnFecha}"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.btnActFact}"
+                                          actionListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.abrirPopAct}"/>
+                </af:panelGroupLayout>
+            </af:subform>
+            <af:popup id="popAnular">
+                <af:dialog id="d2"
+                           dialogListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.dialogLogoutListener}"
+                           title="Confirmar Anulacion de Factura">
+                    <af:outputText value="Desea Anular la Factura?" />
+                    <af:inputText label="Razon de anulacion" id="itCmt" value="#{beanSessionScopeConsFactura.comentarioAnular}"
+                                  rows="4" required="true" autoSubmit="true"  labelStyle="color: rgb(19,76,149);font-weight:800;"
+                                  showRequired="true" maximumLength="1000"
+                                  binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.itCmt}"/>
+                </af:dialog>
+            </af:popup>
+      
+            <af:popup id="popPagar"
+                      binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.popPagar}">
+                <af:dialog id="diagPagar" dialogListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.dialogPagarListener}"
+                           binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.diagPagar}"
+                           title="Confirmar el Pago de la Factura">
+                    <af:outputText value="Desea Pagar la Factura?" />
+                </af:dialog>
+            </af:popup>
+            
+            
+            <af:popup id="popNota"
+                      binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.popNota}">
+                <af:dialog id="diaNota" title="Agregar Nota Credito / Debito"
+                           dialogListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.dialogNotaListener}"
+                           binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.diaNota}">
+                            <af:panelFormLayout>
+                        <af:selectOneChoice label="Tipo de Nota" requiredMessageDetail="Seleccionar un tipo de Nota"
+                                            id="socNota"  labelStyle="color: rgb(19,76,149);font-weight:800;"
+                                            binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.socNota}"
+                                            value="#{beanSessionScopeConsFactura.tipNota}" showRequired="true"
+                                            required="true" autoSubmit="true">
+                            <af:selectItem label="Nota de Credito" value="C" id="siCred"
+                                           binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.siCred}"/>
+                            <af:selectItem label="Nota de Debito" value="D" id="siDeb"
+                                           binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.siDeb}"/>
+                        </af:selectOneChoice>
+                        <af:inputText label="Monto Nota" id="itMontoNota"  labelStyle="color: rgb(19,76,149);font-weight:800;"
+                                      binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.itMontoNota}"
+                                      value="#{beanSessionScopeConsFactura.montoNota}" required="true"
+                                      showRequired="true" autoSubmit="true" autoComplete="on">
+                                <f:validator validatorId="decimalValidator"/>
+                                <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                  minIntegerDigits="1" maxIntegerDigits="6"/>
+                            </af:inputText>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+            <af:separator/>
+            <af:commandButton text="Exportar Excel" id="cb1"
+                              binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.cb1}">
+                <af:exportCollectionActionListener type="excelHTML" exportedId="pc1:tbFact"
+                                                   filename="reporteFacturas.xls" title="Reporte de Facturas"/>
+            </af:commandButton>
+            <af:panelCollection id="pc1" inlineStyle="width:inherit;">
+                         <f:facet name="menus"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t1">
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="statusbar"/>
+             <af:table value="#{beanSessionScopeConsFactura.lstFacturas}" summary="Tabla Facturas"
+                       var="row" rowBandingInterval="0" id="tbFact" varStatus="vs" emptyText="No hay Facturas" rowSelection="single"
+                       binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.tbFact}"
+                       selectionListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.selectFactura}"
+                       inlineStyle="width:inherit; margin:0px 50px 0px 0px;" width="inherit;" columnStretching="column:c3">
+            <af:column width="18" frozen="true">
+                <af:outputText value="#{vs.index + 1}"/>
+            </af:column>
+            <af:column sortable="true" headerText="Codigo" frozen="true" align="start" id="c1" width="40" sortProperty="CCodFactura">
+                <af:outputText value="#{row.CCodFactura}" id="ot1"/>
+            </af:column>
+            <af:column sortable="true" headerText="Serie" align="start" id="c2" width="25" sortProperty="cidUnidadNegocio">
+                <af:outputText value="#{row.cidUnidadNegocio}" id="ot2"/>
+            </af:column>
+            <af:column sortable="true" headerText="Editable" align="center" width="60" sortProperty="editable">
+                <af:outputText value="#{row.editable == '1' ? 'SI' : 'NO'}" />
+            </af:column>
+            <af:column sortable="true" headerText="Estado" align="center" id="c8" width="90" sortProperty="descEstado" 
+                       inlineStyle="#{row.styleEstado}">
+                <af:outputText value="#{row.descEstado}" id="ot8"/>
+            </af:column>
+            <af:column sortable="true" headerText="Cliente" align="start" id="c3" width="190" sortProperty="cliente" >
+                <af:outputText value="#{row.cliente}" id="ot3"/>
+            </af:column>
+            <af:column sortable="true" headerText="RUC" align="start" width="74" sortProperty="ruc" >
+                <af:outputText value="#{row.ruc}"/>
+            </af:column>
+            <af:column sortable="true" headerText="Fecha" align="center" id="c4" width="70" sortProperty="fechaFactura">
+                <af:outputText value="#{row.fechaFactura}" id="ot4">
+                        <af:convertDateTime pattern="dd/MM/yyyy"/></af:outputText>
+            </af:column>
+            <af:column sortable="true" headerText="Sub Total" align="right" id="c5" width="80" sortProperty="DSubTotal" 
+                       rendered="#{beanSessionScopeConsFactura.renderIsContador}">
+                <af:outputText value="#{row.DSubTotal}" id="ot5">
+                        <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                    </af:outputText>
+            </af:column>
+            <af:column sortable="true" headerText="IGV" align="right" id="c6" width="80" sortProperty="igvFact" 
+                       rendered="#{beanSessionScopeConsFactura.renderIsContador}">
+                <af:outputText value="#{row.igvFact}" id="ot6">
+                        <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                </af:outputText>
+            </af:column>
+            <af:column sortable="true" headerText="Total" align="right" id="c7" width="80" sortProperty="DTotal" 
+                       rendered="#{beanSessionScopeConsFactura.renderIsContador}">
+                <af:outputText value="#{row.DTotal}" id="ot7">
+                        <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                </af:outputText>
+            </af:column>
+             <af:column sortable="true" headerText="Detraccion" align="right" width="80" sortProperty="detraccion" 
+                        rendered="#{beanSessionScopeConsFactura.renderIsContador}">
+                <af:outputText value="#{row.detraccion}">
+                        <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                </af:outputText>
+            </af:column>
+             <af:column sortable="true" headerText="Monto Final" align="right" width="80" sortProperty="totalConDetraccion" 
+                        rendered="#{beanSessionScopeConsFactura.renderIsContador}">
+                <af:outputText value="#{row.totalConDetraccion}">
+                        <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                </af:outputText>
+            </af:column>
+             <af:column sortable="true" headerText="Fecha Pago" align="center" width="70" sortProperty="fechaPago" 
+                        rendered="#{beanSessionScopeConsFactura.renderIsContador}">
+                <af:outputText value="#{row.fechaPago}" >
+                        <af:convertDateTime pattern="dd/MM/yyyy"/></af:outputText>
+            </af:column>
+            <af:column sortable="true" headerText="Comentario" align="center" width="160" sortProperty="comentarioAnulacion" 
+                       rendered="#{beanSessionScopeConsFactura.renderIsContador}">
+                <af:outputText value="#{row.comentarioAnulacion}"/>
+            </af:column>
+             <af:column sortable="true" headerText="Nota" align="center" width="90" sortProperty="descTipoNota" 
+                        rendered="#{beanSessionScopeConsFactura.renderIsContador}">
+                <af:outputText value="#{row.beanNota.descTipoNota}"/>
+            </af:column>
+             <af:column sortable="true" headerText="Monto" align="right" width="80" sortProperty="DMonto" 
+                        rendered="#{beanSessionScopeConsFactura.renderIsContador}">
+                <af:outputText value="#{row.beanNota.DMonto}">
+                        <af:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                </af:outputText>
+            </af:column>
+        </af:table>
+         </af:panelCollection>
+            <af:popup animate="default" contentDelivery="lazyUncached" id="popFact"
+                      binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.popFact}">
+                <af:panelWindow id="pwFact" modal="true"  title="Vista de la Factura"
+                                contentHeight="625" contentWidth="700" resize="on"
+                                binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.pwFact}">
+                    <af:inlineFrame id="ifFact" shortDesc="Factura" inlineStyle="height:600px;" styleClass="AFStretchWidth"
+                                    binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.ifFact}"
+                                    source="#{beanSessionScopeConsFactura.sourcePrevio}"/>
+                </af:panelWindow>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="popAct"
+                      binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.popAct}">
+                <af:dialog title="Actualizar Fecha y Detalle de la Factura"
+                           dialogListener="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.actualizarFactura}">
+                    <af:panelFormLayout>
+                        <af:inputDate label="Fecha Factura" id="idFec" labelStyle="color: rgb(19,76,149);font-weight:800;"
+                                      required="true" autoSubmit="true"
+                                      binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.idFec}"
+                                      value="#{beanSessionScopeConsFactura.fechaFactura}">
+                                <af:convertDateTime pattern="dd/MM/yyyy"/>
+                        </af:inputDate>
+                        <af:inputText label="Detalle" id="itDet" labelStyle="color: rgb(19,76,149);font-weight:800;" maximumLength="100"
+                                      binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.itDet}" autoSubmit="true"
+                                      value="#{beanSessionScopeConsFactura.detalleFactura}" rows="4"/>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+        </af:panelGroupLayout>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_factura_frm_consultar_factura-->
+</ui:composition>

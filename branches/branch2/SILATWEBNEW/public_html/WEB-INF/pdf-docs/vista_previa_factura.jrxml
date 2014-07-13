@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vista_previa_factura" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="20" bottomMargin="20" uuid="7e0cd7ec-b3e5-4daa-b82a-938d20f67fae">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="46"/>
+	<parameter name="LETRAS" class="java.lang.String"/>
+	<parameter name="PATH" class="java.lang.String"/>
+	<parameter name="TOTAL" class="java.lang.String"/>
+	<parameter name="IGV" class="java.lang.String"/>
+	<parameter name="SUBTOTAL" class="java.lang.String"/>
+	<parameter name="CLIENTE" class="java.lang.String"/>
+	<parameter name="GUIAS" class="java.lang.String"/>
+	<parameter name="DIRECCION" class="java.lang.String"/>
+	<parameter name="RUC" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/diego/Documents/reportes/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CIDREPOR" class="java.lang.String"/>
+	<parameter name="FECHA" class="java.lang.String"/>
+	<parameter name="CODFACT" class="java.lang.String"/>
+	<parameter name="TIPO" class="java.lang.String"/>
+	<parameter name="FECHA_PAGO" class="java.util.Date"/>
+	<parameter name="TIPREP" class="java.lang.String"/>
+	<parameter name="NIDPREFACT" class="java.lang.String"/>
+	<parameter name="PEDIDO" class="java.lang.String"/>
+	<parameter name="DETALLE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from dual]]>
+	</queryString>
+	<field name="DUMMY" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="630" splitType="Stretch">
+			<image>
+				<reportElement uuid="c2a33ce8-b4e9-44e5-bf70-60f5fc37af42" x="1" y="1" width="594" height="629"/>
+				<imageExpression><![CDATA[$P{PATH}+"factura.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="b54817b4-dcf6-4f89-8c8d-60877e110326" x="94" y="549" width="355" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LETRAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="852679df-0fcb-4131-9b51-b677b64de775" x="301" y="188" width="243" height="23"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CLIENTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8ff12d47-8875-4c10-942b-bf84b24dfedb" x="55" y="205" width="134" height="72"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{GUIAS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f23a972e-9f07-4679-b2f0-7684571172bd" x="301" y="221" width="243" height="22"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DIRECCION} != null ? (!$P{DIRECCION}.equals("null") ? $P{DIRECCION} : "") : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="066d96c2-a87f-4c76-b8e6-34f9f500fd53" x="301" y="254" width="243" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{RUC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="dbe5ca37-3c82-40ad-9942-56513f30e08b" x="452" y="562" width="92" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SUBTOTAL} != null && $P{SUBTOTAL}.length() > 0 ? Double.valueOf($P{SUBTOTAL}) : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="1fcd8d39-3b0a-46e0-98b7-98acb78a6876" x="452" y="578" width="92" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{IGV} != null && $P{IGV}.length() > 0 ? Double.valueOf($P{IGV}) : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="4eba2a27-2de1-4b8f-bcee-0b5ff5cc9f2f" x="451" y="594" width="93" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL} != null && $P{TOTAL}.length() > 0 ? Double.valueOf($P{TOTAL}) : 0]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="b194ea37-1fb6-49ab-933a-6a8f882e1837" x="54" y="306" width="505" height="232"/>
+				<subreportParameter name="SUBTOTAL">
+					<subreportParameterExpression><![CDATA[$P{SUBTOTAL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="CIDREPOR">
+					<subreportParameterExpression><![CDATA[$P{CIDREPOR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PATH">
+					<subreportParameterExpression><![CDATA[$P{PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NIDPREFACT">
+					<subreportParameterExpression><![CDATA[$P{NIDPREFACT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{PATH} + "vista_previa_factura_items"+$P{TIPREP}+".jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement uuid="2c2dd516-b5e4-41b6-bd8d-8c92e307ccc7" x="91" y="172" width="191" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cf84e378-016a-41c0-b627-b7c0ba6c559b" x="190" y="600" width="21" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHA_PAGO} == null ? "" : $P{FECHA_PAGO}.getDate()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e9618e0d-dc39-4d86-bdec-b8759787d1d7" x="241" y="600" width="60" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHA_PAGO} == null ? "" :
+$P{FECHA_PAGO}.getMonth() == 0 ? "Enero" :
+$P{FECHA_PAGO}.getMonth() == 1 ? "Febrero" :
+$P{FECHA_PAGO}.getMonth() == 2 ? "Marzo" :
+$P{FECHA_PAGO}.getMonth() == 3 ? "Abril" :
+$P{FECHA_PAGO}.getMonth() == 4 ? "Mayo" :
+$P{FECHA_PAGO}.getMonth() == 5 ? "Junio" :
+$P{FECHA_PAGO}.getMonth() == 6 ? "Julio" :
+$P{FECHA_PAGO}.getMonth() == 7 ? "Agosto" :
+$P{FECHA_PAGO}.getMonth() == 8 ? "Setiembre" :
+$P{FECHA_PAGO}.getMonth() == 9 ? "Octubre" :
+$P{FECHA_PAGO}.getMonth() == 10 ? "Noviembre" :
+$P{FECHA_PAGO}.getMonth() == 11 ? "Diciembre" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0c147f02-05d2-4450-afec-78327e89b661" x="340" y="600" width="25" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHA_PAGO} == null ? "" : String.valueOf($P{FECHA_PAGO}.getYear()+1900).substring(2,4)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1a584b48-cd62-4bac-9429-0c38e685435a" x="452" y="144" width="80" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CODFACT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="391289a1-7353-4396-8e79-4fc8bc933ad2" mode="Transparent" x="76" y="118" width="444" height="54" forecolor="#B5B5B5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TIPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a89ce278-fbec-4bf4-be61-553c89921d51" mode="Transparent" x="76" y="274" width="444" height="54" forecolor="#B5B5B5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TIPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f6ba5772-b4aa-483c-9389-05401d5d9712" mode="Transparent" x="76" y="397" width="444" height="54" forecolor="#B5B5B5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TIPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d7caeaa1-970b-4a1e-af0c-3bdf19b38fef" mode="Transparent" x="76" y="475" width="444" height="54" forecolor="#B5B5B5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TIPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="baa28618-96dd-4a37-b3ec-5b9ac5e98178" x="94" y="538" width="283" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PEDIDO} != null ? (!$P{PEDIDO}.equals("null") ? "PEDIDO DE COMPRA: "+$P{PEDIDO} : "") : ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c8022c4b-bad6-4bf9-bdbb-3aa248222122" x="94" y="527" width="353" height="10" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DETALLE} != null ? (!$P{DETALLE}.equals("null") ? $P{DETALLE} : "") : ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9df652c3-b042-49a3-ae1c-212053fd79cb" x="137" y="191" width="52" height="14"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Guias:]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

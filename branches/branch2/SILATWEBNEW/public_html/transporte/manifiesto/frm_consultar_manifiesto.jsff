@@ -1,0 +1,401 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+             <af:panelGroupLayout>
+               <af:spacer height="10"/>
+                    <af:outputLabel value="Consultar Manifiestos" id="olTitulo" styleClass="titulos"
+                                    binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.olTitulo}"/>
+              <af:spacer height="10"/>
+             </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl1" inlineStyle="margin:0px 0px 0px 43px;"
+                                 binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.pgl1}"
+                                 layout="scroll">
+                <af:subform id="s1"
+                            binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.s1}"
+                            defaultCommand="btnBuscar">
+                            <af:panelGridLayout>
+                                    <af:gridRow marginTop="1px" marginBottom="1px" height="auto">
+                                         <af:gridCell marginStart="1px" width="auto" >
+                                             <af:panelFormLayout id="pfl1" binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.pfl1}">
+                                                 <af:inputDate label="Fecha Min" id="fecMin" 
+                                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.fecMin}"
+                                                              value="#{beanSessionConsultarManifiesto.fecMin}"
+                                                               labelStyle="text-align: left;">
+                                                    <af:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </af:inputDate>
+                                                <af:inputDate label="Fecha Max" id="fecMax" labelStyle="text-align: left;"
+                                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.fecMax}"
+                                                              value="#{beanSessionConsultarManifiesto.fecMax}">
+                                                    <af:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </af:inputDate>
+                                                <af:inputText label="Cod Manifiesto" id="idManif" labelStyle="text-align: left;"
+                                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.idManif}"
+                                                              value="#{beanSessionConsultarManifiesto.nidManif}"/>
+                                                <af:inputText label="Proveedor" id="empProv" labelStyle="text-align: left;"
+                                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.empProv}"
+                                                              value="#{beanSessionConsultarManifiesto.razonSocial}"/>
+                                                <af:inputText label="Observaciones" id="observ" labelStyle="text-align: left;"
+                                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.observ}"
+                                                              value="#{beanSessionConsultarManifiesto.observ}"/>
+                                <af:selectOneChoice label="Vigente/Anulada" labelStyle="text-align: left;"
+                                                    value="#{beanSessionConsultarManifiesto.estadoManifActivoNoAct}"
+                                                    id="socEstManif"
+                                                    binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.socEstManif}">
+                                    <af:selectItem label="Vigente" value="1" id="si12"
+                                                   binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si12}"/>
+                                    <af:selectItem label="Anulada" value="0" id="si11"
+                                                   binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si11}"/>
+                                </af:selectOneChoice>
+                            </af:panelFormLayout>
+                                         </af:gridCell>
+                                         <af:gridCell marginStart="1px" width="auto" >
+                                                <af:panelFormLayout>
+                                                   
+                                    <af:selectOneChoice id="socCantFlete" labelStyle="text-align: left;"
+                                                        binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.socCantFlete}"
+                                                        value="#{beanSessionConsultarManifiesto.simboloFLete}">
+                                        <af:selectItem label="Flete mayor a" value=">" id="si1"
+                                                       binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si1}"/>
+                                        <af:selectItem label="Flete menor a" value="&lt;" id="si2"
+                                                       binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si2}"/>
+                                        <af:selectItem label="Flete igual a" value="=" id="si3"
+                                                       binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si3}"/>
+                                    </af:selectOneChoice>
+                               
+                                             <af:inputText label="Flete" id="flete" labelStyle="text-align: left;"
+                                                  binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.flete}"
+                                                  value="#{beanSessionConsultarManifiesto.flete}">
+                                                  <f:validator validatorId="decimalValidator"/>
+                                                    <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                         minIntegerDigits="1" maxIntegerDigits="6"/>
+                                          </af:inputText>
+                               
+                                    <af:selectOneChoice id="socCantAdel" labelStyle="text-align: left;"
+                                                        binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.socCantAdel}"
+                                                        value="#{beanSessionConsultarManifiesto.simboloAdela}">
+                                        <af:selectItem label="Adelanto mayor a" value=">" id="si4"
+                                                       binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si4}"/>
+                                        <af:selectItem label="Adelanto menor a" value="&lt;" id="si5"
+                                                       binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si5}"/>
+                                        <af:selectItem label="Adelanto igual a" value="=" id="si6"
+                                                       binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si6}"/>
+                                    </af:selectOneChoice>
+                            
+                                        <af:inputText label="Adelanto" id="adel" labelStyle="text-align: left;"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.adel}"
+                                              value="#{beanSessionConsultarManifiesto.adelanto}">
+                                              <f:validator validatorId="decimalValidator"/>
+                                                <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                     minIntegerDigits="1" maxIntegerDigits="6"/>
+                                          </af:inputText>
+                              
+                                                <af:selectOneChoice label="Estado" id="socEstados" labelStyle="text-align: left;"
+                                                                    binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.socEstados}"
+                                                                    value="#{beanSessionConsultarManifiesto.estadoManif}">
+                                                    <f:selectItems value="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.lstEstados}"
+                                                                   id="si7"
+                                                                   binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si7}"/>
+                                                </af:selectOneChoice>
+                                                       
+                                        </af:panelFormLayout>
+                                         </af:gridCell>
+                                    </af:gridRow>
+                            </af:panelGridLayout>
+
+                          <af:panelGroupLayout>
+                                    <af:commandButton text="Buscar" id="btnBuscar"
+                                                      binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.btnBuscar}"
+                                                      action="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.buscarManifiesto}"/>
+                                    <af:commandButton text="Limpiar / Refrescar" id="btnLimpiar"
+                                                      binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.btnLimpiar}"
+                                                      actionListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.limpiar}"/>
+                                    <af:commandButton text="Ver Guias" id="btnGuias"
+                                                      binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.btnGuias}"
+                                                      actionListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.verGuias}"
+                                                      disabled="true"/>
+                                    <af:commandButton text="Editar Manifiesto" id="btnEditar"
+                                                      binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.btnEditar}"
+                                                      actionListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.editarManifiesto}"
+                                                      disabled="true"/>
+                                    <af:commandButton text="Anular" id="btnAnularManif" disabled="true"
+                                                      binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.btnAnularManif}"
+                                                      actionListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.anularManifiesto}"/>
+                                    <af:commandButton text="Cambiar Fechas" id="btnFecha"
+                                                      rendered="#{beanSessionConsultarManifiesto.renderBtnFecha}" disabled="true"
+                                                      actionListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.cambiarFechaManif}"
+                                                      binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.btnFecha}"/>
+                </af:panelGroupLayout>
+           
+                </af:subform>
+                 <af:separator/>
+            <af:commandButton text="Exportar Excel" id="cb1"
+                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.cb1}">
+                <af:exportCollectionActionListener type="excelHTML" exportedId="pc1:tbManif"
+                                                   filename="reporteManif.xls" title="Reporte de Manifiestos"/>
+            </af:commandButton>
+            <af:panelCollection id="pc1" inlineStyle="width:inherit;">
+                         <f:facet name="menus"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t1">
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="statusbar"/>
+                    <af:table value="#{beanSessionConsultarManifiesto.lstBeanManifiesto}" var="row" rowBandingInterval="0"
+                          id="tbManif" summary="Tabla Manifiestos" varStatus="vs" width="inherit;" emptyText="No hay Manifiestos" rowSelection="single"
+                          binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.tbManif}"
+                          selectionListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.selectManifiesto}"
+                          inlineStyle="margin:0px 50px 0px 0px;">
+                    <af:column width="18" frozen="true">
+                        <af:outputText value="#{vs.index + 1}"/>
+                    </af:column>
+                    <af:column width="36" headerText="Codigo" align="start" id="c1" sortable="true" sortProperty="nidManifiesto" frozen="true">
+                        <af:outputText value="#{row.nidManifiesto}" id="ot1"/>
+                    </af:column>
+                    <af:column width="60" headerText="Fecha Creacion" align="center" id="c2" sortable="true" sortProperty="fechaManifiesto">
+                        <af:outputText value="#{row.fechaManifiesto}" id="ot2">
+                                        <af:convertDateTime pattern="dd/MM/yyyy"/>
+                    </af:outputText>
+                    </af:column>
+                    <af:column width="70" headerText="Flete Pactado" align="center" id="c3" sortable="true" sortProperty="NFletePactado">
+                        <af:outputText value="#{row.NFletePactado}" id="ot3"/>
+                    </af:column>
+                    <af:column width="70" headerText="Adelanto" align="center" id="c4" sortable="true" sortProperty="NAdelanto">
+                        <af:outputText value="#{row.NAdelanto}" id="ot4"/>
+                    </af:column>
+                    <af:column width="70" headerText="Saldo" align="center" >
+                        <af:outputText value="#{row.detraccion - row.NAdelanto}" />
+                    </af:column>
+                    <af:column headerText="IGV" width="70" align="center" sortable="true" sortProperty="igv">
+                        <af:outputText value="#{row.igv}" />
+                    </af:column>
+                    <af:column headerText="Detraccion" width="70" align="center" sortable="true" sortProperty="detraccionReal">
+                        <af:outputText value="#{row.detraccionReal}" />
+                    </af:column>
+                    <af:column headerText="Monto Final" width="70" align="center" sortable="true" sortProperty="detraccion" >
+                        <af:outputText value="#{row.detraccion}" />
+                    </af:column>
+                    <af:column headerText="Estado" width="110" align="center" sortable="true" sortProperty="descEstadoManifiestoNegocio">
+                        <af:outputText value="#{row.descEstadoManifiestoNegocio}" />
+                    </af:column>
+                    <af:column width="180" headerText="Proveedor" align="start" sortable="true" sortProperty="trManifiesto.CRazonSocial">
+                        <af:outputText value="#{row.trManifiesto.CRazonSocial}" />
+                    </af:column>
+                    <af:column width="70" headerText="Doc" align="center" id="c5" sortable="true" sortProperty="tipoDoc1Car">
+                        <af:outputText value="#{row.tipoDoc1Car}" id="ot5"/>
+                    </af:column>
+                    <af:column width="200" headerText="Observaciones" align="start" id="c6" sortable="true" sortProperty="CObservaciones">
+                        <af:outputText value="#{row.CObservaciones}" id="ot6"/>
+                    </af:column>
+                    <af:column width="150" headerText="Flota" align="start" sortable="true" sortProperty="beanFlota.CDescFlota">
+                        <af:outputText value="#{row.beanFlota.CDescFlota}" />
+                    </af:column>
+                    <af:column width="75" headerText="Marca" align="center" sortable="true" sortProperty="beanFlota.CMarvehi">
+                        <af:outputText value="#{row.beanFlota.CMarvehi}" />
+                    </af:column>
+                    <af:column width="50" headerText="Config Vehicular" align="center"  sortable="true" sortProperty="beanFlota.CConfveh">
+                        <af:outputText value="#{row.beanFlota.CConfveh}" />
+                    </af:column>
+                    <af:column width="80" headerText="Placa" align="center"  sortable="true" sortProperty="beanFlota.CPlaca">
+                        <af:outputText value="#{row.beanFlota.CPlaca}" />
+                    </af:column>
+                    <af:column width="140" headerText="Chofer" align="start"  sortable="true" sortProperty="beanFlota.nombres">
+                        <af:outputText value="#{row.beanChofer.nombres}" />
+                    </af:column>
+                    <af:column width="60" headerText="Licencia" align="center"  sortable="true" sortProperty="beanFlota.licencia">
+                        <af:outputText value="#{row.beanChofer.licencia}" />
+                    </af:column>
+                    <af:column width="60" headerText="Certificado Inscripcion" align="center"  sortable="true" sortProperty="beanFlota.certificadoInscripcionEmpresa">
+                        <af:outputText value="#{row.beanFlota.certificadoInscripcionEmpresa}" />
+                    </af:column>
+        <af:resource type="javascript">
+                function onDialogCancel(evt){
+                    var outcome = evt.getOutcome();
+                    if(outcome == AdfDialogEvent.OUTCOME_CANCEL){
+                        //call server
+                        var eventSource = evt.getSource();
+                        var immediate = true;
+                        AdfCustomEvent.queue(
+                        eventSource,
+                        "DialogCancelHandlerEvent",
+                        {},immediate); 
+                        evt.cancel();
+                    }
+                }
+        </af:resource>
+                </af:table>
+                 </af:panelCollection>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="popGuias"
+                          binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.popGuias}">
+                    <af:dialog id="diaGuias"
+                               binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.diaGuias}"
+                               type="ok" title="#{beanSessionConsultarManifiesto.dialogTitulo}">
+                        
+                            <af:table value="#{beanSessionConsultarManifiesto.lstGuiasTabla}" var="row"
+                                      id="t2" rowBandingInterval="0" summary="Tabla Guias" varStatus="vs"
+                                      width="700px" emptyText="No hay Guias" rowSelection="single"
+                                      binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.t2}">
+                                      <af:column width="18" frozen="true">
+                                    <af:outputText value="#{vs.index + 1}"/>
+                                </af:column>
+                                <af:column headerText="Guia" align="start" width="70">
+                                    <af:outputText value="#{row.cidGuia}"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="Cliente" align="start">
+                                    <af:outputText value="#{row.empCliente}"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="Direccion Remitente" align="start">
+                                    <af:outputText value="#{row.CDireccionRemitente}" />
+                                </af:column>
+                                <af:column sortable="false" headerText="Direccion Destino" align="start">
+                                    <af:outputText value="#{row.CDireccionDestino}"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="Fecha Guia" align="start" width="70">
+                                    <af:outputText value="#{row.fechaGuia}">
+                                        <af:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </af:outputText>
+                                </af:column>
+                                 <af:column sortable="false" headerText="Fecha Despacho" align="start" width="90">
+                                    <af:outputText value="#{row.fechaDespacho}">
+                                        <af:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </af:outputText>
+                                </af:column>
+                                <af:column sortable="false" headerText="Remitente" align="start">
+                                    <af:outputText value="#{row.adEmpresa.CRazonSocial}"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="Orden Servicio" align="start" width="75">
+                                    <af:outputText value="#{row.ordenServicio.nidOrdnServ}"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="Orden Servicio Fecha" align="center" width="75">
+                                    <af:outputText value="#{row.ordenServicio.fecOrdnServ}"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="Conformidad" align="center" width="90">
+                                    <af:outputText value="#{row.descConformidad}"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="Observaciones" align="start" width="180">
+                                    <af:outputText value="#{row.CObservaciones}"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="Paquetes" align="center" width="50">
+                                    <af:outputText value="#{row.numPaquetes}"/>
+                                </af:column>
+                            </af:table>
+                       
+                    </af:dialog>
+                </af:popup>
+                <!-- POP UP PARA EDITAR EL MANIFIESTO -->
+                <af:popup contentDelivery="lazy" autoCancel="disabled" id="popEditarManif"
+                          binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.popEditarManif}">
+                    <af:dialog id="d1" type="okCancel" inlineStyle="width:380px;" modal="true" title="Editar Manifiesto"
+                               binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.d1}"
+                               dialogListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.dialogModificarManifOKListener}">
+                        <af:subform id="s2"
+                                    binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.s2}">
+                            <af:panelFormLayout id="pfl2"
+                                                binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.pfl2}">
+                                <af:selectOneChoice label="Estado" 
+                                                    valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.cambiarEstaManif}"
+                                                    id="socEstdos" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                                    autoSubmit="true"
+                                                    disabled="#{sessionScope.beanSessionConsultarManifiesto.disabEstado}"
+                                                    value="#{sessionScope.beanSessionConsultarManifiesto.estadoManifNeg}"
+                                                    binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.socEstdos}">
+                                    <f:selectItems value="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.lstEstados}"
+                                                   id="si10"
+                                                   binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si10}"/>
+                                </af:selectOneChoice>
+                                <af:inputDate label="Fecha" id="fecManif" disabled="true" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.fecManif}"
+                                              value="#{sessionScope.beanSessionConsultarManifiesto.fecManf}">
+                                        <af:convertDateTime pattern="dd/MM/yyyy" />
+                                </af:inputDate>
+                                <af:inputText label="Flete" id="itFlete" required="true" showRequired="true"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.itFlete}"
+                                              value="#{sessionScope.beanSessionConsultarManifiesto.dflete}" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                              disabled="#{sessionScope.beanSessionConsultarManifiesto.disabComp}"
+                                              valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.cambiarFlete}"
+                                              autoSubmit="true">
+                                    <f:validator validatorId="decimalValidator"/>
+                                        <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                          minIntegerDigits="1" maxIntegerDigits="6"/>
+                                    </af:inputText>
+                                <af:inputText label="Adelanto" id="itAdelanto" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                              disabled="#{sessionScope.beanSessionConsultarManifiesto.disabComp}"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.itAdelanto}"
+                                              value="#{sessionScope.beanSessionConsultarManifiesto.dadelanto}"
+                                              valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.cambiarAdelanto}"
+                                              autoSubmit="true">
+                                    <f:validator validatorId="decimalValidator"/>
+                                        <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                          minIntegerDigits="1" maxIntegerDigits="6"/>
+                                    </af:inputText>
+                                <af:inputText label="Saldo" id="itSaldo" disabled="true" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.itSaldo}"
+                                              value="#{sessionScope.beanSessionConsultarManifiesto.saldo}">
+                                    <f:validator validatorId="decimalValidator"/>
+                                        <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                          minIntegerDigits="1" maxIntegerDigits="6"/>
+                                    </af:inputText>
+                                <af:inputText label="IGV" id="itIGV" disabled="true" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.itIGV}"
+                                              value="#{sessionScope.beanSessionConsultarManifiesto.igvManif}">
+                                    <f:validator validatorId="decimalValidator"/>
+                                        <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                          minIntegerDigits="1" maxIntegerDigits="6"/>
+                                    </af:inputText>
+                                <af:inputText label="Detraccion" id="itDetraccion" disabled="true" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.itDetraccion}"
+                                              value="#{sessionScope.beanSessionConsultarManifiesto.detracManif}">
+                                    <f:validator validatorId="decimalValidator"/>
+                                        <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                          minIntegerDigits="1" maxIntegerDigits="6"/>
+                                </af:inputText>
+                                <af:inputText label="Monto Final" id="itMontoFin" disabled="true" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.itMontoFin}"
+                                              value="#{sessionScope.beanSessionConsultarManifiesto.montoFinalVal}">
+                                    <f:validator validatorId="decimalValidator"/>
+                                        <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                                          minIntegerDigits="1" maxIntegerDigits="6"/>
+                                    </af:inputText>
+                                <af:selectOneChoice label="Tipo Documento" id="socTipDoc" disabled="true" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                                    binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.socTipDoc}"
+                                                    value="#{sessionScope.beanSessionConsultarManifiesto.tipDoc}">
+                                    <af:selectItem label="Factura" id="si9" value="1"
+                                                   binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.si9}"/>
+                                </af:selectOneChoice>
+                                <af:inputText label="Observaciones" id="itObs" autoSubmit="true" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.itObs}"
+                                              rows="4" 
+                                              value="#{sessionScope.beanSessionConsultarManifiesto.observManif}"/>
+                            </af:panelFormLayout>
+                        </af:subform>
+                        <af:clientListener method="onDialogCancel" type="dialog"/>
+                    <af:serverListener type="DialogCancelHandlerEvent"
+                                       method="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.onDialogCancel}"/>
+                    </af:dialog>
+                </af:popup>
+                 <af:popup id="popAnular" binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.diaAnular}">
+                    <af:dialog id="diaAnular"
+                               title="Anulacion de Guia"
+                               dialogListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.dialogAnulaManifListener}">
+                            <af:outputText value="Desea Anular el Manifiesto?"/>
+                    </af:dialog>
+                </af:popup>
+            <af:popup id="popFecManif"
+                      binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.popFecManif}"
+                      animate="false">
+                   <af:dialog id="diagFec"
+                               dialogListener="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.dialogCambiarFechasManif}"
+                               title="Modificar Fecha del Manifiesto">
+                           <af:panelFormLayout>
+                                <af:inputDate label="Fecha" id="fecMa" autoSubmit="true" labelStyle="color: rgb(19,76,149);font-weight:800;"
+                                              value="#{beanSessionConsultarManifiesto.fecManf}"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_frm_consultar_manifiesto.fecMa}">
+                                    <af:convertDateTime pattern="dd/MM/yyyy"/>
+                                </af:inputDate>
+                        </af:panelFormLayout>
+                      </af:dialog>   
+            </af:popup>
+        </af:panelGroupLayout>
+     </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_manifiesto_frm_consultar_manifiesto-->
+</ui:composition>

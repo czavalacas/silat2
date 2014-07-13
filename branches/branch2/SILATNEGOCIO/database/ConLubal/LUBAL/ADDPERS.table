@@ -1,0 +1,1101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">7d569c00-ac49-4081-8c81-c5ee0fd73a35</identifier>
+  </ID>
+  <name>ADDPERS</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">b6d0c6e2-6da1-48c4-a5ab-3c18dd2784b0</identifier>
+      </ID>
+      <name>C_NOMBRES</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">491c2343-8436-467c-b6e9-3efd3d92bf8d</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">50</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_NOMBRES</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.math.BigDecimal">14885</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">NOMBRES DE LA PERSONA</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_NOMBRES</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">bcf47063-0742-40b8-9497-5b4750b5539c</identifier>
+      </ID>
+      <name>C_APELLIDOS</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">f7f618d0-c6e2-4d98-a3d9-d2b8ae81008a</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">60</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_APELLIDOS</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.math.BigDecimal">14885</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">APELLIDOS DE LA PERSONA</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_APELLIDOS</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">18714c15-f741-4444-ba1f-ad0940922ea7</identifier>
+      </ID>
+      <name>F_FEC_NAC</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">054e6e14-a2cb-46d3-a3db-51f19d399f5b</identifier>
+        </ID>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>DATE</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>F_FEC_NAC</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.math.BigDecimal">14885</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">FECHA DE NACIMIENTO DE LA PERSONA</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>F_FEC_NAC</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">aa9f476e-79bb-4ecb-a771-7895fe2f68af</identifier>
+      </ID>
+      <name>C_CARGO</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">15321e37-4253-4f98-9e9d-077f0db221a2</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">50</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_CARGO</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.math.BigDecimal">14885</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">CARGO DE LA PERSONA</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_CARGO</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ab0b09a3-7aef-4833-b1dd-de297966a9f7</identifier>
+      </ID>
+      <name>NID_PARTY</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">efc5cacd-1d55-4bd5-a930-ce4f0522b824</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_PARTY</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.math.BigDecimal">14885</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_PARTY</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">f8a32f75-20e6-4f09-aa59-05b8c61c0bd5</identifier>
+      </ID>
+      <name>PERSONA_CAPELLIDOS_CHECK</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">63522505-ce31-42f2-98bd-822ab2050400</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.Comparison">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">c1213794-dc4c-4cad-9bb9-fab38d8b2929</identifier>
+            </ID>
+            <comparator>44</comparator>
+            <leftExpression class="oracle.javatools.db.sql.ColumnUsage">
+              <ID class="oracle.javatools.db.IdentifierBasedID">
+                <identifier class="java.lang.String">33d4e3c3-d98b-4add-93ab-a22e33dd3e16</identifier>
+              </ID>
+              <objectID class="oracle.javatools.db.IdentifierBasedID">
+                <name>C_APELLIDOS</name>
+                <identifier class="java.lang.String">bcf47063-0742-40b8-9497-5b4750b5539c</identifier>
+                <parent class="oracle.javatools.db.IdentifierBasedID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.lang.String">7d569c00-ac49-4081-8c81-c5ee0fd73a35</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </objectID>
+              <outerJoin>false</outerJoin>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>PERSONA_CAPELLIDOS_CHECK</name>
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>ADDPERS</name>
+                            <identifier class="java.math.BigDecimal">14885</identifier>
+                            <schemaName>LUBAL</schemaName>
+                            <type>TABLE</type>
+                          </parent>
+                          <subType>CheckConstraint</subType>
+                          <type>CONSTRAINT</type>
+                        </parent>
+                        <type>WHERE</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </parent>
+                    <type>SQLFragment</type>
+                  </value>
+                </entry>
+              </properties>
+              <qualified>false</qualified>
+            </leftExpression>
+            <priorOnLeft>false</priorOnLeft>
+            <priorOnRight>false</priorOnRight>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>PERSONA_CAPELLIDOS_CHECK</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDPERS</name>
+                        <identifier class="java.math.BigDecimal">14885</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>PERSONA_CAPELLIDOS_CHECK</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.math.BigDecimal">14885</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>PERSONA_CAPELLIDOS_CHECK</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">e767e126-a2c2-4f04-bbf6-a4fd9344713a</identifier>
+      </ID>
+      <name>PERSONA_CCARGO_CHECK</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">1aaf7552-b161-4469-9c39-c8c5ecd40f68</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.Comparison">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">bfe563fb-6b7a-427d-82c3-d163c9a5ee78</identifier>
+            </ID>
+            <comparator>44</comparator>
+            <leftExpression class="oracle.javatools.db.sql.ColumnUsage">
+              <ID class="oracle.javatools.db.IdentifierBasedID">
+                <identifier class="java.lang.String">ac40410b-7c93-4704-872f-702bb585a3c7</identifier>
+              </ID>
+              <objectID class="oracle.javatools.db.IdentifierBasedID">
+                <name>C_CARGO</name>
+                <identifier class="java.lang.String">aa9f476e-79bb-4ecb-a771-7895fe2f68af</identifier>
+                <parent class="oracle.javatools.db.IdentifierBasedID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.lang.String">7d569c00-ac49-4081-8c81-c5ee0fd73a35</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </objectID>
+              <outerJoin>false</outerJoin>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>PERSONA_CCARGO_CHECK</name>
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>ADDPERS</name>
+                            <identifier class="java.math.BigDecimal">14885</identifier>
+                            <schemaName>LUBAL</schemaName>
+                            <type>TABLE</type>
+                          </parent>
+                          <subType>CheckConstraint</subType>
+                          <type>CONSTRAINT</type>
+                        </parent>
+                        <type>WHERE</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </parent>
+                    <type>SQLFragment</type>
+                  </value>
+                </entry>
+              </properties>
+              <qualified>false</qualified>
+            </leftExpression>
+            <priorOnLeft>false</priorOnLeft>
+            <priorOnRight>false</priorOnRight>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>PERSONA_CCARGO_CHECK</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDPERS</name>
+                        <identifier class="java.math.BigDecimal">14885</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>PERSONA_CCARGO_CHECK</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.math.BigDecimal">14885</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>PERSONA_CCARGO_CHECK</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ebff22d9-df0e-4b82-b834-d46cff95432b</identifier>
+      </ID>
+      <name>PERSONA_CNOMBRES_CHECK</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">01cf919a-c8b8-46a0-a143-ae50265a93aa</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.Comparison">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">65c7c392-0d24-4c0a-b388-1188f188b803</identifier>
+            </ID>
+            <comparator>44</comparator>
+            <leftExpression class="oracle.javatools.db.sql.ColumnUsage">
+              <ID class="oracle.javatools.db.IdentifierBasedID">
+                <identifier class="java.lang.String">5a3611ef-4e21-4ba8-b76a-500f6cab1915</identifier>
+              </ID>
+              <objectID class="oracle.javatools.db.IdentifierBasedID">
+                <name>C_NOMBRES</name>
+                <identifier class="java.lang.String">b6d0c6e2-6da1-48c4-a5ab-3c18dd2784b0</identifier>
+                <parent class="oracle.javatools.db.IdentifierBasedID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.lang.String">7d569c00-ac49-4081-8c81-c5ee0fd73a35</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </objectID>
+              <outerJoin>false</outerJoin>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>PERSONA_CNOMBRES_CHECK</name>
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>ADDPERS</name>
+                            <identifier class="java.math.BigDecimal">14885</identifier>
+                            <schemaName>LUBAL</schemaName>
+                            <type>TABLE</type>
+                          </parent>
+                          <subType>CheckConstraint</subType>
+                          <type>CONSTRAINT</type>
+                        </parent>
+                        <type>WHERE</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </parent>
+                    <type>SQLFragment</type>
+                  </value>
+                </entry>
+              </properties>
+              <qualified>false</qualified>
+            </leftExpression>
+            <priorOnLeft>false</priorOnLeft>
+            <priorOnRight>false</priorOnRight>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>PERSONA_CNOMBRES_CHECK</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDPERS</name>
+                        <identifier class="java.math.BigDecimal">14885</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>PERSONA_CNOMBRES_CHECK</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.math.BigDecimal">14885</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>PERSONA_CNOMBRES_CHECK</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">8791289f-3c17-4953-a849-30d5866cdf9d</identifier>
+      </ID>
+      <name>PERSONA_FFEC_NAC_CHECK</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">25f076ea-fba0-4ae7-9924-8405433f4c48</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.Comparison">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">86f44b2e-d7c6-4daa-9f85-edca4592a297</identifier>
+            </ID>
+            <comparator>44</comparator>
+            <leftExpression class="oracle.javatools.db.sql.ColumnUsage">
+              <ID class="oracle.javatools.db.IdentifierBasedID">
+                <identifier class="java.lang.String">9e5be5f6-cdea-4038-965e-286722887eed</identifier>
+              </ID>
+              <objectID class="oracle.javatools.db.IdentifierBasedID">
+                <name>F_FEC_NAC</name>
+                <identifier class="java.lang.String">18714c15-f741-4444-ba1f-ad0940922ea7</identifier>
+                <parent class="oracle.javatools.db.IdentifierBasedID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.lang.String">7d569c00-ac49-4081-8c81-c5ee0fd73a35</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </objectID>
+              <outerJoin>false</outerJoin>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>PERSONA_FFEC_NAC_CHECK</name>
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>ADDPERS</name>
+                            <identifier class="java.math.BigDecimal">14885</identifier>
+                            <schemaName>LUBAL</schemaName>
+                            <type>TABLE</type>
+                          </parent>
+                          <subType>CheckConstraint</subType>
+                          <type>CONSTRAINT</type>
+                        </parent>
+                        <type>WHERE</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </parent>
+                    <type>SQLFragment</type>
+                  </value>
+                </entry>
+              </properties>
+              <qualified>false</qualified>
+            </leftExpression>
+            <priorOnLeft>false</priorOnLeft>
+            <priorOnRight>false</priorOnRight>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>PERSONA_FFEC_NAC_CHECK</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDPERS</name>
+                        <identifier class="java.math.BigDecimal">14885</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>PERSONA_FFEC_NAC_CHECK</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ADDPERS</name>
+                  <identifier class="java.math.BigDecimal">14885</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>PERSONA_FFEC_NAC_CHECK</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">d9d3f813-0842-47c9-acfa-56d4addfd3a2</identifier>
+      </ID>
+      <name>FK_ADDPERS</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_PARTY</name>
+          <identifier class="java.lang.String">ab0b09a3-7aef-4833-b1dd-de297966a9f7</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDPERS</name>
+            <identifier class="java.lang.String">7d569c00-ac49-4081-8c81-c5ee0fd73a35</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>FK_ADDPERS</name>
+            <childObjectNames>
+              <childObjectName>NID_PARTY</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>PARTY_PRIMARY_KEY</name>
+        <identifier class="java.lang.String">1438a5c0-8ca4-42d6-85bc-9c0fa8a1ccf9</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ADMPART</name>
+          <identifier class="java.lang.String">54f8cab2-3023-44ee-900c-279e9bbdb5e5</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">cad30e43-b508-4830-b59c-32af8287d956</identifier>
+      </ID>
+      <name>PERSONA_PRIMARY_KEY</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_PARTY</name>
+          <identifier class="java.lang.String">ab0b09a3-7aef-4833-b1dd-de297966a9f7</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>ADDPERS</name>
+            <identifier class="java.lang.String">7d569c00-ac49-4081-8c81-c5ee0fd73a35</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.IdentifierBasedID">
+        <name>PERSONA_PRIMARY_KEY</name>
+        <identifier class="java.lang.String">7d1efeda-331e-478c-ad7e-59999814b2cc</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ADDPERS</name>
+          <identifier class="java.lang.String">7d569c00-ac49-4081-8c81-c5ee0fd73a35</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>PERSONA_PRIMARY_KEY</name>
+            <childObjectNames>
+              <childObjectName>NID_PARTY</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">7d1efeda-331e-478c-ad7e-59999814b2cc</identifier>
+      </ID>
+      <name>PERSONA_PRIMARY_KEY</name>
+      <columnExpressions>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">c0625a75-e162-433a-8ae7-0f49c9266ada</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">e8be8794-cf9a-4637-befd-524f52333e3d</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>NID_PARTY</name>
+              <identifier class="java.lang.String">ab0b09a3-7aef-4833-b1dd-de297966a9f7</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>ADDPERS</name>
+                <identifier class="java.lang.String">7d569c00-ac49-4081-8c81-c5ee0fd73a35</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>PERSONA_PRIMARY_KEY</name>
+                      <identifier class="java.math.BigDecimal">14919</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>ADDPERS</name>
+                        <identifier class="java.math.BigDecimal">14885</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>LUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>PERSONA_PRIMARY_KEY</name>
+                  <identifier class="java.math.BigDecimal">14919</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>ADDPERS</name>
+                    <identifier class="java.math.BigDecimal">14885</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>LUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>PERSONA_PRIMARY_KEY</name>
+            <identifier class="java.math.BigDecimal">14919</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>ADDPERS</name>
+              <identifier class="java.math.BigDecimal">14885</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>LUBAL</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">c6ab8190-a09b-4ef0-80b6-16aa0ab7ffa9</identifier>
+            </ID>
+            <bufferMode>DEFAULT</bufferMode>
+            <initialExtent>65536</initialExtent>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <maxExtent>2147483645</maxExtent>
+            <minExtent>1</minExtent>
+            <percentFree>10</percentFree>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>PERSONA_PRIMARY_KEY</name>
+                    <identifier class="java.math.BigDecimal">14919</identifier>
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>ADDPERS</name>
+                      <identifier class="java.math.BigDecimal">14885</identifier>
+                      <schemaName>LUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <schemaName>LUBAL</schemaName>
+                    <type>INDEX</type>
+                  </parent>
+                  <type>OracleStorageProperties</type>
+                </value>
+              </entry>
+            </properties>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>USERS</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>LUBAL</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>Comment</key>
+      <value class="java.lang.String">TABLA DETALLE DE PARTY, SE REGISTRAN TODAS LAS PERSONAS</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>ADDPERS</name>
+        <identifier class="java.math.BigDecimal">14885</identifier>
+        <schemaName>LUBAL</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">106262c8-940d-42ac-8f79-e287852ab0a5</identifier>
+        </ID>
+        <bufferMode>DEFAULT</bufferMode>
+        <initialExtent>65536</initialExtent>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <maxExtent>2147483645</maxExtent>
+        <minExtent>1</minExtent>
+        <percentFree>10</percentFree>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>ADDPERS</name>
+                <identifier class="java.math.BigDecimal">14885</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>OracleStorageProperties</type>
+            </value>
+          </entry>
+        </properties>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>USERS</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>LUBAL</name>
+  </schema>
+</table>

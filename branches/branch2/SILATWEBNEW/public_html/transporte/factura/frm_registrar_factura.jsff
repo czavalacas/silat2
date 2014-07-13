@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <f:view>
+        <af:panelGroupLayout layout="scroll" inlineStyle="margin:0px 0px 0px 43px;">
+            <af:panelGroupLayout halign="left">
+                <af:spacer height="10"/>
+                <af:outputText value="Registrar Factura" id="otTitulo" styleClass="titulos2"
+                               binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.otTitulo}"/>
+                <af:spacer height="10"/>
+            </af:panelGroupLayout>
+            <af:panelGridLayout id="pglDatos"
+                                binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.pglDatos}"
+                                inlineStyle="width:inherit;">
+                <af:gridRow marginTop="3px" marginBottom="3px" height="auto" id="filaUno"
+                            binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.filaUno}">
+                    <af:gridCell marginStart="1px" width="auto" id="celIzq"
+                                 binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.celIzq}"
+                                 marginEnd="10px">
+                        <af:panelFormLayout id="pflDatos"
+                                            binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.pflDatos}">
+                            <af:selectOneChoice label="Tipo Factura" labelStyle="text-align: left;" autoSubmit="true"
+                                                requiredMessageDetail="Seleccione un tipo de Factura a generar"
+                                                required="true" value="#{beanSessionScopeRegistrarFactura.tipFactura}"
+                                                id="socTipo"
+                                                binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.socTipo}"
+                                                valueChangeListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.cambioTipo}">
+                                <af:selectItem label="Tipo 1) 1 Guia -> 1 Flete" value="1" id="si5"
+                                               binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.si5}"/>
+                                <af:selectItem label="Tipo 2) Varias Guias -> 1 Flete" value="4" id="si6"
+                                               binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.si6}"/>
+                            </af:selectOneChoice>
+                            <af:selectBooleanCheckbox label="Editable?" id="cbEditable"
+                                                      binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.cbEditable}"
+                                                      autoSubmit="true"
+                                                      labelStyle="color: White;     font-weight: 800;     text-align: left;"
+                                                      value="#{beanSessionScopeRegistrarFactura.editable}"
+                                                      selected="#{beanSessionScopeRegistrarFactura.editable}"
+                                                      visible="#{beanSessionScopeRegistrarFactura.editableIsVisible}"
+                                                      valueChangeListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.cambioEditable}"/>
+                            <af:selectOneChoice label="Serie" requiredMessageDetail="Seleccionar Serie" id="socSerie"
+                                                binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.socSerie}"
+                                                value="#{beanSessionScopeRegistrarFactura.codUN}" autoSubmit="true"
+                                                valueChangeListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.cambioUN}"
+                                                labelStyle="text-align: left;">
+                                <f:selectItems value="#{beanSessionScopeRegistrarFactura.listaUNs}" id="siSerie"
+                                               binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.siSerie}"/>
+                            </af:selectOneChoice>
+                            <af:poll id="pcodFac"
+                                     binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.pcodFac}"
+                                     interval="3500" immediate="true"
+                                     pollListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.exeCodFacturaPoll}"/>
+                            <af:inputText label="Factura" id="itCodFact"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itCodFact}"
+                                          value="#{beanSessionScopeRegistrarFactura.codFactura}" autoSubmit="true"
+                                          disabled="true" labelStyle="text-align: left;"></af:inputText>
+                            <af:inputDate label="Fecha" id="itFecFac"
+                                          value="#{beanSessionScopeRegistrarFactura.fecFactura}" autoSubmit="true"
+                                          disabled="true" labelStyle="text-align: left;"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itFecFac}">
+                                <af:convertDateTime pattern="dd/MM/yyyy"/>
+                            </af:inputDate>
+                            <af:inputText label="Cliente" id="itClien" disabled="true"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itClien}"
+                                          rows="2" value="#{beanSessionScopeRegistrarFactura.razonClienteForFact}"
+                                          labelStyle="text-align: left;"/>
+                            <af:commandButton text="Buscar Cliente" id="buscCli"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.buscCli}"
+                                              action="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.abrirPopClie}"/>
+                        </af:panelFormLayout>
+                    </af:gridCell>
+                    <af:gridCell marginEnd="1px" width="auto" id="celDos"
+                                 binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.celDos}">
+                        <af:panelFormLayout>
+                            <af:inputText label="Sub-Total" id="itSubTot" disabled="true"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itSubTot}"
+                                          value="#{beanSessionScopeRegistrarFactura.sub_total}" autoSubmit="true"
+                                          labelStyle="text-align: left;"/>
+                            <af:inputText label="IGV %" id="itIGV" disabled="true"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itIGV}"
+                                          value="#{beanSessionScopeRegistrarFactura.igv}" autoSubmit="true"
+                                          labelStyle="text-align: left;">
+                                <f:validator validatorId="decimalValidator"/>
+                                <af:convertNumber maxFractionDigits="2" minFractionDigits="0" minIntegerDigits="1"
+                                                  maxIntegerDigits="6" locale="es_ES"/>
+                            </af:inputText>
+                            <af:inputText label="Total" id="itMonFinal" disabled="true"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itMonFinal}"
+                                          value="#{beanSessionScopeRegistrarFactura.total}" autoSubmit="true"
+                                          labelStyle="text-align: left;">
+                                <f:validator validatorId="decimalValidator"/>
+                                <af:convertNumber maxFractionDigits="2" minFractionDigits="0" minIntegerDigits="1"
+                                                  maxIntegerDigits="6"/>
+                            </af:inputText>
+                            <af:selectOneChoice label="Direccion" id="socDirecs"
+                                                binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.socDirecs}"
+                                                autoSubmit="true" showRequired="true"
+                                                value="#{beanSessionScopeRegistrarFactura.direc}"
+                                                labelStyle="text-align: left;">
+                                <f:selectItems value="#{beanSessionScopeRegistrarFactura.lstDirecs}" id="si2"
+                                               binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.si2}"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice label="Remitente" id="socRemis" autoSubmit="true"
+                                                binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.socRemis}"
+                                                valueChangeListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.selectUbiRemi}"
+                                                labelStyle="text-align: left;"
+                                                visible="#{beanSessionScopeRegistrarFactura.editable == false}">
+                                <f:selectItems value="#{beanSessionScopeRegistrarFactura.lstUbiDirecRemi}" id="si3"
+                                               binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.si3}"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice label="Destino" id="socDest" autoSubmit="true"
+                                                binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.socDest}"
+                                                valueChangeListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.selectUbiDesti}"
+                                                labelStyle="text-align: left;"
+                                                visible="#{beanSessionScopeRegistrarFactura.editable == false}">
+                                <f:selectItems value="#{beanSessionScopeRegistrarFactura.lstUbiDirecDesti}" id="si4"
+                                               binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.si4}"/>
+                            </af:selectOneChoice>
+                            <af:inputText label="Detalle" id="itDet" autoSubmit="true"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itDet}"
+                                          labelStyle="text-align: left;" maximumLength="100"
+                                          value="#{beanSessionScopeRegistrarFactura.detalleFactura}" rows="3"
+                                          visible="#{beanSessionScopeRegistrarFactura.editable == false}"/>
+                        </af:panelFormLayout>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+            <af:panelGroupLayout>
+                <af:commandButton text="Precio" id="btnPrecio"
+                                  binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.btnPrecio}"
+                                  action="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.abrirPopPrecio}"
+                                  disabled="#{beanSessionScopeRegistrarFactura.disabBtnPrecio}" partialSubmit="true"/>
+                <af:commandButton text="Vista Previa" id="btnPrevia" partialSubmit="true"
+                                  binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.btnPrevia}"
+                                  action="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.abrirPopPrevio}"/>
+                <af:commandButton text="Registrar" id="btnGrabar"
+                                  binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.btnGrabar}"
+                                  actionListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.registrarFactura}"/>
+                <af:commandButton text="Refrescar Guias" id="btnRefr" disabled="true"
+                                  binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.btnRefr}"
+                                  action="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.mostrarGuias}"/>
+            </af:panelGroupLayout>
+            <af:table value="#{beanSessionScopeRegistrarFactura.lstGuias}" var="row" rowBandingInterval="0"
+                      rowSelection="single" id="tabGuia" summary="Tabla Guias" varStatus="vs"
+                      binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.tabGuia}"
+                      inlineStyle="height:220px;width:inherit; margin:0px 50px 0px 0px;" width="inherit;"
+                      selectionListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.seleccionarGuia}"
+                      emptyText="No hay Guias con estado OK." columnStretching="column:colObs">
+                <af:column width="18" frozen="true">
+                    <af:outputText value="#{vs.index + 1}"/>
+                </af:column>
+                <af:column width="18" visible="#{beanSessionScopeRegistrarFactura.editable}" align="center">
+                    <af:selectBooleanCheckbox selected="#{row.selected}" id="sbc1"/>
+                </af:column>
+                <af:column headerText="Guia" align="center" width="65" frozen="true" sortable="true"
+                           sortProperty="cidGuia">
+                    <af:outputText value="#{row.cidGuia}"/>
+                </af:column>
+                <af:column headerText="Grupo" align="center" width="40" sortable="false"
+                           visible="#{beanSessionScopeRegistrarFactura.tipFactura == 4}">
+                    <af:inputText id="it1" value="#{row.grupo}" columns="4"
+                                  disabled="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.editarGrupo}"
+                                  valueChangeListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.cambioGrupo}">
+                        <af:convertNumber integerOnly="true" minIntegerDigits="1"/>
+                        <f:validator validatorId="enteroPositivoValidator"/>
+                        <af:setPropertyListener from="#{row.cidGuia}"
+                                                to="#{beanSessionScopeRegistrarFactura.cidGuiaGrupo}"
+                                                type="valueChange"/>
+                    </af:inputText>
+                </af:column>
+                <af:column sortable="true" headerText="Estado" align="center" width="50" sortProperty="descConformidad">
+                    <af:outputText value="#{row.descConformidad}"/>
+                </af:column>
+                <af:column headerText="Precio" align="center" width="70" sortProperty="precio" sortable="true">
+                    <af:outputText value="#{row.precio}"/>
+                </af:column>
+                <af:column sortable="true" headerText="Orden Serv" align="start"
+                           sortProperty="ordenServicio.nidOrdnServ" width="60">
+                    <af:outputText value="#{row.ordenServicio.nidOrdnServ}"/>
+                </af:column>
+                <af:column sortable="true" headerText="Direccion Remitente" align="start"
+                           sortProperty="CDireccionRemitente">
+                    <af:outputText value="#{row.CDireccionRemitente}"/>
+                </af:column>
+                <af:column sortable="true" headerText="Direccion Desc" align="start"
+                           sortProperty="ubigeoDireccionRemitente">
+                    <af:outputText value="#{row.ubigeoDireccionRemitente}"/>
+                </af:column>
+                <af:column sortable="true" headerText="Direccion Destino" align="start"
+                           sortProperty="CDireccionDestino">
+                    <af:outputText value="#{row.CDireccionDestino}"/>
+                </af:column>
+                <af:column sortable="true" headerText="Direccion Desc" align="start"
+                           sortProperty="ubigeoDireccionDestino">
+                    <af:outputText value="#{row.ubigeoDireccionDestino}"/>
+                </af:column>
+                <af:column sortable="true" headerText="Fecha Guia" align="center" width="70" sortProperty="fechaGuia">
+                    <af:outputText value="#{row.fechaGuia}">
+                        <af:convertDateTime pattern="dd/MM/yyyy"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortable="true" headerText="Fecha Despacho" align="center" width="70"
+                           sortProperty="fechaDespacho">
+                    <af:outputText value="#{row.fechaDespacho}">
+                        <af:convertDateTime pattern="dd/MM/yyyy"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortable="true" headerText="Remitente" align="start" sortProperty="CRazonSocial">
+                    <af:outputText value="#{row.adEmpresa.CRazonSocial}"/>
+                </af:column>
+                <af:column sortable="true" headerText="Observaciones" align="start" sortProperty="CObservaciones"
+                           id="colObs">
+                    <af:outputText value="#{row.CObservaciones}"/>
+                </af:column>
+            </af:table>
+            <af:separator id="s2" binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.s2}"/>
+            <af:spacer height="10"/>
+            <af:panelGroupLayout>
+                <af:commandButton text="Flete" id="btnFlete" visible="#{beanSessionScopeRegistrarFactura.editable}"
+                                  binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.btnFlete}"
+                                  actionListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.agregarFlete}"/>
+            </af:panelGroupLayout>
+            <af:inputText label="Descripcion" id="itContenido" visible="#{beanSessionScopeRegistrarFactura.editable}"
+                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itContenido}"
+                          value="#{beanSessionScopeRegistrarFactura.contenido}" columns="150" rows="23"/>
+            <af:panelGridLayout>
+                <af:gridRow marginTop="3px" marginBottom="3px" height="auto">
+                    <af:gridCell marginStart="1px" width="auto">
+                        <af:selectManyShuttle id="sitems"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.sitems}"
+                                              valueChangeListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.cambioItems}"
+                                              autoSubmit="true" layout="vertical" leadingHeader="Items Disponibles"
+                                              trailingHeader="Items Seleccionados"
+                                              disabled="#{beanSessionScopeRegistrarFactura.isDisableSitems}"
+                                              visible="#{beanSessionScopeRegistrarFactura.editable == false}">
+                            <f:selectItems value="#{beanSessionScopeRegistrarFactura.items}" id="si1"
+                                           binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.si1}"/>
+                        </af:selectManyShuttle>
+                    </af:gridCell>
+                    <af:gridCell marginStart="1px" width="auto">
+                        <af:selectOneListbox label="Items Finales de Factura" size="12" id="solFin"
+                                             binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.solFin}"
+                                             autoSubmit="true" labelStyle="color: White;     font-weight: 800;"
+                                             visible="#{beanSessionScopeRegistrarFactura.editable == false}">
+                            <f:selectItems value="#{beanSessionScopeRegistrarFactura.itemsFin}" id="siFin"
+                                           binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.siFin}"/>
+                        </af:selectOneListbox>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+            <af:popup contentDelivery="lazy" autoCancel="disabled" id="popClie"
+                      binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.popClie}">
+                <af:dialog id="dclie" type="none" inlineStyle="width:490px;" modal="true" title="Busqueda de Clientes"
+                           binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.dclie}">
+                    <af:subform id="sfClie"
+                                binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.sfClie}"
+                                defaultCommand="btnBuscClie">
+                        <af:panelFormLayout id="pflClie"
+                                            binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.pflClie}">
+                            <af:inputText label="Cliente" id="itClieRaz"
+                                          labelStyle="color: rgb(19,76,149);font-weight:800;"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itClieRaz}"
+                                          value="#{beanSessionScopeRegistrarFactura.razonCliente}"/>
+                            <af:commandButton text="Buscar" id="btnBuscClie"
+                                              binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.btnBuscClie}"
+                                              action="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.mostrarClientes}"/>
+                        </af:panelFormLayout>
+                        <af:table value="#{beanSessionScopeRegistrarFactura.lstClientes}" var="row"
+                                  rowBandingInterval="0" id="tbClie" emptyText="No hay Empresas." fetchSize="25"
+                                  rowSelection="single" inlineStyle="width:inherit;" varStatus="vs"
+                                  binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.tbClie}"
+                                  selectionListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.seleccionarCliente}"
+                                  columnStretching="column:colRazSoc">
+                            <af:column width="15" frozen="true">
+                                <af:outputText value="#{vs.index + 1}"/>
+                            </af:column>
+                            <af:column sortProperty="CRazonSocial" sortable="true" headerText="Empresa" width="128"
+                                       id="colRazSoc">
+                                <af:outputText value="#{row.CRazonSocial}"/>
+                            </af:column>
+                            <af:column sortProperty="CRuc" sortable="true" headerText="RUC" id="c2" width="75">
+                                <af:outputText value="#{row.CRuc}" id="ot2"/>
+                            </af:column>
+                        </af:table>
+                    </af:subform>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="popPrec"
+                      binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.popPrec}">
+                <af:dialog id="diaPre" type="cancel" modal="true" title="Registrar Precio"
+                           binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.diaPre}">
+                    <af:subform id="sfPrec"
+                                binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.sfPrec}"
+                                defaultCommand="btnRegPrec">
+                        <af:inputText label="Precio" id="itPrec" maximumLength="9"
+                                      binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itPrec}"
+                                      value="#{sessionScope.beanSessionScopeRegistrarFactura.bdPrecio}"
+                                      autoSubmit="true">
+                            <f:validator validatorId="decimal_ceroValidator"/>
+                            <af:convertNumber maxFractionDigits="2" minFractionDigits="0" minIntegerDigits="1"
+                                              maxIntegerDigits="6"/>
+                        </af:inputText>
+                        <af:spacer height="10"/>
+                        <af:commandButton text="Poner Precio" id="btnRegPrec"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.btnRegPrec}"
+                                          actionListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.agregarPrecio}"/>
+                    </af:subform>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="popEdit"
+                      binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.popEdit}">
+                <af:dialog type="cancel" modal="true" title="Asignar Precio">
+                    <af:subform defaultCommand="btnPrecEdit">
+                        <af:inputText label="Precio" id="itPrecEdit" maximumLength="9" autoSubmit="true"
+                                      binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itPrecEdit}"
+                                      value="#{beanSessionScopeRegistrarFactura.precioFinalEditable}">
+                            <f:validator validatorId="precioMinimoValidator"/>
+                            <af:convertNumber maxFractionDigits="2" minFractionDigits="0" minIntegerDigits="1"
+                                              maxIntegerDigits="6"/>
+                        </af:inputText>
+                        <af:spacer height="10"/>
+                        <af:commandButton text="Poner Precio" id="btnPrecEdit"
+                                          binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.btnPrecEdit}"
+                                          actionListener="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.cerrarPrecio}"/>
+                    </af:subform>
+                </af:dialog>
+            </af:popup>
+            <af:popup animate="default" contentDelivery="lazyUncached" id="popPrevio"
+                      binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.popPrevio}">
+                <af:panelWindow id="pwPrevio" modal="true" title="Vista Previa de la Factura" contentHeight="625"
+                                contentWidth="700" resize="on"
+                                binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.pwPrevio}">
+                    <af:inlineFrame id="ifPrevio" shortDesc="Previo Factura" inlineStyle="height:600px;"
+                                    styleClass="AFStretchWidth"
+                                    binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.ifPrevio}"
+                                    source="#{beanSessionScopeRegistrarFactura.sourcePrevio}"/>
+                </af:panelWindow>
+            </af:popup>
+        </af:panelGroupLayout>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_factura_frm_registrar_factura-->
+</ui:composition>

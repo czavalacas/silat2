@@ -1,0 +1,995 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">9e54dc3f-8038-45ec-8f17-7d738c89527a</identifier>
+  </ID>
+  <name>TRDITEM</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">5748d2c4-7afd-490d-bda6-76e72a408f6c</identifier>
+      </ID>
+      <name>NID_ITEM</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">f05b3a27-03e7-4103-a296-f61b1e2d01be</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">15</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_ITEM</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.math.BigDecimal">14893</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">IDENTIFICACION DEL ITEM</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_ITEM</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">37886f68-5ccd-4c7f-85e4-67e1f83feee6</identifier>
+      </ID>
+      <name>C_DESC_ITEM</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">1a5f59ac-da63-4412-aa57-1f99013b6406</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">110</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_DESC_ITEM</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.math.BigDecimal">14893</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">DESCRIPCION DEL ITEM</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_DESC_ITEM</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">1bac14e6-ab1a-4236-94ac-a4d9ad83df11</identifier>
+      </ID>
+      <name>N_CANTIDAD</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">c8bce98c-7497-4feb-b892-13de9d6b01e9</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">4</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>N_CANTIDAD</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.math.BigDecimal">14893</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">CANTIDAD POR ITEM</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>N_CANTIDAD</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">93e6690d-df44-4792-94fc-c6081683dbde</identifier>
+      </ID>
+      <name>C_UND_MEDIDA</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">b4a0f1b8-93fe-49ae-b466-87fe0fad3d2f</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">255</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_UND_MEDIDA</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.math.BigDecimal">14893</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">UNIDAD DE MEDIDA DEL ITEM</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_UND_MEDIDA</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">79832c39-0623-44fa-96dc-3e9a747c95d5</identifier>
+      </ID>
+      <name>D_PESO</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">47eb01ff-0468-4c2d-bf28-bdd9d34aa075</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">6</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>D_PESO</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.math.BigDecimal">14893</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">PESO DEL ITEM</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>D_PESO</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">255a289c-882d-4cba-b3d0-0761950c72c7</identifier>
+      </ID>
+      <name>C_CID_GUIA_REMITENTE</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">95c79221-e1d9-48ce-8a67-356082cd60d4</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">255</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_CID_GUIA_REMITENTE</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.math.BigDecimal">14893</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">CODIGO GUIA REMITENTE</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_CID_GUIA_REMITENTE</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">c33ba3a9-1382-4de7-8d32-938a54ec1bb1</identifier>
+      </ID>
+      <name>NID_GUIA</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">b7506699-7411-4fbf-926e-2a99f1cb860a</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">10</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_GUIA</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.math.BigDecimal">14893</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">CODIGO DE LA GUIA REMITENTE PADRE</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_GUIA</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">94de6079-2b5b-4a16-9e8d-cd3129e30337</identifier>
+      </ID>
+      <name>CK_TRDITEM_01</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">fe66bee9-bd88-4ddd-8b88-de240c8be0ca</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.Comparison">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">bda42d75-e33b-4b81-a7ab-8872a0c8471c</identifier>
+            </ID>
+            <comparator>44</comparator>
+            <leftExpression class="oracle.javatools.db.sql.ColumnUsage">
+              <ID class="oracle.javatools.db.IdentifierBasedID">
+                <identifier class="java.lang.String">d102dd72-af85-473d-8f45-faba9faf09d2</identifier>
+              </ID>
+              <objectID class="oracle.javatools.db.IdentifierBasedID">
+                <name>C_DESC_ITEM</name>
+                <identifier class="java.lang.String">37886f68-5ccd-4c7f-85e4-67e1f83feee6</identifier>
+                <parent class="oracle.javatools.db.IdentifierBasedID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.lang.String">9e54dc3f-8038-45ec-8f17-7d738c89527a</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </objectID>
+              <outerJoin>false</outerJoin>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>CK_TRDITEM_01</name>
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>TRDITEM</name>
+                            <identifier class="java.math.BigDecimal">14893</identifier>
+                            <schemaName>LUBAL</schemaName>
+                            <type>TABLE</type>
+                          </parent>
+                          <subType>CheckConstraint</subType>
+                          <type>CONSTRAINT</type>
+                        </parent>
+                        <type>WHERE</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </parent>
+                    <type>SQLFragment</type>
+                  </value>
+                </entry>
+              </properties>
+              <qualified>false</qualified>
+            </leftExpression>
+            <priorOnLeft>false</priorOnLeft>
+            <priorOnRight>false</priorOnRight>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_TRDITEM_01</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>TRDITEM</name>
+                        <identifier class="java.math.BigDecimal">14893</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_TRDITEM_01</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.math.BigDecimal">14893</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_TRDITEM_01</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">99be8e37-6cfe-4385-b92f-6b539a2860c6</identifier>
+      </ID>
+      <name>CK_TRDITEM_02</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">8de1aee5-7d62-4765-a720-da1a93b2f48e</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.Comparison">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">bd78649c-0aac-4c3d-bd51-c3616fc9e195</identifier>
+            </ID>
+            <comparator>44</comparator>
+            <leftExpression class="oracle.javatools.db.sql.ColumnUsage">
+              <ID class="oracle.javatools.db.IdentifierBasedID">
+                <identifier class="java.lang.String">22b57af0-df92-4eb2-92c5-2c71e7acfd4b</identifier>
+              </ID>
+              <objectID class="oracle.javatools.db.IdentifierBasedID">
+                <name>NID_ITEM</name>
+                <identifier class="java.lang.String">5748d2c4-7afd-490d-bda6-76e72a408f6c</identifier>
+                <parent class="oracle.javatools.db.IdentifierBasedID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.lang.String">9e54dc3f-8038-45ec-8f17-7d738c89527a</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </objectID>
+              <outerJoin>false</outerJoin>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>CK_TRDITEM_02</name>
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>TRDITEM</name>
+                            <identifier class="java.math.BigDecimal">14893</identifier>
+                            <schemaName>LUBAL</schemaName>
+                            <type>TABLE</type>
+                          </parent>
+                          <subType>CheckConstraint</subType>
+                          <type>CONSTRAINT</type>
+                        </parent>
+                        <type>WHERE</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </parent>
+                    <type>SQLFragment</type>
+                  </value>
+                </entry>
+              </properties>
+              <qualified>false</qualified>
+            </leftExpression>
+            <priorOnLeft>false</priorOnLeft>
+            <priorOnRight>false</priorOnRight>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_TRDITEM_02</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>TRDITEM</name>
+                        <identifier class="java.math.BigDecimal">14893</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_TRDITEM_02</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>TRDITEM</name>
+                  <identifier class="java.math.BigDecimal">14893</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_TRDITEM_02</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">83e16e36-5ad8-4a69-bd1a-46fad65ceb62</identifier>
+      </ID>
+      <name>FK_TRDITEM</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_GUIA</name>
+          <identifier class="java.lang.String">c33ba3a9-1382-4de7-8d32-938a54ec1bb1</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>TRDITEM</name>
+            <identifier class="java.lang.String">9e54dc3f-8038-45ec-8f17-7d738c89527a</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>FK_TRDITEM</name>
+            <childObjectNames>
+              <childObjectName>NID_GUIA</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>GUIA_PRIMARY_KEY</name>
+        <identifier class="java.lang.String">f52596ae-78c3-4357-8579-11cf3fac56c7</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>TRMGUIA</name>
+          <identifier class="java.lang.String">fb990591-3552-4f08-8f04-87dfed861604</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">14c10bce-d5db-4e7a-bf56-1dae11b76353</identifier>
+      </ID>
+      <name>ITEMS_GUIA_PRIMARY_KEY</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_ITEM</name>
+          <identifier class="java.lang.String">5748d2c4-7afd-490d-bda6-76e72a408f6c</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>TRDITEM</name>
+            <identifier class="java.lang.String">9e54dc3f-8038-45ec-8f17-7d738c89527a</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.IdentifierBasedID">
+        <name>ITEMS_GUIA_PRIMARY_KEY</name>
+        <identifier class="java.lang.String">c66bd806-e995-4969-ba72-34801950b4d7</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>TRDITEM</name>
+          <identifier class="java.lang.String">9e54dc3f-8038-45ec-8f17-7d738c89527a</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>ITEMS_GUIA_PRIMARY_KEY</name>
+            <childObjectNames>
+              <childObjectName>NID_ITEM</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">c66bd806-e995-4969-ba72-34801950b4d7</identifier>
+      </ID>
+      <name>ITEMS_GUIA_PRIMARY_KEY</name>
+      <columnExpressions>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">35bc5721-6768-4b90-9ca9-688524d117d5</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">2db603c1-42f6-45aa-a2bb-115c8d1e1f1c</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>NID_ITEM</name>
+              <identifier class="java.lang.String">5748d2c4-7afd-490d-bda6-76e72a408f6c</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>TRDITEM</name>
+                <identifier class="java.lang.String">9e54dc3f-8038-45ec-8f17-7d738c89527a</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>ITEMS_GUIA_PRIMARY_KEY</name>
+                      <identifier class="java.math.BigDecimal">14912</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>TRDITEM</name>
+                        <identifier class="java.math.BigDecimal">14893</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>LUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>ITEMS_GUIA_PRIMARY_KEY</name>
+                  <identifier class="java.math.BigDecimal">14912</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>TRDITEM</name>
+                    <identifier class="java.math.BigDecimal">14893</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>LUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>ITEMS_GUIA_PRIMARY_KEY</name>
+            <identifier class="java.math.BigDecimal">14912</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>TRDITEM</name>
+              <identifier class="java.math.BigDecimal">14893</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>LUBAL</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">f38aefdf-1736-4316-98aa-f1acc8d68afb</identifier>
+            </ID>
+            <bufferMode>DEFAULT</bufferMode>
+            <initialExtent>65536</initialExtent>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <maxExtent>2147483645</maxExtent>
+            <minExtent>1</minExtent>
+            <percentFree>10</percentFree>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>ITEMS_GUIA_PRIMARY_KEY</name>
+                    <identifier class="java.math.BigDecimal">14912</identifier>
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>TRDITEM</name>
+                      <identifier class="java.math.BigDecimal">14893</identifier>
+                      <schemaName>LUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <schemaName>LUBAL</schemaName>
+                    <type>INDEX</type>
+                  </parent>
+                  <type>OracleStorageProperties</type>
+                </value>
+              </entry>
+            </properties>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>USERS</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>LUBAL</name>
+      </schema>
+      <systemGenerated>false</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>Comment</key>
+      <value class="java.lang.String">TABLA DETALLE DE LOS ITEMS DE UNA GUIA QUE LUEGO SON PARTE DE UNA FACTURA DE CLIENTE</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>TRDITEM</name>
+        <identifier class="java.math.BigDecimal">14893</identifier>
+        <schemaName>LUBAL</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">890e19a1-a145-4742-bdb8-a6b34ee8f360</identifier>
+        </ID>
+        <bufferMode>DEFAULT</bufferMode>
+        <initialExtent>65536</initialExtent>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <maxExtent>2147483645</maxExtent>
+        <minExtent>1</minExtent>
+        <percentFree>10</percentFree>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>TRDITEM</name>
+                <identifier class="java.math.BigDecimal">14893</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>OracleStorageProperties</type>
+            </value>
+          </entry>
+        </properties>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>USERS</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>LUBAL</name>
+  </schema>
+</table>

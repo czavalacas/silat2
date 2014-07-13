@@ -1,0 +1,892 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+  </ID>
+  <name>STDROPE</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">3cbba6d9-5483-448c-9a68-167cf758695d</identifier>
+      </ID>
+      <name>NID_ROLE</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">6cc127a4-ab80-4324-b2bd-10832bae6471</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">3</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_ROLE</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STDROPE</name>
+                  <identifier class="java.math.BigDecimal">14929</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">NID ROLE FK: STMROLE</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_ROLE</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STDROPE</name>
+              <identifier class="java.math.BigDecimal">14929</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">f0fa5b91-ef32-4ba9-a14a-ae5f583e7947</identifier>
+      </ID>
+      <name>NID_PERMISO</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">c24d9e50-cb9e-4eb1-8497-440c599d1330</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">3</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>NID_PERMISO</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STDROPE</name>
+                  <identifier class="java.math.BigDecimal">14929</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">NID PERMISO: ADMPERM</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>NID_PERMISO</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STDROPE</name>
+              <identifier class="java.math.BigDecimal">14929</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">075cb1ac-30b0-4239-9757-cfd45efc5ab9</identifier>
+      </ID>
+      <name>N_EST_ROL_PERM</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">44aa5b2d-6c81-45c0-a0d6-2e46cf068a6d</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">1</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>N_EST_ROL_PERM</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STDROPE</name>
+                  <identifier class="java.math.BigDecimal">14929</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">ESTADO DEL ROLE POR PERMISO (ACTIVO = 1, DESACTIVADO = 2)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>N_EST_ROL_PERM</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STDROPE</name>
+              <identifier class="java.math.BigDecimal">14929</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">6fba9230-9c8e-4748-95fd-bf571258a1e5</identifier>
+      </ID>
+      <name>CK_STDROPE_01</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">7451ffe5-d275-4078-ab11-8f1a0c1e35eb</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.SetOperation">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">e9ea299a-6aa8-4eaf-aa80-2c6d8543c30d</identifier>
+            </ID>
+            <arguments>
+              <argument class="oracle.javatools.db.sql.ColumnUsage">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">2d0bfbc3-98c4-49b1-98eb-d76a47937325</identifier>
+                </ID>
+                <objectID class="oracle.javatools.db.IdentifierBasedID">
+                  <name>N_EST_ROL_PERM</name>
+                  <identifier class="java.lang.String">075cb1ac-30b0-4239-9757-cfd45efc5ab9</identifier>
+                  <parent class="oracle.javatools.db.IdentifierBasedID">
+                    <name>STDROPE</name>
+                    <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <type>COLUMN</type>
+                </objectID>
+                <outerJoin>false</outerJoin>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_STDROPE_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>STDROPE</name>
+                              <identifier class="java.math.BigDecimal">14929</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+                <qualified>false</qualified>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">e6c2511b-0250-4dc1-89ce-5ae315d51492</identifier>
+                </ID>
+                <SQLText>1</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_STDROPE_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>STDROPE</name>
+                              <identifier class="java.math.BigDecimal">14929</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">cc15cad4-8a19-4105-b450-5032bad9ea88</identifier>
+                </ID>
+                <SQLText>2</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_STDROPE_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>STDROPE</name>
+                              <identifier class="java.math.BigDecimal">14929</identifier>
+                              <schemaName>LUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+            </arguments>
+            <operator>705</operator>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_STDROPE_01</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>STDROPE</name>
+                        <identifier class="java.math.BigDecimal">14929</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_STDROPE_01</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STDROPE</name>
+                  <identifier class="java.math.BigDecimal">14929</identifier>
+                  <schemaName>LUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_STDROPE_01</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STDROPE</name>
+              <identifier class="java.math.BigDecimal">14929</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">e432d41d-b347-4e51-8ec1-c5fed1ea273d</identifier>
+      </ID>
+      <name>FK_STDROPE_01</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_ROLE</name>
+          <identifier class="java.lang.String">3cbba6d9-5483-448c-9a68-167cf758695d</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>STDROPE</name>
+            <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>FK_STDROPE_01</name>
+            <childObjectNames>
+              <childObjectName>NID_ROLE</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STDROPE</name>
+              <identifier class="java.math.BigDecimal">14929</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>STMROLE_PK</name>
+        <identifier class="java.lang.String">eb37d909-3078-4045-9a0d-b7787cab2b8f</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>STMROLE</name>
+          <identifier class="java.lang.String">a367819d-0713-4d13-b730-0194ecbb6980</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">421a4a3e-bcf2-4379-be71-4e1a72fca1b7</identifier>
+      </ID>
+      <name>FK_STDROPE_02</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_PERMISO</name>
+          <identifier class="java.lang.String">f0fa5b91-ef32-4ba9-a14a-ae5f583e7947</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>STDROPE</name>
+            <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>FK_STDROPE_02</name>
+            <childObjectNames>
+              <childObjectName>NID_PERMISO</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STDROPE</name>
+              <identifier class="java.math.BigDecimal">14929</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>PERMISOS_PRIMARY_KEY</name>
+        <identifier class="java.lang.String">1aea6ea6-bb27-46f9-889e-93c999cf9651</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>ADMPERM</name>
+          <identifier class="java.lang.String">05b8afdd-1ea6-4be4-935f-3cf1c761a7b6</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">d6c09bb1-5554-47eb-8e31-99d5bc6c8d77</identifier>
+      </ID>
+      <name>STDROPE_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_ROLE</name>
+          <identifier class="java.lang.String">3cbba6d9-5483-448c-9a68-167cf758695d</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>STDROPE</name>
+            <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>NID_PERMISO</name>
+          <identifier class="java.lang.String">f0fa5b91-ef32-4ba9-a14a-ae5f583e7947</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>STDROPE</name>
+            <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>N_EST_ROL_PERM</name>
+          <identifier class="java.lang.String">075cb1ac-30b0-4239-9757-cfd45efc5ab9</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>STDROPE</name>
+            <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.IdentifierBasedID">
+        <name>STDROPE_PK</name>
+        <identifier class="java.lang.String">a9fe8a13-7376-4e99-82e8-311fd5949d89</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>STDROPE</name>
+          <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>STDROPE_PK</name>
+            <childObjectNames>
+              <childObjectName>NID_ROLE</childObjectName>
+              <childObjectName>NID_PERMISO</childObjectName>
+              <childObjectName>N_EST_ROL_PERM</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STDROPE</name>
+              <identifier class="java.math.BigDecimal">14929</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">a9fe8a13-7376-4e99-82e8-311fd5949d89</identifier>
+      </ID>
+      <name>STDROPE_PK</name>
+      <columnExpressions>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">5ba101d7-7872-4d41-bc83-98ff5d9d3176</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">62553e0f-7793-4500-8ec3-9e4d32b91c83</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>NID_ROLE</name>
+              <identifier class="java.lang.String">3cbba6d9-5483-448c-9a68-167cf758695d</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>STDROPE</name>
+                <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>STDROPE_PK</name>
+                      <identifier class="java.math.BigDecimal">14933</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>STDROPE</name>
+                        <identifier class="java.math.BigDecimal">14929</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>LUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STDROPE_PK</name>
+                  <identifier class="java.math.BigDecimal">14933</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>STDROPE</name>
+                    <identifier class="java.math.BigDecimal">14929</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>LUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">ac0a365a-8e2f-4c4a-a989-f9b7b192e686</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">c43eda7e-cbdc-414a-9b66-ba7cde5428e3</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>NID_PERMISO</name>
+              <identifier class="java.lang.String">f0fa5b91-ef32-4ba9-a14a-ae5f583e7947</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>STDROPE</name>
+                <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>STDROPE_PK</name>
+                      <identifier class="java.math.BigDecimal">14933</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>STDROPE</name>
+                        <identifier class="java.math.BigDecimal">14929</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>LUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STDROPE_PK</name>
+                  <identifier class="java.math.BigDecimal">14933</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>STDROPE</name>
+                    <identifier class="java.math.BigDecimal">14929</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>LUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">8f59b4d3-b98a-4887-bdad-0866f07c0470</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">d7675f0d-fddd-4537-97b4-4a5403cfca5c</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>N_EST_ROL_PERM</name>
+              <identifier class="java.lang.String">075cb1ac-30b0-4239-9757-cfd45efc5ab9</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>STDROPE</name>
+                <identifier class="java.lang.String">fe245c67-95e1-4078-91bb-4898fd1faa64</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>STDROPE_PK</name>
+                      <identifier class="java.math.BigDecimal">14933</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>STDROPE</name>
+                        <identifier class="java.math.BigDecimal">14929</identifier>
+                        <schemaName>LUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>LUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STDROPE_PK</name>
+                  <identifier class="java.math.BigDecimal">14933</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>STDROPE</name>
+                    <identifier class="java.math.BigDecimal">14929</identifier>
+                    <schemaName>LUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>LUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>STDROPE_PK</name>
+            <identifier class="java.math.BigDecimal">14933</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STDROPE</name>
+              <identifier class="java.math.BigDecimal">14929</identifier>
+              <schemaName>LUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>LUBAL</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">3baaf418-33b0-4baf-93ff-d04350301343</identifier>
+            </ID>
+            <bufferMode>DEFAULT</bufferMode>
+            <initialExtent>65536</initialExtent>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <maxExtent>2147483645</maxExtent>
+            <minExtent>1</minExtent>
+            <percentFree>10</percentFree>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>STDROPE_PK</name>
+                    <identifier class="java.math.BigDecimal">14933</identifier>
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>STDROPE</name>
+                      <identifier class="java.math.BigDecimal">14929</identifier>
+                      <schemaName>LUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <schemaName>LUBAL</schemaName>
+                    <type>INDEX</type>
+                  </parent>
+                  <type>OracleStorageProperties</type>
+                </value>
+              </entry>
+            </properties>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>USERS</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>LUBAL</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>Comment</key>
+      <value class="java.lang.String">TABLA DE LOS PERMISOS POR ROLES</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>STDROPE</name>
+        <identifier class="java.math.BigDecimal">14929</identifier>
+        <schemaName>LUBAL</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">9d25ee91-41c7-436b-a6aa-83fbebd1c528</identifier>
+        </ID>
+        <bufferMode>DEFAULT</bufferMode>
+        <initialExtent>65536</initialExtent>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <maxExtent>2147483645</maxExtent>
+        <minExtent>1</minExtent>
+        <percentFree>10</percentFree>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>STDROPE</name>
+                <identifier class="java.math.BigDecimal">14929</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>OracleStorageProperties</type>
+            </value>
+          </entry>
+        </properties>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>USERS</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>LUBAL</name>
+  </schema>
+</table>

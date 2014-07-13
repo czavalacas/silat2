@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+    <f:view>
+        <af:panelGroupLayout layout="scroll" inlineStyle="margin:0px 0px 0px 43px;">
+            <af:panelGroupLayout halign="left">
+                <af:spacer height="10"/>
+                    <h:outputText value="Actualizar Orden Servicio" id="ot8"
+                                  binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.ot8}"
+                                  styleClass="titulos2"/>
+                <af:spacer height="10"/>
+            </af:panelGroupLayout>
+            <af:subform id="sfOS" binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.sfOS}"
+                        defaultCommand="btnBuscar">
+                <af:panelGridLayout>
+                    <af:gridRow marginTop="5px" marginBottom="3px" height="auto">
+                        <af:gridCell marginStart="1px" width="auto">
+                            <af:panelFormLayout>
+                                <af:inputText label="Cliente" id="inputCliente" labelStyle="text-align:left"
+                                              binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.inputCliente}"
+                                              autoSubmit="true"
+                                              value="#{beanSessionActualizarOrdenServicio.CRazonSocial}"/>
+                                <af:inputDate label="Fecha Minima" id="inputFechaMin"
+                                              binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.inputFechaMin}"
+                                              value="#{beanSessionActualizarOrdenServicio.fecOrdnMin}"/>
+                                <af:inputDate label="Fecha Maxima" id="inputFechaMax"
+                                              binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.inputFechaMax}"
+                                              value="#{beanSessionActualizarOrdenServicio.fecOrdnMax}"/>
+                            </af:panelFormLayout>
+                        </af:gridCell>
+                        <af:gridCell marginStart="1px" width="auto">
+                            <af:panelFormLayout>
+                                <af:selectOneChoice label="Estado" id="choicEstado"
+                                                    unselectedLabel="::Seleccionar Estado::"
+                                                    binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.choicEstado}"
+                                                    value="#{beanSessionActualizarOrdenServicio.CEstadoOrdenDesc}"
+                                                    autoSubmit="true">
+                                    <f:selectItems value="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.lstEstados}"
+                                                   id="itemEstado"
+                                                   binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.itemEstado}"/>
+                                </af:selectOneChoice>
+                                <af:inputText label="Detalle" id="inputDetalle"
+                                              binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.inputDetalle}"
+                                              value="#{beanSessionActualizarOrdenServicio.CDetalle}"/>
+                                <af:inputText label="Codigo OS" id="itCodOS"
+                                              binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.itCodOS}"
+                                              value="#{beanSessionActualizarOrdenServicio.nidOS}"/>
+                            </af:panelFormLayout>
+                        </af:gridCell>
+                    </af:gridRow>
+                </af:panelGridLayout>
+                <br></br>
+                <af:panelGroupLayout>
+                            <af:commandButton text="Buscar" id="btnBuscar"
+                                              binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.btnBuscar}"
+                                              action="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.filtrarOrdenServicio}"/>
+                            <af:commandButton text="Limpiar" id="btnLimpiar"
+                                              binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.btnLimpiar}"
+                                              actionListener="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.limpiar}"/>
+                            <af:commandButton text="Editar" id="btnEditar"
+                                              binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.btnEditar}"
+                                              action="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.showPopUp}"
+                                              disabled="true"
+                                              rendered="#{beanSessionActualizarOrdenServicio.renderBtnEditar}"/>
+                            <af:commandButton text="Cambiar Fechas" id="btnFec" disabled="true"
+                                              rendered="#{beanSessionActualizarOrdenServicio.renderBtnFecha}" 
+                                              actionListener="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.abrirPopUpFecha}"
+                                              binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.btnFec}"/>
+                </af:panelGroupLayout>
+            </af:subform>            
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p2"
+                      binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.p2}">
+                <af:dialog type="none">
+                <af:inputText value="#{sessionScope.beanSessionActualizarOrdenServicio.beanOrden.nidEmpresa}"
+                                  label="#{bindings.nidParty.hints.label}"
+                                  required="#{bindings.nidParty.hints.mandatory}" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                  columns="#{bindings.nidParty.hints.displayWidth}"
+                                  maximumLength="#{bindings.nidParty.hints.precision}"
+                                  shortDesc="#{bindings.nidParty.hints.tooltip}" id="it1"
+                                  binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.it1}"
+                                  visible="false"/>
+                <af:panelFormLayout id="pfl1" rows="1" labelWidth="200"
+                                    binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.pfl1}">
+                        <af:inputText label="Razon Social:" id="it5" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                      binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.it5}"
+                                      disabled="true" autoSubmit="true"
+                                      value="#{beanSessionActualizarOrdenServicio.CRazonSocialEditar}" rows="3"/>
+                        <af:commandButton visible="#{beanSessionActualizarOrdenServicio.renderBtnChangeCliente}" immediate="true" 
+                                          inlineStyle="margin:0px 0px 0px -210px;" id="btnChngClie"
+                                          icon="/recursos/img/btn_buscar.png" iconPosition="leading"
+                                          actionListener="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.abrirPopNewCliente}"/>
+                </af:panelFormLayout>
+                <af:panelFormLayout labelWidth="110">
+                    <af:inputText value="#{beanSessionActualizarOrdenServicio.CDetalleEditar}"
+                                  label="Detalle:" rows="8" required="true"
+                                  columns="#{bindings.cDetalle.hints.displayWidth}" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                  maximumLength="500" 
+                                  shortDesc="#{bindings.cDetalle.hints.tooltip}" id="it2"
+                                  binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.it2}">
+                    </af:inputText>
+                    <af:inputDate value="#{beanSessionActualizarOrdenServicio.fechaOrdEditar}"
+                                  label="Fecha Hecha:" disabled="false" 
+                                  shortDesc="#{bindings.fecha.hints.tooltip}" id="id1" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                  binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.id1}">
+                        <af:convertDateTime pattern="dd/MM/yyyy"/>
+                    </af:inputDate>
+                    <af:inputText value="#{sessionScope.beanSessionActualizarOrdenServicio.beanOrden.nidOrdnServ}"
+                                  label="#{bindings.nidOrdenServ.hints.label}" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                  required="#{bindings.nidOrdenServ.hints.mandatory}"
+                                  columns="#{bindings.nidOrdenServ.hints.displayWidth}"
+                                  maximumLength="#{bindings.nidOrdenServ.hints.precision}"
+                                  shortDesc="#{bindings.nidOrdenServ.hints.tooltip}" id="it3"
+                                  binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.it3}"
+                                  visible="false">
+                    </af:inputText>
+                    <af:selectOneChoice label="Estado" id="choiceEditarEstado" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                        binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.choiceEditarEstado}"
+                                        value="#{beanSessionActualizarOrdenServicio.estadoOrdnServicioEditar}"
+                                        valueChangeListener="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.eventoEstadoOrdServEditar}"
+                                        autoSubmit="true">
+                        <f:selectItems id="si1"
+                                       binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.si1}"
+                                       value="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.lstEstados}"/>
+                    </af:selectOneChoice>
+                    <af:commandButton text="Modificar Orden Servicio"
+                                      disabled="#{!bindings.ModificarOrdenServicio.enabled}" id="cb1"
+                                      binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.cb1}"
+                                      action="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.ActualizarOrdenServicio}"/>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+             <af:panelCollection id="pc1" inlineStyle="width:inherit;">
+                         <f:facet name="menus"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t1">
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="statusbar"/>
+                  <af:table value="#{beanSessionActualizarOrdenServicio.listOrdenServ}" var="row"
+                            rows="#{bindings.BeanOrdenServicio.rangeSize}"
+                            emptyText="No hay resultados de busqueda" width="inherit;" 
+                            fetchSize="#{bindings.BeanOrdenServicio.rangeSize}" rowBandingInterval="0" id="tbOS"
+                            binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.tbOS}"
+                            rowSelection="single"
+                            selectionListener="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.getActualizar}"
+                            varStatus="vs" columnStretching="column:c3" inlineStyle="margin:0px 50px 0px 0px;">
+                <af:column width="20" id="c9" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
+                    <af:outputText value="#{vs.index + 1}" id="ot10"/>
+                </af:column>
+                <af:column sortable="true" headerText="Codigo" width="40" visible="true" sortProperty="nidOrdnServ" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
+                    <af:outputText value="#{row.nidOrdnServ}" />
+                </af:column>
+                 <af:column sortable="true" headerText="Razon Social" id="c3" width="175" sortProperty="CRazonSocial" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
+                    <af:outputText value="#{row.CRazonSocial}" id="ot3"/>
+                </af:column>
+                <af:column sortProperty="CDetalle" width="275" sortable="true" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};"
+                           headerText="Detalle" id="c1">
+                    <af:outputText value="#{row.CDetalle}" id="ot1"/>
+                </af:column>               
+                <af:column sortable="true" headerText="Estado" width="75"  sortProperty="CEstadoOrdenDesc" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
+                    <af:outputText value="#{row.CEstadoOrdenDesc}"/>
+                </af:column>
+                <af:column  sortProperty="fecOrdnServ" sortable="true" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};"
+                           headerText="Fecha Hecha" id="c2" width="75">
+                    <af:outputText value="#{row.fecOrdnServ}" id="ot2">
+                        <af:convertDateTime pattern="dd/MM/yyyy"/>
+                    </af:outputText>
+                </af:column>
+            </af:table>
+             </af:panelCollection>
+            <af:popup contentDelivery="lazy" autoCancel="disabled" id="popClientes"
+                      binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.popClientes}">
+                      <af:dialog>
+                    <af:subform id="sbROS" defaultCommand="btnBuscarEmp">
+                        <af:panelFormLayout id="pflROS">
+                            <af:inputText value="#{beanSessionActualizarOrdenServicio.razSocial}"
+                                          label="Nombre de la Empresa" id="itNomEp" labelStyle="color: rgb(19,76,149);font-weight:800;"/>
+                            <af:commandButton text="Buscar Empresa" id="btnBuscarEmp"
+                                              action="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.buscarEmpresasCliente}"/>
+                        </af:panelFormLayout>
+                        <af:table value="#{beanSessionActualizarOrdenServicio.lstEmpresasCliente}" var="row"
+                                  id="tbCli"  rowBandingInterval="0" summary="Tabla de Clientes" varStatus="vs"
+                                  rowSelection="single" width="330"
+                                  binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.tbCli}"
+                                  selectionListener="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.selectNewCliente}">
+                                  <af:column width="15" frozen="true">
+                                <af:outputText value="#{vs.index + 1}"/>
+                                </af:column>
+                                <af:column headerText="Razon Social" id="c4" width="220">
+                                    <af:outputText value="#{row.CRazonSocial}" id="ot4"/>
+                                </af:column>
+                                <af:column headerText="RUC" id="c5" width="70">
+                                    <af:outputText value="#{row.CRuc}" id="ot5"/>
+                                </af:column>
+                        </af:table>
+                    </af:subform>
+                </af:dialog>
+            </af:popup>
+            
+            <af:popup id="popFecOS"
+                      binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.popFecOS}"
+                      animate="false">
+                   <af:dialog id="diagFec"
+                           dialogListener="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.dialogCambiarFechasOS}"
+                           title="Modificar Fecha de la Orden de Servicio">
+                       <af:panelFormLayout>
+                            <af:inputDate label="Fecha de la OS" id="fecOS" labelStyle="color: rgb(19,76,149);font-weight:800;"
+                                          binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.fecOS}"
+                                          value="#{beanSessionActualizarOrdenServicio.fechaOrdEditar}">
+                                <af:convertDateTime pattern="dd/MM/yyyy"/>
+                            </af:inputDate>
+                    </af:panelFormLayout>
+                  </af:dialog>   
+            </af:popup>
+        </af:panelGroupLayout>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_frm_actualizar_orden_servicio-->
+</jsp:root>

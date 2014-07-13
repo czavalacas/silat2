@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.76" id="frm_actualizar_clientePageDef"
+                Package="transporte.cliente">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="root" RangeSize="25" DataControl="LN_C_SFEmpresasLocal" id="LN_C_SFEmpresasLocalIterator"/>
+    <accessorIterator MasterBinding="LN_C_SFEmpresasLocalIterator" Binds="empresas" RangeSize="25"
+                      DataControl="LN_C_SFEmpresasLocal" BeanClass="silat.servicios_negocio.Beans.BeanEmpresa"
+                      id="empresasIterator"/>
+    <searchRegion Binds="empresasIterator" Criteria="" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="empresasQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="empresasIterator" id="empresas">
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanEmpresa" Name="empresas0">
+        <AttrNames>
+          <Item Value="CPagWeb"/>
+          <Item Value="CRazonSocial"/>
+          <Item Value="CRuc"/>
+          <Item Value="nidParty"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="adParty"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanParty" Name="empresas1">
+        <AttrNames>
+          <Item Value="CDetalle"/>
+          <Item Value="CEmail"/>
+          <Item Value="CTelf"/>
+          <Item Value="CTipoParty"/>
+          <Item Value="nidParty"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="modificarEmpresa" RequiresUpdateModel="true" Action="invokeMethod" MethodName="modificarEmpresa"
+                  IsViewObjectMethod="false" DataControl="LN_C_SFEmpresasLocal"
+                  InstanceName="data.LN_C_SFEmpresasLocal.dataProvider"
+                  ReturnName="data.LN_C_SFEmpresasLocal.methodResults.modificarEmpresa_LN_C_SFEmpresasLocal_dataProvider_modificarEmpresa_result">
+      <NamedData NDName="nidParty" NDType="java.math.BigDecimal"/>
+     <!-- <NamedData NDName="cDireccion" NDType="java.lang.String[]"/>-->
+      <NamedData NDName="cPagWeb" NDType="java.lang.String"/>
+      <NamedData NDName="cRazonSocial" NDType="java.lang.String"/>
+      <NamedData NDName="cRuc" NDType="java.lang.String"/>
+      <NamedData NDName="cCerins" NDType="java.lang.String"/>
+      <NamedData NDName="cDetalle" NDType="java.lang.String"/>
+      <NamedData NDName="cEmail" NDType="java.lang.String"/>
+      <NamedData NDName="cTelf" NDType="java.lang.String"/>
+      <NamedData NDName="nidTire" NDType="java.lang.Integer[]"/>
+    </methodAction>
+    <methodAction id="actualizarChofer" InstanceName="data.LN_T_SFChoferLocal.dataProvider"
+                  DataControl="LN_T_SFChoferLocal" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="actualizarChofer" IsViewObjectMethod="false"
+                  ReturnName="data.LN_T_SFChoferLocal.methodResults.actualizarChofer_LN_T_SFChoferLocal_dataProvider_actualizarChofer_result">
+      <NamedData NDName="nidParty" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="nidChofer" NDType="java.lang.Integer"/>
+      <NamedData NDName="nombres" NDType="java.lang.String"/>
+      <NamedData NDName="licencia" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="guardarChofer" InstanceName="data.LN_T_SFChoferLocal.dataProvider"
+                  DataControl="LN_T_SFChoferLocal" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="guardarChofer" IsViewObjectMethod="false"
+                  ReturnName="data.LN_T_SFChoferLocal.methodResults.guardarChofer_LN_T_SFChoferLocal_dataProvider_guardarChofer_result">
+      <NamedData NDName="nidParty" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="nombres" NDType="java.lang.String"/>
+      <NamedData NDName="licencia" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="removerChofer" InstanceName="data.LN_T_SFChoferLocal.dataProvider"
+                  DataControl="LN_T_SFChoferLocal" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="removerChofer" IsViewObjectMethod="false">
+      <NamedData NDName="nidChofer" NDType="java.lang.Integer"/>
+    </methodAction>
+    <methodAction id="registrarFlota" InstanceName="data.LN_T_SFFlotaLocal.dataProvider" DataControl="LN_T_SFFlotaLocal"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="registrarFlota"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.LN_T_SFFlotaLocal.methodResults.registrarFlota_LN_T_SFFlotaLocal_dataProvider_registrarFlota_result">
+      <NamedData NDName="nidParty" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="marca" NDType="java.lang.String"/>
+      <NamedData NDName="placa" NDType="java.lang.String"/>
+      <NamedData NDName="configuracion" NDType="java.lang.String"/>
+      <NamedData NDName="descripcion" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="actualizarFlota" InstanceName="data.LN_T_SFFlotaLocal.dataProvider"
+                  DataControl="LN_T_SFFlotaLocal" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="actualizarFlota" IsViewObjectMethod="false"
+                  ReturnName="data.LN_T_SFFlotaLocal.methodResults.actualizarFlota_LN_T_SFFlotaLocal_dataProvider_actualizarFlota_result">
+      <NamedData NDName="nidParty" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="nidFlota" NDType="java.lang.Integer"/>
+      <NamedData NDName="marca" NDType="java.lang.String"/>
+      <NamedData NDName="placa" NDType="java.lang.String"/>
+      <NamedData NDName="configuracion" NDType="java.lang.String"/>
+      <NamedData NDName="descripcion" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="removerFlota" InstanceName="data.LN_T_SFFlotaLocal.dataProvider" DataControl="LN_T_SFFlotaLocal"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="removerFlota" IsViewObjectMethod="false">
+      <NamedData NDName="nidFlota" NDType="java.lang.Integer"/>
+    </methodAction>
+    <methodAction id="insertarDireccion" InstanceName="data.LN_C_SFDireccionLocal.dataProvider"
+                  DataControl="LN_C_SFDireccionLocal" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="insertarDireccion" IsViewObjectMethod="false"
+                  ReturnName="data.LN_C_SFDireccionLocal.methodResults.insertarDireccion_LN_C_SFDireccionLocal_dataProvider_insertarDireccion_result">
+      <NamedData NDName="nidParty" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="cidUbigeo" NDType="java.lang.String"/>
+      <NamedData NDName="cDireccion" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="modificarDireccion" InstanceName="data.LN_C_SFDireccionLocal.dataProvider"
+                  DataControl="LN_C_SFDireccionLocal" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="modificarDireccion" IsViewObjectMethod="false"
+                  ReturnName="data.LN_C_SFDireccionLocal.methodResults.modificarDireccion_LN_C_SFDireccionLocal_dataProvider_modificarDireccion_result">
+      <NamedData NDName="nidDireccion" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="nidParty" NDType="java.math.BigDecimal"/>
+      <NamedData NDName="cidUbigeo" NDType="java.lang.String"/>
+      <NamedData NDName="cDireccion" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="borrarDireccion" InstanceName="data.LN_C_SFDireccionLocal.dataProvider"
+                  DataControl="LN_C_SFDireccionLocal" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="borrarDireccion" IsViewObjectMethod="false">
+      <NamedData NDName="nidDireccion" NDType="java.math.BigDecimal"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

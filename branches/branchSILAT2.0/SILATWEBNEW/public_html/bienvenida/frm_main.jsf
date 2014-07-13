@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="SILAT©" id="d1" binding="#{backingBeanScope.backing_plantillas_plantilla_main.d1}"
+                 largeIconSource="../recursos/img/favicon.ico" smallIconSource="../recursos/img/favicon.ico">
+        <link rel="stylesheet" href="../recursos/css/utiles.css" media="screen"/>
+        <script type="text/javascript" src="../recursos/js/tagscript.js"></script>
+        <af:messages binding="#{backingBeanScope.backing_plantillas_plantilla_main.m1}" id="m1"/>
+        <af:clientListener method="onLoad" type="load"/>
+        <af:form id="f1" binding="#{backingBeanScope.backing_plantillas_plantilla_main.f1}" usesUpload="true">
+            <af:panelSplitter orientation="horizontal" splitterPosition="320" id="ps1" inlineStyle="height:inherit;">
+                <f:facet name="first">
+                    <af:panelGroupLayout layout="scroll" inlineStyle="vertical-align:middle; margin:0px 0px 0px;"
+                                         halign="center" valign="middle">
+                        <div id="panelizqMain">
+                            <div>
+                                <af:image source="/recursos/img/logoTrans.png"
+                                          inlineStyle="margin:20px -36px 20px 0px;"/>
+                                <div id="logoTra">
+                                    <af:image inlineStyle="margin:0px 13px 0px 0px;" source="/recursos/img/liston.png"/>
+                                    <p id="textMain">
+                                        <span class="lab"></span>
+                                         
+                                        <label>SILAT/</label>
+                                    </p>
+                                    <p id="textMainRol">
+                                        <label id="lblRol"></label>
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="logoTra4">
+                                <af:image inlineStyle="margin:0px 12px -2px 0px;" source="/recursos/img/liston.png"/>
+                                 
+                                <af:panelFormLayout inlineStyle="background-color:rgb(19,76,149); width:216px; margin:-23px 12px 0px 0px; height:700px;">
+                                    <af:spacer height="2"/>
+                                    <af:subform id="s1"
+                                                binding="#{backingBeanScope.backing_plantillas_plantilla_main.s1}">
+                                        <af:tree value="#{bindings.BeanPermisos.treeModel}" var="node"
+                                                 inlineStyle="height:auto;"
+                                                 selectionListener="#{bindings.BeanPermisos.treeModel.makeCurrent}"
+                                                 rowSelection="single" id="t1" fetchSize="60" initiallyExpanded="true"
+                                                 binding="#{backingBeanScope.backing_plantillas_plantilla_main.t1}">
+                                            <f:facet name="nodeStamp">
+                                                <af:group id="pt_g1">
+                                                    <af:image id="i1" shortDesc="icono" source="#{node.CIcono}"
+                                                              binding="#{backingBeanScope.backing_plantillas_plantilla_main.i1}"/>
+                                                    <af:commandLink text="#{node.CDescPermiso}" id="cl1"
+                                                                    shortDesc="#{node.CUrl}"
+                                                                    partialSubmit="#{node.CDescPermiso == 'Chat' ? false : true}"
+                                                                    actionListener="#{backingBeanScope.backing_plantillas_plantilla_main.getUrl}"
+                                                                    action="#{viewScope.BackingBean_Region.getMainCall}"
+                                                                    binding="#{backingBeanScope.backing_plantillas_plantilla_main.cl1}"
+                                                                    inlineStyle="color:White;"/>
+                                                </af:group>
+                                            </f:facet>
+                                        </af:tree>
+                                    </af:subform>
+                                </af:panelFormLayout>
+                            </div>
+                        </div>
+                        <af:inputText id="it1" visible="false"
+                                      value="#{backingBeanScope.backing_plantillas_plantilla_main.rol}"
+                                      binding="#{backingBeanScope.backing_plantillas_plantilla_main.it1}"/>
+                        <af:inputText label="Usuario:" id="it2"
+                                      value="#{backingBeanScope.backing_plantillas_plantilla_main.usuario}"
+                                      binding="#{backingBeanScope.backing_plantillas_plantilla_main.it2}"
+                                      visible="false"/>
+                        <af:poll id="pollOS" binding="#{backingBeanScope.backing_plantillas_plantilla_main.pollOS}"
+                                 pollListener="#{backingBeanScope.backing_plantillas_plantilla_main.checkNuevasOrdenServPoll}"
+                                 rendered="#{beanSessionScopedBeanMain.renderPoll}" partialTriggers="popOS"
+                                 immediate="true" interval="8000"/>
+                        <af:popup id="p1">
+                            <af:dialog id="d2"
+                                       dialogListener="#{backingBeanScope.backing_plantillas_plantilla_main.dialogLogoutListener}"
+                                       title="Confirmar">
+                                <af:outputText value="Desea Cerrar Sesion?" id="ot2"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="popOS"
+                                  binding="#{backingBeanScope.backing_plantillas_plantilla_main.popOS}">
+                            <af:dialog id="diaOS" binding="#{backingBeanScope.backing_plantillas_plantilla_main.diaOS}"
+                                       dialogListener="#{backingBeanScope.backing_plantillas_plantilla_main.dialogOK_OS_Listener}">
+                                <af:outputText id="otMsjOs"
+                                               binding="#{backingBeanScope.backing_plantillas_plantilla_main.otMsjOs}"
+                                               value="#{beanSessionScopedBeanMain.nombMsj}"/>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="second">
+                    <af:panelSplitter orientation="vertical" positionedFromEnd="true" dimensionsFrom="auto"
+                                      splitterPosition="30" inlineStyle="height:inherit;">
+                        <f:facet name="first">
+                            <af:panelGroupLayout layout="scroll" id="pt_pgl1" styleClass="AFBrandingBar" 
+                                                 inlineStyle="background-color:rgb(144,191,55);">
+                               <af:panelSplitter orientation="vertical" positionedFromEnd="false" dimensionsFrom="auto"
+                                                 splitterPosition="240">
+                               <f:facet name="first">
+                                      <af:panelGroupLayout>
+                                                <div id="cabecera">
+                                                    <af:image source="/recursos/img/hombre.png"
+                                                              inlineStyle="margin:5px 0px -8px 50px;"/>
+                                                </div>
+                                                <div id="img">
+                                                    <!-- -->
+                                                    <af:image inlineStyle="margin:-190px 0px 0px -67px;"
+                                                              source="/recursos/img/triangulito2.png" />
+                                                    <p id="text2">Bienvenido</p>
+                                                    <p id="text3">
+                                                        <label id="lblPers"></label>
+                                                    </p>
+                                                    <af:image source="/recursos/img/cerrarsesion.png" binding="#{backingBeanScope.backing_plantillas_plantilla_main.imgCerrar}"
+                                                              inlineStyle="margin:35px 0px 0px 50px;" styleClass="cerrar"
+                                                              id="imgCerrar">
+                                                        <af:showPopupBehavior popupId="popCerrar" triggerType="click"
+                                                                              alignId="imgCerrar" align="afterStart"/>
+                                                    </af:image>
+                                                     
+                                                    <af:popup id="popCerrar">
+                                                        <af:noteWindow>
+                                                            <af:panelFormLayout rows="2" maxColumns="1">
+                                                                <af:commandLink text="> Cerrar Sesion" id="txt">
+                                                                    <af:showPopupBehavior popupId="p1" triggerType="action"/>
+                                                                </af:commandLink>
+                                                                <af:commandLink text="> Cambiar Clave" id="txtCambClav"
+                                                                                actionListener="#{backingBeanScope.backing_plantillas_plantilla_main.cambiarClave}"/>
+                                                            </af:panelFormLayout>
+                                                        </af:noteWindow>
+                                                    </af:popup>
+                                                </div>
+                                       </af:panelGroupLayout>
+                                </f:facet>
+                                <f:facet name="second">
+                                        <af:subform id="sfrmReg"
+                                                    binding="#{backingBeanScope.backing_plantillas_plantilla_main.sfrmReg}">
+                                            <af:region value="#{bindings.dynamicRegion1.regionModel}" id="region1"
+                                                       binding="#{backingBeanScope.backing_plantillas_plantilla_main.region1}"
+                                                       inlineStyle="background-color:rgb(144,191,55); margin:0px 0px 0px 0px;"/>
+                                        </af:subform>
+                                </f:facet>
+                                </af:panelSplitter>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="second">
+                            <af:panelGroupLayout id="footer" layout="vertical">
+                                <af:panelBorderLayout id="footPbl">
+                                    <af:outputText id="footSp" value=" "/>
+                                    <f:facet name="end">
+                                    
+                                    </f:facet>
+                                </af:panelBorderLayout>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelSplitter>
+                </f:facet>
+            </af:panelSplitter>
+            <af:resource type="javascript">
+              function onLoad() {
+                  var rol = document.getElementById('it1::content').value;
+                  var nmbs = document.getElementById('it2::content').value;
+                  document.getElementById('lblRol').innerHTML = rol;
+                  document.getElementById('lblPers').innerHTML = nmbs;
+              }
+            </af:resource>
+        </af:form>
+    </af:document>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_plantillas_plantilla_main-->
+</f:view>

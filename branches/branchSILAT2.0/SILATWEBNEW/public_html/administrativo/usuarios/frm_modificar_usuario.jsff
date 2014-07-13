@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <f:view>
+        <af:panelGroupLayout layout="scroll" inlineStyle="height:inherit;margin:0px 0px 0px 43px;">
+            <af:panelGroupLayout halign="left">
+                <af:spacer height="10"/>
+                    <af:outputText value="Modificar Usuario" id="outTittle"
+                                   styleClass="titulos2"
+                                   binding="#{backingBeanScope.backing_administrativo_usuarios_frm_modificar_usuario.outTittle}"/>
+                <af:spacer height="10"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout halign="center">
+                <af:outputText value="Cambiar Contraseña"
+                               inlineStyle="color:Navy; font-family:Georgia, 'Times New Roman', times, Serif; font-weight:bold; text-align:center; font-size:small; text-decoration:underline;"/>
+                <br></br>
+                <af:subform id="s2">
+                    <af:panelFormLayout>
+                        <af:inputText label="Actual Contraseña" id="inputClavActual"
+                                      binding="#{backingBeanScope.backing_administrativo_usuarios_frm_modificar_usuario.inputClavActual}"
+                                      showRequired="true" autoSubmit="true" required="true"
+                                      secret="true" labelStyle="text-align: left;"
+                                      value="#{beanSessionScopeModificarUsuario.contraseñaActual}">
+                            <f:validator validatorId="validatorContraseñaActual"/>
+                        </af:inputText>
+                        <af:inputText label="Nueva Contraseña" id="inputClavNueva"
+                                      binding="#{backingBeanScope.backing_administrativo_usuarios_frm_modificar_usuario.inputClavNueva}"
+                                      showRequired="true" required="true"
+                                      value="#{beanSessionScopeModificarUsuario.contraselaNueva}" autoSubmit="true"
+                                      secret="true" labelStyle="text-align: left;">
+                            <f:validator validatorId="validatorContraseñaNueva"/>
+                        </af:inputText>
+                        <af:inputText label="Repetir Contraseña" id="inputRepetirClav"
+                                      binding="#{backingBeanScope.backing_administrativo_usuarios_frm_modificar_usuario.inputRepetirClav}"
+                                      showRequired="true" autoSubmit="true" required="true"
+                                      value="#{beanSessionScopeModificarUsuario.repetirContraseñaNueva}" 
+                                      secret="true" labelStyle="text-align: left;">
+                            <f:validator validatorId="validatorRepetirContraseña"/>
+                        </af:inputText>
+                        <af:commandButton text="Cambiar Contraseña" id="cb1"
+                                          binding="#{backingBeanScope.backing_administrativo_usuarios_frm_modificar_usuario.cb1}"
+                                          action="#{backingBeanScope.backing_administrativo_usuarios_frm_modificar_usuario.actualizarContraseña}"/>
+                    </af:panelFormLayout>
+                 </af:subform>
+            </af:panelGroupLayout>
+        </af:panelGroupLayout>
+    </f:view>
+    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_administrativo_usuarios_frm_modificar_usuario-->
+</ui:composition>

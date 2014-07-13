@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">frm_registrar_guia</property>
+      <property
+         name="page">/transporte/guia/frm_registrar_guia.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>frm_registrar_guia&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">129.79883</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">71.68555</property>
+   </View>
+</SDM>

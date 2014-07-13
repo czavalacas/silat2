@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.76"
+                id="frm_registrar_orden_servicioPageDef" Package="transporte">
+  <parameters/>
+  <executables>
+    <methodIterator Binds="grabarOrdenServicio.result" DataControl="LN_C_SFOrdenServicioLocal" RangeSize="25"
+                    BeanClass="silat.servicios_negocio.Beans.BeanOrdenServicio" id="grabarOrdenServicioIterator"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="grabarOrdenServicio_cRazonSocial" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="grabarOrdenServicio_cDetalle" IsQueriable="false"/>
+      <variable Type="java.util.Date" Name="grabarOrdenServicio_fecha" IsQueriable="false"/>
+      
+      <variable Type="java.math.BigDecimal" Name="grabarOrdenServicio_nidParty" IsQueriable="false"/>
+    </variableIterator>
+   
+  </executables>
+  <bindings>
+    <methodAction id="grabarOrdenServicio" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="grabarOrdenServicio" IsViewObjectMethod="false" DataControl="LN_C_SFOrdenServicioLocal"
+                  InstanceName="data.LN_C_SFOrdenServicioLocal.dataProvider"
+                  ReturnName="data.LN_C_SFOrdenServicioLocal.methodResults.grabarOrdenServicio_LN_C_SFOrdenServicioLocal_dataProvider_grabarOrdenServicio_result">
+      <NamedData NDName="nidParty" NDType="java.math.BigDecimal"
+                 NDValue="${bindings.grabarOrdenServicio_nidParty}"/>
+      <NamedData NDName="cDetalle" NDType="java.lang.String" NDValue="${bindings.grabarOrdenServicio_cDetalle}"/>
+      <NamedData NDName="fecha" NDType="java.util.Date" NDValue="${bindings.grabarOrdenServicio_fecha}"/>
+    </methodAction>
+<attributeValues IterBinding="variables" id="cRazonSocial">
+      <AttrNames>
+        <Item Value="grabarOrdenServicio_cRazonSocial"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="cDetalle">
+      <AttrNames>
+        <Item Value="grabarOrdenServicio_cDetalle"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="fecha">
+      <AttrNames>
+        <Item Value="grabarOrdenServicio_fecha"/>
+      </AttrNames>
+    </attributeValues>
+
+    <attributeValues IterBinding="variables" id="nidParty">
+      <AttrNames>
+        <Item Value="grabarOrdenServicio_nidParty"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

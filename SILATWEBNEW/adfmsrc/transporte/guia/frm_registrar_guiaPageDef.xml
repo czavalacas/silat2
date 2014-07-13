@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.76" id="frm_registrar_guiaPageDef"
+                Package="transporte.guia">
+  <parameters/>
+  <executables>
+  <!--  <invokeAction id="invokeGenerarCorrelativo" Binds="generarCorrelativoLN" Refresh="always"/> -->
+    <methodIterator Binds="findOrdenServicioByAttributesAux.result" DataControl="LN_C_SFOrdenServicioLocal"
+                    RangeSize="10" BeanClass="silat.servicios_negocio.Beans.BeanOrdenServicio"
+                    id="findOrdenServicioByAttributesAuxIterator"/>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="findOrdenServicioByAttributesAux_detalle" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="findOrdenServicioByAttributesAux_razonSocial" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="findEmpresasByAttributes_razonSocial" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="findEmpresasByAttributes_ruc" IsQueriable="false"/>
+    <!--  <variable Type="java.lang.String" Name="generarCorrelativoLN_Return" IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.generarCorrelativoLN.result}"/> -->
+      <variable Type="java.lang.String" Name="getEmpresaProveedores_razonSocial" IsQueriable="false"/>
+      <variable Type="java.util.Date" Name="findManifiestosByAttr_LN_fecMin" IsQueriable="false"/>
+      <variable Type="java.util.Date" Name="findManifiestosByAttr_LN_fecMax" IsQueriable="false"/>
+      <variable Type="java.lang.Integer" Name="findManifiestosByAttr_LN_nidManif" IsQueriable="false"/>
+      <variable Type="java.lang.Integer" Name="findManifiestosByAttr_LN_nidEmpProv" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="findManifiestosByAttr_LN_razonSocial" IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="findEmpresasByAttributes.result" DataControl="LN_C_SFEmpresasLocal" RangeSize="15"
+                    BeanClass="silat.servicios_negocio.Beans.BeanEmpresa" id="findEmpresasByAttributesIterator"/>
+    <searchRegion Binds="findEmpresasByAttributesIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="BeanEmpresaQuery"/>
+    <methodIterator Binds="getEmpresaProveedores.result" DataControl="LN_C_SFRelacionEmpresaLocal" RangeSize="25"
+                    BeanClass="silat.servicios_negocio.Beans.BeanADRelacionEmpresa" id="getEmpresaProveedoresIterator"/>
+    <searchRegion Binds="getEmpresaProveedoresIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="BeanADRelacionEmpresaQuery"/>
+    <methodIterator Binds="findManifiestosByAttr_LN.result" DataControl="LN_C_SFManifiestoLocal" RangeSize="25"
+                    BeanClass="silat.servicios_negocio.Beans.BeanManifiesto" id="findManifiestosByAttr_LNIterator"/>
+    <searchRegion Binds="findManifiestosByAttr_LNIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="BeanManifiestoQuery"/>
+  </executables>
+  <bindings>
+    <methodAction id="findOrdenServicioByAttributesAux" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="findOrdenServicioByAttributesAux" IsViewObjectMethod="false"
+                  DataControl="LN_C_SFOrdenServicioLocal" InstanceName="data.LN_C_SFOrdenServicioLocal.dataProvider"
+                  ReturnName="data.LN_C_SFOrdenServicioLocal.methodResults.findOrdenServicioByAttributesAux_LN_C_SFOrdenServicioLocal_dataProvider_findOrdenServicioByAttributesAux_result">
+      <NamedData NDName="detalle" NDType="java.lang.String"
+                 NDValue="${bindings.findOrdenServicioByAttributesAux_detalle}"/>
+      <NamedData NDName="razonSocial" NDType="java.lang.String"
+                 NDValue="${bindings.findOrdenServicioByAttributesAux_razonSocial}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="detalle">
+      <AttrNames>
+        <Item Value="findOrdenServicioByAttributesAux_detalle"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="razonSocial">
+      <AttrNames>
+        <Item Value="findOrdenServicioByAttributesAux_razonSocial"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="findOrdenServicioByAttributesAuxIterator" id="BeanOrdenServicio">
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanOrdenServicio" Name="BeanOrdenServicio0">
+        <AttrNames>
+          <Item Value="CDetalle"/>
+          <Item Value="fecOrdnServ"/>
+          <Item Value="nidOrdnServ"/>
+          <Item Value="CEstadoOrdenDesc"/>
+          <Item Value="CEstord"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="adEmpresa"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanEmpresa" Name="BeanOrdenServicio1">
+        <AttrNames>
+          <Item Value="CDireccion"/>
+          <Item Value="CPagWeb"/>
+          <Item Value="CRazonSocial"/>
+          <Item Value="CRuc"/>
+          <Item Value="nidParty"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="variables" id="razonSocial1">
+      <AttrNames>
+        <Item Value="findEmpresasByAttributes_razonSocial"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="ruc">
+      <AttrNames>
+        <Item Value="findEmpresasByAttributes_ruc"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="findEmpresasByAttributesIterator" id="BeanEmpresa">
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanEmpresa" Name="BeanEmpresa0">
+        <AttrNames>
+          <Item Value="CRazonSocial"/>
+          <Item Value="CRuc"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="adParty"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanParty" Name="BeanEmpresa1">
+        <AttrNames>
+          <Item Value="CDetalle"/>
+          <Item Value="CEmail"/>
+          <Item Value="CTelf"/>
+          <Item Value="CTipoParty"/>
+          <Item Value="nidParty"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <!--<methodAction id="generarCorrelativoLN" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="generarCorrelativoLN" IsViewObjectMethod="false" DataControl="LN_C_SFUtilsLocal"
+                  InstanceName="data.LN_C_SFUtilsLocal.dataProvider"
+                  ReturnName="data.LN_C_SFUtilsLocal.methodResults.generarCorrelativoLN_LN_C_SFUtilsLocal_dataProvider_generarCorrelativoLN_result">
+      <NamedData NDName="entidad" NDValue="TRGuia" NDType="java.lang.String"/>
+      <NamedData NDName="atributo" NDValue="cidGuia" NDType="java.lang.String"/>
+      <NamedData NDName="tamano" NDValue="6" NDType="int"/>
+    </methodAction> -->
+    <attributeValues IterBinding="variables" id="razonSocial2">
+      <AttrNames>
+        <Item Value="getEmpresaProveedores_razonSocial"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="getEmpresaProveedoresIterator" id="BeanADRelacionEmpresa">
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanADRelacionEmpresa" Name="BeanADRelacionEmpresa0">
+        <AttrNames></AttrNames>
+        <Accessors>
+          <Item Value="adEmpresa1"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanEmpresa" Name="BeanADRelacionEmpresa1">
+        <AttrNames>
+          <Item Value="CDireccion"/>
+          <Item Value="CPagWeb"/>
+          <Item Value="CRazonSocial"/>
+          <Item Value="CRuc"/>
+          <Item Value="nidParty"/>
+          <Item Value="departamentos"/>
+          <Item Value="provincias"/>
+          <Item Value="distritos"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="findManifiestosByAttr_LNIterator" id="BeanManifiesto">
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanManifiesto" Name="BeanManifiesto0">
+        <AttrNames>
+          <Item Value="CTipoDoc"/>
+          <Item Value="tipoDoc1Car"/>
+          <Item Value="fechaManifiesto"/>
+          <Item Value="NAdelanto"/>
+          <Item Value="NFletePactado"/>
+          <Item Value="CObservaciones"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="trManifiesto"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="silat.servicios_negocio.Beans.BeanEmpresa" Name="BeanManifiesto1">
+        <AttrNames>
+          <Item Value="CDireccion"/>
+          <Item Value="CPagWeb"/>
+          <Item Value="CRazonSocial"/>
+          <Item Value="CRuc"/>
+          <Item Value="nidParty"/>
+          <Item Value="departamentos"/>
+          <Item Value="provincias"/>
+          <Item Value="distritos"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="variables" id="nidManif">
+      <AttrNames>
+        <Item Value="findManifiestosByAttr_LN_nidManif"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="findManifiestosByAttr_LN" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="findManifiestosByAttr_LN" IsViewObjectMethod="false" DataControl="LN_C_SFManifiestoLocal"
+                  InstanceName="data.LN_C_SFManifiestoLocal.dataProvider"
+                  ReturnName="data.LN_C_SFManifiestoLocal.methodResults.findManifiestosByAttr_LN_LN_C_SFManifiestoLocal_dataProvider_findManifiestosByAttr_LN_result">
+      <NamedData NDName="fecMin" NDType="java.util.Date" NDValue="${bindings.findManifiestosByAttr_LN_fecMin}"/>
+      <NamedData NDName="fecMax" NDType="java.util.Date" NDValue="${bindings.findManifiestosByAttr_LN_fecMax}"/>
+      <NamedData NDName="nidManif" NDType="java.lang.Integer"/>
+      <NamedData NDName="nidEmpProv" NDType="java.lang.Integer"/>
+      <NamedData NDName="razonSocial" NDType="java.lang.String"
+                 NDValue="${bindings.findManifiestosByAttr_LN_razonSocial}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="fecMin">
+      <AttrNames>
+        <Item Value="findManifiestosByAttr_LN_fecMin"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="fecMax">
+      <AttrNames>
+        <Item Value="findManifiestosByAttr_LN_fecMax"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

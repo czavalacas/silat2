@@ -1,0 +1,702 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">f7ba1106-c2dd-4a1f-b19e-b0acb104ead7</identifier>
+  </ID>
+  <name>STMERRO</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">52bfc300-1aed-4886-8056-64375d83295e</identifier>
+      </ID>
+      <name>CID_ERROR</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">56c742ac-ebcf-4326-8f54-8aacbbb87d3b</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">8</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CID_ERROR</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STMERRO</name>
+                  <identifier class="java.math.BigDecimal">75829</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">CODIGO DE IDENTIFICACION DEL ERROR : LUB-XXXX</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CID_ERROR</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STMERRO</name>
+              <identifier class="java.math.BigDecimal">75829</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">6973a165-a8ab-4b09-81b2-038b4a1af5bd</identifier>
+      </ID>
+      <name>C_DESC_ERROR</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">7b9385e3-688a-4df8-abab-b1c03d811a8d</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">2000</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_DESC_ERROR</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STMERRO</name>
+                  <identifier class="java.math.BigDecimal">75829</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">DESCRIPCION DE ERROR (DETALLE)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_DESC_ERROR</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STMERRO</name>
+              <identifier class="java.math.BigDecimal">75829</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">8b52635c-9f23-4509-8fe2-291f68155f60</identifier>
+      </ID>
+      <name>C_ABRV</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">f242f470-0681-48a3-a43b-84e42f61b381</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">50</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_ABRV</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STMERRO</name>
+                  <identifier class="java.math.BigDecimal">75829</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">ABREVIATURA, USADA PARA TITULOS</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_ABRV</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STMERRO</name>
+              <identifier class="java.math.BigDecimal">75829</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">88e5c726-4421-493c-9020-f3f4d8bd95a2</identifier>
+      </ID>
+      <name>C_ESTADO</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">08f7c004-7a54-4173-bf8a-91c1f4c06b97</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">1</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>C_ESTADO</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STMERRO</name>
+                  <identifier class="java.math.BigDecimal">75829</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <type>COLUMN</type>
+              </parent>
+              <type>DataTypeUsage</type>
+            </value>
+          </entry>
+        </properties>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">ESTADO DEL REGISTRO (ACTIVADO = 1 / DESACTIVADO = 2)</value>
+        </entry>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>C_ESTADO</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STMERRO</name>
+              <identifier class="java.math.BigDecimal">75829</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">17c3eb81-16fc-4e3c-92af-218f2dd5409b</identifier>
+      </ID>
+      <name>CK_STMERRO_01</name>
+      <checkConditionFragment class="oracle.javatools.db.sql.WhereObject">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">290d3a54-b191-4543-8e89-0f72355b5abe</identifier>
+        </ID>
+        <arguments>
+          <argument class="oracle.javatools.db.sql.SetOperation">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">4450315f-ac28-4d28-9617-2728e7f145e1</identifier>
+            </ID>
+            <arguments>
+              <argument class="oracle.javatools.db.sql.ColumnUsage">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">74cda001-b5ca-45a1-a4b0-90da91d72885</identifier>
+                </ID>
+                <objectID class="oracle.javatools.db.IdentifierBasedID">
+                  <name>C_ESTADO</name>
+                  <identifier class="java.lang.String">88e5c726-4421-493c-9020-f3f4d8bd95a2</identifier>
+                  <parent class="oracle.javatools.db.IdentifierBasedID">
+                    <name>STMERRO</name>
+                    <identifier class="java.lang.String">f7ba1106-c2dd-4a1f-b19e-b0acb104ead7</identifier>
+                    <schemaName>ULUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>COLUMN</type>
+                </objectID>
+                <outerJoin>false</outerJoin>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_STMERRO_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>STMERRO</name>
+                              <identifier class="java.math.BigDecimal">75829</identifier>
+                              <schemaName>ULUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+                <qualified>false</qualified>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">acff0118-5f1d-4cf7-a260-72151a83ece5</identifier>
+                </ID>
+                <SQLText>&apos;1&apos;</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_STMERRO_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>STMERRO</name>
+                              <identifier class="java.math.BigDecimal">75829</identifier>
+                              <schemaName>ULUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+              <argument class="oracle.javatools.db.sql.SimpleSQLFragment">
+                <ID class="oracle.javatools.db.IdentifierBasedID">
+                  <identifier class="java.lang.String">41584ce2-9979-4101-ae71-52f762cd6b9f</identifier>
+                </ID>
+                <SQLText>&apos;2&apos;</SQLText>
+                <properties>
+                  <entry>
+                    <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                    <value class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <parent class="oracle.javatools.db.ReferenceID">
+                            <name>CK_STMERRO_01</name>
+                            <parent class="oracle.javatools.db.ReferenceID">
+                              <name>STMERRO</name>
+                              <identifier class="java.math.BigDecimal">75829</identifier>
+                              <schemaName>ULUBAL</schemaName>
+                              <type>TABLE</type>
+                            </parent>
+                            <subType>CheckConstraint</subType>
+                            <type>CONSTRAINT</type>
+                          </parent>
+                          <type>WHERE</type>
+                        </parent>
+                        <type>SQLFragment</type>
+                      </parent>
+                      <type>SQLFragment</type>
+                    </value>
+                  </entry>
+                </properties>
+              </argument>
+            </arguments>
+            <operator>705</operator>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>CK_STMERRO_01</name>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>STMERRO</name>
+                        <identifier class="java.math.BigDecimal">75829</identifier>
+                        <schemaName>ULUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <subType>CheckConstraint</subType>
+                      <type>CONSTRAINT</type>
+                    </parent>
+                    <type>WHERE</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+          </argument>
+        </arguments>
+        <operator>372</operator>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>CK_STMERRO_01</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STMERRO</name>
+                  <identifier class="java.math.BigDecimal">75829</identifier>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>TABLE</type>
+                </parent>
+                <subType>CheckConstraint</subType>
+                <type>CONSTRAINT</type>
+              </parent>
+              <type>WHERE</type>
+            </value>
+          </entry>
+        </properties>
+      </checkConditionFragment>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CK_STMERRO_01</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STMERRO</name>
+              <identifier class="java.math.BigDecimal">75829</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">cbb17711-1d77-4598-92ce-ef6f3512b8bd</identifier>
+      </ID>
+      <name>STMERRO_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>CID_ERROR</name>
+          <identifier class="java.lang.String">52bfc300-1aed-4886-8056-64375d83295e</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>STMERRO</name>
+            <identifier class="java.lang.String">f7ba1106-c2dd-4a1f-b19e-b0acb104ead7</identifier>
+            <schemaName>ULUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>ULUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.IdentifierBasedID">
+        <name>STMERRO_PK</name>
+        <identifier class="java.lang.String">d2de1106-bea0-49e8-bf6f-f8d77d76c3c4</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>STMERRO</name>
+          <identifier class="java.lang.String">f7ba1106-c2dd-4a1f-b19e-b0acb104ead7</identifier>
+          <schemaName>ULUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>ULUBAL</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>STMERRO_PK</name>
+            <childObjectNames>
+              <childObjectName>CID_ERROR</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STMERRO</name>
+              <identifier class="java.math.BigDecimal">75829</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">d2de1106-bea0-49e8-bf6f-f8d77d76c3c4</identifier>
+      </ID>
+      <name>STMERRO_PK</name>
+      <columnExpressions>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">39b34afc-21a7-4bb6-ad75-de7a80d815b0</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">5cea7df7-0162-4790-b981-e046468875fb</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>CID_ERROR</name>
+              <identifier class="java.lang.String">52bfc300-1aed-4886-8056-64375d83295e</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>STMERRO</name>
+                <identifier class="java.lang.String">f7ba1106-c2dd-4a1f-b19e-b0acb104ead7</identifier>
+                <schemaName>ULUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <schemaName>ULUBAL</schemaName>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>STMERRO_PK</name>
+                      <identifier class="java.math.BigDecimal">75830</identifier>
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>STMERRO</name>
+                        <identifier class="java.math.BigDecimal">75829</identifier>
+                        <schemaName>ULUBAL</schemaName>
+                        <type>TABLE</type>
+                      </parent>
+                      <schemaName>ULUBAL</schemaName>
+                      <type>INDEX</type>
+                    </parent>
+                    <type>IndexObject</type>
+                  </parent>
+                  <type>SQLFragment</type>
+                </value>
+              </entry>
+            </properties>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>STMERRO_PK</name>
+                  <identifier class="java.math.BigDecimal">75830</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>STMERRO</name>
+                    <identifier class="java.math.BigDecimal">75829</identifier>
+                    <schemaName>ULUBAL</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>ULUBAL</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>STMERRO_PK</name>
+            <identifier class="java.math.BigDecimal">75830</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>STMERRO</name>
+              <identifier class="java.math.BigDecimal">75829</identifier>
+              <schemaName>ULUBAL</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>ULUBAL</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">a5f092ab-e1b0-4dec-833f-e1cab98737d3</identifier>
+            </ID>
+            <bufferMode>DEFAULT</bufferMode>
+            <initialExtent>65536</initialExtent>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <maxExtent>2147483645</maxExtent>
+            <minExtent>1</minExtent>
+            <nextExtent>1048576</nextExtent>
+            <percentFree>10</percentFree>
+            <properties>
+              <entry>
+                <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                <value class="oracle.javatools.db.ReferenceID">
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>STMERRO_PK</name>
+                    <identifier class="java.math.BigDecimal">75830</identifier>
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <name>STMERRO</name>
+                      <identifier class="java.math.BigDecimal">75829</identifier>
+                      <schemaName>ULUBAL</schemaName>
+                      <type>TABLE</type>
+                    </parent>
+                    <schemaName>ULUBAL</schemaName>
+                    <type>INDEX</type>
+                  </parent>
+                  <type>OracleStorageProperties</type>
+                </value>
+              </entry>
+            </properties>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>USERS</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>ULUBAL</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>Comment</key>
+      <value class="java.lang.String">TABLA MAESTRA DE ERRORES</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_CONNECTION</key>
+      <value class="java.lang.String">ConLubal</value>
+    </entry>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>STMERRO</name>
+        <identifier class="java.math.BigDecimal">75829</identifier>
+        <schemaName>ULUBAL</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">07d7ce2a-4cac-498a-8b85-fbea86e1801b</identifier>
+        </ID>
+        <bufferMode>DEFAULT</bufferMode>
+        <initialExtent>65536</initialExtent>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <maxExtent>2147483645</maxExtent>
+        <minExtent>1</minExtent>
+        <nextExtent>1048576</nextExtent>
+        <percentFree>10</percentFree>
+        <properties>
+          <entry>
+            <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+            <value class="oracle.javatools.db.ReferenceID">
+              <parent class="oracle.javatools.db.ReferenceID">
+                <name>STMERRO</name>
+                <identifier class="java.math.BigDecimal">75829</identifier>
+                <schemaName>ULUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <type>OracleStorageProperties</type>
+            </value>
+          </entry>
+        </properties>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>USERS</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>ULUBAL</name>
+  </schema>
+</table>

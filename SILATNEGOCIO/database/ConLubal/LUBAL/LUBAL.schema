@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<schema xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">7df2b1fd-e57d-4df2-8d68-1aa5efd59f78</identifier>
+  </ID>
+  <name>LUBAL</name>
+</schema>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="consultarOS">
+    <default-activity>frm_consultar_orden_servicio</default-activity>
+    <view id="frm_consultar_orden_servicio">
+      <page>/transporte/frm_consultar_orden_servicio.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

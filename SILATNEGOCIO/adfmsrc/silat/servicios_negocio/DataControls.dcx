@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataControlConfigs xmlns="http://xmlns.oracle.com/adfm/configuration" version="11.1.2.62.94" id="DataControls"
+                    Package="silat.servicios_negocio">
+        <!-- WEBLOGIC:  isnitial-context-factory="weblogic.jndi.WLInitialContextFactory"
+             GLASSFISH: icnitial-context-factory="com.sun.enterprise.naming.SerialInitContextFactory"
+        -->
+    <AdapterDataControl id="LN_C_SFPermisosBeanLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFPermisosBeanLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFPermisosBeanLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanPermisos"/>
+            <TypeInfo FullName="silat.servicios_negocio.entidades.admin.ADPermiso"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFPermisosBean" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFPermisosBeanLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFUsuarioLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFUsuarioLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFUsuarioLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanUsuarioAutenticado"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFUsuario" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFUsuarioLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFRolLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFRolLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFRolLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanRol"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFRol" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFRolLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="BDL_T_SFOrdenServicioLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.BDLSF.IL.BDL_T_SFOrdenServicioLocal"
+                        BeanClass="silat.servicios_negocio.BDLSF.IL.BDL_T_SFOrdenServicioLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.entidades.audsis.TROrdenServicio"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="BDL_T_SFOrdenServicio" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.BDLSF.IL.BDL_T_SFOrdenServicioLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="BDL_C_SFEmpresasLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.BDLSF.IL.BDL_C_SFEmpresasLocal"
+                        BeanClass="silat.servicios_negocio.BDLSF.IL.BDL_C_SFEmpresasLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.entidades.admin.ADEmpresa"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="BDL_C_SFEmpresas" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.BDLSF.IL.BDL_C_SFEmpresasLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFOrdenServicioLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFOrdenServicioLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFOrdenServicioLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanOrdenServicio"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFOrdenServicio" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFOrdenServicioLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFRutasLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFRutasLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFRutasLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFRutas" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFRutasLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFEmpresasLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFEmpresasLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFEmpresasLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanEmpresa"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFEmpresas" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFEmpresasLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFUtilsLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFUtilsLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFUtilsLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFUtils" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFUtilsLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFRelacionEmpresaLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.IL.SFBean.LN_C_SFRelacionEmpresaLocal"
+                        BeanClass="silat.servicios_negocio.IL.SFBean.LN_C_SFRelacionEmpresaLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanADRelacionEmpresa"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFRelacionEmpresa" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.IL.SFBean.LN_C_SFRelacionEmpresaLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFManifiestoLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFManifiestoLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFManifiestoLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanManifiesto"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFManifiesto" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFManifiestoLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFGuiaLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFGuiaLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFGuiaLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanConstraint"/>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanTRGuia"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFGuia" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFGuiaLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_T_SFChoferLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_T_SFChoferLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_T_SFChoferLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.entidades.admin.ADChofer"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_T_SFChofer" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_T_SFChoferLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_T_SFFlotaLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_T_SFFlotaLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_T_SFFlotaLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.entidades.admin.ADFlota"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_T_SFFlota" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_T_SFFlotaLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+    <AdapterDataControl id="LN_C_SFDireccionLocal" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                        ImplDef="oracle.adfinternal.model.adapter.ejb.EjbDCDefinition" SupportsTransactions="false"
+                        SupportsSortCollection="true" SupportsResetState="false" SupportsRangesize="false"
+                        SupportsFindMode="false" SupportsUpdates="true"
+                        Definition="silat.servicios_negocio.LNSF.IL.LN_C_SFDireccionLocal"
+                        BeanClass="silat.servicios_negocio.LNSF.IL.LN_C_SFDireccionLocal"
+                        xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+        <CreatableTypes>
+            <TypeInfo FullName="silat.servicios_negocio.entidades.admin.ADDireccion"/>
+            <TypeInfo FullName="silat.servicios_negocio.Beans.BeanDireccion"/>
+            <TypeInfo FullName="silat.servicios_negocio.entidades.admin.ADParty"/>
+        </CreatableTypes>
+        <Source>
+            <ejb-definition ejb-version="3.0" ejb-name="LN_C_SFDireccion" ejb-type="Session"
+                            ejb-business-interface="silat.servicios_negocio.LNSF.IL.LN_C_SFDireccionLocal"
+                            ejb-interface-type="local" initial-context-factory="weblogic.jndi.WLInitialContextFactory"
+                            DataControlHandler="oracle.adf.model.adapter.bean.jpa.JPQLDataFilterHandler"
+                            xmlns="http://xmlns.oracle.com/adfm/adapter/ejb"/>
+        </Source>
+    </AdapterDataControl>
+</DataControlConfigs>

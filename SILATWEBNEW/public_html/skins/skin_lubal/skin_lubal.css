@@ -1,0 +1,157 @@
+/**ADFFaces_Skin_File / DO NOT REMOVE**/
+@namespace af "http://xmlns.oracle.com/adf/faces/rich";
+
+@namespace dvt "http://xmlns.oracle.com/dss/adf/faces";
+
+.lubalSkin {
+    color: #000000;
+    background-color: #FFB56C;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-color: #A00144;
+    font-weight: bold;
+    border-width: 1px;
+    background-image: none;
+    background: none;
+}
+
+.titulos{
+    color:white; 
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold; 
+    text-decoration: none;
+     border-bottom: 2px solid white;
+    text-align:center;
+    font-size:x-large;
+    margin:0px 0px 0px 42px;
+    margin-top: 20px;
+}
+
+.titulos2{
+    color:white; 
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold; 
+    text-decoration: none;
+     border-bottom: 2px solid white;
+    text-align:center;
+    font-size:x-large;
+    margin:0px 0px 0px 10px;
+    margin-top: 20px;
+}
+
+.btnLogin {
+    background-image: none;
+    background-color: rgb(144, 191, 55);
+    color: rgb(19, 76, 149);
+}
+
+
+af|commandButton, af|commandButton:text-only {
+    background-image: none;
+    background-color: rgb(19, 76, 149);
+    color: rgb(255, 255, 255);
+    border-color: rgb(19, 76, 149);
+}
+
+af|inputText.login::content {
+    color: rgb(19, 76, 149);
+    font-weight: bold;
+}
+
+af|commandButton.diego:text-only {
+    background-image: none;
+    color: #fff;
+}
+/* verde rgb(144, 191, 55);*/
+/*
+.AFRequiredIcon:alias{
+  color: Fuchsia; 
+  content: *; 
+}*/
+af|commandButton.FondoVerdeLetraAzul {
+    background-image: none;
+}
+
+af|commandButton.FondoVerdeLetraAzul:text-only {
+    background-image: none;
+    background-color: rgb(144, 191, 55);
+    color: rgb(19, 76, 149);
+    border-color: rgb(144, 191, 55);
+}
+
+af|commandButton.FondoRojoLetraBlanca {
+    background-image: none;
+}
+
+af|commandButton.FondoRojoLetraBlanca:text-only {
+    background-image: none;
+    background-color: rgb(205,0,0);
+    color: rgb(255,255,255);
+    border-color: rgb(205,0,0);
+}
+
+af|commandButton.FondoGrisLetraAzul {
+    background-image: none;
+}
+
+af|commandButton.FondoGrisLetraAzul:text-only {
+    background-image: none;
+    background-color: rgb(162,159,159);
+    color: rgb(19, 76, 149);
+    border-color: rgb(162,159,159);
+}
+
+af|inputText::label {
+    color: White;
+    font-weight: 800;
+    text-align: left;
+}
+
+af|selectOneChoice::label {
+    color: White;
+    font-weight: 800;
+    text-align: left;
+}
+
+af|selectOneChoice:disabled::label {
+    color: White;
+    font-weight: 800;
+}
+
+af|inputDate::label {
+    color: White;
+    font-weight: 800;
+}
+
+af|inputDate:disabled::label {
+    color: White;
+    font-weight: 800;
+}
+
+af|panelBox::content {
+    background-color: rgb(144, 191, 55);
+}
+
+af|inputText:disabled::label {
+    color: White;
+    font-weight: 800;
+}
+
+af|panelTabbed::body {
+    background-color: rgb(144, 191, 55);
+    background-image: none;
+}
+
+af|inputNumberSpinbox::label {
+    color: White;
+    font-weight: 800;
+}
+af|inputNumberSpinbox:disabled::label {
+    color: White;
+    font-weight: 800;
+}
+.AFTableCellHeaderBackground:alias{
+  background-color: rgb(19, 76, 149);
+  color: White; 
+  font-weight: 700; 
+}

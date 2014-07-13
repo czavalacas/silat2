@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vista_previa_factura_items" pageWidth="480" pageHeight="802" columnWidth="480" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8ab9134c-ae25-4dd3-b824-f87f97bc835b">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CIDREPOR" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/diego/Documents/reportes/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PATH" class="java.lang.String"/>
+	<parameter name="CIDGUIAFU" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NIDPREFACT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBTOTAL" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select p.codpedido
+from trmpref p
+where p.nid_prefact = $P{NIDPREFACT}]]>
+	</queryString>
+	<field name="CODPEDIDO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement uuid="52cd5b7a-131a-4d9c-a311-06752cbc440f" x="46" y="0" width="383" height="17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font size="10" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SEGUN PEDIDO DE COMPRA NRO. "+$F{CODPEDIDO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="83b057fe-5f8b-4c2f-881f-32a57d8ace12" x="429" y="3" width="50" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{SUBTOTAL} != null && $P{SUBTOTAL}.length() > 0 ? Double.valueOf($P{SUBTOTAL}) : 0]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

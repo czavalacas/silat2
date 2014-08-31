@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -39,9 +40,9 @@ public class TrPreFactura implements Serializable {
     @Column(name = "NID_CLIENTE", nullable = false)
     private Long nidCliente;
     @Id
-    @SequenceGenerator(name = "GEN_SQ_TRDPREF_01",sequenceName = "SQ_TRDPREF_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_TRDPREF_01")
     @Column(name = "NID_PREFACT", nullable = false)
+    @TableGenerator( name = "trprefac", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "trprefac.nid_prefac", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "trprefac" )
     private Long nidPrefact;
     @Column(name = "PREFACT_TOTAL")
     private BigDecimal prefactTotal;

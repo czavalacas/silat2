@@ -47,10 +47,11 @@
       <property name="eclipselink.target-server" value="WebLogic_10"/>
      <!-- <property name="javax.persistence.jtaDataSource" value="java:/app/jdbc/jdbc/ConLubalDS"/>-->
       <!-- Para desplegar -->
-      <!----> <property name="javax.persistence.jtaDataSource" value="jdbc/ConLubalDS"/> 
+      <!--- <property name="javax.persistence.jtaDataSource" value="jdbc/ConLubalDS"/> -->
+            <property name="javax.persistence.jtaDataSource" value="java:/app/jdbc/jdbc/ConLubalDS"/>
       <!-- Para desplegar -->
       <property name="eclipselink.cache.shared.default" value="false"/>
-      <property name="org.apache.openjpa.jdbc.sql.OracleDictionary" value="oracle"/>
+    <!--  <property name="org.apache.openjpa.jdbc.sql.OracleDictionary" value="oracle"/>-->
     </properties>
   </persistence-unit>
 </persistence>

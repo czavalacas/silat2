@@ -8,7 +8,7 @@
         <af:messages binding="#{backingBeanScope.backing_plantillas_plantilla_main.m1}" id="m1"/>
         <af:clientListener method="onLoad" type="load"/>
         <af:form id="f1" binding="#{backingBeanScope.backing_plantillas_plantilla_main.f1}" usesUpload="true">
-            <af:panelSplitter orientation="horizontal" splitterPosition="320" id="ps1" inlineStyle="height:inherit;">
+               <af:panelSplitter orientation="horizontal" splitterPosition="320" id="ps1" inlineStyle="height:inherit;">
                 <f:facet name="first">
                     <af:panelGroupLayout layout="scroll" inlineStyle="vertical-align:middle; margin:0px 0px 0px;"
                                          halign="center" valign="middle">

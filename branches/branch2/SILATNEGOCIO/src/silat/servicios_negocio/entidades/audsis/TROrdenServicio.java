@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import silat.servicios_negocio.entidades.admin.ADEmpresa;
@@ -36,10 +37,10 @@ public class TROrdenServicio implements Serializable {
     private Date fecOrdnServ;
     @Column(name = "N_ESTADO_ORDEN")
     private BigDecimal nEstadoOrden;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_TRMORDS_01",sequenceName = "SQ_TRMORDS_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_TRMORDS_01")
+    @Id   
     @Column(name = "NID_ORDN_SERV")
+    @TableGenerator( name = "trorden", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "trorden.nid_orden", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "trorden" )
     private Integer nidOrdnServ;
     @ManyToOne
     @JoinColumn(name = "N_NID_CLIENTE")

@@ -56,8 +56,8 @@
                                                                  binding="#{backingBeanScope.backing_seguridad_frm_login.otError}"
                                                                  value="#{backingBeanScope.backing_seguridad_frm_login.errorTxt}"
                                                                  inlineStyle="color:Red; font-family:Geneva, Arial, Helvetica, sans-serif; font-weight:bold; text-align:center;"/>
-                                            <af:commandButton actionListener="#{backingBeanScope.backing_seguridad_frm_login.autorizarUsuario}"
-                                                              action="#{backingBeanScope.backing_seguridad_frm_login.autorizarUsuario}" id="cb2"
+                                            <af:commandButton actionListener="#{backingBeanScope.backing_seguridad_frm_login.autenticarUsuario}"
+                                                              action="#{backingBeanScope.backing_seguridad_frm_login.redireccionar.toString}" id="cb2"
                                                               binding="#{backingBeanScope.backing_seguridad_frm_login.cb2}"
                                                               partialSubmit="true"
                                                               styleClass="FondoVerdeLetraAzul" text="Entrar"

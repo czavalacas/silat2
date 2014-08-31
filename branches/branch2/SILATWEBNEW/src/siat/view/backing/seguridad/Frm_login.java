@@ -46,8 +46,10 @@ import siat.view.backing.utiles.ADFUtil;
 import siat.view.backing.utiles.Utils;
 
 import silat.servicios_negocio.Beans.BeanRol;
+import silat.servicios_negocio.Beans.BeanUsuario;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRolRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFUsuarioRemote;
 
 public class Frm_login {
     private RichPanelStretchLayout psl1;
@@ -74,6 +76,9 @@ public class Frm_login {
     private List ListRazones;
     private LN_C_SFRolRemote ln_C_SFRolRemote = null;
     private final static String LOOKUP_NAME_SFROL_REMOTO = "mapLN_C_SFRol";//#silat.servicios_negocio.LNSF.IR.LN_C_SFRolRemote
+   
+    private LN_C_SFUsuarioRemote ln_C_SFUsuarioRemote;
+    private final static String LOOKUP_NAME_SFUSUA_REMOTO = "mapLNSFUsuario";//#silat.servicios_negocio.LNSF.IR.LN_C_SFRolRemote
     private String red = "";
     FacesContext contx = FacesContext.getCurrentInstance();
     ExternalContext ectx = FacesContext.getCurrentInstance().getExternalContext();
@@ -84,12 +89,14 @@ public class Frm_login {
     private String errorTxt;
     private RichImage i1;
     private RichImage i2;
+    private String redireccionar = "";
 
     public Frm_login(){
         try {
             final Context ctx;
             ctx = new InitialContext();
             ln_C_SFRolRemote = (LN_C_SFRolRemote) ctx.lookup(LOOKUP_NAME_SFROL_REMOTO);
+            ln_C_SFUsuarioRemote = (LN_C_SFUsuarioRemote) ctx.lookup(LOOKUP_NAME_SFUSUA_REMOTO);
             this.setListaRoles(this.llenarRolesCombo());
             BeanUsuarioAutenticado beanUser = (BeanUsuarioAutenticado) Utils.getSession("USER");
             if(beanUser != null){
@@ -107,7 +114,7 @@ public class Frm_login {
         }
     }
     
-    public BeanUsuarioAutenticado autenticarUsuario(){
+   /* public BeanUsuarioAutenticado autenticarUsuario(){
         try{
             ADFUtil.setEL("#{pageFlowScope.usua}", getUsua());
             ADFUtil.setEL("#{pageFlowScope.pwd}", getPwd());
@@ -129,11 +136,49 @@ public class Frm_login {
             //e.printStackTrace();
         }
         return beanUsuario;
+    }*/
+    
+    
+   // public BeanUsuarioAutenticado autenticarUsuario() 
+    public void autenticarUsuario(ActionEvent actionEvent){
+        try {
+            if (getUsua() == null || getPwd() == null) {
+                setErrorTxt("Ingrese su usuario y clave");
+                Utils.addTarget(otError);
+               return;
+            }
+            beanUsuario = ln_C_SFUsuarioRemote.autenticarUsuario(getUsua(), getPwd());
+            String error = beanUsuario.getOutput();
+            if (error != null) {
+                if ("000".equals(error)) {
+                //    beanUsuario.setNidLog(ln_T_SFLogLocal.grabarLogLogInWeb_LN(vecData, beanUsuario.getNidUsuario()));
+                    Utils.putSession("USER", beanUsuario);
+                    setRedireccionar("000");
+                } else {
+                    setErrorTxt(error);
+                    Utils.addTarget(otError);
+                    it2.resetValue();
+                    setPwd(null);
+                    Utils.addTarget(it2);
+                }
+            } else {
+                setErrorTxt(error);
+                Utils.addTarget(otError);
+                it2.resetValue();
+                setPwd(null);
+                Utils.addTarget(it2);
+            }
+        } catch (Exception e) {
+     //       ln_T_SFLoggerLocal.registrarLogErroresSistema(beanUsuario.getNidLog(),"BAC",CLASE,"autenticarUsuario(ActionEvent actionEvent)",
+      //                                                    "Error Inesperado Logear al usuario",
+            e.printStackTrace();
+        }        
     }
 
-    public void autorizarUsuario(ActionEvent actionEvent) {//ActionListener
+    /*public void autorizarUsuario(ActionEvent actionEvent) {//ActionListener
         autenticarUsuario();
-    }
+     
+    }*/
     
     public String logoutTarget() {
         HttpSession session = (HttpSession)ectx.getSession(false);
@@ -407,5 +452,13 @@ public class Frm_login {
 
     public RichImage getI2() {
         return i2;
+    }
+
+    public void setRedireccionar(String redireccionar) {
+        this.redireccionar = redireccionar;
+    }
+
+    public String getRedireccionar() {
+        return redireccionar;
     }
 }

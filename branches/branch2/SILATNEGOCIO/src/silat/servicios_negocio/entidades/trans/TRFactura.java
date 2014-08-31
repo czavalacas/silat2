@@ -22,6 +22,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -46,10 +47,10 @@ public class TRFactura implements Serializable {
     private String cidUnidadNegocio;
     @Column(name = "N_TIPO_FACTURA", length = 1)
     private String nTipoFactura;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_TRMFACT_01",sequenceName = "SQ_TRMFACT_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_TRMFACT_01")
+    @Id    
     @Column(name = "NID_FACTURA", nullable = false)
+    @TableGenerator( name = "trfactura", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "trfactura.nid_factura", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "trfactura" )
     private Long nidFactura;
     @OneToMany(mappedBy = "trFactura")
     private List<TRNota> notasList;

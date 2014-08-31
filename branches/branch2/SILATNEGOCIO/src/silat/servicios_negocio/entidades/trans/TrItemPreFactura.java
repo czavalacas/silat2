@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "TrItemPreFactura.findAll", query = "select o from TrItemPreFactura o") })
@@ -29,10 +30,10 @@ public class TrItemPreFactura implements Serializable {
     private String destino;
     @Column(name = "IGV_SUBTOTAL")
     private BigDecimal igvSubtotal;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_TRDPRIT_01",sequenceName = "SQ_TRDPRIT_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_TRDPRIT_01")
+    @Id    
     @Column(name = "NID_PREFITM", nullable = false)
+    @TableGenerator( name = "tritemPrefa", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "tritemPrefa.nid_itemPre", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "tritemPrefa" )
     private BigDecimal nidPrefitm;
     @Column(nullable = false)
     private BigDecimal subtotal;

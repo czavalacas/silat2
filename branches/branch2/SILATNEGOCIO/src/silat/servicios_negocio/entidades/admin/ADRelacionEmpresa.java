@@ -12,6 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "Addrela.findAll", query = "select o from ADRelacionEmpresa o") })
@@ -19,10 +20,10 @@ import javax.persistence.Table;
 public class ADRelacionEmpresa implements Serializable {
     @Column(name = "C_ESTREG", nullable = false, length = 1)
     private String estadoRegistro;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_ADDRELA_01",sequenceName = "SQ_ADDRELA_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_ADDRELA_01")
+    @Id    
     @Column(name = "N_CORREL", nullable = false)
+    @TableGenerator( name = "adrela", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "adrela.nid_rela", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "adrela" )
     private Integer correlativoRelacionEmpresa;
     @ManyToOne
     @JoinColumn(name = "NID_PARTY_1")

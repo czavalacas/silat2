@@ -14,6 +14,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "TRItem.findAll", query = "select o from TRItem o") })
@@ -29,10 +30,10 @@ public class TRItem implements Serializable {
     private Integer dPeso;
     @Column(name = "N_CANTIDAD")
     private Double nCantidad;
-    @Id//
-    @SequenceGenerator(name = "GEN_SQ_TRDITEM_01",sequenceName = "SQ_TRDITEM_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_TRDITEM_01")
+    @Id    
     @Column(name = "NID_ITEM", nullable = false)
+    @TableGenerator( name = "tritem", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "tritem.nid_item", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "tritem" )
     private BigDecimal nidItem;
     @ManyToOne
     @JoinColumn(name = "CID_GUIA")

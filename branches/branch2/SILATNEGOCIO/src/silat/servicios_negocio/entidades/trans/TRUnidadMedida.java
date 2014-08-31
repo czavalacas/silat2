@@ -16,6 +16,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import javax.persistence.TableGenerator;
+
 import silat.servicios_negocio.entidades.audsis.TROrdenServicio;
 
 
@@ -28,9 +30,9 @@ public class TRUnidadMedida implements Serializable {
     @Column(name = "C_SIGLA")
     private String sigla;
     @Id
-    @SequenceGenerator(name = "GEN_SQ_TRDRUTA_01",sequenceName = "SQ_TRDRUTA_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_TRDRUTA_01")
     @Column(name = "NID_UNMEDIDA", nullable = false)
+    @TableGenerator( name = "trunidad", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "trunidad.nid_unidad", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "trunidad" )
     private Integer nidUnidadMedida;
 
     public TRUnidadMedida() {

@@ -15,6 +15,7 @@ import silat.servicios_negocio.BDLSF.IL.BDL_C_SFUsuarioLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFUsuarioXPermisoLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFUtilsLocal;
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFUsuarioRemote;
+import silat.servicios_negocio.entidades.admin.ADClave;
 import silat.servicios_negocio.entidades.admin.ADUsuario;
 
 @Stateless(name = "BDL_C_SFUsuario", mappedName = "mapSFUsuario")
@@ -70,36 +71,33 @@ public class BDL_C_SFUsuarioBean implements BDL_C_SFUsuarioRemote,
             return cant;
         }
     }
-
-    public Map autenticarUsuario(String username, String clave){
-        Map mapSalida = new HashMap();
-        String error = "000";
-        ADUsuario usuario = null;
-        BigDecimal nidUser = null;
-        nidUser = bdL_C_SFUtilsLocal.call_Function_validar_usuario(username, clave, "1");
+    
+   public Map autenticarUsuario(String username, String clave){     
+        String error = "000";    
+        Map mapSalida = new HashMap();     
         String ejbQl = " SELECT u " +
-                       " FROM ADUsuario u "+
-                       " WHERE u.nidUsuario = :nidUser " +
-                       " AND u.nEstadoUsuario = 1 ";
-        try{
-            usuario = (ADUsuario)em.createQuery(ejbQl)
-                                            .setParameter("nidUser", nidUser)
-                                            .getSingleResult();
-            if (usuario != null) {
-                mapSalida.put("usuario", usuario);
-            }
-            mapSalida.put("error", error);
-            return mapSalida;
-        }catch (NoResultException nre) {
-            error = "LUB-0002";
-            mapSalida.put("error", error);
-            return mapSalida;
+                       " FROM ADClave u "+
+                       " WHERE u.user = :usuario " +
+                       " AND u.cClave = FUNC('AES_ENCRYPT',:cClave,:cClave)" +
+                       " AND u.adUsuario.nEstadoUsuario = 1 ";
+   
+        try{       
+           List<ADClave>  listClave =    em.createQuery(ejbQl).setParameter("usuario", username).
+                                                               setParameter("cClave",clave).
+                                                               getResultList();
+          
+            if (listClave.size() != 0) {
+                mapSalida.put("usuario", listClave.get(0));
+            }else{
+                error = "LUB-0002";
+            }    
         }catch(Exception e){
             e.printStackTrace();
             error = "LUB-0004";
-            mapSalida.put("error", error);
-            return mapSalida;
+           
         }
+        mapSalida.put("error", error);
+        return mapSalida;
     }
     
     public boolean esRol(BigDecimal rol,List<BigDecimal> roles){

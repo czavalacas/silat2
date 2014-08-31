@@ -15,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "ADChofer.findAll", query = "select o from ADChofer o") })
@@ -27,9 +28,9 @@ public class ADChofer implements Serializable {
     @Column(name = "C_NOMB", nullable = false, length = 300)
     private String nombres;
     @Id
-    @SequenceGenerator(name = "GEN_SQ_ADMCHOF_01",sequenceName = "SQ_ADMCHOF_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_ADMCHOF_01")
     @Column(name = "NID_CHOF", nullable = false)
+    @TableGenerator( name = "adchofer", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "adchofer.nid_chofer", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "adchofer" )
     private Integer nidChofer;
     @ManyToOne
     @JoinColumn(name = "NID_EMP")

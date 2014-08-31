@@ -16,6 +16,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "Admtiga.findAll", query = "select o from ADTipoGasto o") })
@@ -25,10 +26,10 @@ public class ADTipoGasto implements Serializable {
     private String estadoRegistro;
     @Column(name = "DES_TIGA", nullable = false, length = 80)
     private String descripcionTipoGasto;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_ADMTIGA_01",sequenceName = "SQ_ADMTIGA_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_ADMTIGA_01")
+    @Id    
     @Column(name = "NID_TIGA", nullable = false)
+    @TableGenerator( name = "adtiga", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "adtiga.nid_tiga", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "adtiga" )
     private Integer nidTiga;
     @OneToMany(mappedBy = "tipoGasto")
     private List<ADGasto> gastosLista;

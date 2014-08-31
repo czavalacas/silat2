@@ -16,6 +16,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "STRol.findAll", query = "select o from STRol o") })
@@ -25,10 +26,10 @@ public class STRol implements Serializable {
     private String cDescRole;
     @Column(name = "N_ESTADO", nullable = false)
     private BigDecimal nEstado;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_STMROLE_01",sequenceName = "SQ_STMROLE_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_STMROLE_01")
+    @Id    
     @Column(name = "NID_ROLE", nullable = false)
+    @TableGenerator( name = "strol", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "strol.nid_rol", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "strol" )
     private BigDecimal nidRole;
     @OneToMany(mappedBy = "stRol")
     private List<STRolXPermiso> rolXPermisoList;

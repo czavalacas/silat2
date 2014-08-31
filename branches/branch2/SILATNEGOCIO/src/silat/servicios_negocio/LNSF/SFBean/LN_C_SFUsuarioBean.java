@@ -17,6 +17,7 @@ import javax.persistence.PersistenceContext;
 import net.sf.dozer.util.mapping.DozerBeanMapper;
 import net.sf.dozer.util.mapping.MapperIF;
 
+import silat.servicios_negocio.BDLSF.IL.BDL_C_SFClaveLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFRolLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFUsuarioLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFUtilsLocal;
@@ -27,6 +28,7 @@ import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
 import silat.servicios_negocio.LNSF.IL.LN_C_SFCatalogoErroresLocal;
 import silat.servicios_negocio.LNSF.IL.LN_C_SFUsuarioLocal;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUsuarioRemote;
+import silat.servicios_negocio.entidades.admin.ADClave;
 import silat.servicios_negocio.entidades.admin.ADUsuario;
 import silat.servicios_negocio.entidades.audsis.STRol;
 
@@ -45,7 +47,8 @@ public class LN_C_SFUsuarioBean implements LN_C_SFUsuarioRemote,
     private BDL_C_SFRolLocal bdL_C_SFRolLocal;
     @EJB
     private BDL_C_SFUtilsLocal bdL_C_SFUtilsLocal;
-    
+    @EJB 
+    private BDL_C_SFClaveLocal bdl_C_SFClaveLocal;
     public LN_C_SFUsuarioBean() {
     }
     
@@ -109,14 +112,18 @@ public class LN_C_SFUsuarioBean implements LN_C_SFUsuarioRemote,
         BeanUsuarioAutenticado beanUsuario = new BeanUsuarioAutenticado();
         Map mapSalida = new HashMap();
         ADUsuario usuario = null;
+        ADClave adclave= null;
         String error = "000";
         try{
             username = username.toLowerCase();
             clave = clave.toLowerCase();
             mapSalida = bdL_C_SFUsuarioLocal.autenticarUsuario(username, clave/*, rol*/);
+            List<ADClave> clavvv=bdl_C_SFClaveLocal.getADClaveFindAll();
+            System.out.println(clavvv.size());                                                         
             error = (String) mapSalida.get("error");
-            if(error.equals("000")){
-                usuario = (ADUsuario) mapSalida.get("usuario");
+            if(error.equals("000")){    
+                adclave =(ADClave) mapSalida.get("usuario");
+                usuario = adclave.getAdUsuario();                
                 beanUsuario.setCApellidos(usuario.getAdPersona().getCApellidos());
                 beanUsuario.setCCargo(usuario.getAdPersona().getCCargo());
                 beanUsuario.setCEmail(usuario.getAdPersona().getAdParty().getCEmail());

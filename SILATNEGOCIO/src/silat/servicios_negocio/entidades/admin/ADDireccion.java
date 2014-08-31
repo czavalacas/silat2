@@ -15,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "ADDireccion.findAll", query = "select o from ADDireccion o") })
@@ -24,10 +25,10 @@ public class ADDireccion implements Serializable {
     private String cDireccion;
     @Column(name = "CID_UBIGEO", nullable = false, length = 6)
     private String cidUbigeo;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_ADDDIRE_01",sequenceName = "SQ_ADDDIRE_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_ADDDIRE_01")    
+    @Id    
     @Column(name = "NID_DIRECCION", nullable = false)
+    @TableGenerator( name = "addireccion", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "addireccion.nid_direccion", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "addireccion" )
     private BigDecimal nidDireccion;
     @ManyToOne
     @JoinColumn(name = "NID_PARTY")

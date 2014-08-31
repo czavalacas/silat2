@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,10 +35,10 @@ public class ADClave implements Serializable {
     private Date fecRegistro;
     @Column(name = "N_ESTADO_CLAVE", nullable = false)
     private BigDecimal nEstadoClave;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_ADDCLAV_01",sequenceName = "SQ_ADDCLAV_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_ADDCLAV_01")
+    @Id    
     @Column(name = "NID_CLAVE", nullable = false)
+    @TableGenerator( name = "adclave", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "adclave.nid_clave", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "adclave" )
     private BigDecimal nidClave;
     @ManyToOne
     @JoinColumn(name = "NID_USUARIO")

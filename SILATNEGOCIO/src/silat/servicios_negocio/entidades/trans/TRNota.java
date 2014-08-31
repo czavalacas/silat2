@@ -15,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "TRNota.findAll", query = "select o from TRNota o") })
@@ -26,10 +27,10 @@ public class TRNota implements Serializable {
     private BigDecimal dMonto;
     @Column(name = "N_ESTADO_NOTA", nullable = false)
     private Integer nEstadoNota;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_TRDNOTA_01",sequenceName = "SQ_TRDNOTA_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_TRDNOTA_01")
+    @Id    
     @Column(name = "NID_NOTA", nullable = false)
+    @TableGenerator( name = "trnota", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "trnota.nid_nota", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "trnota" )
     private BigDecimal nidNota;
     @ManyToOne
     @JoinColumn(name = "NID_FACTURA")

@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -30,7 +31,7 @@ public class ADGasto implements Serializable {
     private byte[] blobImagenRecibo;
     @Column(name = "C_ESTREG", nullable = false, length = 1)
     private String estadoRegistro;
-    @Column(name = "CANTPER")
+    @Column(name = "CANPER")
     private Integer cantper;
     @Column(name = "CID_FACTURA", length = 15)
     private String cidFactura;
@@ -50,10 +51,10 @@ public class ADGasto implements Serializable {
     @ManyToOne
     @JoinColumn(name = "NID_FLOTA")
     private ADFlota adFlota;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_ADDGAST_01",sequenceName = "SQ_ADDGAST_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_ADDGAST_01")    
+    @Id     
     @Column(name = "NID_GASTO", nullable = false)
+    @TableGenerator( name = "adgasto", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "adgasto.nid_gasto", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "adgasto" )
     private Long nidGasto;
     @Column(name = "NID_PROTRA")
     private Long nidProtra;

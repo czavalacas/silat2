@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "ADUsuario.findAll", query = "select o from ADUsuario o") })
@@ -31,10 +32,10 @@ public class ADUsuario implements Serializable {
     private BigDecimal nEstadoUsuario;
     @Column(name = "N_TIPO_USUARIO", nullable = false)
     private BigDecimal nTipoUsuario;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_ADMUSUA_01",sequenceName = "SQ_ADMUSUA_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_ADMUSUA_01")
+    @Id    
     @Column(name = "NID_USUARIO", nullable = false)
+    @TableGenerator( name = "adusuario", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "adusuario.nid_usuario", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "adusuario" )
     private BigDecimal nidUsuario;
     @OneToMany(mappedBy = "adUsuario",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<ADClave> clavesList;

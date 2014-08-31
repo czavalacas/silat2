@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "ADParty.findAll", query = "select o from ADParty o") })
@@ -33,10 +34,10 @@ public class ADParty implements Serializable {
     private String cTelf;
     @Column(name = "C_TIPO_PARTY", length = 1)
     private String cTipoParty;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_ADMPART_01",sequenceName = "SQ_ADMPART_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_ADMPART_01")
+    @Id  
     @Column(name = "NID_PARTY", nullable = false)
+    @TableGenerator( name = "adparty", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "adparty.nid_party", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "adparty" )
     private BigDecimal nidParty;
     @OneToOne(mappedBy = "adParty")
     private List<ADEmpresa> empresasList;

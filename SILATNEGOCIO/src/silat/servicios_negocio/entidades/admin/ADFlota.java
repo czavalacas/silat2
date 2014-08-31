@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "ADFlota.findAll", query = "select o from ADFlota o") })
@@ -27,10 +28,10 @@ public class ADFlota implements Serializable {
     private String cConfveh;
     @Column(name = "C_MARVEHI", nullable = false)
     private String cMarvehi;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_ADMFLOT_01",sequenceName = "SQ_ADMFLOT_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_ADMFLOT_01")
+    @Id  
     @Column(name = "NID_FLOTA", nullable = false)
+    @TableGenerator( name = "adflota", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "adflota.nid_flota", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "adflota" )
     private Integer nidFlota;
     @ManyToOne
     @JoinColumn(name = "NID_EMPR")

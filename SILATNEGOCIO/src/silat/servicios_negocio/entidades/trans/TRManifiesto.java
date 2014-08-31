@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -44,10 +45,10 @@ public class TRManifiesto implements Serializable {
     private Integer nEstManifiesto;
     @Column(name = "N_FLETE_PACTADO", nullable = false)
     private Double nFletePactado;
-    @Id
-    @SequenceGenerator(name = "GEN_SQ_TRMMANI_01",sequenceName = "SQ_TRMMANI_01", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SQ_TRMMANI_01")
+    @Id    
     @Column(name = "NID_MANIFIESTO")
+    @TableGenerator( name = "trmanifiesto", table = "codigo", pkColumnName = "APP_SEQ_NAME", pkColumnValue = "trmanifiesto.nid_manifiesto", valueColumnName = "APP_SEQ_VALUE", initialValue = 50, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "trmanifiesto" )
     private Integer nidManifiesto;
     @OneToMany(mappedBy = "trManifiesto")
     private List<TRGuia> guiasList;

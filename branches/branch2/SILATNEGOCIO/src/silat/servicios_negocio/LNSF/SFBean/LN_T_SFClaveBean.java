@@ -38,12 +38,12 @@ public class LN_T_SFClaveBean implements LN_T_SFClaveRemoto,
         
     }
     
-    public BeanClave grabarNuevaContraseña(String cUsuario, String cClave, BigDecimal nidClave){
+    public BeanClave grabarNuevaContraseña(String cUsuario, String cClave, BigDecimal nidUsuario){
         BeanClave bClave = new BeanClave();
         BeanError beanError = new BeanError();
         String error = "000";
         try{
-            bdlL_T_SFClaveLocal.actualizarClave(cUsuario, cClave, nidClave);
+            bdlL_T_SFClaveLocal.actualizarClave(cUsuario, cClave, nidUsuario);
         }catch(Exception e){
             error = "LUB-0018";
             e.printStackTrace();

@@ -1251,7 +1251,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     }
     
     public void nuevoManifiesto(){
-        beanSessionRegistrarGuia.setNidManifiesto(ln_C_SFUtilsRemote.traerSiguienteValorSequence("SQ_TRMMANI_01"));
+        beanSessionRegistrarGuia.setNidManifiesto(ln_C_SFUtilsRemote.traerSiguienteValorSequence("trmanifiesto.nid_manifiesto"));
         ckbTraPro.setRendered(true);
         panelNuevoManif(true);
         txtFletePact.setDisabled(false);

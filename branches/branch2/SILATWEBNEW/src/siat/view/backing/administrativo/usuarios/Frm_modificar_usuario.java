@@ -62,11 +62,11 @@ public class Frm_modificar_usuario {
     
     public String actualizarContraseña() {
         try {
-            String cUsuario = beanUsuario.getCUsuario();
+            //String cUsuario = beanUsuario.getCUsuario();
             String cClave = beanSessionScopeModificarUsuario.getContraselaNueva();
-            BigDecimal nidClave;
-            nidClave = ln_C_SFClaveRemoto.claveDeUsuarioEnSesion(beanUsuario.getNidUsuario());
-            BeanClave bClave = ln_T_SFClaveRemoto.grabarNuevaContraseña(cUsuario, cClave, nidClave);
+           // BigDecimal nidClave;
+           // nidClave = ln_C_SFClaveRemoto.claveDeUsuarioEnSesion(beanUsuario.getNidUsuario());
+            BeanClave bClave = ln_T_SFClaveRemoto.grabarNuevaContraseña(null, cClave, beanUsuario.getNidUsuario());
             resetarCamposClave();
             if (bClave.getBeanError() != null) {
                 BeanError error = bClave.getBeanError();    

@@ -8,5 +8,5 @@ import silat.servicios_negocio.Beans.BeanClave;
 
 @Remote
 public interface LN_T_SFClaveRemoto {
-    BeanClave grabarNuevaContraseña(String cUsuario, String cClave, BigDecimal nidClave);
+    BeanClave grabarNuevaContraseña(String cUsuario, String cClave, BigDecimal nidUsuario);
 }

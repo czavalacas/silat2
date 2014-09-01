@@ -39,6 +39,7 @@ import silat.servicios_negocio.LNSF.IL.LN_T_SFFacturaLocal;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFFacturaRemote;
 import silat.servicios_negocio.entidades.trans.TRFactura;
 import silat.servicios_negocio.entidades.trans.TRGuia;
+import silat.servicios_negocio.entidades.trans.TRManifiesto;
 import silat.servicios_negocio.util_formato.Caracter.FormatoLetra;
 import silat.servicios_negocio.util_formato.Fecha.FechaUtiles;
 import silat.servicios_negocio.util_formato.UtilsGeneral;
@@ -108,6 +109,8 @@ public class LN_T_SFFacturaBean implements LN_T_SFFacturaRemote,
             eFactura.setGuias(guias);
             eFactura.setNidParty(nidParty);
             eFactura.setCliente(cliente);
+            eFactura.setCCodFactura("1");//para que no se caiga
+            eFactura.setDTotal(new BigDecimal(1));//para que no se caiga         
             eFactura = bdL_T_SFFacturaLocal.persistTRFactura(eFactura);
         }catch(Exception e){
             e.printStackTrace();

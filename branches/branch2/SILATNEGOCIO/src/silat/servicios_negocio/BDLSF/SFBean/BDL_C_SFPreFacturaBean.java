@@ -118,12 +118,12 @@ public class BDL_C_SFPreFacturaBean implements BDL_C_SFPreFacturaRemote,
     public BigDecimal[] call_Procedure_GET_PREFACTURA_MONTOS(Long nidPF){
         try {
             conn = lubalDS.getConnection();
-            String query = "BEGIN GET_PREFACTURA_MONTOS(?,?,?,?); END; ";
+            String query = "CALL GET_PREFACTURA_MONTOS(?,?,?,?);";
             CallableStatement stmt = conn.prepareCall(query);
             stmt.setLong(1,nidPF);
-            stmt.registerOutParameter(2, Types.DECIMAL);
-            stmt.registerOutParameter(3, Types.DECIMAL);
-            stmt.registerOutParameter(4, Types.DECIMAL);
+            stmt.registerOutParameter(2, java.sql.Types.DOUBLE);
+            stmt.registerOutParameter(3, java.sql.Types.DOUBLE);
+            stmt.registerOutParameter(4, java.sql.Types.DOUBLE);
             stmt.execute();
             conn.close();
             BigDecimal subTotal = stmt.getBigDecimal(2);

@@ -99,15 +99,27 @@ public class BDL_C_SFCuadreBean implements BDL_C_SFCuadreRemote,
     public List<BeanCuadre> call_Procedure_GET_EGRESOS(Date fecMin, Date fecMax){
         try {
             conn = lubalDS.getConnection();
-            String query = "BEGIN GET_EGRESOS(?,?,?); END; ";
+            String query = "CALL GET_EGRESOS(?,?);";
             CallableStatement stmt = conn.prepareCall(query);
             stmt.setString(1,FechaUtiles.getFechaStr(fecMin));
             stmt.setString(2,FechaUtiles.getFechaStr(fecMax));
-            stmt.registerOutParameter(3, OracleTypes.CURSOR);
-            stmt.execute();
+            ResultSet  rs =   stmt.executeQuery();           
+          /*  int nF = rs.getMetaData().getColumnCount();
+            rs.last();
+            String[][] out = new String[rs.getRow()][nF];
+            for (int i=0; i<nF; i++) {
+              rs.beforeFirst();
+              int n=0;
+              while (rs.next()) {
+                out[n][i]=rs.getString(i+1);
+                n++;
+              }
+            }
+            stmt.close();
+          */
             
             List<BeanCuadre> lstBeanCuadre = new ArrayList<BeanCuadre>();
-            ResultSet rs = ((OracleCallableStatement)stmt).getCursor(3);
+          
             while (rs.next()) {
                 BeanCuadre beanCuadre = new BeanCuadre();
                 beanCuadre.setDescCuadre(rs.getString("DESCR"));
@@ -115,12 +127,12 @@ public class BDL_C_SFCuadreBean implements BDL_C_SFCuadreRemote,
                 beanCuadre.setEgreso(rs.getBigDecimal("MONT"));
                 lstBeanCuadre.add(beanCuadre);
             }
-            String queryNotasCred = "BEGIN GET_EGRESOS_NOTAS_CREDITO(?,?,?,?); END; ";
+            String queryNotasCred = "CALL GET_EGRESOS_NOTAS_CREDITO(?,?,?,?); ";
             CallableStatement stmt2 = conn.prepareCall(queryNotasCred);
             stmt2.setString(1,FechaUtiles.getFechaStr(fecMin));
             stmt2.setString(2,FechaUtiles.getFechaStr(fecMax));
-            stmt2.registerOutParameter(3, Types.VARCHAR);
-            stmt2.registerOutParameter(4, Types.DECIMAL);
+            stmt2.registerOutParameter(3, java.sql.Types.VARCHAR);
+            stmt2.registerOutParameter(4, java.sql.Types.DOUBLE);
             stmt2.execute();
             String descr = stmt2.getString(3);
             BigDecimal egreNotaCre = stmt2.getBigDecimal(4);
@@ -131,12 +143,12 @@ public class BDL_C_SFCuadreBean implements BDL_C_SFCuadreRemote,
             lstBeanCuadre.add(beanCuadre);
             
             /*----------------------------------------EGRESO DE ADELANTO EN MANIFIESTOS -------------------------------*/
-            String queryAdelantos = "BEGIN GET_EGRESOS_ADELANTO_MANIFI(?,?,?,?); END; ";
+            String queryAdelantos = "CALL GET_EGRESOS_ADELANTO_MANIFI(?,?,?,?);";
             CallableStatement stmt3 = conn.prepareCall(queryAdelantos);
             stmt3.setString(1,FechaUtiles.getFechaStr(fecMin));
             stmt3.setString(2,FechaUtiles.getFechaStr(fecMax));
-            stmt3.registerOutParameter(3, Types.VARCHAR);
-            stmt3.registerOutParameter(4, Types.DECIMAL);
+            stmt3.registerOutParameter(3, java.sql.Types.VARCHAR);
+            stmt3.registerOutParameter(4, java.sql.Types.DOUBLE);
             stmt3.execute();
             String descrAdel = stmt3.getString(3);
             BigDecimal egreAdela = stmt3.getBigDecimal(4);
@@ -148,12 +160,12 @@ public class BDL_C_SFCuadreBean implements BDL_C_SFCuadreRemote,
             /*----------------------------------------FIN EGRESO DE ADELANTO EN MANIFIESTOS -------------------------------*/
             
             /*----------------------------------------EGRESO DE PAGO EN MANIFIESTOS -------------------------------*/
-            String queryPago = "BEGIN GET_EGRESOS_PAGO_SALDO_MANIFI(?,?,?,?); END; ";
+            String queryPago = "CALL GET_EGRESOS_PAGO_SALDO_MANIFI(?,?,?,?);";
             CallableStatement stmt4 = conn.prepareCall(queryPago);
             stmt4.setString(1,FechaUtiles.getFechaStr(fecMin));
             stmt4.setString(2,FechaUtiles.getFechaStr(fecMax));
-            stmt4.registerOutParameter(3, Types.VARCHAR);
-            stmt4.registerOutParameter(4, Types.DECIMAL);
+            stmt4.registerOutParameter(3, java.sql.Types.VARCHAR);
+            stmt4.registerOutParameter(4, java.sql.Types.DOUBLE);
             stmt4.execute();
             String descrPago = stmt4.getString(3);
             BigDecimal egrePago = stmt4.getBigDecimal(4);
@@ -180,12 +192,12 @@ public class BDL_C_SFCuadreBean implements BDL_C_SFCuadreRemote,
     public BigDecimal[] call_Procedure_GET_TOTALES(Date fecMin, Date fecMax){
         try {
             conn = lubalDS.getConnection();
-            String query = "BEGIN GET_TOTALES(?,?,?,?); END; ";
+            String query = "CALL GET_TOTALES(?,?,?,?);";
             CallableStatement stmt = conn.prepareCall(query);
             stmt.setString(1,FechaUtiles.getFechaStr(fecMin));
-            stmt.setString(2,FechaUtiles.getFechaStr(fecMax));
-            stmt.registerOutParameter(3, Types.DECIMAL);
-            stmt.registerOutParameter(4, Types.DECIMAL);
+            stmt.setString(2,FechaUtiles.getFechaStr(fecMax));          
+            stmt.registerOutParameter(3, java.sql.Types.DOUBLE);
+            stmt.registerOutParameter(4, java.sql.Types.DOUBLE);
             stmt.execute();
             conn.close();
             BigDecimal ingre = stmt.getBigDecimal(3);
@@ -206,12 +218,12 @@ public class BDL_C_SFCuadreBean implements BDL_C_SFCuadreRemote,
     public BigDecimal[] call_Procedure_GET_INGRESOS(Date fecMin, Date fecMax){
         try {
             conn = lubalDS.getConnection();
-            String query = "BEGIN GET_INGRESOS(?,?,?,?); END; ";
+            String query = "CALL GET_INGRESOS(?,?,?,?);";
             CallableStatement stmt = conn.prepareCall(query);
             stmt.setString(1,FechaUtiles.getFechaStr(fecMin));
             stmt.setString(2,FechaUtiles.getFechaStr(fecMax));
-            stmt.registerOutParameter(3, Types.DECIMAL);
-            stmt.registerOutParameter(4, Types.DECIMAL);
+            stmt.registerOutParameter(3, java.sql.Types.DOUBLE);
+            stmt.registerOutParameter(4, java.sql.Types.DOUBLE);
             stmt.execute();
             conn.close();
             BigDecimal ingre_fact = stmt.getBigDecimal(3);

@@ -116,10 +116,10 @@ public class BDL_T_SFEmpresasBean implements BDL_T_SFEmpresasRemote,
         int salida = 1;//No borro
         try{
             conn = lubalDS.getConnection();
-            String query = "BEGIN SP_ELIMINAR_EMPRESA(?,?); END; ";
+            String query = "CALL SP_ELIMINAR_EMPRESA(?,?);";
             CallableStatement stmt = conn.prepareCall(query);
-            stmt.registerOutParameter(2, Types.INTEGER);
             stmt.setBigDecimal(1,nidEmpresa);
+            stmt.registerOutParameter(2, java.sql.Types.INTEGER);            
             stmt.execute();
             conn.close();
             salida = stmt.getInt(2);

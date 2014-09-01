@@ -181,6 +181,36 @@ public class BDL_C_SFUtilsBean implements BDL_C_SFUtilsRemote,
         }
     }
     
+    public int traerSiguienteValorCodigo(String app_seq_name){//CODI TRMORDEN
+        try{
+            String sql = "select o.app_seq_value + 1 " + 
+                         "from codigo o " + 
+                         "where o.app_seq_name = '"+app_seq_name+"' ";
+            Query query = em.createNativeQuery(sql);
+            Object corr = query.getSingleResult();
+            int correlativo = Integer.parseInt(corr.toString());
+            return correlativo;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int traerSiguienteOrdenServicio(String sequence){//SQ_TRMORDS_01
+        try{
+            String sql = "select last_number " + 
+                         "from user_sequences " + 
+                         "where sequence_name = '"+sequence.toUpperCase()+"' ";
+            Query query = em.createNativeQuery(sql);
+            Object corr = query.getSingleResult();
+            int correlativo = Integer.parseInt(corr.toString());
+            return correlativo;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
     public String getMaxCodigoDocByCidUnin(String cidUnin,String atributo, String entidad){
         String ejbQL = "SELECT MAX(e."+atributo+") "+
                        "FROM "+ entidad +" e " +
@@ -406,9 +436,9 @@ public class BDL_C_SFUtilsBean implements BDL_C_SFUtilsRemote,
         String codFactura = "";
         try {
             conn = lubalDS.getConnection();
-            String query = "BEGIN PKG_TRANSPORTE.GET_COD_FACTURA_BY_UN(?,?); END; ";
+            String query = "CALL GET_COD_FACTURA_BY_UN(?,?); ";
             CallableStatement stmt = conn.prepareCall(query);
-            stmt.registerOutParameter(2, Types.VARCHAR);
+            stmt.registerOutParameter(2, java.sql.Types.VARCHAR);
             stmt.setString(1, cidUn);
             stmt.execute();
             conn.close();

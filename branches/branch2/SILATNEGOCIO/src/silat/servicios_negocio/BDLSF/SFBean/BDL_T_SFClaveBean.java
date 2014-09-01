@@ -30,9 +30,11 @@ public class BDL_T_SFClaveBean implements BDL_T_SFClaveRemoto,
     public BDL_T_SFClaveBean() {
     }
     
-    public String actualizarClave(String cUsuario, String cClave, BigDecimal nidClave){
+    public String actualizarClave(String cUsuario, String cClave, BigDecimal nidUsuario){
         String ejbQL =  "update addclav cla " +
-                        "SET cla.c_clave = pkg_seguridad.get_hash('"+cUsuario+"','"+cClave+"','1') where cla.nid_clave= "+nidClave;
+                  //      "SET cla.c_clave = pkg_seguridad.get_hash('"+cUsuario+"','"+cClave+"','1') where cla.nid_clave= "+nidClave;
+                          "SET cla.c_clave = '"+cClave+"' " +
+                          "where cla.nid_usuario="+nidUsuario;
          em.createNativeQuery(ejbQL).executeUpdate();
         return null;      
     }

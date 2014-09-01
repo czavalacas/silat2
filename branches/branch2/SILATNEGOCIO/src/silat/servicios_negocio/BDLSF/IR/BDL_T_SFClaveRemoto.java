@@ -14,5 +14,5 @@ public interface BDL_T_SFClaveRemoto {
 
     void removeADClave(ADClave ADClave);
     
-    String actualizarClave(String cUsuario, String cClave, BigDecimal nidClave);
+    String actualizarClave(String cUsuario, String cClave, BigDecimal nidUsuario);
 }

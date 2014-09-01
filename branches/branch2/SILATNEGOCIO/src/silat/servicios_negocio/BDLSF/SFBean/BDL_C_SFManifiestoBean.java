@@ -128,7 +128,7 @@ public class BDL_C_SFManifiestoBean implements BDL_C_SFManifiestoRemote,
             int indx = 0;
             for(TRManifiesto manif : lstManif){
                 beanManifiesto = (BeanManifiesto) mapper.map(manif,BeanManifiesto.class);
-                beanManifiesto.setIndex(indx);
+                beanManifiesto.setIndex(indx);             
                 BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_TIPO_DOC","TRMMANI",manif.getCTipoDoc());
                 beanManifiesto.setTipoDoc1Car(constr.getCDescrip());
                 constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("ESTMANI","TRMMANI",manif.getEstadoManifiestoNegocio());

@@ -98,6 +98,6 @@ public class LN_C_SFUtilsBean implements LN_C_SFUtilsRemote,
     }
     
     public int traerSiguienteValorSequence(String sequence){
-        return bdL_C_SFUtilsLocal.traerSiguienteValorSequence(sequence);
+        return bdL_C_SFUtilsLocal.traerSiguienteValorCodigo(sequence);
     }
 }

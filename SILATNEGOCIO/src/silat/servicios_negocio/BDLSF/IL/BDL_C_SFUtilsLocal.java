@@ -56,4 +56,5 @@ public interface BDL_C_SFUtilsLocal {
                           String entidad,
                           String codigo);
     int traerSiguienteValorSequence(String sequence);
+    int traerSiguienteValorCodigo(String app_seq_name);
 }

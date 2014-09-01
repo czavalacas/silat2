@@ -249,6 +249,6 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
     }
     
     public int traerSiguienteValorSequence(){
-        return bdL_C_SFUtilsLocal.traerSiguienteValorSequence("SQ_TRMORDS_01");
+        return bdL_C_SFUtilsLocal.traerSiguienteValorCodigo("trorden.nid_orden");// valor del app_seq_name de la tabla codigo 
     }
 }

@@ -8,3 +8,5 @@
   # Mejorar los queries
   # Uso de suggestItems
   # En registrar Guia, quitar lo que es manifiesto, crearle su propia pantalla o en el mismo consultar manifiesto
+
+  #(Para TP)  agregarlo un validator a placa

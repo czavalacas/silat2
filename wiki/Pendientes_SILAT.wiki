@@ -9,4 +9,8 @@
   # Uso de suggestItems
   # En registrar Guia, quitar lo que es manifiesto, crearle su propia pantalla o en el mismo consultar manifiesto
 
-  #(Para TP)  agregarlo un validator a placa
+
+//////////////////////////////////////////////////////////////77 
+
+  # Para TP  -  agregarle un validator a placa
+  # Para TP  -  validar que una licencia solo pertenezca a un chofer validator si ya existe esa licencia. Y DARLE LA OPCION POR  MENSAJE.

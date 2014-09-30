@@ -74,11 +74,14 @@ import silat.servicios_negocio.Beans.BeanChofer;
 import silat.servicios_negocio.Beans.BeanEmpresa;
 import silat.servicios_negocio.Beans.BeanError;
 import silat.servicios_negocio.Beans.BeanGasto;
+import silat.servicios_negocio.Beans.BeanManifiesto;
 import silat.servicios_negocio.Beans.BeanTipoGasto;
 import silat.servicios_negocio.Beans.BeanUnidadMedida;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
+import silat.servicios_negocio.LNSF.IL.LN_T_SFManifiestoRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFFlotaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFGastosRemoto;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFManifiestoRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRelacionEmpresaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFTipoGastoRemoto;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
@@ -174,12 +177,17 @@ public class Frm_registrar_gastos {
         "LUBAL_SIAT_APP-SILATNEGOCIO-LN_C_SFGastos";//#silat.servicios_negocio.LNSF.IR.LN_C_SFGastosRemoto
     private final static String LOOKUP_NAME_SFUTILS_REMOTO = "mapLN_C_SFUtils";//#silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote
     private LN_C_SFUtilsRemote ln_C_SFUtilsRemote;
+    private final static String LOOKUP_NAME_SF_C_MANIFIESTO_REMOTO = "mapLN_C_SFManifiesto";
+    private LN_C_SFManifiestoRemote ln_C_SFManifiestoRemote;
+    private final static String LOOKUP_NAME_SF_T_MANIFIESTO_REMOTO = "mapLN_T_SFManifiesto";
+    private LN_T_SFManifiestoRemote ln_T_SFManifiestoRemote;
     private List TipoGastos;
     private List ModalidadPago;
     private List TipoServicio;
     private List TipoCombustible;
     private List TipoMantenimiento;
     private List ListaFlotasLubal;
+    private List listaManifiestos;
     private BeanEmpresa beanEmpresa = new BeanEmpresa();
     private BeanUsuarioAutenticado beanUsuario=new BeanUsuarioAutenticado();
     private List<BeanEmpresa> listaProveedores = new ArrayList<BeanEmpresa>();
@@ -188,6 +196,9 @@ public class Frm_registrar_gastos {
     
     private RichSelectOneChoice socEstTipG;
     private UISelectItems si6;
+    private RichSelectOneChoice choiceManifiesto;
+    private UISelectItems si11;
+    
 
     public Frm_registrar_gastos() {
         try {
@@ -202,9 +213,11 @@ public class Frm_registrar_gastos {
             ln_C_SFGastosRemoto = (LN_C_SFGastosRemoto)ctx.lookup(LOOKUP_NAME_SFGASTOSCONSULTA_REMOTO);
             ln_C_SFUtilsRemote = (LN_C_SFUtilsRemote)ctx.lookup(LOOKUP_NAME_SFUTILS_REMOTO);
             ln_T_SFTipoGastoRemote = (LN_T_SFTipoGastoRemote) ctx.lookup(LOOKUP_NAME_SF_T_TIPOGASTO_REMOTO);
-            this.setTipoGastos(this.llenarTipoGastoCombo());
+            ln_C_SFManifiestoRemote = (LN_C_SFManifiestoRemote)ctx.lookup(LOOKUP_NAME_SF_C_MANIFIESTO_REMOTO);
+            ln_T_SFManifiestoRemote = (LN_T_SFManifiestoRemote)ctx.lookup(LOOKUP_NAME_SF_T_MANIFIESTO_REMOTO);
             this.setModalidadPago(this.llenarModalidadPago());
             this.setTipoServicio(this.llenarTipoServicio());
+            this.setListaManifiestos(this.llenarManifiestos());
             this.setTipoMantenimiento(this.llenarTipoMantenimiento());
             this.setTipoCombustible(this.llenarTipoCombustible());
             this.setListaFlotasLubal(this.llenarFlotaLubal());
@@ -238,6 +251,16 @@ public class Frm_registrar_gastos {
         for (ADFlota r : roles) {
             unItems.add(new SelectItem(r.getNidFlota().toString(),
                                        r.getCPlaca() + " | " + r.getCDescFlota().toString()));
+        }
+        return unItems;
+    }
+    
+    public ArrayList llenarManifiestos() {
+        ArrayList unItems = new ArrayList();
+        List<BeanManifiesto> manifiestos = ln_C_SFManifiestoRemote.findManifiestoXPagar();
+        for (BeanManifiesto m : manifiestos) {
+            unItems.add(new SelectItem(m.getNidManifiesto(),
+                                       "Manifiesto - "+m.getNidManifiesto()));
         }
         return unItems;
     }
@@ -1270,5 +1293,30 @@ public class Frm_registrar_gastos {
 
     public UISelectItems getSi6() {
         return si6;
+    }
+
+    public void setChoiceManifiesto(RichSelectOneChoice choiceManifiesto) {
+        this.choiceManifiesto = choiceManifiesto;
+    }
+
+    public RichSelectOneChoice getChoiceManifiesto() {
+        return choiceManifiesto;
+    }
+
+    public void setSi11(UISelectItems si11) {
+        this.si11 = si11;
+    }
+
+    public UISelectItems getSi11() {
+        return si11;
+    }
+
+
+    public void setListaManifiestos(List listaManifiestos) {
+        this.listaManifiestos = listaManifiestos;
+    }
+
+    public List getListaManifiestos() {
+        return listaManifiestos;
     }
 }

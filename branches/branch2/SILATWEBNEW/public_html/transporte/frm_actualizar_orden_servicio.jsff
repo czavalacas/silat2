@@ -122,6 +122,14 @@
                                        binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.si1}"
                                        value="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.lstEstados}"/>
                     </af:selectOneChoice>
+                    <af:inputText value="#{sessionScope.beanSessionActualizarOrdenServicio.beanOrden.comentario}" 
+                                  label="Comentario: " labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                  required="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.anulada}"
+                                  id="it4"
+                                  rows="5"
+                                  binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.it4}"
+                                  visible="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.anulada}">
+                    </af:inputText>
                     <af:commandButton text="Modificar Orden Servicio"
                                       disabled="#{!bindings.ModificarOrdenServicio.enabled}" id="cb1"
                                       binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.cb1}"
@@ -150,7 +158,7 @@
                 <af:column sortable="true" headerText="Codigo" width="40" visible="true" sortProperty="nidOrdnServ" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
                     <af:outputText value="#{row.nidOrdnServ}" />
                 </af:column>
-                 <af:column sortable="true" headerText="Razon Social" id="c3" width="175" sortProperty="CRazonSocial" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
+                 <af:column sortable="true" headerText="Razon Social" id="c3" width="140" sortProperty="CRazonSocial" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
                     <af:outputText value="#{row.CRazonSocial}" id="ot3"/>
                 </af:column>
                 <af:column sortProperty="CDetalle" width="275" sortable="true" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};"
@@ -165,6 +173,10 @@
                     <af:outputText value="#{row.fecOrdnServ}" id="ot2">
                         <af:convertDateTime pattern="dd/MM/yyyy"/>
                     </af:outputText>
+                </af:column>
+                <af:column  sortProperty="fecOrdnServ" sortable="true" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};"
+                           headerText="Comentario" id="c15" width="110">
+                    <af:outputText value="#{row.comentario}" id="ot15"/>
                 </af:column>
             </af:table>
              </af:panelCollection>

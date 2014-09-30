@@ -17,6 +17,7 @@ public class SessionScopeBeanRegistrarGastos {
     private BigDecimal nidTipoServicio;
     private BigDecimal nidTipoCombustible;
     private BigDecimal nidTipoMantenimiento;
+    private Integer nidManifiesto;
     private Integer nidFlota;
     private Integer nidFlotaMantenimiento;
     private Integer cantidadPersonas;
@@ -62,6 +63,7 @@ public class SessionScopeBeanRegistrarGastos {
     private boolean estadoInBancoR=false;
     private boolean estadoInNumChequeV=false;
     private boolean estadoInNumChequeR=false;
+    private boolean estadoInManifiesto=false;
     List<BeanTipoGasto> tipoGastos = new ArrayList<BeanTipoGasto>();
     private String tipGasto;
     private boolean selecChkBox;
@@ -537,5 +539,21 @@ public class SessionScopeBeanRegistrarGastos {
 
     public List getLstEstadosTipGasto() {
         return lstEstadosTipGasto;
+    }
+
+    public void setEstadoInManifiesto(boolean estadoInManifiesto) {
+        this.estadoInManifiesto = estadoInManifiesto;
+    }
+
+    public boolean isEstadoInManifiesto() {
+        return estadoInManifiesto;
+    }
+
+    public void setNidManifiesto(Integer nidManifiesto) {
+        this.nidManifiesto = nidManifiesto;
+    }
+
+    public Integer getNidManifiesto() {
+        return nidManifiesto;
     }
 }

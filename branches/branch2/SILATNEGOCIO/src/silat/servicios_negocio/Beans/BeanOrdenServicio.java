@@ -24,6 +24,7 @@ public class BeanOrdenServicio implements Serializable{
     private Date fecOrdnMax;
     private BeanError beanError;
     private String flgVisto;
+    private String comentario;
 
     public void setCDetalle(String cDetalle) {
         this.cDetalle = cDetalle;
@@ -144,5 +145,13 @@ public class BeanOrdenServicio implements Serializable{
 
     public String getFlgVisto() {
         return flgVisto;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 }

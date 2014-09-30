@@ -151,7 +151,8 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
                                                     Date fecha,
                                                     Integer nidOrdenServ,
                                                     String estado,
-                                                    boolean isCambiarEmpresa) {
+                                                    boolean isCambiarEmpresa,
+                                                    String comentario) {
         String error = NO_ERROR;
         BeanOrdenServicio beanOS = new BeanOrdenServicio();
         BeanError beanError = new BeanError();
@@ -162,6 +163,7 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
             entidad.setFecOrdnServ(fecha);
             entidad.setNEstadoOrden(new BigDecimal(1));
             entidad.setCEstord(estado);
+            entidad.setComentario(comentario);
             if(isCambiarEmpresa){
                 ADEmpresa emp = bdL_C_SFEmpresasLocal.getEmpresaById(nidParty);
                 entidad.setAdEmpresa(emp);

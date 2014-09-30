@@ -510,7 +510,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             Utils.throwError_Aux(ctx, "Debe seleccionar una empresa Remitente.",4);
             isOk = false;
         }
-        if(getBeanSessionRegistrarGuia().getValorComboManif() == 0){
+       /* if(getBeanSessionRegistrarGuia().getValorComboManif() == 0){
             Utils.throwError_Aux(ctx, "Debe seleccionar/Registrar el Manifiesto.",4);
             isOk = false;
         }
@@ -520,7 +520,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                 Utils.throwError_Aux(ctx, "Debe seleccionar un Manifiesto.",4);
                 isOk = false;
             }
-        }
+        }*/
         if(beanSessionRegistrarGuia.getNumPaquetes() == 0){
             Utils.throwError_Aux(ctx, "Debe poner el numero de paquetes y/o bultos diferente a 0.",4);
             isOk = false;
@@ -550,8 +550,14 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             int nidRemitente = getBeanSessionRegistrarGuia().getNidRemitente();
             int nidOS = getBeanSessionRegistrarGuia().getNidOs();
             int nidManif = getBeanSessionRegistrarGuia().getNidManifiesto();
-            int nidFlota = Integer.parseInt(getBeanSessionRegistrarGuia().getCidFlota());
-            int nidChofer = Integer.parseInt(getBeanSessionRegistrarGuia().getCidChofer());
+            int nidFlota = 0;
+            if(getBeanSessionRegistrarGuia().getCidFlota()!=null){
+               nidFlota = Integer.parseInt(getBeanSessionRegistrarGuia().getCidFlota());   
+            }
+            int nidChofer = 0;
+            if(getBeanSessionRegistrarGuia().getCidChofer()!=null){
+               nidChofer = Integer.parseInt(getBeanSessionRegistrarGuia().getCidChofer()); 
+            }
             int nidDirecRemi = Integer.parseInt(getBeanSessionRegistrarGuia().getCidDirecRemitente());
             int nidDirecDest = Integer.parseInt(getBeanSessionRegistrarGuia().getCidDirecDestino());
             String codUn = getBeanSessionRegistrarGuia().getCodUN();

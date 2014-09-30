@@ -31,4 +31,5 @@ public interface LN_C_SFManifiestoLocal {
     BeanError guiasOK(int nidManif, String codUN, String cidGuia,int todo);
     int cantManifiestosByChofer(int nidChofer);
     int cantManifiestosByFlota(int nidFlota);
+    public List<BeanManifiesto> findManifiestoXPagar();
 }

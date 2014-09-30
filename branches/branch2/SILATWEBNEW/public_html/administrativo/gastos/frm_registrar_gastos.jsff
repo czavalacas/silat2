@@ -215,6 +215,19 @@
                                     <f:selectItems value="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.tipoMantenimiento}" id="si7"
                                                    binding="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.si7}"/>
                                 </af:selectOneChoice>
+                                <af:selectOneChoice label="Manifiesto" id="choiceManifiesto" 
+                                                    binding="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.choiceManifiesto}"
+                                                    unselectedLabel="::Seleccionar Tipo de Manifiesto::"
+                                                    required="#{beanSessionScopedRegistrarGastos.estadoInTipoMantenimientoR}" showRequired="false"
+                                                    value="#{beanSessionScopedRegistrarGastos.nidManifiesto}"
+                                                    autoSubmit="true" labelStyle="text-align: left;"
+                                                    valueChangeListener="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.eventoTipoMantenimiento}"
+                                                    visible="#{beanSessionScopedRegistrarGastos.estadoInManifiesto}">
+                                    <f:selectItems value="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.listaManifiestos}" 
+                                                   id="si11"
+                                                   binding="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.si11}"
+                                                   />
+                                </af:selectOneChoice>
                                 
                             </af:panelFormLayout>
                         </af:panelBox>

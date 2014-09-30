@@ -35,6 +35,7 @@ public class SessionScopeBeanActualizarOrdServ implements Serializable {
     private List<BeanEmpresa> lstEmpresasCliente;
     private BigDecimal nidEmp;
     private Integer nidOS;
+    
     //dfloresgonz 19.06.2014 - Se agrega variable saber si tiene el permiso de modificar fechas
     private boolean renderBtnFecha = false;
 

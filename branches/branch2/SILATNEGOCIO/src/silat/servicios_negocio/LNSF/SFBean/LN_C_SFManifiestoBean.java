@@ -97,6 +97,12 @@ public class LN_C_SFManifiestoBean implements LN_C_SFManifiestoRemote,
         return bdL_C_SFManifiestoLocal.findManifiestosByAttributes(manif);
     }
     
+    public List<BeanManifiesto> findManifiestoXPagar(){
+        BeanManifiesto manif = new BeanManifiesto();
+        manif.setEstadoManifiestoNegocio(4+"");
+        return bdL_C_SFManifiestoLocal.findManifiestosByAttributes(manif);
+    }
+    
     public BeanError guiasOK(int nidManif, String codUN, String cidGuia, int todo){//todo = 1 / excepto guia = 0
         BeanError beanError = new BeanError();
         try{

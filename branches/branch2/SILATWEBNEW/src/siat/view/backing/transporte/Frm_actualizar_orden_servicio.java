@@ -93,6 +93,7 @@ public class Frm_actualizar_orden_servicio {
     private RichInputText it2;
     private RichInputDate id1;
     private RichInputText it3;
+    private RichInputText it4;
     private RichCommandButton cb1;
     private RichInputText it5;
     private RichSubform sfOS;
@@ -120,6 +121,7 @@ public class Frm_actualizar_orden_servicio {
     private BeanOrdenServicio beanOrdServ = new BeanOrdenServicio();
     private String error = "";
     private String cidError = "";
+    private boolean anulada = false;
     private SessionScopeBeanActualizarOrdServ beanSessionActualizarOrdenServicio;
     private List lstEstados = new ArrayList();
     private LN_C_SFUtilsRemote ln_C_SFUtilsRemote = null;
@@ -183,6 +185,9 @@ public class Frm_actualizar_orden_servicio {
             beanSessionActualizarOrdenServicio.setEstadoOrdnServicioEditar("P");
         }
         if ("A".equals(newValue)) {
+            anulada = true;
+            Utils.addTarget(it4);
+            System.out.println("Entro");
             int num = bdl_C_SFOrdenServicioRemote.verificarOSConGuia(beanSessionActualizarOrdenServicio.getNidOrdenServ());
             if (num != 0) {
                 Utils.throwError_Aux(ctx, "Operacion rechazada, Orden de servicio asociada con una guia", 1);
@@ -190,6 +195,11 @@ public class Frm_actualizar_orden_servicio {
                 Utils.addTarget(choiceEditarEstado);
                 beanSessionActualizarOrdenServicio.setEstadoOrdnServicioEditar("P");
             }
+        }
+        else{
+            anulada = false;
+            Utils.addTarget(it4);
+            System.out.println("Salio");
         }
     }
     
@@ -225,7 +235,8 @@ public class Frm_actualizar_orden_servicio {
                                                                                         beanSessionActualizarOrdenServicio.getFechaOrdEditar(),
                                                                                         beanSessionActualizarOrdenServicio.getNidOrdenServ(),
                                                                                         beanSessionActualizarOrdenServicio.getEstadoOrdnServicioEditar(),
-                                                                                        beanSessionActualizarOrdenServicio.isRenderBtnChangeCliente());
+                                                                                        beanSessionActualizarOrdenServicio.isRenderBtnChangeCliente(),
+                                                                                        beanSessionActualizarOrdenServicio.getBeanOrden().getComentario());
         p2.hide();
         clearLista();
         if (beanOrden.getBeanError() != null) {
@@ -730,5 +741,21 @@ public class Frm_actualizar_orden_servicio {
 
     public RichInputDate getFecOS() {
         return fecOS;
+    }
+
+    public void setIt4(RichInputText it4) {
+        this.it4 = it4;
+    }
+
+    public RichInputText getIt4() {
+        return it4;
+    }
+
+    public void setAnulada(boolean anulada) {
+        this.anulada = anulada;
+    }
+
+    public boolean isAnulada() {
+        return anulada;
     }
 }

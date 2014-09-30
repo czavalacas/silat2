@@ -407,7 +407,7 @@
                   disabled="#{beanSessionRegistrarGuia.disableWhenOK}" labelStyle="text-align: left;"/>
     </af:panelFormLayout>
         </af:showDetailItem>
-        <af:showDetailItem text="Manifiesto" id="sdi2" immediate="false"
+     <!--   <af:showDetailItem text="Manifiesto" id="sdi2" immediate="false"
                            binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.sdi2}">
             <af:selectOneChoice label="Manifiesto por asignar a la Guía" autoSubmit="true"
                                 requiredMessageDetail="Se debe seleccionar una opción" id="tipoManf"
@@ -420,8 +420,7 @@
                                binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.itemManif1}"/>
                 <af:selectItem label="Seleccionar existente" value="2" id="itemManif2"
                                binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.itemManif2}"/>
-                <!--<af:selectItem label="Transporte Propio" id="itemManif3" value="3"
-                               binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.itemManif3}"/>-->
+              
             </af:selectOneChoice>
            
             <af:panelBox text="#{sessionScope.beanSessionRegistrarGuia.pboxDatosEmpTitulo}" id="pboxDatosEmp" showDisclosure="false"
@@ -488,13 +487,7 @@
                                       value="#{beanSessionRegistrarGuia.nidManifiesto}" 
                                       binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.itCodManif}"
                                       labelStyle="text-align: left;" columns="5"/>
-                       <!-- <af:inputText label="Buscar Manifiesto" id="itBuscarManif" rows="2"
-                                      binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.itBuscarManif}" disabled="true"
-                                      rendered="#{sessionScope.beanSessionRegistrarGuia.rendBuscManif}"
-                                      labelStyle="text-align: left;" columns="5">
-                        <af:showPopupBehavior popupId="popManif" triggerType="click"/>
-                        <adfsilat:setWatermarkBehavior value="Click aqui para buscar el manifiesto"/>
-                    </af:inputText>-->
+                    
                       <af:commandButton rendered="#{sessionScope.beanSessionRegistrarGuia.rendBuscManif}" immediate="true" 
                                         inlineStyle="margin:0px 0px -110px;" id="btnBManif"
                                         icon="/recursos/img/btn_buscar.png" iconPosition="leading">
@@ -626,7 +619,7 @@
             
      <af:popup autoCancel="disabled" id="popProv" contentDelivery="lazy"
               binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.popProv}">
-           <!--  -->  <af:dialog type="none" inlineStyle="width:390px;" modal="false" title="Busqueda de Proveedores">   
+            <af:dialog type="none" inlineStyle="width:390px;" modal="false" title="Busqueda de Proveedores">   
                    <af:subform id="s6" binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.s6}" defaultCommand="cb2">
                         <af:panelFormLayout id="pfl9" binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.pfl9}">
                                 <af:inputText value="#{beanSessionRegistrarGuia.razSocProv}" 
@@ -658,13 +651,12 @@
                             </af:column>
                         </af:table>   
         </af:subform>
-      <!-- --> </af:dialog>
+      </af:dialog>
     </af:popup>
     
-    <!-- POPUP BUSCAR MANIFIESTO-->
-            <af:popup contentDelivery="lazy" autoCancel="disabled" id="popManif"
+     <af:popup contentDelivery="lazy" autoCancel="disabled" id="popManif"
                       binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.popManif}">
-                    <!---->   <af:dialog type="none"  modal="true" title="Busqueda de Manifiestos">    
+                      <af:dialog type="none"  modal="true" title="Busqueda de Manifiestos">    
                 <af:subform id="s7" defaultCommand="btnBuscarManif">
                      <af:panelFormLayout id="pfl10" binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.pfl10}">
                                     <af:inputDate value="#{sessionScope.beanSessionRegistrarGuia.manifFecMin}" label="Fecha Min"
@@ -732,9 +724,9 @@
                                     </af:column>
                                 </af:table> 
                       </af:subform>
-              <!---->  </af:dialog>
+              </af:dialog>
             </af:popup>
-        </af:showDetailItem> 
+        </af:showDetailItem> -->
        <af:resource type="javascript">
                 function onDialogCancel(evt){
                     var outcome = evt.getOutcome();

@@ -49,6 +49,8 @@ public class TROrdenServicio implements Serializable {
     private List<TRGuia> guiasList;
     @Column(name = "FLG_VISTO", length = 1)
     private String flgVisto;
+    @Column(name = "COMENTARIO", length = 1)
+    private String comentario;
 
     public TROrdenServicio() {
     }
@@ -137,5 +139,13 @@ public class TROrdenServicio implements Serializable {
 
     public String getFlgVisto() {
         return flgVisto;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public String getComentario() {
+        return comentario;
     }
 }

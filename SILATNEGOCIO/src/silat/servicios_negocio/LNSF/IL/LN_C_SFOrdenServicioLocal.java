@@ -15,7 +15,7 @@ public interface LN_C_SFOrdenServicioLocal {
     
     BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha);
     List<BeanOrdenServicio> MostrarOrdenServ(Date fecOrdnServ);
-    BeanOrdenServicio ModificarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,Integer nidOrdenServ, String estado,boolean isCambiarEmpresa);
+    BeanOrdenServicio ModificarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,Integer nidOrdenServ, String estado,boolean isCambiarEmpresa,String comentario);
     List<BeanOrdenServicio> MostrarOrdenServNF();
     List<BeanOrdenServicio> findOrdenServicioByAttributesAux(BeanOrdenServicio beanOrdServ);
     List<BeanOrdenServicio> findOrdenServicioGuiasOK(String detalle, String razonSocial);

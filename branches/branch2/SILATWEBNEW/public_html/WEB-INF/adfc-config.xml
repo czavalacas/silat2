@@ -391,4 +391,19 @@
     <managed-bean-class>siat.view.backing.transporte.factura.SessionScopeBeanConsPreFactura</managed-bean-class>
     <managed-bean-scope>session</managed-bean-scope>
   </managed-bean>
+  <managed-bean id="__74">
+    <managed-bean-name>backing_transporte_manifiesto_registrar_manifiesto</managed-bean-name>
+    <managed-bean-class>siat.view.backing.transporte.manifiesto.Frm_registrar_manifiesto</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <managed-property id="__76">
+      <property-name>beanSessionRegistrarManifiesto</property-name>
+      <property-class>siat.view.backing.transporte.manifiesto.SessionScopedBeanRegistrarManifiesto</property-class>
+      <value>#{beanSessionRegistrarManifiesto}</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__75">
+    <managed-bean-name>beanSessionRegistrarManifiesto</managed-bean-name>
+    <managed-bean-class>siat.view.backing.transporte.manifiesto.SessionScopedBeanRegistrarManifiesto</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
 </adfc-config>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+             <af:panelGroupLayout>
+               <af:spacer height="10"/>
+                    <af:outputLabel value="Registrar Manifiestos" id="olTitulo" styleClass="titulos"
+                                    binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.tituloPage}"/>
+              <af:spacer height="10"/>
+             </af:panelGroupLayout>
+             
+             
+             
+             
+             </f:view>
+
+</ui:composition>

@@ -90,7 +90,11 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
     public BeanTRGuia registrarGuia_LN(String cidGuia,int numPaquetes,String obs,String conf,String estGuia,
                                        Date fecEmis,//max 1 semana antes y <= fecDesp
                                        Date fecDesp,//hoy
-                                       int nidRemitente,int nidOS,int nidManif,int nidFlota,int nidChofer,int nidDirecRemi,
+                                       int nidRemitente,
+                                       int nidOS,
+                                       int nidManif,
+                                       int nidFlota,
+                                       int nidChofer,int nidDirecRemi,
                                        int nidDirecDest,int opc,List<BeanTRItem> lstItems,String codUn,String estadoManif,
                                        String imgGuiaProv,boolean cerrarOS,boolean enTransManif){
         BeanError beanError = new BeanError();

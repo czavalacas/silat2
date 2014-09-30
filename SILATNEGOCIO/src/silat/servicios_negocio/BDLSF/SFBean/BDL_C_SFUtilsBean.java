@@ -402,8 +402,8 @@ public class BDL_C_SFUtilsBean implements BDL_C_SFUtilsRemote,
     
     public void removerItmsRepo(String cidRepo){
         try{
-            String sql = "DELETE FROM TRMREPO r " +
-                         "WHERE r.CIDREPO = '"+cidRepo+"'";//UtilsGeneral.depurar("borrar: "+sql);
+            String sql = "DELETE FROM TRMREPO  " +//MODIFICADOR POR LA NUEVA BD MYSQL
+                         "WHERE CIDREPO = '"+cidRepo+"'";//UtilsGeneral.depurar("borrar: "+sql);
             em.createNativeQuery(sql).executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
@@ -443,6 +443,7 @@ public class BDL_C_SFUtilsBean implements BDL_C_SFUtilsRemote,
             stmt.execute();
             conn.close();
             codFactura = stmt.getString(2);
+            System.out.println("CODIGO DE FACTURA :: "+codFactura);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {

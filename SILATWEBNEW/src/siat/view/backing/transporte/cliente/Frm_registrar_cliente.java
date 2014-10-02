@@ -316,9 +316,20 @@ public class Frm_registrar_cliente {
     }
 
     public void registrarFlota(ActionEvent actionEvent) {
+        int repetido=0;
         int accion = getBeanSessionRegistrarCliente().getAccion();
         resetearDatoFlota();
+        
         if (!getBeanSessionRegistrarCliente().contieneFlota(beanFlota)) {
+            if(beanSessionRegistrarCliente.getBeanFlota()!=null){
+            for(BeanFlota flota : beanSessionRegistrarCliente.getListFlota()){
+                if(flota.getCPlaca().equals(placaVehiculo)){
+                    repetido=1;
+                        Utils.throwError_Aux(ctx, "El numero de placa ya Se Encuentra Registrado. ",1);
+                    }
+                }            
+            }
+        if(repetido==0){
             int lstSize =
                 getBeanSessionRegistrarCliente().getListFlota() == null ? 0 : getBeanSessionRegistrarCliente().getListFlota().size();
             int index = 0;
@@ -342,17 +353,28 @@ public class Frm_registrar_cliente {
             getBeanSessionRegistrarCliente().setBeanFlota(beanFlota);
             getBeanSessionRegistrarCliente().getListFlota().add(index, beanFlota);
             Utils.unselectFilas(tabFlot);
-            popuNuevaFlota.hide();
+            popuNuevaFlota.hide();}
         } else {
             Utils.throwError_Aux(ctx, "Ya existe el Chofer ingresado.",1);
+        
+        
         }
-
-    }
-
+        }
     public void registrarChofer(ActionEvent actionEvent) {
+        int repetido=0;
         int accion = getBeanSessionRegistrarCliente().getAccion();
-        resetearDatoChofer();
+        resetearDatoChofer();     
+          
         if (!getBeanSessionRegistrarCliente().contiene(beanChofer)) {
+            if(beanSessionRegistrarCliente.getListChofer()!=null){
+            for(BeanChofer chofer : beanSessionRegistrarCliente.getListChofer()){
+                if(chofer.getLicencia().equals(licenciaChofer)){
+                    repetido=1;
+                        Utils.throwError_Aux(ctx, "El numero de licencia ya Se Encuentra Registrado. ",1);
+                    }
+            }            
+            }
+            if(repetido==0){
             int lstSize =
                 getBeanSessionRegistrarCliente().getListChofer() == null ? 0 : getBeanSessionRegistrarCliente().getListChofer().size();
             int index = 0;
@@ -369,12 +391,12 @@ public class Frm_registrar_cliente {
             getBeanSessionRegistrarCliente().setBeanChofer(beanChofer);
             getBeanSessionRegistrarCliente().getListChofer().add(index, beanChofer);
             Utils.unselectFilas(tabChof);
-            popupNuevoChofer.hide();
+            popupNuevoChofer.hide();}
         } else {
             Utils.throwError_Aux(ctx, "Ya existe el Chofer ingresado.",1);
         }
 
-    }
+        }
     ///grabardireccion
 
     public void addCliente(ActionEvent actionEvent) {

@@ -10,6 +10,7 @@ import silat.servicios_negocio.entidades.admin.ADChofer;
 @Local
 public interface BDL_C_SFChoferLocal {
     List<ADChofer> getADChoferFindAll();
+    int verificarLicenciaPlaca(String licencia);
     List<BeanChofer> findChoferesByAttributes(BeanChofer beanChofer);
     
 }

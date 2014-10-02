@@ -30,18 +30,20 @@ public class placaValidator implements Validator {
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object object) {        
         String dato = object.toString();
         int num=0;
-       /* if (!dato.matches("[A-Za-z0-9]{2,}-[0-9]{3,}")) {
-       //     ("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) 
+        if (!dato.matches("[A-Za-z0-9]{2,}-[0-9]{3,}")) {
+        
             throw new ValidatorException(new FacesMessage("La placa tiene formato Incorrecto. Tipo de formato valido AA-XXXX o AAA-XXX"));
-        }        
+        }   
+        
         if (dato.length() != 7) {
             FacesMessage fm = new FacesMessage("Placa debe contener exactamente 7 caracteres.");
             throw new ValidatorException(fm);
-        }     */ 
+        }      
         
         if(num != bdl_C_SFFlotaRemote.verificarExistePlaca(dato.toUpperCase())){
             FacesMessage fm = new FacesMessage("El numero de placa ya Se Encuentra Registrado. ");
             throw new ValidatorException(fm);
         }
-    }
-}
+        }
+        }
+

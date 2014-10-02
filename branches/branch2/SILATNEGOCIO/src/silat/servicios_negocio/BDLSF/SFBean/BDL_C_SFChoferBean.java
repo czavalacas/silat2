@@ -73,4 +73,19 @@ public class BDL_C_SFChoferBean implements BDL_C_SFChoferRemote,
             return new ArrayList<BeanChofer>();
         }
     }
+    public int verificarLicenciaPlaca(String licencia) {
+        int valor = 0;
+        try {
+            String ejbQl = "select count(e.licencia) " +
+                           "from ADChofer e " +
+                           "where e.licencia='"+  licencia +"'";            
+            Object resultado = em.createQuery(ejbQl).getSingleResult();
+            valor = Integer.parseInt(resultado.toString());
+            return valor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 55555;
+        }
+    }//nuevo
+    
 }

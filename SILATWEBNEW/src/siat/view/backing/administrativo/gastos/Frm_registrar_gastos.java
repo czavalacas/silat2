@@ -222,6 +222,7 @@ public class Frm_registrar_gastos {
             this.setTipoCombustible(this.llenarTipoCombustible());
             this.setListaFlotasLubal(this.llenarFlotaLubal());
             this.setListaProveedores(this.traerProveedores());
+            this.setTipoGastos(this.llenarTipoGastoCombo());            
             beanUsuario = (BeanUsuarioAutenticado) Utils.getSession("USER");
         } catch (Exception e) {
             e.printStackTrace();

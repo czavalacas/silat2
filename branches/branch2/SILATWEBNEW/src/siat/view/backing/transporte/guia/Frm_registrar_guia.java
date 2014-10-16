@@ -305,6 +305,9 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     private Double nCantidad;
     FacesContext ctx = FacesContext.getCurrentInstance();
     private RichSelectBooleanCheckbox ckbTraPro;
+    /*private RichPopup popupSeleccionarManifiesto;
+    private RichPanelFormLayout pfl12;
+    private RichCommandButton btnAsignarManifiesto;*/
     //  private RichCommandButton btnAddUndMed;
     //private BeanUsuarioAutenticado beanUsuario = (BeanUsuarioAutenticado) Utils.getSession("USER");
 
@@ -372,13 +375,16 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                 getBeanSessionRegistrarGuia().setImgGuiaProv(beanGuia.getImgGuiaProv());
                 getBeanSessionRegistrarGuia().setNombBtnImg("Subir Imagen");//dfloresgonz 26.04.2014 se cambia por necesidad de adjuntar imagenes aun este OK
                 getBeanSessionRegistrarGuia().setDisabInputFile(false);//dfloresgonz 26.04.2014 se cambia por necesidad de adjuntar imagenes aun este OK
+                getBeanSessionRegistrarGuia().setDisableComboManifiesto(false);//czavalacas 02.10.2014 campo del choice elejir existente manifiesto cambiado
+               
                 //Manifiesto
                 String tipoComboManif = "";
                 if(beanGuia.getTrManifiesto() != null){
+                System.out.println("TIENE MANIFIESTO");
                     BeanManifiesto manif = beanGuia.getTrManifiesto();
                     tipoComboManif = "2";//Manif Exist
                     getBeanSessionRegistrarGuia().setPboxManifiestoVis(true);
-                    getBeanSessionRegistrarGuia().setPboxDatosEmpVis(true);
+                    getBeanSessionRegistrarGuia().setPboxDatosEmpVis(true);//czavalacas 02.10.2014 valor original true, cambiado a false para que se pueda agregar manifiesto a una guia
                     getBeanSessionRegistrarGuia().setEstadoFormManif(true);
                     getBeanSessionRegistrarGuia().setNidManifiesto(manif.getNidManifiesto());
                     getBeanSessionRegistrarGuia().setValorComboManif(Integer.parseInt(tipoComboManif));
@@ -400,7 +406,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                     getBeanSessionRegistrarGuia().setRucEmpSC(manif.getTrManifiesto().getCRuc());
                     getBeanSessionRegistrarGuia().setLstGuiasManif(this.llenarGuiasManif(manif.getNidManifiesto()));
                     getBeanSessionRegistrarGuia().setVisibTxtRazSocProvTransBehav(false);
-                    getBeanSessionRegistrarGuia().setVisibTxtRazSocProvTrans2(true);
+                    getBeanSessionRegistrarGuia().setVisibTxtRazSocProvTrans2(true);//
                     getBeanSessionRegistrarGuia().setDisabSocFlota(true);
                     getBeanSessionRegistrarGuia().setVisibRucEmpTrans(true);
                     getBeanSessionRegistrarGuia().setDisabSocChofer(true);
@@ -411,7 +417,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                     getBeanSessionRegistrarGuia().setCidChofer(manif.getNidChof().toString());
                     getBeanSessionRegistrarGuia().setVisibSocFlota(true);
                     getBeanSessionRegistrarGuia().setVisibSocChofer(true);
-                    getBeanSessionRegistrarGuia().setPboxDatosTransVis(true);
+                    getBeanSessionRegistrarGuia().setPboxDatosTransVis(true);//czavalacas 02.10.2014 valor original true, cambiado a false para que se pueda agregar manifiesto a una guia
                     List<BeanFlota> lstBeanFlota = ln_C_SFFlotaRemote.findFlotasByAttr_LN(null,beanGuia.getNidFlota());
                     if(lstBeanFlota != null){
                         if(lstBeanFlota.size() > 0){
@@ -431,9 +437,10 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                         }
                     }
                 }else{
+                    System.out.println("NO TIENE MANIFIESTO");
                     tipoComboManif = "3";//Transp Propio
-                    getBeanSessionRegistrarGuia().setPboxDatosEmpVis(true);
-                    getBeanSessionRegistrarGuia().setPboxDatosTransVis(true);
+                    getBeanSessionRegistrarGuia().setPboxDatosEmpVis(false); //czavalacas 02.10.2014 valor original true, cambiado a false para que se pueda agregar manifiesto a una guia
+                    getBeanSessionRegistrarGuia().setPboxDatosTransVis(false);//czavalacas 02.10.2014 valor original true, cambiado a false para que se pueda agregar manifiesto a una guia
                     getBeanSessionRegistrarGuia().setVisibTxtRazSocProvTrans2(true);
                     getBeanSessionRegistrarGuia().setVisibRucEmpTrans(true);
                     getBeanSessionRegistrarGuia().setVisibSocFlota(true);
@@ -1166,6 +1173,25 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             beanSessionRegistrarGuia.setValorComboManif(0);e.printStackTrace();
         }
     }
+    
+    /* Metodo Para Seleccionar Manifiesto Existente = 2*/
+  /*  public void asignarManifiesto(ActionEvent actionEvent) {
+        
+        int opc = 2;
+       // opc = Integer.parseInt(valorCombo);
+        beanSessionRegistrarGuia.setValorComboManif(opc);
+        beanSessionRegistrarGuia.setNidEmpProvTrans(0);
+        ckbTraPro.setRendered(false);
+        ckbTraPro.setSelected(false);
+        switch(opc){
+            case 1 : nuevoManifiesto();break;
+            case 2 : existenteManifiesto();break;
+            case 3 : transportePropio();break;
+        }
+        Utils.showPopUpMIDDLE(popupSeleccionarManifiesto);
+       // Utils.addTarget(ckbTraPro);
+    }*/
+    
     
     public void cambioCheckTransPropio(ValueChangeEvent vce) {
         try{
@@ -3412,11 +3438,11 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         return popUM;
     }
 
-    public void setCb5(RichCommandButton cb5) {
+    public void setBtnAsignarManifiesto(RichCommandButton cb5) {
         this.btnAnular = cb5;
     }
 
-    public RichCommandButton getCb5() {
+    public RichCommandButton getBtnAsignarManifiesto() {
         return btnAnular;
     }
 
@@ -3467,4 +3493,30 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     public RichSelectBooleanCheckbox getCkbTraPro() {
         return ckbTraPro;
     }
+
+  /*  public void setPopupSeleccionarManifiesto(RichPopup p1) {
+        this.popupSeleccionarManifiesto = p1;
+    }
+
+    public RichPopup getPopupSeleccionarManifiesto() {
+        return popupSeleccionarManifiesto;
+    }
+
+    public void setPfl12(RichPanelFormLayout pfl12) {
+        this.pfl12 = pfl12;
+    }
+
+    public RichPanelFormLayout getPfl12() {
+        return pfl12;
+    }
+
+    public void setCb5(RichCommandButton cb5) {
+        this.btnAsignarManifiesto = cb5;
+    }
+
+    public RichCommandButton getCb5() {
+        return btnAsignarManifiesto;
+    }*/
+
+  
 }

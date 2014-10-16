@@ -122,6 +122,7 @@ public class SessionScopedBeanRegistrarGuia implements Serializable {
     private boolean rendBuscManif = false;
     private boolean disabRegisManif = false;
     private boolean disabInputFile = false;
+    private boolean disableComboManifiesto=false;
     /**/
     private String marcaVehi;
     private String placa;
@@ -1143,5 +1144,13 @@ public class SessionScopedBeanRegistrarGuia implements Serializable {
 
     public boolean isTransportePropio() {
         return transportePropio;
+    }
+
+    public void setDisableComboManifiesto(boolean disableComboManifiesto) {
+        this.disableComboManifiesto = disableComboManifiesto;
+    }
+
+    public boolean isDisableComboManifiesto() {
+        return disableComboManifiesto;
     }
 }

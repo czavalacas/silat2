@@ -5,13 +5,339 @@
              <af:panelGroupLayout>
                <af:spacer height="10"/>
                     <af:outputLabel value="Registrar Manifiestos" id="olTitulo" styleClass="titulos"
-                                    binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.tituloPage}"/>
+                                  binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.olTituloPopUp}"/>
               <af:spacer height="10"/>
              </af:panelGroupLayout>
-             
+             <af:panelTabbed id="pt1" 
+                        inlineStyle="margin:0px 50px 0px 0px;"
+                        dimensionsFrom="auto">
+                        
+                        <af:showDetailItem text="Manifiesto" id="sdi2" immediate="false"
+                           binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.sdi2}">
+            <af:selectOneChoice label="Manifiesto por asignar a la Guía" autoSubmit="true"
+                                requiredMessageDetail="Se debe seleccionar una opción" id="tipoManf"
+                                binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.tipoManf}"
+                                disabled="#{sessionScope.beanSessionRegistrarManifiesto.disableComponents}"
+                                showRequired="true" unselectedLabel="Seleccionar Opción" valuePassThru="true"
+                                valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.cambioManif}"
+                                value="#{sessionScope.beanSessionRegistrarManifiesto.comboTipoManif}">
+                <af:selectItem label="Crear Nuevo Manifiesto" value="1" id="itemManif1"
+                               binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itemManif1}"/>
+                <af:selectItem label="Seleccionar existente" value="2" id="itemManif2"
+                               binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itemManif2}"/>
+              
+            </af:selectOneChoice>
+           
+            <af:panelBox text="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosEmpTitulo}" id="pboxDatosEmp" showDisclosure="false"
+                         inlineStyle = "width:400px;" background="light"
+                         binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.pboxDatosEmp}"
+                         visible="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosEmpVis}">
+                    <af:panelFormLayout id="pfl8" binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.pfl8}" rows="1" labelWidth="80">
+                            <af:inputText label="Razón Social" id="txtRazSocEmpTransp" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtRazSocEmpTransp}"
+                                          rows="2"  disabled="true" showRequired="true" clientComponent="true"
+                                          visible="#{sessionScope.beanSessionRegistrarManifiesto.visibTxtRazSocProvTransBehav}"
+                                          labelStyle="text-align: left;"/>
+                         <af:commandButton visible="#{sessionScope.beanSessionRegistrarManifiesto.visibTxtRazSocProvTransBehav}" immediate="true" 
+                                           inlineStyle="margin:0px 0px 0px -80px;" id="btnBProv" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                           icon="/recursos/img/btn_buscar.png" iconPosition="leading">
+                                <af:showPopupBehavior popupId="popProv" triggerType="click"/>              
+                        </af:commandButton>  
+                        </af:panelFormLayout>
+                       <af:panelFormLayout  labelWidth="80"> 
+                          <af:selectBooleanCheckbox label="Transporte Propio" id="ckbTraPro" rendered="#{sessionScope.beanSessionRegistrarManifiesto.valorComboManif == 1}"
+                                                    binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.ckbTraPro}"
+                                                    valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.cambioCheckTransPropio}"
+                                                    autoSubmit="true" labelStyle="text-align: left;"/>
+                        <af:inputText label="Razón Social:" id="txtRazSocEmpTransp2" rendered="#{sessionScope.beanSessionRegistrarManifiesto.visibTxtRazSocProvTrans2}" disabled="true"
+                                      value="#{sessionScope.beanSessionRegistrarManifiesto.empresaSC}" labelStyle="text-align: left;"
+                                      binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtRazSocEmpTransp2}"
+                                      visible="#{sessionScope.beanSessionRegistrarManifiesto.visibTxtRazSocProvTrans2}"/>
+                        <af:inputText label="R.U.C. Nº" id="rucEmpTransp" rendered="#{sessionScope.beanSessionRegistrarManifiesto.visibRucEmpTrans}"
+                                      binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.rucEmpTransp}"
+                                      disabled="true" showRequired="true" labelStyle="text-align: left;"
+                                      value="#{sessionScope.beanSessionRegistrarManifiesto.rucEmpSC}"/>
+                    <af:selectOneChoice label="Flota" id="socFlota" rendered="#{sessionScope.beanSessionRegistrarManifiesto.visibSocFlota}"
+                                        binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.socFlota}"
+                                        valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.selectFlota}"
+                                        autoSubmit="true" unselectedLabel="Seleccionar Vehiculo" labelStyle="text-align: left;"
+                                        requiredMessageDetail="Debe seleccionar un vehiculo" showRequired="true"
+                                        required="true" value="#{sessionScope.beanSessionRegistrarManifiesto.cidFlota}"
+                                        disabled="#{sessionScope.beanSessionRegistrarManifiesto.disabSocFlota}">
+                    <f:selectItems value="#{sessionScope.beanSessionRegistrarManifiesto.lstFlotas}" id="si4"
+                                   binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.si4}"/>
+                </af:selectOneChoice>
+                    <af:selectOneChoice label="Chofer" requiredMessageDetail="Debe seleccionar un chofer" id="socChofer"
+                                        rendered="#{sessionScope.beanSessionRegistrarManifiesto.visibSocChofer}" labelStyle="text-align: left;"
+                                        binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.socChofer}"
+                                        unselectedLabel="Seleccionar Chofer" autoSubmit="true"
+                                        valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.selectChofer}"
+                                        showRequired="true" required="true"
+                                        value="#{sessionScope.beanSessionRegistrarManifiesto.cidChofer}"
+                                        disabled="#{sessionScope.beanSessionRegistrarManifiesto.disabSocChofer}">
+                        <f:selectItems value="#{sessionScope.beanSessionRegistrarManifiesto.lstChofers}" id="si5"
+                                       binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.si5}"/>
+                    </af:selectOneChoice>
+                </af:panelFormLayout>
+                
+            </af:panelBox>
+            <af:panelBox text="Manifiesto" id="pboxManifiesto" showDisclosure="false"
+                         inlineStyle = "width:400px;" background="light"
+                         binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.pboxManifiesto}"
+                         visible="#{sessionScope.beanSessionRegistrarManifiesto.pboxManifiestoVis}">
+                 <af:panelFormLayout id="pflNewManif" rows="1" labelWidth="120"
+                                binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.pflNewManif}" >
+                        <af:inputText label="Codigo" id="itCodManif" disabled="true"
+                                      rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                      value="#{beanSessionRegistrarManifiesto.nidManifiesto}" 
+                                      binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itCodManif}"
+                                      labelStyle="text-align: left;" columns="5"/>
+                    
+                      <af:commandButton rendered="#{sessionScope.beanSessionRegistrarManifiesto.rendBuscManif}" immediate="true" 
+                                        inlineStyle="margin:0px 0px -110px;" id="btnBManif"
+                                        icon="/recursos/img/btn_buscar.png" iconPosition="leading">
+                            <af:showPopupBehavior popupId="popManif" triggerType="click"/>       
+                      </af:commandButton>  
+                </af:panelFormLayout>
+                <af:panelFormLayout labelWidth="120">
+                    
+                    <af:inputDate label="Fecha Manifiesto" id="txtFecManif" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                  binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtFecManif}"
+                                  showRequired="true" required="true"
+                                  value="#{sessionScope.beanSessionRegistrarManifiesto.fecManif}" disabled="false"
+                                  labelStyle="text-align: left;" minValue="2013-11-01">
+                                    <af:convertDateTime pattern="dd/MM/yyyy"/>
+                    </af:inputDate>
+                    <af:inputText label="Flete Pactado" id="txtFletePact" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                  binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtFletePact}"
+                                  required="true" showRequired="true" autoSubmit="true"
+                                  converter="javax.faces.Double"
+                                  value="#{sessionScope.beanSessionRegistrarManifiesto.fletePactado}"
+                                  valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.cambiarFlete}"
+                                  disabled="#{sessionScope.beanSessionRegistrarManifiesto.txtFleteDisable}"
+                                  labelStyle="text-align: left;">
+                        <f:validator validatorId="decimalValidator"/>
+                        <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                              minIntegerDigits="1" maxIntegerDigits="6"/>
+                    </af:inputText>
+                       <af:inputText label="Adelanto" id="txtAdelanto" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                     binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtAdelanto}"
+                                     autoSubmit="true" value="#{sessionScope.beanSessionRegistrarManifiesto.adelanto}"
+                                     valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.cambiarAdelanto}"
+                                     disabled="#{sessionScope.beanSessionRegistrarManifiesto.txtAdelaDisable}"
+                                     labelStyle="text-align: left;">
+                            <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                              minIntegerDigits="1" maxIntegerDigits="6" />
+                        </af:inputText>
+                        <af:inputText label="IGV:" id="itIGV"
+                                      binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itIGV}"
+                                      disabled="true" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                      value="#{sessionScope.beanSessionRegistrarManifiesto.igv}" labelStyle="text-align: left;">
+                        <f:validator validatorId="decimalValidator"/>
+                            <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                              minIntegerDigits="1" maxIntegerDigits="6"/>
+                        </af:inputText>
+                        <af:inputText label="Detraccion" id="itDetraccion" disabled="true"
+                                      rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                      binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itDetraccion}"
+                                      value="#{sessionScope.beanSessionRegistrarManifiesto.detraccionVal}"
+                                      labelStyle="text-align: left;">
+                        <f:validator validatorId="decimalValidator"/>
+                            <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                              minIntegerDigits="1" maxIntegerDigits="6"/>
+                        </af:inputText>
+                                <af:inputText label="Monto Final" id="itMontoFin"
+                                              binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itMontoFin}"
+                                              disabled="true" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                              value="#{sessionScope.beanSessionRegistrarManifiesto.montoFinalVal}"
+                                              labelStyle="text-align: left;">
+                        <f:validator validatorId="decimalValidator"/>
+                            <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                              minIntegerDigits="1" maxIntegerDigits="6"/>
+                        </af:inputText>
+                         <af:inputText label="Saldo" id="itSaldo"
+                                       binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itSaldo}"
+                                       disabled="true" value="#{sessionScope.beanSessionRegistrarManifiesto.saldo}"
+                                       partialTriggers="txtFletePact txtAdelanto" immediate="true"
+                                       rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                       labelStyle="text-align: left;">
+                        <af:convertNumber maxFractionDigits="2" minFractionDigits="0"
+                                              minIntegerDigits="1" maxIntegerDigits="6"/>
+                        </af:inputText>
+                        <af:selectOneChoice label="Tipo Documento" requiredMessageDetail="Debe seleccionar un tipo de documento"
+                                        id="tipoDocManif" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                        binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.tipoDocManif}"
+                                        showRequired="true" required="true"
+                                        value="#{sessionScope.beanSessionRegistrarManifiesto.tipDoc}"
+                                        disabled="#{sessionScope.beanSessionRegistrarManifiesto.txtTipDocuDisable}"
+                                        labelStyle="text-align: left;">
+                        <af:selectItem label="Factura" value="1" id="tipoDoc1" disabled="#{beanSessionRegistrarManifiesto.transportePropio}"
+                                       binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.tipoDoc1}"/>
+                        <af:selectItem label="Transporte Propio" value="2" id="tipoDoc2"
+                                       disabled="#{beanSessionRegistrarManifiesto.transportePropio == false}"/>               
+                    </af:selectOneChoice>
+                        <af:inputText label="Observaciones" id="txtObsManif" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                      binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtObsManif}" rows="4"
+                                      maximumLength="500" value="#{sessionScope.beanSessionRegistrarManifiesto.observ}"
+                                      disabled="#{sessionScope.beanSessionRegistrarManifiesto.txtObsvDisable}"
+                                      labelStyle="text-align: left;"/>
+                        <af:selectOneChoice label="Guias" id="socGuiasManif"
+                                            binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.socGuiasManif}"
+                                            rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                            labelStyle="text-align: left;">
+                            <f:selectItems value="#{sessionScope.beanSessionRegistrarManifiesto.lstGuiasManif}" id="si9"
+                                           binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.si9}"/>
+                        </af:selectOneChoice>
+                        <af:commandButton text="Registrar Manifiesto" id="btnRegManif" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
+                                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.btnRegManif}"
+                                          actionListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.validarManifiesto}"
+                                          disabled="#{sessionScope.beanSessionRegistrarManifiesto.disabRegisManif}"/>
+            </af:panelFormLayout>
+                    </af:panelBox> 
+            <af:panelBox text="Datos de Identificacion de la Unidad de Transporte y del Conductor"
+                 id="pboxDatosTrans" 
+                 binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.pboxDatosTrans}"
+                 background="light" inlineStyle = "width:400px;" showDisclosure="false"
+                 visible="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosTransVis}">
+        <af:panelFormLayout id="panFormTrans" binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.panFormTrans}">
+            <af:inputText label="Marca del Vehiculo" id="txtMarcVehi" rendered="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosTransVis}"
+                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtMarcVehi}"
+                          disabled="true" showRequired="true" labelStyle="text-align: left;"
+                          value="#{sessionScope.beanSessionRegistrarManifiesto.marcaVehi}"/>
+            <af:inputText label="Placa Nº." id="txtPlaca" disabled="true" rendered="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosTransVis}"
+                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtPlaca}" labelStyle="text-align: left;"
+                          showRequired="true" value="#{sessionScope.beanSessionRegistrarManifiesto.placa}"/>
+            <af:inputText label="Configuración Vehicular" disabled="true" id="txtConfigVehi" rendered="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosTransVis}"
+                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtConfigVehi}" labelStyle="text-align: left;"
+                          showRequired="true" value="#{sessionScope.beanSessionRegistrarManifiesto.configVehi}"/>
+            <af:inputText label="Nº Certificado de Inscripción" disabled="true" id="txtCertInsc" rendered="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosTransVis}"
+                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtCertInsc}" labelStyle="text-align: left;"
+                          value="#{sessionScope.beanSessionRegistrarManifiesto.configVehi}"/>
+            <af:inputText label="Nº Licencia de Conducir" id="txtLicCondu" disabled="true" rendered="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosTransVis}"
+                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtLicCondu}" labelStyle="text-align: left;"
+                          showRequired="true" value="#{sessionScope.beanSessionRegistrarManifiesto.licen}"/>
+            <af:inputText label="Conductor" id="txtConductor" disabled="true" rendered="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosTransVis}"
+                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtConductor}" labelStyle="text-align: left;"
+                          showRequired="true" value="#{sessionScope.beanSessionRegistrarManifiesto.conductor}"/>
+                    </af:panelFormLayout>
+       </af:panelBox>
+            
+     <af:popup autoCancel="disabled" id="popProv" contentDelivery="lazy"
+              binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.popProv}">
+            <af:dialog type="none" inlineStyle="width:390px;" modal="false" title="Busqueda de Proveedores">   
+                   <af:subform id="s6" binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.s6}" defaultCommand="cb2">
+                        <af:panelFormLayout id="pfl9" binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.pfl9}">
+                                <af:inputText value="#{beanSessionRegistrarManifiesto.razSocProv}" 
+                                            labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                          id="it6" binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.it6}">
+                                    <adfsilat:setWatermarkBehavior value="Razón Social Proveedor"/>
+                                    <adfsilat:setInitialFocus/>
+                                </af:inputText>
+                                <af:commandButton text="Buscar" id="cb2"
+                                                  binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.cb2}"
+                                                  action="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.mostrarProveedores}"/>
+                        </af:panelFormLayout>
+                        <af:table value="#{beanSessionRegistrarManifiesto.lstProveedores}" var="row"
+                                  inlineStyle="width:inherit; height:220px;"
+                                  emptyText="No hay Proveedores"
+                                  fetchSize="25" rowBandingInterval="0"
+                                  filterVisible="true" varStatus="vs"
+                                  selectionListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.seleccionarProveedor}"
+                                  rowSelection="single" id="tbProv"
+                                  binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.tbProv}">
+                            <af:column width="15" frozen="true">
+                                 <af:outputText value="#{vs.index + 1}"/>
+                            </af:column>
+                            <af:column width="140" headerText="Razon Social" id="c13" sortable="true" sortProperty="adEmpresa1.CRazonSocial">
+                                <af:outputText value="#{row.adEmpresa1.CRazonSocial}" id="ot13"/>
+                            </af:column>
+                            <af:column headerText="RUC" width="75" id="c14" sortable="true" sortProperty="adEmpresa1.CRuc">
+                                <af:outputText value="#{row.adEmpresa1.CRuc}" id="ot14"/>
+                            </af:column>
+                        </af:table>   
+        </af:subform>
+      </af:dialog>
+    </af:popup>
+    
+     <af:popup contentDelivery="lazy" autoCancel="disabled" id="popManif"
+                      binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.popManif}">
+                      <af:dialog type="none"  modal="true" title="Busqueda de Manifiestos">    
+                <af:subform id="s7" defaultCommand="btnBuscarManif">
+                     <af:panelFormLayout id="pfl10" binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.pfl10}">
+                                    <af:inputDate value="#{sessionScope.beanSessionRegistrarManifiesto.manifFecMin}" label="Fecha Min"
+                                                  id="id5"
+                                                    labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                                  binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.id5}">
+                                    </af:inputDate>
+                                    <af:inputDate value="#{sessionScope.beanSessionRegistrarManifiesto.manifFecMax}" label="Fecha Max"
+                                                  id="id4"
+                                                  labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                                  binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.id4}">
+                                    </af:inputDate>
+                                    <af:inputText value="#{sessionScope.beanSessionRegistrarManifiesto.manifRazSoc}"
+                                                  label="Razon Social" id="it14"
+                                                  labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                                  binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.it14}"
+                                                  converter="upperConverter">
+                                    </af:inputText>
+                                    <af:commandButton text="Buscar"
+                                                      id="btnBuscarManif"
+                                                      binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.btnBuscarManif}"
+                                                      action="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.mostrarManif}"/>
+                        </af:panelFormLayout>
+                                <af:table value="#{sessionScope.beanSessionRegistrarManifiesto.lstManif}" var="row"
+                                          emptyText="No hay manifiestos pendientes"
+                                          fetchSize="25" rowBandingInterval="0"
+                                          filterVisible="true" varStatus="vs" inlineStyle="width:inherit; height:180px;"
+                                          selectionListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.selectManif}"
+                                          rowSelection="single" id="tabMani"
+                                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.tabMani}">
+                                    <af:column width="15" frozen="true">
+                                                <af:outputText value="#{vs.index + 1}"/>
+                                          </af:column>
+                                    <af:column sortProperty="trManifiesto.CRazonSocial" sortable="true" width="150" headerText="Empresa" id="c17">
+                                            <af:outputText value="#{row.trManifiesto.CRazonSocial}" id="it7">
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="nidManifiesto" sortable="true" width="50" headerText="Manifiesto">
+                                            <af:outputText value="#{row.nidManifiesto}" >
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="trManifiesto.CRuc" sortable="true"  width="70" headerText="RUC" id="c18">
+                                        <af:outputText value="#{row.trManifiesto.CRuc}" id="it8">
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="tipoDoc1Car" sortable="true" width="70" headerText="Tipo Doc" id="c19">
+                                        <af:outputText value="#{row.tipoDoc1Car}" id="it9"/>
+                                    </af:column>
+                                    <af:column sortProperty="fechaManifiesto" sortable="true" width="60" headerText="Fecha" id="c20">
+                                            <af:outputText value="#{row.fechaManifiesto}">
+                                                <af:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="NAdelanto" sortable="true"  width="60" headerText="Adelanto" id="c21">
+                                        <af:outputText value="#{row.NAdelanto}" id="it10">
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="NFletePactado" sortable="true"  width="60" headerText="Flete" id="c22">
+                                        <af:outputText value="#{row.NFletePactado}" id="it11">
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="CObservaciones" sortable="true" width="100" headerText="Obs" id="c23">
+                                        <af:outputText value="#{row.CObservaciones}" id="it12">
+                                        </af:outputText>
+                                    </af:column>
+                                </af:table> 
+                      </af:subform>
+              </af:dialog>
+            </af:popup>
+        </af:showDetailItem> 
+                       
+                        </af:panelTabbed>
              
              
              
              </f:view>
+               <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_manifiesto_registrar_manifiesto-->
 
-</ui:composition>
+  </ui:composition>

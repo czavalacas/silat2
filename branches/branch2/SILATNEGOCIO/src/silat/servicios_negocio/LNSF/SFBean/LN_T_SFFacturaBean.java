@@ -97,7 +97,11 @@ public class LN_T_SFFacturaBean implements LN_T_SFFacturaRemote,
             eFactura.setFechaFactura(fechaFactura);
             eFactura.setNidOS(nidOServ);
             eFactura.setEditable(isEditable == true ? "1" : "0");
-            eFactura.setContenido(contenido);
+            if(contenido!=null){
+                eFactura.setContenido(contenido);
+            }else{
+                eFactura.setContenido("");
+            }
             eFactura.setTipoFactura(tipFactura);//3 tipos, 1 = factura normal, 2 = factura de guias, 3 = factura con 1 linea
             eFactura.setDireccion(direccion);
             eFactura.setNEstadoFactura(estadoFactura);

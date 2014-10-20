@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vista_previa_factura_items_cabecera" pageWidth="489" pageHeight="802" columnWidth="489" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6ac871ad-f6cc-4822-af98-3ee7d92046af">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="128"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="CIDREPOR" class="java.lang.String"/>
 	<parameter name="CIDGUIAFU" class="java.lang.String"/>

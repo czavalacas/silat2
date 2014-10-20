@@ -26,9 +26,9 @@
 	<parameter name="DETALLE" class="java.lang.String"/>
 	<parameter name="CONTENIDO" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select * from dual]]>
+		<![CDATA[select curdate()]]>
 	</queryString>
-	<field name="DUMMY" class="java.lang.String"/>
+	<field name="curdate()" class="java.sql.Date"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

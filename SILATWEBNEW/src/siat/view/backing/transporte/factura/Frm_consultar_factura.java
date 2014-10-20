@@ -237,21 +237,21 @@ public class Frm_consultar_factura {
                 return;
             }
             BeanFactura beanFact = beanSessionScopeConsFactura.getFacturaSelect();
-            String jasper = ("1".equals(beanFact.getEditable()) ? "vista_print_factura_editable.jasper" : "vista_print_factura.jasper");
+            String jasper = ("1".equals(beanFact.getEditable()) ? "vista_print_factura_editable.jasper" : "vista_print_factura.jasper");            
             String monto = beanFact.getDTotal().toString();
             String igv = beanFact.getIgvFact().toString();
-            String subTotal = beanFact.getDSubTotal().toString();
+            String subTotal = beanFact.getDSubTotal().toString();  
             String cliente = beanFact.getCliente();
-            String guias = beanFact.getGuiasForReporte();
+            String guias = beanFact.getGuiasForReporte(); 
             String direccion = beanFact.getDireccion();
             String codFact = beanFact.getCidUnidadNegocio() + "-" + beanFact.getCCodFactura();
-            String timePath = codFact;
+            String timePath = codFact; 
             String ruc = beanFact.getRuc();
-            String estado = String.valueOf(beanFact.getNEstadoFactura());
+            String estado = String.valueOf(beanFact.getNEstadoFactura()); 
             Date fechaPago = beanFact.getFechaPago();
             Date fechaFactura = beanFact.getFechaFactura();
             String tipFactRepo = beanFact.getTipoFactura();
-            String detalle = beanFact.getDetalle() != null ? beanFact.getDetalle().replaceAll("%","") : beanFact.getDetalle();
+            String detalle = beanFact.getDetalle() != null ? beanFact.getDetalle().replaceAll("%","") : beanFact.getDetalle(); 
             String contenido = beanFact.getContenido() != null ? beanFact.getContenido().replaceAll("%","") : beanFact.getContenido();
             String pedido = null;
             /*if(!tipFactRepo.equals("1")){
@@ -307,6 +307,7 @@ public class Frm_consultar_factura {
         RichTable t = (RichTable) se.getSource();
         BeanFactura beanFact = (BeanFactura) t.getSelectedRowData();
         beanSessionScopeConsFactura.setFacturaSelect(beanFact);
+        System.out.println("::::FACTURA EDITABLE ::: "+ beanFact.getEditable());
         if(beanFact.getNEstadoFactura() != null){
             if(beanFact.getNEstadoFactura() == 3 || beanFact.getNEstadoFactura() == 1){//la factura seleccionada esta anulada o cancelada
                 btnAnular.setDisabled(true);

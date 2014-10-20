@@ -179,6 +179,7 @@ public class Frm_registrar_factura {
     private RichInputText itContenido;
     private RichCommandButton btnFlete;
     private RichColumn colRazSoc;
+    private int cont=0;
 
     public Frm_registrar_factura(){
         try{
@@ -216,7 +217,10 @@ public class Frm_registrar_factura {
             Date fechaFactura = beanSessionScopeRegistrarFactura.getFecFactura();
             BigDecimal subTotal = beanSessionScopeRegistrarFactura.getSub_total().setScale(2, RoundingMode.DOWN);
             String cidSerie = beanSessionScopeRegistrarFactura.getCodUN();
+            System.out.println(":::CIDREPO 2 ::: "+beanSessionScopeRegistrarFactura.getCidRepoToDelete());
+            
             String cidRepo = beanSessionScopeRegistrarFactura.getCidRepoToDelete();
+            
             BigDecimal nidParty = beanSessionScopeRegistrarFactura.getNidParty();
             String cliente = beanSessionScopeRegistrarFactura.getRazonClienteForFact();
             String ruc = beanSessionScopeRegistrarFactura.getRuc();
@@ -229,8 +233,9 @@ public class Frm_registrar_factura {
                 setearReporteRegistroEditable(false);
                 guias = beanSessionScopeRegistrarFactura.getGuiasPDF_Editable()[0]; 
                 guiasForRepo = beanSessionScopeRegistrarFactura.getGuiasPDF_Editable()[1]; 
-            }else{
-                setearReporteRegistro(false);
+            }else{           
+                cont=1;
+                setearReporteRegistro(false,cidRepo);
                 guias = beanSessionScopeRegistrarFactura.getGuiasPDF()[0]; 
                 guiasForRepo = beanSessionScopeRegistrarFactura.getGuiasPDF()[1]; 
             }
@@ -268,7 +273,7 @@ public class Frm_registrar_factura {
                 Utils.throwError_Aux(ctx,error.getCDescripcionError(), severidad);
             }else{
                 Utils.throwError_Aux(ctx,"Error Inesperado", 1);
-            }
+            }         
         }catch(Exception e){
             Utils.throwError_Aux(ctx,"Error Inesperado", 1);
         }
@@ -397,7 +402,7 @@ public class Frm_registrar_factura {
         if(beanSessionScopeRegistrarFactura.isEditable()){
             setearReporteRegistroEditable(true);
         }else{
-            setearReporteRegistro(true);
+            setearReporteRegistro(true,null);
         }
         return null;
     }
@@ -488,8 +493,8 @@ public class Frm_registrar_factura {
         return mapa;
     }
     
-    public void setearReporteRegistro(boolean isReporte){
-        try {
+    public void setearReporteRegistro(boolean isReporte,String cidRep0){
+        try {            
             beanSessionScopeRegistrarFactura.setLstGuiasConPrecio(new ArrayList<BeanTRGuia>());
             String jasper = "vista_previa_factura.jasper";
             String monto = beanSessionScopeRegistrarFactura.getTotal().setScale(2, RoundingMode.DOWN).toString();
@@ -499,12 +504,16 @@ public class Frm_registrar_factura {
             String claveRandom = Utils.generarContrasena();
             String direccion = beanSessionScopeRegistrarFactura.getDirec();
             String codFact = beanSessionScopeRegistrarFactura.getCodUN() + "-" + beanSessionScopeRegistrarFactura.getCodFactura();
-            String timePath = GregorianCalendar.getInstance().getTimeInMillis() + claveRandom;
+            String timePath= GregorianCalendar.getInstance().getTimeInMillis() + claveRandom;
+         
             String detalle = beanSessionScopeRegistrarFactura.getDetalleFactura() != null ? beanSessionScopeRegistrarFactura.getDetalleFactura().replaceAll("%","") : beanSessionScopeRegistrarFactura.getDetalleFactura() ;
+            if (cont==0){
             if (beanSessionScopeRegistrarFactura.getCidRepoToDelete() != null) {
                 bdL_C_SFUtilsRemote.removerItmsRepo(beanSessionScopeRegistrarFactura.getCidRepoToDelete());
+            }     
             }
             beanSessionScopeRegistrarFactura.setCidRepoToDelete(timePath);
+            System.out.println(":::CIDREPO 1 ::: "+beanSessionScopeRegistrarFactura.getCidRepoToDelete());
             String ruc = beanSessionScopeRegistrarFactura.getEmpresaSelected().getCRuc();
             List<BeanReportePrevio> lstReportItem = new ArrayList<BeanReportePrevio>();
             int tipFact = Integer.parseInt(beanSessionScopeRegistrarFactura.getTipFactura());
@@ -516,7 +525,9 @@ public class Frm_registrar_factura {
                 }
                 lstReportItem = tipUno_2Factura(timePath, lstReportItem);
             }
+            if (cont==0){
             bdL_C_SFUtilsRemote.grabarItemReporte(lstReportItem);
+            }
             String guias = beanSessionScopeRegistrarFactura.getGuiasPDF()[1];
             if (isReporte) {
                 String path =
@@ -528,6 +539,7 @@ public class Frm_registrar_factura {
                 beanSessionScopeRegistrarFactura.setSourcePrevio(path);
                 Utils.showPopUpMIDDLE(popPrevio);
             }
+            cont=0;
         } catch (Exception nfe) {
             nfe.printStackTrace();
         }
@@ -536,6 +548,7 @@ public class Frm_registrar_factura {
     
     public void setearReporteRegistroEditable(boolean isReporte){
         try {
+            
             beanSessionScopeRegistrarFactura.setLstGuiasConPrecio(new ArrayList<BeanTRGuia>());
             String jasper = "vista_previa_factura_editable.jasper";
             String monto = beanSessionScopeRegistrarFactura.getTotal().setScale(2, RoundingMode.DOWN).toString();
@@ -544,8 +557,8 @@ public class Frm_registrar_factura {
             String cliente = beanSessionScopeRegistrarFactura.getRazonClienteForFact();
             String claveRandom = Utils.generarContrasena();
             String direccion = beanSessionScopeRegistrarFactura.getDirec();
-            String codFact = beanSessionScopeRegistrarFactura.getCodUN() + "-" + beanSessionScopeRegistrarFactura.getCodFactura();
-            String timePath = GregorianCalendar.getInstance().getTimeInMillis() + claveRandom;
+            String codFact = beanSessionScopeRegistrarFactura.getCodUN() + "-" + beanSessionScopeRegistrarFactura.getCodFactura();          
+            String timePath = GregorianCalendar.getInstance().getTimeInMillis() + claveRandom;          
             String contenido = beanSessionScopeRegistrarFactura.getContenido() != null ? beanSessionScopeRegistrarFactura.getContenido().replaceAll("%","") : beanSessionScopeRegistrarFactura.getContenido();
             if (beanSessionScopeRegistrarFactura.getCidRepoToDelete() != null) {
                 bdL_C_SFUtilsRemote.removerItmsRepo(beanSessionScopeRegistrarFactura.getCidRepoToDelete());
@@ -1648,5 +1661,13 @@ public class Frm_registrar_factura {
 
     public RichColumn getColRazSoc() {
         return colRazSoc;
+    }
+
+    public void setCont(int cont) {
+        this.cont = cont;
+    }
+
+    public int getCont() {
+        return cont;
     }
 }

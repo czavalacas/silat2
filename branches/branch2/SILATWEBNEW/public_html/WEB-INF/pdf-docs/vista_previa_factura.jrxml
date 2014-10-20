@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vista_previa_factura" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="20" bottomMargin="20" uuid="7e0cd7ec-b3e5-4daa-b82a-938d20f67fae">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="46"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="LETRAS" class="java.lang.String"/>
 	<parameter name="PATH" class="java.lang.String"/>
 	<parameter name="TOTAL" class="java.lang.String"/>
@@ -25,9 +25,9 @@
 	<parameter name="PEDIDO" class="java.lang.String"/>
 	<parameter name="DETALLE" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select * from dual]]>
+		<![CDATA[select curdate()]]>
 	</queryString>
-	<field name="DUMMY" class="java.lang.String"/>
+	<field name="curdate()" class="java.sql.Date"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

@@ -12,5 +12,5 @@
 
 //////////////////////////////////////////////////////////////77 
 
-  #~~Para TP  -  agregarle un validator a placa
-  #~~Para TP  -  validar que una licencia solo pertenezca a un chofer    ~~validator si ya existe esa licencia. Y DARLE LA OPCION POR  MENSAJE.
+  # ~~Para TP  -  agregarle un validator a placa.
+  # ~~Para TP  -  validar que una licencia solo pertenezca a un chofer      ~~validator si ya existe esa licencia. Y DARLE LA OPCION POR  MENSAJE.

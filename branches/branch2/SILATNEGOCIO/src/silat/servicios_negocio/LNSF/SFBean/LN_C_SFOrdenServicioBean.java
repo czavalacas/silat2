@@ -35,6 +35,7 @@ import silat.servicios_negocio.Beans.BeanConstraint;
 import silat.servicios_negocio.Beans.BeanEmpresa;
 import silat.servicios_negocio.Beans.BeanError;
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
+import silat.servicios_negocio.Beans.BeanTrItemXOrds;
 import silat.servicios_negocio.LNSF.IL.LN_C_SFCatalogoErroresLocal;
 import silat.servicios_negocio.LNSF.IL.LN_C_SFOrdenServicioLocal;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFOrdenServicioRemote;
@@ -220,21 +221,27 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
         List<TROrdenServicio> listOrdServ = bdL_C_SFOrdenServicioLocal.findOrdenServicioPendientesByAttributes(beanOrdServ);
         List<BeanOrdenServicio> listaOrdServBean = new ArrayList<BeanOrdenServicio>();
         Iterator it = listOrdServ.iterator();
-        MapperIF mapper = new DozerBeanMapper();
+       // MapperIF mapper = new DozerBeanMapper();
         while(it.hasNext()){
             TROrdenServicio entida = (TROrdenServicio)it.next();
-            BeanOrdenServicio bean = (BeanOrdenServicio)mapper.map(entida, BeanOrdenServicio.class);
+        //    BeanOrdenServicio bean = (BeanOrdenServicio)mapper.map(entida, BeanOrdenServicio.class);
+            BeanOrdenServicio bean=new BeanOrdenServicio();
+            bean.setNidOrdnServ(entida.getNidOrdnServ());
+            bean.setCDetalle(entida.getCDetalle());
             BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_ESTORD","TRMORDS",entida.getCEstord());
             bean.setCEstadoOrdenDesc(constr.getCDescrip());
             bean.setCEstord(entida.getCEstord());
+            bean.setFecOrdnServ(entida.getFecOrdnServ());
+            bean.setComentario(entida.getComentario());
+            bean.setNidEmpresa(entida.getAdEmpresa().getNidParty());
             int cantGuiasVig = bdL_C_SFGuiaLocal.getCountGuiasVigentesByOrdenServ(entida.getNidOrdnServ());
             String flagVist = "1";
             if(cantGuiasVig == 0){
                 flagVist = "0";
             }
             bean.setFlgVisto(flagVist);
-            bean.setCRazonSocial(entida.getAdEmpresa().getCRazonSocial());
-        listaOrdServBean.add(bean);
+            bean.setCRazonSocial(entida.getAdEmpresa().getCRazonSocial());     
+            listaOrdServBean.add(bean);
         }
     return listaOrdServBean;
     }

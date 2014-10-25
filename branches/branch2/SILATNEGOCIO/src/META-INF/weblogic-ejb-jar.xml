@@ -982,4 +982,22 @@
         </stateless-session-descriptor>
         <enable-call-by-reference>true</enable-call-by-reference>
     </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>LN_C_SFItemOrdenServ</ejb-name>
+        <stateless-session-descriptor>
+            <business-interface-jndi-name-map>
+                <business-remote>silat.servicios_negocio.LNSF.IR.LN_C_SFItemOrdenServRemote</business-remote>
+                <jndi-name>map-LN_C_SFItemOrdenServ</jndi-name>
+            </business-interface-jndi-name-map>
+        </stateless-session-descriptor>
+    </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>BDL_C_SFItemXOrds</ejb-name>
+        <stateless-session-descriptor>
+            <business-interface-jndi-name-map>
+                <business-remote>silat.servicios_negocio.BDLSF.IR.BDL_C_SFItemXOrdsRemote</business-remote>
+                <jndi-name>LUBAL_SIAT_APP-SILATNEGOCIO-BDL_C_SFItemXOrds</jndi-name>
+            </business-interface-jndi-name-map>
+        </stateless-session-descriptor>
+    </weblogic-enterprise-bean>
 </weblogic-ejb-jar>

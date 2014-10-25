@@ -3,6 +3,9 @@ package silat.servicios_negocio.Beans;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
+import silat.servicios_negocio.entidades.trans.TRItemXOrds;
 
 public class BeanOrdenServicio implements Serializable{
 
@@ -25,6 +28,7 @@ public class BeanOrdenServicio implements Serializable{
     private BeanError beanError;
     private String flgVisto;
     private String comentario;
+    private List<BeanTrItemXOrds> itemsLista;
 
     public void setCDetalle(String cDetalle) {
         this.cDetalle = cDetalle;
@@ -154,4 +158,13 @@ public class BeanOrdenServicio implements Serializable{
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    public void setItemsLista(List<BeanTrItemXOrds> itemsLista) {
+        this.itemsLista = itemsLista;
+    }
+
+    public List<BeanTrItemXOrds> getItemsLista() {
+        return itemsLista;
+    }
+
 }

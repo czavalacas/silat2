@@ -43,6 +43,7 @@
     <class>silat.servicios_negocio.entidades.trans.Trmcodi</class>
     <class>silat.servicios_negocio.entidades.trans.TrItemPreFactura</class>
     <class>silat.servicios_negocio.entidades.trans.TrPreFactura</class>
+    <class>silat.servicios_negocio.entidades.trans.TRItemXOrds</class>
     <properties>
       <property name="eclipselink.target-server" value="WebLogic_10"/>
      <!-- <property name="javax.persistence.jtaDataSource" value="java:/app/jdbc/jdbc/ConLubalDS"/>-->

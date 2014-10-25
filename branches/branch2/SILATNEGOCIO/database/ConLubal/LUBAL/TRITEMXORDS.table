@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">f45a6c5e-e7a9-46a4-864c-190c0ddeeede</identifier>
+  </ID>
+  <name>TRITEMXORDS</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">1ef0dabd-aed3-4f18-8776-6fe2ed073e4c</identifier>
+      </ID>
+      <name>ID</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">eb6b1af5-9e6d-47f7-a6e3-96bcb613ca06</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">20</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">517b31ed-0b64-43ab-a7da-966550b4fcad</identifier>
+      </ID>
+      <name>VERSION</name>
+      <dataTypeUsage>
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">656e4372-b1fa-456d-a4df-35396e3175b6</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">20</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">6c48fa40-861a-4164-8e0d-68594f3e6b0f</identifier>
+      </ID>
+      <name>TRITEMXORDS_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>ID</name>
+          <identifier class="java.lang.String">1ef0dabd-aed3-4f18-8776-6fe2ed073e4c</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>TRITEMXORDS</name>
+            <identifier class="java.lang.String">f45a6c5e-e7a9-46a4-864c-190c0ddeeede</identifier>
+            <schemaName>LUBAL</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>LUBAL</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.IdentifierBasedID">
+        <name>TRITEMXORDS_PK</name>
+        <identifier class="java.lang.String">ecdaab79-7e12-4677-b462-38378b6e3198</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>TRITEMXORDS</name>
+          <identifier class="java.lang.String">f45a6c5e-e7a9-46a4-864c-190c0ddeeede</identifier>
+          <schemaName>LUBAL</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>LUBAL</schemaName>
+        <type>INDEX</type>
+      </indexID>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ecdaab79-7e12-4677-b462-38378b6e3198</identifier>
+      </ID>
+      <name>TRITEMXORDS_PK</name>
+      <columnExpressions>
+        <columnExpression>
+          <ID class="oracle.javatools.db.IdentifierBasedID">
+            <identifier class="java.lang.String">7c409157-3b9c-4674-8622-581d65c864dc</identifier>
+          </ID>
+          <expression class="oracle.javatools.db.sql.ColumnUsage">
+            <ID class="oracle.javatools.db.IdentifierBasedID">
+              <identifier class="java.lang.String">58db6d21-570a-4d11-b4dc-a7edf157d352</identifier>
+            </ID>
+            <objectID class="oracle.javatools.db.IdentifierBasedID">
+              <name>ID</name>
+              <identifier class="java.lang.String">1ef0dabd-aed3-4f18-8776-6fe2ed073e4c</identifier>
+              <parent class="oracle.javatools.db.IdentifierBasedID">
+                <name>TRITEMXORDS</name>
+                <identifier class="java.lang.String">f45a6c5e-e7a9-46a4-864c-190c0ddeeede</identifier>
+                <schemaName>LUBAL</schemaName>
+                <type>TABLE</type>
+              </parent>
+              <schemaName>LUBAL</schemaName>
+              <type>COLUMN</type>
+            </objectID>
+            <outerJoin>false</outerJoin>
+            <qualified>true</qualified>
+          </expression>
+          <order>ASC</order>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <schema>
+        <name>LUBAL</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>LUBAL</name>
+  </schema>
+</table>

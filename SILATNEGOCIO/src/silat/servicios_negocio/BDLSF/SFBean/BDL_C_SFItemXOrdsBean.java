@@ -50,7 +50,7 @@ public class BDL_C_SFItemXOrdsBean implements BDL_C_SFItemXOrdsRemote,
             String query = "SELECT o " +
                            "FROM TRItemXOrds o " +
                            "WHERE o.trOrdenServicio.nidOrdnServ = :nidOrdServ " +
-                           "ORDER BY o.orden ASC ";           
+                           "ORDER BY o.orden ASC";           
             return em.createQuery(query).setParameter("nidOrdServ",nidOrdenServ).getResultList();
            }catch(Exception e){
             return new ArrayList<TRItemXOrds>();

@@ -41,15 +41,9 @@ import oracle.adf.view.rich.component.rich.layout.RichPanelGroupLayout;
 import oracle.adf.view.rich.component.rich.layout.RichPanelSplitter;
 import oracle.adf.view.rich.component.rich.nav.RichCommandButton;
 import oracle.adf.view.rich.context.AdfFacesContext;
-
 import oracle.adf.view.rich.event.DialogEvent;
-
-import oracle.adfinternal.view.faces.model.binding.FacesCtrlHierNodeBinding;
-
 import oracle.jbo.Row;
-
 import oracle.jbo.uicli.binding.JUCtrlHierNodeBinding;
-
 import org.apache.myfaces.trinidad.context.RequestContext;
 import org.apache.myfaces.trinidad.event.SelectionEvent;
 
@@ -71,11 +65,15 @@ import silat.servicios_negocio.Beans.BeanModalidadPago;
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
 import silat.servicios_negocio.Beans.BeanTipoGasto;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
+import silat.servicios_negocio.LNSF.IL.LN_C_SFItemXOrdsLocal;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFGastosRemoto;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFItemOrdenServRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFItemXOrdsRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFOrdenServicioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRelacionEmpresaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFGastosRemoto;
+import silat.servicios_negocio.LNSF.SFBean.LN_C_SFItemXOrdsBean;
 
 public class Frm_actualizar_orden_servicio {
     private RichDecorativeBox db1;
@@ -129,11 +127,16 @@ public class Frm_actualizar_orden_servicio {
     private final static String LOOKUP_NAME_SFCONTORDS_REMOTO = "LUBAL_SIAT_APP-SILATNEGOCIO-BDL_C_SFOrdenServicio";
     private final static String LOOKUP_NAME_SFC_EMPR_REMOTO   = "mapBDL_C_SFEmpresas";
     private final static String LOOKUP_NAME_SFORDSERV_REMOTO  = "mapLN_C_SFOrdenServicio";
+    private final static String LOOKUP_NAME_SFITMOS_REMOTO  = "map-LN_C_SFItemOrdenServ";
     private BDL_C_SFOrdenServicioRemote bdl_C_SFOrdenServicioRemote;
     private LN_C_SFOrdenServicioRemote ln_C_SFOrdenServicioRemote;
     private BDL_C_SFEmpresasRemote bdL_C_SFEmpresasRemote;
+    private LN_C_SFItemOrdenServRemote ln_C_SFItemOrdenServRemote;
     FacesContext ctx = FacesContext.getCurrentInstance();
     private BeanUsuarioAutenticado beanUsuario = (BeanUsuarioAutenticado) Utils.getSession("USER");
+    private RichCommandButton btnVerItems;
+    private RichPopup popItemsORds;
+    private RichTable tbItems;
 
     public Frm_actualizar_orden_servicio() {
         try {
@@ -144,6 +147,7 @@ public class Frm_actualizar_orden_servicio {
             ln_C_SFOrdenServicioRemote = (LN_C_SFOrdenServicioRemote)  ctx.lookup(LOOKUP_NAME_SFORDSERV_REMOTO);
             bdl_C_SFOrdenServicioRemote = (BDL_C_SFOrdenServicioRemote)ctx.lookup(LOOKUP_NAME_SFCONTORDS_REMOTO);
             bdL_C_SFEmpresasRemote = (BDL_C_SFEmpresasRemote)          ctx.lookup(LOOKUP_NAME_SFC_EMPR_REMOTO);
+            ln_C_SFItemOrdenServRemote = (LN_C_SFItemOrdenServRemote)  ctx.lookup(LOOKUP_NAME_SFITMOS_REMOTO);            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -301,6 +305,11 @@ public class Frm_actualizar_orden_servicio {
         DCIteratorBinding iter = DCB.findIteratorBinding("MostrarOrdenServNFIterator");
         iter.executeQuery();
         return null;
+    
+    }
+    public void verItemsOrdenServicio(ActionEvent actionEvent) {
+     beanSessionActualizarOrdenServicio.setLstItemsOrdnS(ln_C_SFItemOrdenServRemote.getListaItemsBynidOrdS(beanSessionActualizarOrdenServicio.getNidOrdenServ()));
+     Utils.showPopUpMIDDLE(popItemsORds);   
     }
 
     public void getActualizar(SelectionEvent selectionEvent) {
@@ -315,7 +324,7 @@ public class Frm_actualizar_orden_servicio {
         beanSessionActualizarOrdenServicio.setCRazonSocialEditar(ordenServ.getCRazonSocial());
         beanSessionActualizarOrdenServicio.setFechaOrdEditar(ordenServ.getFecOrdnServ());
         beanSessionActualizarOrdenServicio.setRenderBtnChangeCliente(isRenderearBtnCambiarCliente());
-        beanSessionActualizarOrdenServicio.setNidEmp(ordenServ.getAdEmpresa().getNidParty());
+        beanSessionActualizarOrdenServicio.setNidEmp(ordenServ.getNidEmpresa());      
         if ("P".equals(beanSessionActualizarOrdenServicio.getEstadoOrdnServicioEditar())) {
             btnEditar.setDisabled(false);
         } else {
@@ -757,5 +766,29 @@ public class Frm_actualizar_orden_servicio {
 
     public boolean isAnulada() {
         return anulada;
+    }
+
+    public void setBtnVerItems(RichCommandButton btnVerItems) {
+        this.btnVerItems = btnVerItems;
+    }
+
+    public RichCommandButton getBtnVerItems() {
+        return btnVerItems;
+    }   
+
+    public void setPopItemsORds(RichPopup popItemsORds) {
+        this.popItemsORds = popItemsORds;
+    }
+
+    public RichPopup getPopItemsORds() {
+        return popItemsORds;
+    }
+
+    public void setTbItems(RichTable tbItems) {
+        this.tbItems = tbItems;
+    }
+
+    public RichTable getTbItems() {
+        return tbItems;
     }
 }

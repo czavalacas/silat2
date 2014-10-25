@@ -23,6 +23,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import silat.servicios_negocio.entidades.admin.ADEmpresa;
 import silat.servicios_negocio.entidades.trans.TRGuia;
+import silat.servicios_negocio.entidades.trans.TRItem;
+import silat.servicios_negocio.entidades.trans.TRItemXOrds;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "TROrdenServicio.findAll", query = "select o from TROrdenServicio o") })
@@ -51,6 +53,8 @@ public class TROrdenServicio implements Serializable {
     private String flgVisto;
     @Column(name = "COMENTARIO", length = 1)
     private String comentario;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "trOrdenServicio",fetch = FetchType.EAGER)
+    private List<TRItemXOrds> itemsList;
 
     public TROrdenServicio() {
     }
@@ -147,5 +151,13 @@ public class TROrdenServicio implements Serializable {
 
     public String getComentario() {
         return comentario;
+    }
+
+    public void setItemsList(List<TRItemXOrds> itemsList) {
+        this.itemsList = itemsList;
+    }
+
+    public List<TRItemXOrds> getItemsList() {
+        return itemsList;
     }
 }

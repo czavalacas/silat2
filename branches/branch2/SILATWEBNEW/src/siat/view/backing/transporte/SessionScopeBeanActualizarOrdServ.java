@@ -11,6 +11,7 @@ import java.util.List;
 
 import silat.servicios_negocio.Beans.BeanEmpresa;
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
+import silat.servicios_negocio.Beans.BeanTrItemXOrds;
 
 public class SessionScopeBeanActualizarOrdServ implements Serializable {
     
@@ -35,6 +36,8 @@ public class SessionScopeBeanActualizarOrdServ implements Serializable {
     private List<BeanEmpresa> lstEmpresasCliente;
     private BigDecimal nidEmp;
     private Integer nidOS;
+    private List<BeanTrItemXOrds> lstItemsOrdnS=new ArrayList<BeanTrItemXOrds>();
+    
     
     //dfloresgonz 19.06.2014 - Se agrega variable saber si tiene el permiso de modificar fechas
     private boolean renderBtnFecha = false;
@@ -216,5 +219,13 @@ public class SessionScopeBeanActualizarOrdServ implements Serializable {
 
     public boolean isRenderBtnFecha() {
         return renderBtnFecha;
+    }
+
+    public void setLstItemsOrdnS(List<BeanTrItemXOrds> lstItemsOrdnS) {
+        this.lstItemsOrdnS = lstItemsOrdnS;
+    }
+
+    public List<BeanTrItemXOrds> getLstItemsOrdnS() {
+        return lstItemsOrdnS;
     }
 }

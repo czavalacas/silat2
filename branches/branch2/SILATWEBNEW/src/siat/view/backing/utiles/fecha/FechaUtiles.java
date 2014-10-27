@@ -44,6 +44,20 @@ public class FechaUtiles {
         return sdf.format(cal.getTime()).toString();
     }
     
+    public static Date fechaPast7() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, -7);
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+        return cal.getTime();
+    }
+    
+    public static Date fechaFoward7() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, 7);
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+        return cal.getTime();
+    }
+    
     public static Date fechaActual() {
         String fechaHoy = fechaHoy(); //fecha actual
         int dia = Integer.parseInt(fechaHoy.substring(0, 2));

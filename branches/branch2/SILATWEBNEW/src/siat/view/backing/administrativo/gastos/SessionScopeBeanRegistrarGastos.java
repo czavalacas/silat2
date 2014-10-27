@@ -8,6 +8,7 @@ import java.util.List;
 
 import silat.servicios_negocio.Beans.BeanEmpresa;
 import silat.servicios_negocio.Beans.BeanGasto;
+import silat.servicios_negocio.Beans.BeanManifiesto;
 import silat.servicios_negocio.Beans.BeanTipoGasto;
 
 public class SessionScopeBeanRegistrarGastos {
@@ -72,6 +73,9 @@ public class SessionScopeBeanRegistrarGastos {
     private int nidTipGasto;
     private String estTipGasto;
     private List lstEstadosTipGasto = new ArrayList();
+    private BeanManifiesto manifiesto;
+    private String cheque;
+    private String nomBanco;
 
     public void setNidTipoGasto(String nidTipoGasto) {
         this.nidTipoGasto = nidTipoGasto;
@@ -555,5 +559,29 @@ public class SessionScopeBeanRegistrarGastos {
 
     public Integer getNidManifiesto() {
         return nidManifiesto;
+    }
+
+    public void setManifiesto(BeanManifiesto manifiesto) {
+        this.manifiesto = manifiesto;
+    }
+
+    public BeanManifiesto getManifiesto() {
+        return manifiesto;
+    }
+
+    public void setCheque(String cheque) {
+        this.cheque = cheque;
+    }
+
+    public String getCheque() {
+        return cheque;
+    }
+
+    public void setNomBanco(String nomBanco) {
+        this.nomBanco = nomBanco;
+    }
+
+    public String getNomBanco() {
+        return nomBanco;
     }
 }

@@ -117,7 +117,7 @@
                         <f:selectItems value="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.modalidadPago}" id="si2"
                                        binding="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.si2}"/>
                     </af:selectOneChoice>
-                    <af:inputText label="Monto" id="inputTextMonto"
+                    <af:inputText label="Monto" id="inputTextMonto" value="#{beanSessionScopedRegistrarGastos.montoGeneral}"
                                   binding="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.inputTextMonto}"
                                   showRequired="true" required="true" autoSubmit="true" labelStyle="text-align: left;">
                                     <f:validator validatorId="decimalValidator"/>
@@ -221,7 +221,7 @@
                                                     required="#{beanSessionScopedRegistrarGastos.estadoInTipoMantenimientoR}" showRequired="false"
                                                     value="#{beanSessionScopedRegistrarGastos.nidManifiesto}"
                                                     autoSubmit="true" labelStyle="text-align: left;"
-                                                    valueChangeListener="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.eventoTipoMantenimiento}"
+                                                    valueChangeListener="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.eventoTipoManifiesto}"
                                                     visible="#{beanSessionScopedRegistrarGastos.estadoInManifiesto}">
                                     <f:selectItems value="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.listaManifiestos}" 
                                                    id="si11"
@@ -241,6 +241,7 @@
                                         binding="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.choiceBanco}"
                                         value="#{beanSessionScopedRegistrarGastos.banco}"
                                         required="#{beanSessionScopedRegistrarGastos.estadoInBancoR}"
+                                        valueChangeListener="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.eventoTipoBanco}"
                                         showRequired="false" autoSubmit="true" labelStyle="text-align: left;"
                                         visible="#{beanSessionScopedRegistrarGastos.estadoInBancoV}">
                         <af:selectItem label="ScotiaBank" id="si9"
@@ -250,7 +251,7 @@
                                        binding="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.si10}"
                                        value="INTERBANK"/>
                     </af:selectOneChoice>
-                    <af:inputText label="Numero de Cheque" id="inputNumeroCheque" labelStyle="text-align: left;"
+                    <af:inputText label="Numero de Cheque" id="inputNumeroCheque" labelStyle="text-align: left;" value="#{beanSessionScopedRegistrarGastos.cheque}"
                                               binding="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.inputNumeroCheque}"
                                               showRequired="false"
                                   required="#{beanSessionScopedRegistrarGastos.estadoInNumChequeR}"

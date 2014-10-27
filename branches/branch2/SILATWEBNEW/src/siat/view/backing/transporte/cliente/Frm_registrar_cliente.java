@@ -323,8 +323,9 @@ public class Frm_registrar_cliente {
         if (!getBeanSessionRegistrarCliente().contieneFlota(beanFlota)) {
             if(beanSessionRegistrarCliente.getBeanFlota()!=null){
             for(BeanFlota flota : beanSessionRegistrarCliente.getListFlota()){
-                if(flota.getCPlaca().equals(placaVehiculo)){
+                if(flota.getCPlaca().equals(placaVehiculo.toUpperCase())){
                     repetido=1;
+                        popuNuevaFlota.hide();
                         Utils.throwError_Aux(ctx, "El numero de placa ya Se Encuentra Registrado. ",1);
                     }
                 }            
@@ -368,8 +369,9 @@ public class Frm_registrar_cliente {
         if (!getBeanSessionRegistrarCliente().contiene(beanChofer)) {
             if(beanSessionRegistrarCliente.getListChofer()!=null){
             for(BeanChofer chofer : beanSessionRegistrarCliente.getListChofer()){
-                if(chofer.getLicencia().equals(licenciaChofer)){
+                if(chofer.getLicencia().equals(licenciaChofer.toUpperCase())){
                     repetido=1;
+                        popupNuevoChofer.hide();
                         Utils.throwError_Aux(ctx, "El numero de licencia ya Se Encuentra Registrado. ",1);
                     }
             }            

@@ -2,6 +2,7 @@ package siat.view.backing.administrativo.gastos;
 
 import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 
+import java.awt.font.TextMeasurer;
 import java.awt.image.BufferedImage;
 
 import java.io.File;
@@ -223,6 +224,7 @@ public class Frm_registrar_gastos {
             this.setListaFlotasLubal(this.llenarFlotaLubal());
             this.setListaProveedores(this.traerProveedores());
             this.setTipoGastos(this.llenarTipoGastoCombo());            
+
             beanUsuario = (BeanUsuarioAutenticado) Utils.getSession("USER");
         } catch (Exception e) {
             e.printStackTrace();
@@ -343,15 +345,26 @@ public class Frm_registrar_gastos {
         Utils.addTargetMany(choiceFlota);
     }
     
-    public void camposTodosAux(boolean campServTrans, boolean campComb, boolean campBiat, boolean campMante,boolean campServ, boolean campPers,String isRuta){
+    public void camposTodosAux(boolean campServTrans, boolean campComb, boolean campBiat, boolean campMante,boolean campServ, boolean campPers,boolean campMani,String isRuta){
         resetearCampos();
+        inputTextMonto.setDisabled(false);
         camposServicioTranporte(campServTrans);
         camposCombustible(campComb);
         camposBiaticos(campBiat);
         camposMantenimientoFlota(campMante);
         camposServicioBasico(campServ);
         camposPersonal(campPers);
+        camposManifiesto(campMani);
         mostrarIsRuta(isRuta);
+    }
+    
+    public void camposManifiesto(boolean estado){
+        beanSessionScopedRegistrarGastos.setEstadoInManifiesto(estado);
+        Utils.addTarget(choiceManifiesto);
+        if(estado){
+            inputTextMonto.setDisabled(true);
+            Utils.addTarget(inputTextMonto);    
+        }
     }
     
     public void camposServicioTranporte(boolean estado) {
@@ -409,8 +422,11 @@ public class Frm_registrar_gastos {
     }
 
     public void resetearCampos() {
+        inputTextMonto.resetValue();
+        beanSessionScopedRegistrarGastos.setNidManifiesto(null);
         inputProveedor.resetValue();
         inputFactura.resetValue();
+        choiceManifiesto.resetValue();
         beanSessionScopedRegistrarGastos.setBeanEmpresa(null);
         beanSessionScopedRegistrarGastos.setNidProveedor(null);
         beanSessionScopedRegistrarGastos.setCidFactura(null);
@@ -428,7 +444,8 @@ public class Frm_registrar_gastos {
         choiceTipoMantenimiento.resetValue();
         beanSessionScopedRegistrarGastos.setNidTipoMantenimiento(null);
         Utils.addTargetMany(inputProveedor,inputFactura,choiceTipoServicio,inputNumeroCheque,inputDestino,choiceFlota,
-                            choiceTipoCombustible,inputCantidadPersonas/*,choiceFlotasMantenimiento,*/,choiceTipoMantenimiento);
+                            choiceTipoCombustible,inputCantidadPersonas/*,choiceFlotasMantenimiento,*/,choiceTipoMantenimiento,
+                            choiceManifiesto,inputTextMonto);
     }
 
     public void mostrarInputText(ValueChangeEvent vcl) {
@@ -437,13 +454,14 @@ public class Frm_registrar_gastos {
         String isRuta = beanTipGasto.getIsRuta();
         int num = beanTipGasto.getNidTiga();
         switch(num){
-            case 1: camposTodosAux(true, false, false, false, false,false,isRuta);break;
-            case 2: camposTodosAux(false, false,true, false, false,false,isRuta);break;
-            case 3: camposTodosAux(true, false, false, false,true,false,isRuta);break;
-            case 4: camposTodosAux(false, true, false, false, false,false,isRuta);break;
-            case 5: camposTodosAux(false, false, false, false, false,true,isRuta);break;
-            case 8: camposTodosAux(false, false, false,true, false,false,isRuta);break;
-            default : camposTodosAux(false, false, false, false, false,false,isRuta);break;
+            case 1: camposTodosAux(true, false, false, false, false,false,false,isRuta);break;
+            case 2: camposTodosAux(false, false,true, false, false,false,false,isRuta);break;
+            case 3: camposTodosAux(true, false, false, false,true,false,false,isRuta);break;
+            case 4: camposTodosAux(false, true, false, false, false,false,false,isRuta);break;
+            case 5: camposTodosAux(false, false, false, false, false,true,false,isRuta);break;
+            case 8: camposTodosAux(false, false, false,true, false,false,false,isRuta);break;
+            case 76: camposTodosAux(false, false, false,false, false,false,true,isRuta);break;
+            default : camposTodosAux(false, false, false, false, false,false,false,isRuta);break;
         }
     }
 
@@ -486,6 +504,8 @@ public class Frm_registrar_gastos {
             case 3 : eventoModalidadPagoAux(false,true);break;
             case 4 : eventoModalidadPagoAux(false,true);break;
         }
+        beanSessionScopedRegistrarGastos.setNomBanco("");
+        System.out.println("Valor de Monto: "+inputTextMonto.getValue());
     }
 
     public void eventoSeleccionaFlotaCombustible(ValueChangeEvent vcl) {
@@ -497,10 +517,34 @@ public class Frm_registrar_gastos {
             nfe.printStackTrace();
         }
     }
+    
+    public void eventoTipoManifiesto(ValueChangeEvent vcl) {
+        vcl.getComponent().processUpdates(FacesContext.getCurrentInstance());
+        if(vcl.getNewValue() != null){
+            String newValue = vcl.getNewValue().toString();
+            beanSessionScopedRegistrarGastos.setManifiesto(ln_C_SFManifiestoRemote.findManifiestosByAttr_LN(null, null, Integer.parseInt(newValue), null, null, null).get(0));
+            beanSessionScopedRegistrarGastos.getManifiesto().setEstadoManifiestoNegocio(4+"");
+            inputTextMonto.setValue(beanSessionScopedRegistrarGastos.getManifiesto().getNFletePactado());
+            inputDetalle.setValue("Pago de Manifiesto "+newValue);
+            Utils.addTargetMany(inputTextMonto,inputDetalle);
+        }
+        else{
+            beanSessionScopedRegistrarGastos.setManifiesto(null);
+            inputTextMonto.setValue("");
+            inputDetalle.setValue("");
+            Utils.addTargetMany(inputTextMonto,inputDetalle);
+        }
+    }
 
     public void eventoSeleccionaFlotaMantenimiento(ValueChangeEvent vcl) {
         vcl.getComponent().processUpdates(FacesContext.getCurrentInstance());
         String newValue = vcl.getNewValue().toString();
+    }
+    
+    public void eventoTipoBanco(ValueChangeEvent vcl) {
+        vcl.getComponent().processUpdates(FacesContext.getCurrentInstance());
+        String newValue = vcl.getNewValue().toString();
+        beanSessionScopedRegistrarGastos.setNomBanco(newValue);
     }
 
     public void eventoTipoServicio(ValueChangeEvent vcl) {
@@ -527,14 +571,15 @@ public class Frm_registrar_gastos {
             String estado = "1";
             int nidTipoGasto = beanSessionScopedRegistrarGastos.getBeanTipoGasto().getNidTiga();
             int nidModoPago = Integer.parseInt(beanSessionScopedRegistrarGastos.getNidModalidadPago());
-            BigDecimal monto = new BigDecimal(inputTextMonto.getValue().toString());
+            BigDecimal monto = beanSessionScopedRegistrarGastos.getMontoGeneral();
+            //BigDecimal monto = new BigDecimal(1);
             Date fechaGasto = beanSessionScopedRegistrarGastos.getFechaGasto();
             String destino = null;
             if (inputDestino.getValue() != null) {
                 destino = (String) inputDestino.getValue();
             }
             String numCheque = null;
-            if (inputNumeroCheque.getValue() != null) {
+            if (beanSessionScopedRegistrarGastos.getCheque() != null) {
                 numCheque = (String) inputNumeroCheque.getValue();
             }
             String detalle = null;
@@ -545,6 +590,20 @@ public class Frm_registrar_gastos {
             if (beanSessionScopedRegistrarGastos.getNidFlota() != null) {
                 nidFlota = beanSessionScopedRegistrarGastos.getNidFlota();
             }
+            if (beanSessionScopedRegistrarGastos.getManifiesto() != null){
+                
+            }
+            
+            /*
+             * Codigo agregado para cambiar el estado de u manifiesto a pagado
+             */
+            
+            if(beanSessionScopedRegistrarGastos.getNidManifiesto() != null){
+                int nidMan = beanSessionScopedRegistrarGastos.getNidManifiesto();
+                System.out.println("Valor de nidManifiesto "+ nidMan);
+                ln_T_SFManifiestoRemote.cambiarEstadoManifiesto(nidMan, 4+"");
+            }
+            
             BeanGasto bGasto = ln_T_SFGastosRemoto.insertarGasto(nidTipoGasto, nidModoPago, monto, fechaGasto, nidFlota,
                                                                   beanSessionScopedRegistrarGastos.getNidProveedor(),
                                                                   beanSessionScopedRegistrarGastos.getCidFactura(), destino,
@@ -554,8 +613,9 @@ public class Frm_registrar_gastos {
                                                                   beanSessionScopedRegistrarGastos.getNidTipoMantenimiento(),
                                                                   numCheque, beanSessionScopedRegistrarGastos.getRutaImagen(),
                                                                   beanSessionScopedRegistrarGastos.getBlobImagenRecibo(), detalle,
-                                                                  beanSessionScopedRegistrarGastos.getBanco(),estado);
+                                                                  beanSessionScopedRegistrarGastos.getNomBanco(),estado);
 
+            
             resetearCamposBasico();
             resetearCampos();
             if (bGasto.getBeanError() != null) {
@@ -725,7 +785,7 @@ public class Frm_registrar_gastos {
                     choiceTipoGasto.resetValue();
                     beanSessionScopedRegistrarGastos.setBeanTipoGasto(null);
                     itTipGast.resetValue();
-                    camposTodosAux(false, false, false, false, false,false,"N");
+                    camposTodosAux(false, false, false, false, false,false,false,"N");
                     sbcIsRuta.resetValue();
                     beanSessionScopedRegistrarGastos.setSelecChkBox(false);
                     beanSessionScopedRegistrarGastos.setEstTipGasto("1");

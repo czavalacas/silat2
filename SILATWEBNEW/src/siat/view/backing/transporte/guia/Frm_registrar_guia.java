@@ -310,7 +310,10 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     private RichCommandButton btnAsignarManifiesto;*/
     //  private RichCommandButton btnAddUndMed;
     //private BeanUsuarioAutenticado beanUsuario = (BeanUsuarioAutenticado) Utils.getSession("USER");
-
+    private Date fecha_Minima;
+    private Date fecha_Maxima;
+    
+    
     public Frm_registrar_guia(){
         try{
             final Context ctx;
@@ -329,6 +332,8 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             ln_C_SFUtilsRemote = (LN_C_SFUtilsRemote)                       ctx.lookup(LOOKUP_NAME_SFC_UTL_REMOTO);
             ln_C_SFUnidadMedidaRemote = (LN_C_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO);
             ln_T_SFUnidadMedidaRemote = (LN_T_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFT_UND_MEDIDA_REMOTO);
+            this.setFecha_Minima(FechaUtiles.fechaPast7());
+            this.setFecha_Maxima(FechaUtiles.fechaFoward7());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -3494,6 +3499,24 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         return ckbTraPro;
     }
 
+
+    public void setFecha_Minima(Date fecha_Minima) {
+        this.fecha_Minima = fecha_Minima;
+    }
+
+    public Date getFecha_Minima() {
+        return fecha_Minima;
+    }
+
+    public void setFecha_Maxima(Date fecha_Maxima) {
+        this.fecha_Maxima = fecha_Maxima;
+    }
+
+    public Date getFecha_Maxima() {
+        return fecha_Maxima;
+    }
+
+
   /*  public void setPopupSeleccionarManifiesto(RichPopup p1) {
         this.popupSeleccionarManifiesto = p1;
     }
@@ -3519,4 +3542,5 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     }*/
 
   
+
 }

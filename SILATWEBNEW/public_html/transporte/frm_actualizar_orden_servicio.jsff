@@ -105,7 +105,9 @@
                     <af:inputDate value="#{beanSessionActualizarOrdenServicio.fechaOrdEditar}"
                                   label="Fecha Hecha:" disabled="false" 
                                   shortDesc="#{bindings.fecha.hints.tooltip}" id="id1" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
-                                  binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.id1}">
+                                  binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.id1}"
+                                  minValue="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.fecha_Minima}"
+                                  maxValue="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.fecha_Maxima}">
                         <af:convertDateTime pattern="dd/MM/yyyy"/>
                     </af:inputDate>
                     <af:inputText value="#{sessionScope.beanSessionActualizarOrdenServicio.beanOrden.nidOrdnServ}"

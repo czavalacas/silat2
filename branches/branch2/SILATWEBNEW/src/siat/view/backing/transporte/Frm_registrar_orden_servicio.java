@@ -65,6 +65,8 @@ import org.apache.myfaces.trinidad.model.UploadedFile;
 import siat.view.backing.utiles.ADFUtil;
 import siat.view.backing.utiles.Utils;
 
+import siat.view.backing.utiles.fecha.FechaUtiles;
+
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFEmpresasRemote;
 import silat.servicios_negocio.Beans.BeanADRelacionEmpresa;
 import silat.servicios_negocio.Beans.BeanDireccion;
@@ -128,6 +130,10 @@ public class Frm_registrar_orden_servicio {
     
     FacesContext ctx = FacesContext.getCurrentInstance();
     private RichInputText itNidOS;
+
+    private Date fecha_Minima;
+    private Date fecha_Maxima;
+
     private RichCommandButton btnNewItem;
     private RichCommandButton btnEditarItem;
     private RichCommandButton btnBorrarItem;
@@ -157,7 +163,7 @@ public class Frm_registrar_orden_servicio {
     private RichDialog diagImg;
     private RichInputFile fileImg;
     private RichImage imgGuia;
-    
+
 
     public Frm_registrar_orden_servicio(){
         try{
@@ -165,9 +171,14 @@ public class Frm_registrar_orden_servicio {
             ctx = new InitialContext();
             bdL_C_SFEmpresasRemote = (BDL_C_SFEmpresasRemote) ctx.lookup(LOOKUP_NAME_SFC_EMPR_REMOTO);
             ln_C_SFOrdenServicioRemote = (LN_C_SFOrdenServicioRemote)  ctx.lookup(LOOKUP_NAME_SFORDSERV_REMOTO);
+
+            this.setFecha_Minima(FechaUtiles.fechaPast7());
+            this.setFecha_Maxima(FechaUtiles.fechaFoward7());
+
             ln_T_SFUnidadMedidaRemote = (LN_T_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFT_UND_MEDIDA_REMOTO);
             ln_C_SFRelacionEmpresaRemote = (LN_C_SFRelacionEmpresaRemote)   ctx.lookup(LOOKUP_NAME_SFC_RELA_REMOTO);
             ln_C_SFDireccionRemote = (LN_C_SFDireccionRemote)               ctx.lookup(LOOKUP_NAME_SFDIRECCION_REMOTO);
+
         }catch(Exception e){
             e.printStackTrace();
             Utils.redireccionar("/silat/faces/frm_login");
@@ -747,6 +758,25 @@ public class Frm_registrar_orden_servicio {
         return itNidOS;
     }
 
+
+
+    public void setFecha_Minima(Date fecha_Minima) {
+        this.fecha_Minima = fecha_Minima;
+    }
+
+    public Date getFecha_Minima() {
+        return fecha_Minima;
+    }
+
+    public void setFecha_Maxima(Date fecha_Maxima) {
+        this.fecha_Maxima = fecha_Maxima;
+    }
+
+    public Date getFecha_Maxima() {
+        return fecha_Maxima;
+    }
+
+
     public void setBtnNewItem(RichCommandButton btnNewItem) {
         this.btnNewItem = btnNewItem;
     }
@@ -1018,4 +1048,5 @@ public class Frm_registrar_orden_servicio {
     public RichImage getImgGuia() {
         return imgGuia;
     }
+
 }

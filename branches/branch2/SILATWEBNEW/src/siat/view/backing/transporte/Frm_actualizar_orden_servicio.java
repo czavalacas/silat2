@@ -52,6 +52,8 @@ import siat.view.backing.utiles.ADFUtil;
 
 import siat.view.backing.utiles.Utils;
 
+import siat.view.backing.utiles.fecha.FechaUtiles;
+
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFOrdenServicioRemote;
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFEmpresasRemote;
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFFlotaRemote;
@@ -65,15 +67,15 @@ import silat.servicios_negocio.Beans.BeanModalidadPago;
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
 import silat.servicios_negocio.Beans.BeanTipoGasto;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
-import silat.servicios_negocio.LNSF.IL.LN_C_SFItemXOrdsLocal;
+//import silat.servicios_negocio.LNSF.IL.LN_C_SFItemXOrdsLocal;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFGastosRemoto;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFItemOrdenServRemote;
-import silat.servicios_negocio.LNSF.IR.LN_C_SFItemXOrdsRemote;
+//import silat.servicios_negocio.LNSF.IR.LN_C_SFItemXOrdsRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFOrdenServicioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRelacionEmpresaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFGastosRemoto;
-import silat.servicios_negocio.LNSF.SFBean.LN_C_SFItemXOrdsBean;
+//import silat.servicios_negocio.LNSF.SFBean.LN_C_SFItemXOrdsBean;
 
 public class Frm_actualizar_orden_servicio {
     private RichDecorativeBox db1;
@@ -134,9 +136,12 @@ public class Frm_actualizar_orden_servicio {
     private LN_C_SFItemOrdenServRemote ln_C_SFItemOrdenServRemote;
     FacesContext ctx = FacesContext.getCurrentInstance();
     private BeanUsuarioAutenticado beanUsuario = (BeanUsuarioAutenticado) Utils.getSession("USER");
+    private Date fecha_Minima;
+    private Date fecha_Maxima;
     private RichCommandButton btnVerItems;
     private RichPopup popItemsORds;
     private RichTable tbItems;
+
 
     public Frm_actualizar_orden_servicio() {
         try {
@@ -147,7 +152,12 @@ public class Frm_actualizar_orden_servicio {
             ln_C_SFOrdenServicioRemote = (LN_C_SFOrdenServicioRemote)  ctx.lookup(LOOKUP_NAME_SFORDSERV_REMOTO);
             bdl_C_SFOrdenServicioRemote = (BDL_C_SFOrdenServicioRemote)ctx.lookup(LOOKUP_NAME_SFCONTORDS_REMOTO);
             bdL_C_SFEmpresasRemote = (BDL_C_SFEmpresasRemote)          ctx.lookup(LOOKUP_NAME_SFC_EMPR_REMOTO);
+
+            this.setFecha_Minima(FechaUtiles.fechaPast7());
+            this.setFecha_Maxima(FechaUtiles.fechaFoward7());
+
             ln_C_SFItemOrdenServRemote = (LN_C_SFItemOrdenServRemote)  ctx.lookup(LOOKUP_NAME_SFITMOS_REMOTO);            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -768,6 +778,24 @@ public class Frm_actualizar_orden_servicio {
         return anulada;
     }
 
+
+    public void setFecha_Minima(Date fecha_Minima) {
+        this.fecha_Minima = fecha_Minima;
+    }
+
+    public Date getFecha_Minima() {
+        return fecha_Minima;
+    }
+
+    public void setFecha_Maxima(Date fecha_Maxima) {
+        this.fecha_Maxima = fecha_Maxima;
+    }
+
+    public Date getFecha_Maxima() {
+        return fecha_Maxima;
+    }
+
+
     public void setBtnVerItems(RichCommandButton btnVerItems) {
         this.btnVerItems = btnVerItems;
     }
@@ -791,4 +819,5 @@ public class Frm_actualizar_orden_servicio {
     public RichTable getTbItems() {
         return tbItems;
     }
+
 }

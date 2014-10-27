@@ -46,7 +46,9 @@
                               label="Fecha Realizada" required="true" 
                               id="id1"
                               binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.id1}" showRequired="true"
-                              disabled="false" labelStyle="text-align: left;" minValue="2013-11-01">
+                              disabled="false" labelStyle="text-align: left;"
+                              minValue="#{backingBeanScope.backing_frm_registrar_orden_servicio.fecha_Minima}"
+                              maxValue="#{backingBeanScope.backing_frm_registrar_orden_servicio.fecha_Maxima}">
                     <af:convertDateTime pattern="dd/MM/yyyy"/>
                 </af:inputDate>
                 </af:panelFormLayout>

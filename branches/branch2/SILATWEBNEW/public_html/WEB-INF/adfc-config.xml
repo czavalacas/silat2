@@ -406,4 +406,19 @@
     <managed-bean-class>siat.view.backing.transporte.manifiesto.SessionScopedBeanRegistrarManifiesto</managed-bean-class>
     <managed-bean-scope>session</managed-bean-scope>
   </managed-bean>
+  <managed-bean id="__77">
+    <managed-bean-name>backing_estadistico_estadistico</managed-bean-name>
+    <managed-bean-class>siat.view.backing.estadistico.Frm_estadisticos</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <managed-property id="__79">
+      <property-name>beanSessionEstadisticos</property-name>
+      <property-class>siat.view.backing.estadistico.SessionScopeEstadisticos</property-class>
+      <value>#{beanSessionEstadisticos}</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__78">
+    <managed-bean-name>beanSessionEstadisticos</managed-bean-name>
+    <managed-bean-class>siat.view.backing.estadistico.SessionScopeEstadisticos</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
 </adfc-config>

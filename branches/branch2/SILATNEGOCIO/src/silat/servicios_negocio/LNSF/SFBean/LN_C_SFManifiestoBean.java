@@ -99,7 +99,7 @@ public class LN_C_SFManifiestoBean implements LN_C_SFManifiestoRemote,
     
     public List<BeanManifiesto> findManifiestoXPagar(){
         BeanManifiesto manif = new BeanManifiesto();
-        manif.setEstadoManifiestoNegocio(4+"");
+        manif.setEstadoManifiestoNegocio(5+"");
         return bdL_C_SFManifiestoLocal.findManifiestosByAttributes(manif);
     }
     

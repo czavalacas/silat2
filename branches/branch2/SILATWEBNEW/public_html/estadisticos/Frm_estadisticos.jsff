@@ -178,7 +178,7 @@
                                     <dvt:sliceLabel/>
                                     <dvt:pieLabel rendered="true"/>
                                     <dvt:legendArea automaticPlacement="AP_NEVER"/>
-                                    <dvt:graphTitle id="graphTitle1" text="Aprobados en Cursos" rendered="true"/>
+                                    <dvt:graphTitle id="graphTitle1" text="Ingresos vs Egresos" rendered="true"/>
                                     <dvt:x1Title text="Aprobados"/>
                                     <dvt:y1Title text="Aprobados"/>
                         </dvt:pieGraph>

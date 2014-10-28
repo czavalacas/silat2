@@ -82,7 +82,7 @@
                                         value="#{sessionScope.beanSessionScopedRegistrarOS.cidDirecDestino}" autoSubmit="true"
                                         valueChangeListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.changeDirecDest}"
                                         labelStyle="text-align: left;">
-                        <f:selectItems value="#{beanSessionScopedRegistrarOS.lstDirecs}" id="si6"/>
+                                     <f:selectItems value="#{beanSessionScopedRegistrarOS.lstDirecs}" id="si6"/>
                     </af:selectOneChoice> 
                             </af:panelFormLayout>
                     </af:panelBox>
@@ -120,11 +120,12 @@
                                                 binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.socDirecRemi}"
                                                 showRequired="true" unselectedLabel="Seleccionar una dirección"
                                                 required="true"
-                                                disabled="#{sessionScope.beanSessionScopedRegistrarOS.disableComponents}"
+                                                disabled="#{sessionScope.beanSessionScopedRegistrarOS.disableComponents}"00                                                
                                                 value="#{sessionScope.beanSessionScopedRegistrarOS.cidDirecRemitente}"
                                                 autoSubmit="true"
                                                 valueChangeListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.changeDireccRemi}"
                                                 labelStyle="text-align: left;">
+                                                
                                 <f:selectItems value="#{beanSessionScopedRegistrarOS.lstDirecsRemi}" id="si7"/>
                             </af:selectOneChoice>
                     </af:panelFormLayout>
@@ -164,7 +165,7 @@
                                           actionListener="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.asignarManifiesto}"
                                           disabled="false"/>-->
                     </af:panelGroupLayout>
-    <af:table value="#{beanSessionRegistrarGuia.lstItems}" var="row"
+    <af:table value="#{beanSessionScopedRegistrarOS.lstItems}" var="row"
               rowBandingInterval="0" id="tblItms" varStatus="vs" inlineStyle="width:inherit; height:120px;" fetchSize="15"
               rowSelection="single" emptyText="No insertó Items." summary="Tabla de Items" 
               selectionListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.seleccionarItem}"

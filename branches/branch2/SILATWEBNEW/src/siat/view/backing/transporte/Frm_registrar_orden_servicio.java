@@ -188,6 +188,7 @@ public class Frm_registrar_orden_servicio {
     @PostConstruct
     public void methodInvokeOncedOnPageLoad(){
         if(beanSessionScopedRegistrarOS.getExec() == 0){
+            mostrarRemitentes();
             beanSessionScopedRegistrarOS.setExec(1);
             beanSessionScopedRegistrarOS.setNidOSGenerado(ln_C_SFOrdenServicioRemote.traerSiguienteValorSequence());
         }else{
@@ -209,11 +210,15 @@ public class Frm_registrar_orden_servicio {
         Object razSol = empresa.getCRazonSocial();//rowData.getAttribute("CRazonSocial");
         setNidPartyEmpresa(new BigDecimal(nidPar+""));
         ADFUtil.setEL("#{pageFlowScope.nidParty}", nidPar);
+        getBeanSessionScopedRegistrarOS().setLstDirecs(this.llenarDireccionCombo(null,empresa.getNidParty().intValue(), null));
+        Utils.addTarget(socDirecs);
         try{
             it1.setValue(razSol);
             it4.setValue(new BigDecimal(nidPar+""));
             btnGrabar.setDisabled(false);
-            Utils.addTargetMany(it4,it1,btnGrabar);
+            razSocClie.setValue(empresa.getCRazonSocial());
+            rucClie.setValue(empresa.getCRuc());
+            Utils.addTargetMany(it4,it1,btnGrabar,razSocClie,rucClie);
             cerrarPopUp();
         }catch(Exception e){
             System.out.println("\n\n\n\n\n\n\nError inesperado al seleccionar empresa\n\n\n\n");
@@ -545,6 +550,7 @@ public class Frm_registrar_orden_servicio {
         }
         return direcsItems;
     }
+    
     
     public void setPgl1(RichPanelGroupLayout pgl1) {
         this.pgl1 = pgl1;

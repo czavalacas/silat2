@@ -67,7 +67,7 @@
                                             inlineStyle="margin:0px 0px 0px -120px;" id="btnClien"
                                             icon="/recursos/img/btn_buscar.png" iconPosition="leading"
                                             actionListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.abrirPopEmp}">
-                       <!--     <af:showPopupBehavior popupId="popClientes" triggerType="click"/>  -->    
+                       <!--     <af:showPopupBehavior popupId="" triggerType="click"/>  -->    
                          </af:commandButton> 
                     <af:inputText label="R.U.C. Nº" id="rucClie" disabled="true"
                                   binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.rucClie}"

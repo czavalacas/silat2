@@ -3,24 +3,24 @@
    <Reference name="ConLubal" className="oracle.jdeveloper.db.adapter.DatabaseProvider" credentialStoreKey="ConLubal" xmlns="">
       <Factory className="oracle.jdeveloper.db.adapter.DatabaseProviderFactory"/>
       <RefAddresses>
-         <StringRefAddr addrType="sid">
-            <Contents>XE</Contents>
-         </StringRefAddr>
          <StringRefAddr addrType="subtype">
-            <Contents>oraJDBC</Contents>
+            <Contents>MYSQL</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="user">
+            <Contents>root</Contents>
          </StringRefAddr>
          <StringRefAddr addrType="port">
-            <Contents>1521</Contents>
+            <Contents>3306</Contents>
          </StringRefAddr>
          <StringRefAddr addrType="hostname">
             <Contents>localhost</Contents>
          </StringRefAddr>
-         <StringRefAddr addrType="user">
-            <Contents>ulubal</Contents>
-         </StringRefAddr>
          <SecureRefAddr addrType="password"/>
-         <StringRefAddr addrType="oraDriverType">
-            <Contents>thin</Contents>
+         <StringRefAddr addrType="driver">
+            <Contents>com.mysql.jdbc.Driver</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="dataSourceName">
+            <Contents>ulubal</Contents>
          </StringRefAddr>
       </RefAddresses>
    </Reference>

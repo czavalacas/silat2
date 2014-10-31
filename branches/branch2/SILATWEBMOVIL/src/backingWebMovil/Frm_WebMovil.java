@@ -241,8 +241,6 @@ public class Frm_WebMovil extends HttpServlet{
         String string = "";    
         String byte64 = request.getParameter("byte64");
         String name = request.getParameter("fileName");
-            ResultSet result = statement.executeQuery();
-            Blob blob = result.getBlob("file_data");
         String fileName = request.getRealPath("") +"\\IMG\\"+ name; 
         OutputStream outputStream = new FileOutputStream(fileName);
         byte[] byt = extractBytes(fileName);

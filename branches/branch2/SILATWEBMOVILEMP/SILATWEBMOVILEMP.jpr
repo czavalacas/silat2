@@ -109,7 +109,11 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
+            <url n="id" protocol="file" path="/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <url n="id" path="../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -127,7 +131,11 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
+            <url n="id" protocol="file" path="/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <url n="id" path="../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>

@@ -67,15 +67,12 @@ import silat.servicios_negocio.Beans.BeanModalidadPago;
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
 import silat.servicios_negocio.Beans.BeanTipoGasto;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
-//import silat.servicios_negocio.LNSF.IL.LN_C_SFItemXOrdsLocal;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFGastosRemoto;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFItemOrdenServRemote;
-//import silat.servicios_negocio.LNSF.IR.LN_C_SFItemXOrdsRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFOrdenServicioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRelacionEmpresaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFGastosRemoto;
-//import silat.servicios_negocio.LNSF.SFBean.LN_C_SFItemXOrdsBean;
 
 public class Frm_actualizar_orden_servicio {
     private RichDecorativeBox db1;

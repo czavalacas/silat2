@@ -109,11 +109,7 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" protocol="file" path="/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <url n="id" path="../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
+            <url n="id" path="../../../../Users/Carlos/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar.library"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -131,11 +127,7 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" protocol="file" path="/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <url n="id" path="../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
+            <url n="id" path="../../../../Users/Carlos/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar.library"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -223,10 +215,18 @@
             <value n="name" v="Bootsfaces-b"/>
             <value n="prefix" v="b"/>
             <value n="runInEditor" v="true"/>
-            <value n="taglibURL" v="jar:file:/C:/Users/ricardo/Desktop/carpeta-branch/Nueva carpeta1/branch2/branch2/SILATWEBMOVIL/public_html/LIBS/BootsFaces-0.3.7-dist.jar!/META-INF/bootsfaces-b.taglib.xml"/>
+            <value n="taglibURL" v="jar:file:/C:/JDeveloper/mywork/branch2/SILATWEBMOVILEMP/public_html/LIBS/BootsFaces-0.3.7-dist.jar!/META-INF/bootsfaces-b.taglib.xml"/>
             <value n="URI" v="http://bootsfaces.net/ui"/>
             <value n="version" v="2.0"/>
          </hash>
+      </list>
+   </hash>
+   <hash n="oracle.jdevimpl.webapp.jsp.JspVeProjectSettings">
+      <list n="servlet_listeners">
+         <string v="com.sun.faces.config.ConfigureListener"/>
+      </list>
+      <list n="servlets">
+         <string v="Faces Servlet"/>
       </list>
    </hash>
    <hash n="oracle.jdevimpl.webapp.jsp.libraries.model.ProjectTagLibraries">
@@ -254,5 +254,8 @@
             <value n="version" v="2.0"/>
          </hash>
       </list>
+   </hash>
+   <hash n="ResourceBundleOptions">
+      <list n="RegisteredResourceBundles"/>
    </hash>
 </jpr:project>

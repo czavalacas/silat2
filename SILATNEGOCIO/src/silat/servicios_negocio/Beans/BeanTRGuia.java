@@ -60,6 +60,7 @@ public class BeanTRGuia implements Serializable, Cloneable  {
     private BeanManifiesto trManifiesto;
     List<BeanTRItem> itemsLista;
     private String imgGuiaProv;
+    private byte[] imgGuia;
     private BigDecimal precio;
     private int isDisableWhenOk_Anulado;
     private String ubigeoDireccionRemitente;
@@ -340,14 +341,6 @@ public class BeanTRGuia implements Serializable, Cloneable  {
         return itemsLista;
     }
 
-    public void setImgGuiaProv(String imgGuiaProv) {
-        this.imgGuiaProv = imgGuiaProv;
-    }
-
-    public String getImgGuiaProv() {
-        return imgGuiaProv;
-    }
-
     public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
@@ -450,5 +443,22 @@ public class BeanTRGuia implements Serializable, Cloneable  {
 
     public String getFiltroItemGuiaRemi() {
         return filtroItemGuiaRemi;
+    }
+
+
+    public void setImgGuiaProv(String imgGuiaProv) {
+        this.imgGuiaProv = imgGuiaProv;
+    }
+
+    public String getImgGuiaProv() {
+        return imgGuiaProv;
+    }
+
+    public void setImgGuia(byte[] imgGuia) {
+        this.imgGuia = imgGuia;
+    }
+
+    public byte[] getImgGuia() {
+        return imgGuia;
     }
 }

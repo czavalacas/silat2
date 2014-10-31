@@ -3,6 +3,7 @@ package silat.servicios_negocio.BDLSF.SFBean;
 import java.math.BigDecimal;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -100,6 +101,21 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
             return new ArrayList<TRGuia>();
         }
     }
+    public List<TRGuia> guiasPorParty(int nidCliente){
+            String ejbQl = "SELECT g " +
+                           "FROM TRGuia g " +
+                           "WHERE g.ordenServicio.adEmpresa.nidParty = '"+""+nidCliente+"' " +
+                           "AND g.cConformidad = '2'";
+            return em.createQuery(ejbQl).getResultList();
+    }
+    
+    public List<TRGuia> guiasPorPartyOK(int nidCliente){
+            String ejbQl = "SELECT g " +
+                           "FROM TRGuia g " +
+                           "WHERE g.ordenServicio.adEmpresa.nidParty = '"+""+nidCliente+"' " +
+                           "AND g.cConformidad = '1'";
+            return em.createQuery(ejbQl).getResultList();
+    }
     
     public int getCantidadGuiasActivasByManifiesto(int nidManifiesto){
         try{
@@ -154,26 +170,30 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
         }
     }
     
-    public List<TRGuia> findGuiasByAttributes_BD(BeanTRGuia bGuia){
+    public List<TRGuia> findGuiasByAttributes_BD(String cidGuia,Date fecEmisMin,Date fecEmisMax,Date fecDespMin, 
+                                               Date fecDespMax,String empCliente,String empProvCarga,String estGuia,
+                                               String hasManif,Integer nidManif,String prov,String cObservaciones,
+                                               String nEstadoGuia,int nidOS,String detOS,String hasFactura,String codFactura,
+                                               int nEstadoFactura,BigDecimal nidParty,String descCidGuiaRemi_ITEM){
         try{
             String ejbQl = "SELECT g " +
                            "FROM TRGuia g ";
-            if(bGuia.getFiltroItemGuiaRemi() != null){
-                ejbQl = ejbQl.concat(" ,TRItem it  WHERE it.trGuia.cidGuia = g.cidGuia AND UPPER(it.cCidGuiaRemitente) like UPPER('%"+bGuia.getFiltroItemGuiaRemi()+"%') ");
+            if(descCidGuiaRemi_ITEM != null){
+                ejbQl = ejbQl.concat(" ,TRItem it  WHERE it.trGuia.cidGuia = g.cidGuia AND UPPER(it.cCidGuiaRemitente) like UPPER('%"+descCidGuiaRemi_ITEM+"%') ");
             }else{
                 ejbQl = ejbQl.concat(" WHERE 1 = 1 ");
             }
-            if(bGuia.getNEstadoGuia() != null){
-                ejbQl = ejbQl.concat(" AND g.nEstadoGuia = '"+bGuia.getNEstadoGuia()+"' ");
+            if(nEstadoGuia!= null){
+                ejbQl = ejbQl.concat(" AND g.nEstadoGuia = '"+nEstadoGuia+"' ");
             }
-            if(bGuia.getFecGuiaMin() != null && bGuia.getFecGuiaMax() != null){
+            if(fecEmisMin!= null && fecEmisMax != null){
                 ejbQl = ejbQl.concat(" AND g.fechaGuia BETWEEN :FecGuiaMin AND :FecGuiamax ");
             }
-            if(bGuia.getFecDespachoMin() != null && bGuia.getFecDespachoMax() != null){
+            if(fecDespMin!= null && fecDespMax!= null){
                 ejbQl = ejbQl.concat(" AND g.fechaDespacho BETWEEN :FecDespMin AND :FecDespmax ");
             }
-            if(bGuia.getEmpCliente() != null){
-                ejbQl = ejbQl.concat(" AND upper(g.ordenServicio.adEmpresa.cRazonSocial) like '%"+bGuia.getEmpCliente().toUpperCase()+"%' ");
+            if(empCliente!= null){
+                ejbQl = ejbQl.concat(" AND upper(g.ordenServicio.adEmpresa.cRazonSocial) like '%"+empCliente.toUpperCase()+"%' ");
             }
            /* if(bGuia.getFiltroItemGuiaRemi() != null){
                 ejbQl = ejbQl.concat(" AND it.trGuia.cidGuia = g.cidGuia AND UPPER(it.cCidGuiaRemitente) like UPPER('%"+bGuia.getFiltroItemGuiaRemi()+"%') ");
@@ -183,84 +203,84 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                     ejbQl = ejbQl.concat(" AND g.ordenServicio.adEmpresa.nidParty = "+bGuia.getNidCliente()+" ");
                 }
             }*/
-            if(bGuia.getAdEmpresa() != null){
-                if(bGuia.getAdEmpresa().getCRazonSocial() != null){
-                    ejbQl = ejbQl.concat(" AND upper(g.adEmpresa.cRazonSocial) like '%"+bGuia.getAdEmpresa().getCRazonSocial().toUpperCase()+"%' ");
+            if(empProvCarga != null){
+                if(empProvCarga!= null){
+                    ejbQl = ejbQl.concat(" AND upper(g.adEmpresa.cRazonSocial) like '%"+empProvCarga.toUpperCase()+"%' ");
                 } 
             }
-            if(bGuia.getCObservaciones() != null){
-                ejbQl = ejbQl.concat(" AND upper(g.cObservaciones) like '%"+bGuia.getCObservaciones().toUpperCase()+"%' ");
+            if(cObservaciones != null){
+                ejbQl = ejbQl.concat(" AND upper(g.cObservaciones) like '%"+cObservaciones.toUpperCase()+"%' ");
             }
-            if(bGuia.getOrdenServicio() != null){
-                if(bGuia.getOrdenServicio().getNidOrdnServ() != 0){
-                    ejbQl = ejbQl.concat(" AND g.ordenServicio.nidOrdnServ = "+bGuia.getOrdenServicio().getNidOrdnServ()+" ");
+            if(nidOS != 0){
+                if(nidOS!= 0){
+                    ejbQl = ejbQl.concat(" AND g.ordenServicio.nidOrdnServ = "+nidOS+" ");
                 }
-                if(bGuia.getOrdenServicio().getCDetalle() != null){
-                    ejbQl = ejbQl.concat(" AND upper(g.ordenServicio.cDetalle) like '%"+bGuia.getOrdenServicio().getCDetalle().toUpperCase()+"%' ");
+                if(detOS != null){
+                    ejbQl = ejbQl.concat(" AND upper(g.ordenServicio.cDetalle) like '%"+detOS+"%' ");
                 }
             }
-            if(bGuia.getCConformidad() != null){
-                ejbQl = ejbQl.concat(" AND g.cConformidad = '"+bGuia.getCConformidad()+"'");
+            if(estGuia != null){
+                ejbQl = ejbQl.concat(" AND g.cConformidad = '"+estGuia+"'");
             }
-            if(bGuia.getCidGuia() != null){
-                ejbQl = ejbQl.concat(" AND g.cidGuia like '%"+bGuia.getCidGuia()+"%' ");
+            if(cidGuia!= null){
+                ejbQl = ejbQl.concat(" AND g.cidGuia like '%"+cidGuia+"%' ");
             }
-            if(bGuia.getHasManifiesto() != null){
-                if(bGuia.getHasManifiesto().equals("1")){
+            if(hasManif!= null){
+                if(hasManif.equals("1")){
                     ejbQl = ejbQl.concat(" AND g.trManifiesto IS NOT NULL ");
                 }else{
                     ejbQl = ejbQl.concat(" AND g.trManifiesto IS NULL ");
                 }
             }
-            if(bGuia.getHasFactura() != null){
-                if(bGuia.getHasFactura().equals("1")){
+            if(hasFactura!= null){
+                if(hasFactura.equals("1")){
                     ejbQl = ejbQl.concat(" AND g.trFactura IS NOT NULL ");
-                    if(bGuia.getTrFactura() != null){
-                        if(bGuia.getTrFactura().getNidFactura() != null){
-                            ejbQl = ejbQl.concat(" AND g.trFactura.nidFactura like '%"+bGuia.getTrFactura().getNidFactura()+"%' ");
+                    if(codFactura!= null){
+                        if(codFactura!= null){
+                            ejbQl = ejbQl.concat(" AND g.trFactura.nidFactura like '%"+codFactura+"%' ");
                         }
-                        if(bGuia.getTrFactura().getNEstadoFactura() != 0){
-                            ejbQl = ejbQl.concat(" AND g.trFactura.nEstadoFactura = "+bGuia.getTrFactura().getNEstadoFactura());
+                        if(nEstadoFactura!= 0){
+                            ejbQl = ejbQl.concat(" AND g.trFactura.nEstadoFactura = "+nEstadoFactura);
                         }    
                     }
                 }else{
                     ejbQl = ejbQl.concat(" AND g.trFactura IS NULL ");
                 }
             }else{
-                if(bGuia.getTrFactura() != null){
-                    if(bGuia.getTrFactura().getCCodFactura() != null){
-                        ejbQl = ejbQl.concat(" AND g.trFactura.cCodFactura like '%"+bGuia.getTrFactura().getCCodFactura()+"%' ");
+                if(codFactura!= null){
+                    if(codFactura!= null){
+                        ejbQl = ejbQl.concat(" AND g.trFactura.cCodFactura like '%"+codFactura+"%' ");
                     }
-                    if(bGuia.getTrFactura().getNEstadoFactura() != 0){
-                        ejbQl = ejbQl.concat(" AND g.trFactura.nEstadoFactura = "+bGuia.getTrFactura().getNEstadoFactura());
+                    if(nEstadoFactura != 0){
+                        ejbQl = ejbQl.concat(" AND g.trFactura.nEstadoFactura = "+nEstadoFactura);
                     }    
                 }
             }
-            if(bGuia.getTrManifiesto() != null){
-                if(bGuia.getTrManifiesto().getNidManifiesto() != null){
-                    ejbQl = ejbQl.concat(" AND g.trManifiesto.nidManifiesto = "+bGuia.getTrManifiesto().getNidManifiesto());
+            if(nidManif!= null){
+                if(nidManif!= null){
+                    ejbQl = ejbQl.concat(" AND g.trManifiesto.nidManifiesto = "+nidManif);
                 }
-                if(bGuia.getTrManifiesto().getTrManifiesto() != null){
-                    ejbQl = ejbQl.concat(" AND upper(g.trManifiesto.trManifiesto.cRazonSocial) like '%"+bGuia.getTrManifiesto().getTrManifiesto().getCRazonSocial().toUpperCase()+"%' ");
+                if(prov != null){
+                    ejbQl = ejbQl.concat(" AND upper(g.trManifiesto.trManifiesto.cRazonSocial) like '%"+prov+"%' ");
                 }
             }
             ejbQl = ejbQl.concat(" ORDER BY g.cidGuia DESC ");
             //UtilsGeneral.depurar("query guias "+ejbQl);
             List<TRGuia> lstGuias = new ArrayList<TRGuia>();
-            if((bGuia.getFecGuiaMin() != null && bGuia.getFecGuiaMax() != null) &&
-               (bGuia.getFecDespachoMin() != null && bGuia.getFecDespachoMax() != null)){
-                 lstGuias = em.createQuery(ejbQl).setParameter("FecGuiaMin", bGuia.getFecGuiaMin(), TemporalType.DATE)
-                                                 .setParameter("FecGuiamax", bGuia.getFecGuiaMax(), TemporalType.DATE)                             
-                                                 .setParameter("FecDespMin", bGuia.getFecDespachoMin(), TemporalType.DATE)
-                                                 .setParameter("FecDespmax", bGuia.getFecDespachoMax(), TemporalType.DATE).getResultList();
-            }else if(bGuia.getFecGuiaMin() != null && bGuia.getFecGuiaMax() != null){
+            if((fecEmisMin != null && fecEmisMax != null) &&
+               (fecDespMin!= null && fecDespMax != null)){
+                 lstGuias = em.createQuery(ejbQl).setParameter("FecGuiaMin", fecEmisMin, TemporalType.DATE)
+                                                 .setParameter("FecGuiamax", fecEmisMax, TemporalType.DATE)                             
+                                                 .setParameter("FecDespMin", fecDespMin, TemporalType.DATE)
+                                                 .setParameter("FecDespmax", fecDespMax, TemporalType.DATE).getResultList();
+            }else if(fecEmisMin != null && fecEmisMax != null){
                 lstGuias = em.createQuery(ejbQl)
-                             .setParameter("FecGuiaMin", bGuia.getFecGuiaMin(), TemporalType.DATE)
-                             .setParameter("FecGuiamax", bGuia.getFecGuiaMax(), TemporalType.DATE).getResultList();
-            }else if(bGuia.getFecDespachoMin() != null && bGuia.getFecDespachoMax() != null){
+                             .setParameter("FecGuiaMin", fecEmisMin, TemporalType.DATE)
+                             .setParameter("FecGuiamax", fecEmisMax, TemporalType.DATE).getResultList();
+            }else if(fecDespMin != null && fecDespMax != null){
                 lstGuias = em.createQuery(ejbQl)
-                             .setParameter("FecDespMin", bGuia.getFecDespachoMin(), TemporalType.DATE)
-                             .setParameter("FecDespmax", bGuia.getFecDespachoMax(), TemporalType.DATE).getResultList();
+                             .setParameter("FecDespMin", fecDespMin, TemporalType.DATE)
+                             .setParameter("FecDespmax", fecDespMax, TemporalType.DATE).getResultList();
             }else{
                 lstGuias = em.createQuery(ejbQl).setMaxResults(600).getResultList();
             }

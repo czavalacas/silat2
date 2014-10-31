@@ -14,4 +14,5 @@ public interface BDL_C_SFManifiestoLocal {
     List<BeanManifiesto> findManifiestosByAttributes(BeanManifiesto beanManifiesto);
     int cantManifiestosByChofer(int nidChofer);
     int cantManifiestosByFlota(int nidFlota);
+    List<TRManifiesto> findManifiestobyEstadoporAsignar();
 }

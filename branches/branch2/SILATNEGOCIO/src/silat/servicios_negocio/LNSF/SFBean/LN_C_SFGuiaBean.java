@@ -135,7 +135,11 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             if("0".equals(hasFactura)){//ELIGIO GUIAS NO FACTURADAS
                 beanGuia.setNEstadoGuia("1");
             }
-            List<BeanTRGuia> getListaGuias = getListaGuias(bdL_C_SFGuiaLocal.findGuiasByAttributes_BD(beanGuia));
+            List<BeanTRGuia> getListaGuias = getListaGuias(bdL_C_SFGuiaLocal.findGuiasByAttributes_BD(cidGuia,fecEmisMin,fecEmisMax, fecDespMin, 
+                                                fecDespMax, empCliente, empProvCarga, estGuia,
+                                                hasManif, nidManif, prov, cObservaciones,
+                                                nEstadoGuia, nidOS, detOS, hasFactura, codFactura,
+                                                nEstadoFactura, nidParty, descCidGuiaRemi_ITEM));
             return getListaGuias;
         }catch(Exception e){
             List<BeanTRGuia> getListaGuias = new ArrayList<BeanTRGuia>();
@@ -161,8 +165,109 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
         return listaGuias;
     }
     
-    public List<BeanTRGuia> getListaGuias(List<TRGuia> lstGuia){
+    public List<BeanTRItem> passItems(List<TRItem> items){
+        List<BeanTRItem> it = new ArrayList<BeanTRItem>();
+        for(TRItem entidad:items){
+            BeanTRItem bean = new BeanTRItem();
+            bean.setCCidGuiaRemitente(entidad.getCCidGuiaRemitente());
+            bean.setCDescItem(entidad.getCDescItem());
+            bean.setCUndMedida(entidad.getCUndMedida());
+            bean.setDPeso(entidad.getDPeso());
+            bean.setIdItem(entidad.getNidItem());
+            bean.setNCantidad(entidad.getNCantidad());
+            bean.setNidItem(entidad.getNidItem());
+            bean.setOrden(entidad.getOrden());
+            
+            it.add(bean);
+        }
+        return it;
+    }
+    
+    public List<BeanTRGuia> getListaGuias(List<TRGuia> listGuia){
         try{
+        List<BeanTRGuia> listBeanGuias = new ArrayList<BeanTRGuia>();
+        for(TRGuia entidad:listGuia){
+            BeanTRGuia beanGuia = new BeanTRGuia();
+            BeanOrdenServicio beanOrdenervicio = new BeanOrdenServicio();
+            BeanEmpresa beanEmpOrdenServ = new BeanEmpresa();
+            BeanEmpresa beanEmpGuia = new BeanEmpresa();
+            BeanManifiesto beanManifGuia = new BeanManifiesto();
+            BeanEmpresa beanManifManif = new BeanEmpresa();
+            BeanFactura beanFactGuia = new BeanFactura();
+            
+            //Solo Con TRGuia
+            beanGuia.setCidGuia(entidad.getCidUnidadNegocio()+"-"+entidad.getCidGuia());
+            beanGuia.setFechaGuia(entidad.getFechaGuia());
+            beanGuia.setFechaDespacho(entidad.getFechaDespacho());
+            //beanGuia.setItemsLista(passItems(entidad.getItemsList()));
+            beanGuia.setNumPaquetes(entidad.getNumPaquetes());
+            //CLIENTE
+            beanGuia.setEmpCliente(entidad.getOrdenServicio().getAdEmpresa().getCRazonSocial());
+            beanGuia.setCObservaciones(entidad.getCObservaciones());
+            beanGuia.setNidFlota(entidad.getNidFlota());
+            beanGuia.setImgGuiaProv(entidad.getImgGuiaProv());
+            beanGuia.setNidDireccionRemitente(entidad.getNidDireccionRemitente());
+            beanGuia.setNidDireccionDestino(entidad.getNidDireccionDestino());
+            BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",entidad.getCConformidad());
+            beanGuia.setDescConformidad(constr.getCDescrip());
+            beanGuia.setCConformidad(entidad.getCConformidad());
+            List<BeanDireccion> direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(entidad.getNidDireccionDestino(),null,null);
+            if(direcs != null){
+                if(direcs.size() > 0){
+                    beanGuia.setCDireccionDestino(direcs.get(0).getCDireccion());
+                }
+            }
+            direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(entidad.getNidDireccionRemitente(),null,null);
+            if(direcs != null){
+                if(direcs.size() > 0){
+                    beanGuia.setCDireccionRemitente(direcs.get(0).getCDireccion());
+                }
+            }
+                //solo con Empresa-TRGuia
+                beanEmpGuia.setCRazonSocial(entidad.getAdEmpresa().getCRazonSocial());
+                beanEmpGuia.setCRuc(entidad.getAdEmpresa().getCRuc());
+                beanEmpGuia.setNidParty(entidad.getAdEmpresa().getNidParty());
+                beanGuia.setAdEmpresa(beanEmpGuia);
+            
+            //Solo Con Orden Servicio
+            beanOrdenervicio.setCDetalle(entidad.getOrdenServicio().getCDetalle());
+            beanOrdenervicio.setNidOrdnServ(entidad.getOrdenServicio().getNidOrdnServ());
+            beanOrdenervicio.setFecOrdnServ(entidad.getOrdenServicio().getFecOrdnServ());
+                //Solo con Empresa-OrdenServicio
+                beanEmpOrdenServ.setCRazonSocial(entidad.getOrdenServicio().getAdEmpresa().getCRazonSocial());
+                beanEmpOrdenServ.setCRuc(entidad.getOrdenServicio().getAdEmpresa().getCRuc());
+                beanEmpOrdenServ.setNidParty(entidad.getOrdenServicio().getAdEmpresa().getNidParty());
+                beanOrdenervicio.setAdEmpresa(beanEmpOrdenServ);
+            beanGuia.setOrdenServicio(beanOrdenervicio);
+            
+            //Solo Con Manifiesto
+            if(entidad.getTrManifiesto()!=null){
+            beanManifGuia.setNidManifiesto(entidad.getTrManifiesto().getNidManifiesto());
+            beanManifGuia.setFechaManifiesto(entidad.getTrManifiesto().getFechaManifiesto());
+            beanManifGuia.setNFletePactado(entidad.getTrManifiesto().getNFletePactado());
+            beanManifGuia.setNAdelanto(entidad.getTrManifiesto().getNAdelanto());
+            beanManifGuia.setIgv(entidad.getTrManifiesto().getIgv());
+            beanManifGuia.setNidFlota(entidad.getTrManifiesto().getNidFlota());
+            beanManifGuia.setNidChof(entidad.getTrManifiesto().getNidChof());
+            beanManifGuia.setDetraccion(entidad.getTrManifiesto().getDetraccion());
+            beanManifGuia.setDetraccionReal(entidad.getTrManifiesto().getDetraccionReal());
+            beanManifGuia.setCTipoDoc(entidad.getTrManifiesto().getCTipoDoc());
+            beanManifGuia.setCObservaciones(entidad.getTrManifiesto().getCObservaciones());
+                //Solo con Manifiesto-Manifiesto
+                beanManifManif.setCRazonSocial(entidad.getTrManifiesto().getTrManifiesto().getCRazonSocial());
+                beanManifManif.setCRuc(entidad.getTrManifiesto().getTrManifiesto().getCRuc());
+                beanManifManif.setNidParty(entidad.getTrManifiesto().getTrManifiesto().getNidParty());
+                beanManifGuia.setTrManifiesto(beanManifManif);
+            beanGuia.setTrManifiesto(beanManifGuia);
+            }
+            //Solo Con Factur
+            beanFactGuia.setCidUnidadNegocio(beanGuia.getCidUnidadNegocio());
+            beanGuia.setTrFactura(beanFactGuia);
+            
+            listBeanGuias.add(beanGuia); 
+            
+        }
+/*         try{
             MapperIF mapper = new DozerBeanMapper();
             List<BeanTRGuia> lstBeanGuias = new ArrayList<BeanTRGuia>();
             BeanTRGuia beanGuias = new BeanTRGuia();
@@ -229,7 +334,12 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
         }catch(Exception e){
             e.printStackTrace();
             return new ArrayList<BeanTRGuia>();
-        }
+        } */
+     return listBeanGuias;   
+    }catch(Exception e){
+            e.printStackTrace();
+            return new ArrayList<BeanTRGuia>();
+        } 
     }
     
     public List<BeanTRGuia> getListaGuiasByManifForVerificacionGuiasOK(List<TRGuia> lstGuia){
@@ -333,6 +443,25 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
     }
     
     public List<BeanTRGuia> getGuiasByOrdenServicio(int nidOS){
+        String cidGuia = null;
+        Date fecEmisMin = null;
+        Date fecEmisMax = null;
+        Date fecDespMin = null; 
+        Date fecDespMax = null;
+        String empCliente = null;
+        String empProvCarga = null;
+        String estGuia = null;
+        String hasManif = null;
+        Integer nidManif = null;
+        String prov = null;
+        String cObservaciones  = null;
+        String nEstadoGuia = null;
+        String detOS = null;
+        String hasFactura = null;
+        String codFactura = null;
+        int nEstadoFactura = 0;
+        BigDecimal nidParty = null;
+        String descCidGuiaRemi_ITEM = null;
         try{
             BeanTRGuia beanGuia = new BeanTRGuia();
             if(nidOS != 0){
@@ -342,7 +471,11 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                 beanGuia.setCConformidad("1");
                 beanGuia.setHasFactura("0");
             }
-            List<BeanTRGuia> getListaGuias = getListaGuias(bdL_C_SFGuiaLocal.findGuiasByAttributes_BD(beanGuia));
+            List<BeanTRGuia> getListaGuias = getListaGuias(bdL_C_SFGuiaLocal.findGuiasByAttributes_BD( cidGuia, fecEmisMin, fecEmisMax, fecDespMin, 
+                                                fecDespMax, empCliente, empProvCarga, estGuia,
+                                                hasManif, nidManif, prov, cObservaciones,
+                                                nEstadoGuia, nidOS, detOS, hasFactura, codFactura,
+                                                nEstadoFactura, nidParty, descCidGuiaRemi_ITEM));
             return getListaGuias;
         }catch(Exception e){
             List<BeanTRGuia> getListaGuias = new ArrayList<BeanTRGuia>();
@@ -377,6 +510,107 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                     idItem++;
                 }
             }
+        }
+        return itemsListBeans;
+    }
+    public List<BeanTRGuia> guiasByNidParty(int nidCliente){
+        List<TRGuia> lstGuia = bdL_C_SFGuiaLocal.guiasPorParty(nidCliente);
+        List<BeanTRGuia> lstBeanGuias = new ArrayList<BeanTRGuia>();
+        for(TRGuia guia : lstGuia){
+                BeanTRGuia beanGuias = new BeanTRGuia();
+                BeanEmpresa beanEm = new BeanEmpresa();
+                BeanEmpresa beanEm1 = new BeanEmpresa();
+                BeanManifiesto beanMan = new BeanManifiesto();
+            
+                beanGuias.setCidGuia(guia.getCidGuia());
+                beanGuias.setCObservaciones(guia.getCObservaciones());
+                beanGuias.setCConformidad("Pendiente");
+                beanGuias.setFechaGuia(guia.getFechaGuia());
+                beanGuias.setEmpCliente(guia.getOrdenServicio().getAdEmpresa().getCRazonSocial());
+                beanGuias.setItemsLista(this.itemsLista(guia.getItemsList()));
+                beanGuias.setNumPaquetes(guia.getNumPaquetes());
+            
+                beanEm.setCRazonSocial(guia.getAdEmpresa().getCRazonSocial());
+                beanGuias.setAdEmpresa(beanEm);
+            
+                beanEm1.setCRazonSocial(guia.getTrManifiesto().getTrManifiesto().getCRazonSocial());
+                beanMan.setTrManifiesto(beanEm1);
+                beanMan.setNidManifiesto(guia.getTrManifiesto().getNidManifiesto());
+                beanGuias.setTrManifiesto(beanMan);
+            
+            
+                List<BeanDireccion> direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionDestino(),null,null);
+                if(direcs != null){
+                    if(direcs.size() > 0){
+                        beanGuias.setCDireccionDestino(direcs.get(0).getCDireccion());
+                    }
+                }
+                direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionRemitente(),null,null);
+                if(direcs != null){
+                    if(direcs.size() > 0){
+                        beanGuias.setCDireccionRemitente(direcs.get(0).getCDireccion());
+                    }
+                }
+            
+                lstBeanGuias.add(beanGuias);
+            
+        }
+        return lstBeanGuias;
+    }
+    public List<BeanTRGuia> guiasByNidPartyOK(int nidCliente){
+        List<TRGuia> lstGuia = bdL_C_SFGuiaLocal.guiasPorPartyOK(nidCliente);
+        List<BeanTRGuia> lstBeanGuias = new ArrayList<BeanTRGuia>();
+        for(TRGuia guia : lstGuia){
+                BeanTRGuia beanGuias = new BeanTRGuia();
+                BeanEmpresa beanEm = new BeanEmpresa();
+                BeanEmpresa beanEm1 = new BeanEmpresa();
+                BeanManifiesto beanMan = new BeanManifiesto();
+            
+                beanGuias.setCidGuia(guia.getCidGuia());
+                beanGuias.setCObservaciones(guia.getCObservaciones());
+                beanGuias.setCConformidad("OK");
+                beanGuias.setImgGuia(guia.getImgGuia());
+                beanGuias.setFechaGuia(guia.getFechaGuia());
+                beanGuias.setEmpCliente(guia.getOrdenServicio().getAdEmpresa().getCRazonSocial());
+                beanGuias.setItemsLista(this.itemsLista(guia.getItemsList()));
+                beanGuias.setNumPaquetes(guia.getNumPaquetes());
+            
+                beanEm.setCRazonSocial(guia.getAdEmpresa().getCRazonSocial());
+                beanGuias.setAdEmpresa(beanEm);
+            
+                beanEm1.setCRazonSocial(guia.getTrManifiesto().getTrManifiesto().getCRazonSocial());
+                beanMan.setTrManifiesto(beanEm1);
+                beanGuias.setTrManifiesto(beanMan);
+            
+            
+                List<BeanDireccion> direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionDestino(),null,null);
+                if(direcs != null){
+                    if(direcs.size() > 0){
+                        beanGuias.setCDireccionDestino(direcs.get(0).getCDireccion());
+                    }
+                }
+                direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionRemitente(),null,null);
+                if(direcs != null){
+                    if(direcs.size() > 0){
+                        beanGuias.setCDireccionRemitente(direcs.get(0).getCDireccion());
+                    }
+                }
+            
+                lstBeanGuias.add(beanGuias);
+            
+        }
+        return lstBeanGuias;
+    }
+    public List<BeanTRItem> itemsLista(List<TRItem> itemsList){
+        List<BeanTRItem> itemsListBeans = new ArrayList<BeanTRItem>();
+        for(TRItem item : itemsList){
+            BeanTRItem bItem = new BeanTRItem();
+            bItem.setIdItem(item.getNidItem());
+            bItem.setCDescItem(item.getCDescItem());
+            bItem.setNCantidad(item.getNCantidad());
+            bItem.setCUndMedida(item.getCUndMedida());
+            bItem.setDPeso(item.getDPeso());
+            itemsListBeans.add(bItem);
         }
         return itemsListBeans;
     }

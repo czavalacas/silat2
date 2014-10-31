@@ -260,4 +260,22 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
     public int traerSiguienteValorSequence(){
         return bdL_C_SFUtilsLocal.traerSiguienteValorCodigo("trorden.nid_orden");// valor del app_seq_name de la tabla codigo 
     }
+    public List<BeanOrdenServicio> ordenServicioPendiente() {
+        List<TROrdenServicio> list = bdL_C_SFOrdenServicioLocal.getTROrdenServicioFindAll();
+        List<BeanOrdenServicio> listbos = new ArrayList<BeanOrdenServicio>();
+        for(TROrdenServicio entidad:list){
+            BeanOrdenServicio bean = new BeanOrdenServicio();
+            bean.setCDetalle(entidad.getCDetalle());
+            bean.setCRazonSocial(entidad.getAdEmpresa().getCRazonSocial());
+            bean.setComentario(entidad.getComentario());
+            bean.setFecOrdnServ(entidad.getFecOrdnServ());
+            bean.setNidOrdnServ(entidad.getNidOrdnServ());
+            bean.setNidEmpresa(entidad.getAdEmpresa().getNidParty());
+            bean.setCEstord(entidad.getCEstord().equals("P") ? "Pendiente" : "Finalizado");
+            
+            listbos.add(bean);
+        }
+        
+        return listbos;
+    }
 }

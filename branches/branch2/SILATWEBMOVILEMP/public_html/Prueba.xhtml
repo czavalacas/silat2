@@ -1,0 +1,402 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:b="http://bootsfaces.net/ui" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" href="../LIBS/css/normalize.css"/>
+        <link rel="stylesheet" href="../LIBS/css/foundation.css"/>
+        <script src="../LIBS/js/vendor/modernizr.js"></script>
+        <title>SILA-WEBMOVIL</title>
+        <script>
+          $(document).foundation();
+          $('a.custom-close-reveal-modal').click(function(){
+              $('#myModal').foundation('reveal', 'close');
+            });
+            function load(){
+            document.getElementById("regManifiesto0").style.display="none";
+            document.getElementById("regManifiesto").style.display="none";
+            document.getElementById("regManifiesto1").style.display="none";
+            document.getElementById("regManifiesto2").style.display="none";
+            document.getElementById("regManifiesto3").style.display="none";
+            document.getElementById("regManifiestoGuardar").style.display="none";   
+                }
+          function ocultarForm(){
+              document.getElementById("ordenServicio").style.display="none";
+              document.getElementById("manifiesto").style.display="block";
+              document.getElementById("regManifiesto0").style.display="none";
+              document.getElementById("subManifiesto").style.display="block";
+              document.getElementById("regManifiesto").style.display="none";
+              document.getElementById("regManifiesto1").style.display="none";
+              document.getElementById("regManifiesto2").style.display="none";
+              document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiestoGuardar").style.display="none";
+              document.getElementById("modal-launcher").style.display="none";
+              document.getElementById("abrirModalFlotas").style.display="none";
+              document.getElementById("abrirModalChoferes").style.display="none";
+          }
+          function mostrarForm(){
+              document.getElementById("subManifiesto").style.display="none";
+              document.getElementById("manifiesto").style.display="none";
+              document.getElementById("ordenServicio").style.display="block";
+              document.getElementById("regManifiesto0").style.display="none";
+              document.getElementById("regManifiesto").style.display="none";
+              document.getElementById("regManifiesto1").style.display="none";
+              document.getElementById("regManifiesto2").style.display="none";
+              document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiestoGuardar").style.display="none";
+              document.getElementById("modal-launcher").style.display="none";
+              document.getElementById("abrirModalFlotas").style.display="none";
+              document.getElementById("abrirModalChoferes").style.display="none";
+          }
+          function mostrarFormregManif(){
+              document.getElementById("subManifiesto").style.display="block";
+              document.getElementById("manifiesto").style.display="none";
+              document.getElementById("regManifiesto0").style.display="block";
+              document.getElementById("regManifiesto").style.display="block";
+              document.getElementById("regManifiesto1").style.display="block";
+              document.getElementById("regManifiesto2").style.display="block";
+              document.getElementById("regManifiesto3").style.display="block";
+              document.getElementById("regManifiestoGuardar").style.display="block";
+              document.getElementById("modal-launcher").style.display="block";
+              document.getElementById("abrirModalFlotas").style.display="block";
+              document.getElementById("abrirModalChoferes").style.display="block";
+          }
+        $(function(){
+	$("#modal-launcher, #modal-background, #modal-close").click(function () {
+		$("#modal-content,#modal-background").toggleClass("active");
+                    });
+            });
+            
+            function closeModalClientes(){
+                document.getElementById("modal-content").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+                document.getElementById("regManifiesto").style.display="block";
+            }
+            
+             function openModalClientes(){
+                document.getElementById("modal-content").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+             function openModalFlotas(){
+                document.getElementById("modalFlotas").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalFlotas(){
+                document.getElementById("modalFlotas").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+                document.getElementById("regManifiesto").style.display="block";
+            }
+             function openModalChoferes(){
+                document.getElementById("modalChoferes").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalChoferes(){
+                document.getElementById("modalChoferes").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+                document.getElementById("regManifiesto").style.display="block";
+            }
+            function isNumber(obj){
+                var x = obj.value;
+                if(isNaN(x)){
+                    obj.style.backgroundColor = "red";
+                    obj.value = "";
+                }else{
+                   obj.style.backgroundColor = "#bfea30"; 
+                }
+            }
+            function isNull(obj){
+                var x = obj.value;
+                if(x == ""){
+                    obj.style.backgroundColor = "red";
+                    obj.value = "Ingrese un Comentario";
+                }else{
+                    obj.style.backgroundColor = "#bfea30";
+                }
+            }
+            function tranportePropio(obj){
+             var porId = obj.checked;
+             if(porId == true){
+                 document.getElementById("regManifiesto").style.display="none";
+                 document.getElementById("modal-launcher").style.display="none";   
+             }else{
+                document.getElementById("regManifiesto").style.display="block";
+                document.getElementById("modal-launcher").style.display="block";
+             }
+            }
+        </script>
+        <style type="text/css" media="screen, print, projection">
+    #modal-background {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: .50;
+        -webkit-opacity: .5;
+        -moz-opacity: .5;
+        filter: alpha(opacity=50);
+        z-index: 1000;
+    }
+    
+    #modal-content {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        box-shadow: 0 0 20px 0 #222;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        -moz-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        height:auto;
+        z-index: 1000;
+    }
+    #modalFlotas {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        box-shadow: 0 0 20px 0 #222;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        -moz-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        height:auto;
+        z-index: 1000;
+    }
+    #modalChoferes {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        box-shadow: 0 0 20px 0 #222;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        -moz-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        height:auto;
+        z-index: 1000;
+    }
+
+    #modal-background.active, #modal-content.active, #modalFlotas.active #modalChoferes.active {
+        display: block;
+    }
+        </style>
+    </h:head>
+    <h:body style="background-color: #a9a7a7;" onload="load()">   
+    
+    <div class="icon-bar two-up" style="background-color:#4169E1;color:white;">
+          <h:form>
+            <b:commandButton icon="user" value="" style="font-size:100%;border-color : #4169E1;color:white;background-color:#4169E1">
+                Cuenta
+            </b:commandButton>
+          </h:form>
+          <h:form>
+            <b:commandButton action="#{frm_WebMovilEmp.motrarOrdenServ}" icon="road" value="" style="border-color : #4169E1;color:white;background-color:#4169E1"
+                                onclick="mostrarForm();return false;">
+                O.Serv
+            </b:commandButton>
+          </h:form>
+          <h:form>
+            <b:commandButton update="form:manifiesto" action="#{frm_WebMovilEmp.mostrarManifiesto}" icon="file" value="" style="border-color : #4169E1;color:white;background-color:#4169E1"
+                             onclick="ocultarForm();return false;">
+                Manif
+            </b:commandButton>
+          </h:form>
+          <h:form>
+            <b:commandButton icon="off" value="" style="border-color : #4169E1;color:white;background-color:#4169E1">
+                Salir
+            </b:commandButton>
+          </h:form>
+        </div>
+        
+        <h:form id="subManifiesto" style="display:none">
+            <b:commandButton value="Nuevo Manif" onclick="mostrarFormregManif();return false;" icon="pencil" style="width:50%;margin-bottom:10px;border-color : #696b72;color:white;background-color:#6888e7"/>
+            <b:commandButton value="Ver Manif" icon="eye-open" onclick="return false;" style="width:50%;margin-bottom:10px;border-color : #696b72;color:white;background-color:#6888e7"/>
+        </h:form>
+        
+   <h:form id="ordenServicio">
+    <ui:repeat value="#{frm_WebMovilEmp.listaOrdenServicio}" var="row">
+        <ul class="pricing-table">
+          <li class="title" style="background-color:#bfea30;color:black">Orden Servicio n° #{row.nidOrdnServ}</li>
+          <li class="price">Detalle: </li>
+          <li class="description">Fecha: #{row.fecOrdnServ}</li>
+          <li class="bullet-item"></li>
+          <li class="bullet-item">dato1</li>
+          <li class="bullet-item">dato1</li>
+          <li class="cta-button">
+                <b:commandButton value="Ver" style="background-color:#bfea30;width:60%;margin-top:-20px"/>
+          </li>
+        </ul>
+        </ui:repeat>
+    </h:form>
+    
+    <h:form id="manifiesto" style="display:none">
+     <ui:repeat value="#{frm_WebMovilEmp.listaManifiesto}" var="row">
+    <ul class="pricing-table">
+          <li class="title" style="background-color:#bfea30;color:black">Manifiesto n° #{row.nidManifiesto}</li>
+          <li class="price">Detalle: </li>
+          <li class="description">Fecha: #{row.fechaManifiesto}</li>
+          <li class="bullet-item"></li>
+          <li class="bullet-item">dato1</li>
+          <li class="bullet-item">dato1</li>
+          <li class="cta-button">
+                <b:commandButton value="Ver" style="background-color:#bfea30;width:60%;margin-top:-20px"/>
+          </li>
+        </ul>
+        </ui:repeat>
+    </h:form>
+    
+    <div style="background-color: #bfea30;color:#000000;margin-bottom:10px;text-align:center" id="regManifiesto0">
+    <h:outputText value="Tranporte Propio?"/>
+    <br></br>  
+    <h:selectBooleanCheckbox onclick="tranportePropio(this)" value="#{frm_WebMovilEmp.checkBox}" id="checkBox">
+        <f:ajax listener="#{frm_WebMovilEmp.onDelete}"/>
+    </h:selectBooleanCheckbox>
+    </div>
+    
+    <button id="modal-launcher" style="width:100%;display:none" onclick="openModalClientes()">Elegir Razon.Soc</button>
+    <h:form id="regManifiesto">
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.razonSocialEmpresaElegida}">
+            <f:facet name="prepend">
+                <h:outputText value="Razon Social"/>
+            </f:facet>
+        </b:inputText>
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.rucEmpresaElegida}">
+            <f:facet name="prepend">
+                <h:outputText value="RUC"/>
+            </f:facet>
+        </b:inputText>
+    </h:form>
+    
+    <button id="abrirModalFlotas" style="width:100%;display:none" onclick="openModalFlotas()">Elegir Flota</button>
+    <h:form id="regManifiesto1">
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.razonSocialEmpresaElegida}">
+            <f:facet name="prepend">
+                <h:outputText value="Flota"/>
+            </f:facet>
+        </b:inputText>
+    </h:form>
+    
+    <button id="abrirModalChoferes" style="width:100%;display:none" onclick="openModalChoferes()">Elegir Chofer</button>
+    <h:form id="regManifiesto2">
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.razonSocialEmpresaElegida}">
+            <f:facet name="prepend">
+                <h:outputText value="Chofer"/>
+            </f:facet>
+        </b:inputText>
+    </h:form>
+    
+    <h:form id="regManifiesto3">
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.fechaRegManifiesto}">
+            <f:facet name="prepend">
+                <h:outputText value="Fecha"/>
+            </f:facet>
+        </b:inputText>
+        <b:inputText id="fletePactado"  onblur="isNumber(this)" style="background-color: #bfea30;color:#000000;"
+                     value="#{frm_WebMovilEmp.fletePactado}">
+            <f:facet name="prepend">
+                <h:outputText value="Flete Pactado"/>
+            </f:facet>
+        </b:inputText>
+        <b:inputText onblur="isNumber(this)" style="background-color: #bfea30;color:#000000;"
+                     value="#{frm_WebMovilEmp.adelanto}">
+            <f:facet name="prepend">
+                <h:outputText value="Adelanto"/>
+            </f:facet>
+        </b:inputText>
+        <b:inputText id="comentario" onblur="isNull(this)" style="background-color: #bfea30;color:#000000;"
+                     value="#{frm_WebMovilEmp.comentario}">
+            <f:facet name="prepend">
+                <h:outputText value="Observaciones"/>
+            </f:facet>
+        </b:inputText>
+    </h:form>
+    
+    <h:form id="regManifiestoGuardar" style="height:70px">
+        <b:commandButton style="font-size:15px;background-color: #6888E7; width: 50%;height:50px;border-color : #000000"
+                                 icon="save" iconAlign="right" ajax="true" update="form:inform regManifiesto"
+                                 value="Guardar"/>
+        <b:commandButton style="font-size:15px;background-color: #6888E7; width: 50%;height:50px;border-color : #000000"
+                                 icon="trash" iconAlign="right" ajax="true" update="form:inform regManifiesto"
+                                 value="Limpiar"/>
+    </h:form>
+    
+    <div id="modal-background"></div>
+    
+    <div id="modal-content">
+    <h:form>
+            <ui:repeat value="#{frm_WebMovilEmp.listaProov}" var="row">
+                <b:commandButton id="modal-close" action="#{frm_WebMovilEmp.editAction}"
+                                 style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                                 icon="road" iconAlign="right" ajax="true" onclick="closeModalClientes()" update="form:inform regManifiesto"
+                                 value="#{row.adEmpresa1.CRazonSocial}">
+                                 <f:setPropertyActionListener target="#{frm_WebMovilEmp.action}" value="#{row.adEmpresa1.nidParty}"/>
+                </b:commandButton>
+            </ui:repeat>
+    </h:form>
+        <h:commandButton ajax="true" id="modal-close" style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                              onclick="closeModalClientes()" value="Cerrar"/>  
+    </div> 
+    
+  <div id="modalFlotas">
+    <h:form id="modFlot">
+            <ui:repeat value="#{frm_WebMovilEmp.lstFlotas}" var="row">
+                <b:commandButton id="modal-close" action="#{frm_WebMovilEmp.editAction}"
+                                 style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                                 icon="road" iconAlign="right" ajax="true" onclick="closeModalFlotas()" update="form:inform regManifiesto1"
+                                 value="#{row}">
+                                 <f:setPropertyActionListener target="#{frm_WebMovilEmp.action}" value="#{row}"/>
+                </b:commandButton>
+            </ui:repeat>
+    </h:form>
+        <h:commandButton ajax="true" id="modal-close1"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                              onclick="closeModalFlotas()" value="Cerrar"/>  
+    </div>
+    
+  <div id="modalChoferes">
+    <h:form id="modChof">
+            <ui:repeat value="#{frm_WebMovilEmp.lstChofers}" var="row">
+                <b:commandButton id="modal-close" action="#{frm_WebMovilEmp.editAction}"
+                                 style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                                 icon="road" iconAlign="right" ajax="true" onclick="closeModalChoferes()" update="form:inform regManifiesto2"
+                                 value="#{row}">
+                                 <f:setPropertyActionListener target="#{frm_WebMovilEmp.action}" value="#{row}"/>
+                </b:commandButton>
+            </ui:repeat>
+    </h:form>
+        <h:commandButton ajax="true" id="modal-close2"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                              onclick="closeModalChoferes()" value="Cerrar"/>  
+    </div> 
+
+    </h:body>
+</html>

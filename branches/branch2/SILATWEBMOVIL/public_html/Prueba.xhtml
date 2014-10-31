@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:b="http://bootsfaces.net/ui" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" href="../LIBS/css/normalize.css"/>
+        <link rel="stylesheet" href="../LIBS/css/foundation.css"/>
+        <script src="../LIBS/js/vendor/modernizr.js"></script>
+        <title>SILA-WEBMOVIL</title>
+        <script>
+          function capturar() {
+          var file = document.getElementById('file').files[0];
+              var porId = document.getElementById("exampleCheckboxSwitch").checked;
+              var porId1 = document.getElementById("file").value;
+              var fileElement = document.getElementById("file");
+                var fileExtension = "";
+                if (fileElement.value.lastIndexOf(".") > 0) {
+                    fileExtension = fileElement.value.substring(fileElement.value.lastIndexOf(".") + 1, fileElement.value.length);
+                }
+              if (porId == true) {
+                  if (porId1 != "") {
+                      if(fileExtension == "jpg" || fileExtension == "png" || fileExtension == "jpeg" || fileExtension == "PNG" || fileExtension == "JPG" || fileExtension == "JPEG"){
+                           
+                             $('#amodal').modal('hide'); 
+                             externalContext.redirect("Prueba.xhtml");
+                             
+                      }else{
+                          document.getElementById('alert').innerHTML= 'Ingrese una imagen con formato jpg/png/jpeg'; 
+                      }   
+                  }else{
+                      document.getElementById('alert').innerHTML= 'Ingrese una imagen';
+                  }
+              }
+          }
+          
+          function volver() {
+              $('#bmodal').modal('hide');
+              $('#amodal').modal('show');
+          }
+
+          function imagen() {
+              $('#amodal').modal('hide');
+              $('#cmodal').modal('show');
+          }
+
+          function im() {
+              $('#amodal').modal('hide');
+          }
+          function imm(){
+              $('#cmodal').modal('show');
+          }
+
+          function readURL(input) {
+          var img = document.getElementById("img_prev");
+          document.getElementById("img_prev").style.visibility="visible";
+          var file = document.getElementById('file').files[0];
+          var file = document.getElementById('file').files[0];
+              var fileExtension = "";
+               var fileElement = document.getElementById("file");
+              if (fileElement.value.lastIndexOf(".") > 0) {
+                    fileExtension = fileElement.value.substring(fileElement.value.lastIndexOf(".") + 1, fileElement.value.length);
+                }
+    if(fileExtension == "jpg" || fileExtension == "png" || fileExtension == "jpeg" || fileExtension == "PNG" || fileExtension == "JPG" || fileExtension == "JPEG"){     
+                if (input.files || input.files[0]) {
+                if(300000>file.size){
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                      var x = document.getElementById("img_prev").width;
+                      var y = document.getElementById("img_prev").height;
+                      $('#img_prev').attr('src', e.target.result).width(500).height(250);
+                  document.getElementById('byte64').value = ''+e.target.result;
+                  };
+                  reader.readAsDataURL(input.files[0]);
+                  document.getElementById('alert').innerHTML= 'Imagen Perfecta!';
+                }else{
+                           document.getElementById('alert').innerHTML= 'Ingrese pequeña';
+        document.getElementById("img_prev").style.visibility="hidden";
+        document.getElementById("img_prev").style.width="0px";
+              document.getElementById("img_prev").style.height="0px";
+                }
+              }
+    }else{
+        document.getElementById('alert').innerHTML= 'Ingrese una imagen con formato jpg/png/jpeg';
+        document.getElementById("img_prev").style.visibility="hidden";
+        document.getElementById("img_prev").style.width="0px";
+              document.getElementById("img_prev").style.height="0px";
+    }
+          }
+          
+          
+        </script>
+    </h:head>
+    <h:body style="background-color: #4169E1;">
+        <h:form>
+            <b:navBar brand="#{frm_WebMovil.saludo}" inverse="true">
+                <b:navbarLinks>
+                    <b:commandButton update="form:guias" actionListener="#{frm_WebMovil.mostrarGuiasPendientes}"
+                                     style="font-size:15px;border-color : #222222;color:white;background-color: #222222;"
+                                     value="Guias Pendientes" icon="home" iconAlign="right"/>
+                    <b:commandButton actionListener="#{frm_WebMovil.mostrarGuiasOK}" update="form:guias"
+                                     style="font-size:15px;border-color : #222222;color:white;background-color: #222222;"
+                                     value="Historial de Guias" icon="time" iconAlign="right" href="#"/>
+                    
+                    <b:commandButton style="font-size:15px;border-color : #222222;color:white;background-color: #222222;"
+                                     action="#{frm_WebMovil.redirectLogin}" value="Salir" icon="off" iconAlign="right" href="#"/>
+                </b:navbarLinks>
+            </b:navBar>
+        </h:form>
+    
+         
+        <h:form id="guias" enctype="multipart/form-data">
+            <ui:repeat value="#{frm_WebMovil.listaGuias}" var="row">            
+                <b:commandButton action="#{frm_WebMovil.editAction}" ajax="true"
+                                 style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                                 update="form:inform amodal" id="ajaxmodal" look="inverse"
+                                 oncomplete="$('#amodal').modal('show');" icon="road" iconAlign="right"
+                                 value="#{row.cidGuia}">
+                    <f:setPropertyActionListener target="#{frm_WebMovil.action}" value="#{row.cidGuia}"/>
+                </b:commandButton>
+            </ui:repeat>
+            </h:form>
+            <footer>
+            <h:outputText id="info" style="width:100%;" value=""/>
+            </footer>
+        <b:modal id="amodal" title="Detalle de Guia de Remision" rendered="true">
+            <form id="img" action="servlet"  method="POST">
+            <input type="text" style="display:none" name="guiag" value="#{frm_WebMovil.idGuia}"/>
+            <input type="text" style="display:none" name="manifg" value="${frm_WebMovil.nidManifGuia}"/>
+            <input type="text" style="visibility:hidden;width:0px;height:0px;margin-top:-20px" id="byte64" name="byte64"/>
+            <b:inputText style="background-color: #428bca;color:#ffffff;" disabled="true"
+                         value="#{frm_WebMovil.idGuia}">
+                <f:facet name="prepend">
+                    <h:outputText value="Guia n°"/>
+                </f:facet>
+            </b:inputText>
+            <b:inputText style="background-color: #428bca;color:#ffffff;" disabled="true"
+                         value="#{frm_WebMovil.obserVacionesGuia}">
+                <f:facet name="prepend">
+                    <h:outputText value="Observacion"/>
+                </f:facet>
+            </b:inputText>
+            <b:inputText style="background-color: #428bca;color:#ffffff;" disabled="true"
+                         value="#{frm_WebMovil.fechaGuia}">
+                <f:facet name="prepend">
+                    <h:outputText value="Fecha de Guia"/>
+                </f:facet>
+            </b:inputText>
+            <b:inputText style="background-color: #428bca;color:#ffffff;" disabled="true"
+                         value="#{frm_WebMovil.direccionDestino}">
+                <f:facet name="prepend">
+                    <h:outputText value="Direc.Destino"/>
+                </f:facet>
+            </b:inputText>
+            <b:inputText style="background-color: #428bca;color:#ffffff;" disabled="true"
+                         value="#{frm_WebMovil.direccionRemitente}">
+                <f:facet name="prepend">
+                    <h:outputText value="Direc.Remitente"/>
+                </f:facet>
+            </b:inputText>
+            <h5>Items</h5>
+            <div style="overflow-y: scroll;height:90px">
+            <ui:repeat value="#{frm_WebMovil.listaItemsAux}" var="row">
+                <b:alert severity="info">
+                    <p style="margin-top: .1em;">
+                        <strong>
+                            #{row.descripcion}</strong>
+                    </p>
+                    <p class="ui-li-aside">
+                        Cantidad: 
+                        <strong>
+                            #{row.cantidad}#{row.UMedida}</strong>
+                    </p>
+                </b:alert>
+            </ui:repeat>
+            </div>
+                <b:row styleClass="show-grid" id="check2">
+                    <b:column span="3" offset="5" id="check1">
+                        <div id="divCheck" style="${frm_WebMovil.style}">
+                            <h5>Estado</h5>
+                            <div class="switch" id="check">
+                                <input id="exampleCheckboxSwitch" name="check" type="checkbox"></input><label for="exampleCheckboxSwitch"></label>
+                            </div>
+                        </div>
+                    </b:column>
+                </b:row>
+                <div id="divCheck" style="${frm_WebMovil.style}">
+                    <input type='file' value="" name="fileName" id="file" onchange="readURL(this);"/>
+                     <b:row styleClass="show-grid" id="i2">
+                     <b:column span="10" offset="1" id="i">
+                    <img style="visibility:hidden;width:0px;height:0px;margin-top:-20px" id="img_prev" src="#" alt="your image"/>
+                    </b:column>
+                    </b:row>
+                    <b:alert id="alert" title="#{frm_WebMovil.alertaNoImage}" severity="info"/>
+                </div>
+                       <h:form>
+                       <div style="${frm_WebMovil.style}">
+                       <b:commandButton id="btnMostrar" style="font-size:15px;background-color: #bfea30; width: 50%;height:50px;border-color : #16a918"
+                       type="submit" onclick="capturar();" value="${frm_WebMovil.nombreBoton}"/>
+                       <b:commandButton style="font-size:15px;background-color: #bfea30; width: 50%;height:50px;border-color : #16a918"
+                       type="submit" onclick="im();" value="Cerrar"/>
+                       </div>
+                       <div style="${frm_WebMovil.style1}">
+                       
+                       <b:row styleClass="show-grid" id="i2">
+                     <b:column span="10" offset="1" id="i">
+                       <img id="img_prev" src="${frm_WebMovil.encodeImg}" alt="your image"/>
+                       </b:column>
+                       </b:row>
+                <b:commandButton style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                       type="submit" onclick="im();" value="${frm_WebMovil.nombreBoton}"/>
+                       </div>
+                       </h:form>
+            </form>
+        </b:modal>
+         
+        <b:modal id="bmodal" title="Seguro?" rendered="true">
+            <h:form>
+                <b:commandButton actionListener="#{frm_WebMovil.cambiarEstado}" icon="ok" iconAlign="right"
+                                 style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                                 value="Confirmar" dismiss="modal" update="form:guias"/>
+            </h:form>
+            <b:button icon="remove-sign" iconAlign="right"
+                      style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                      value="Cancelar" dismiss="modal" onclick="return false;"/>
+        </b:modal>
+        
+        <b:modal id="cmodal" title="Cuenta" rendered="true">
+            <h:form>
+            <b:inputText style="background-color: #428bca;color:#ffffff;" disabled="true"
+                         value="">
+                <f:facet name="prepend">
+                    <h:outputText value="Nombre"/>
+                </f:facet>
+            </b:inputText>
+            <b:inputText style="background-color: #428bca;color:#ffffff;" disabled="true"
+                         value="">
+                <f:facet name="prepend">
+                    <h:outputText value="Direccion"/>
+                </f:facet>
+            </b:inputText>
+            <b:button icon="edit" iconAlign="right"
+                      style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                      value="Cambiar Contraseña" dismiss="modal" onclick="return false;"/>
+            </h:form>
+        </b:modal>
+    </h:body>
+</html>

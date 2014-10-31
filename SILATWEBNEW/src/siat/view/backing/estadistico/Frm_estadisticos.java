@@ -163,80 +163,44 @@ public class Frm_estadisticos {
         Utils.addTarget(pd1);
     }
     
+    public void doChange(){
+        Utils.addTargetMany(pb1,pb2,pb3,pb4,pb5,pb6);
+    }
+    
     public void PanelVisibleChanger(ValueChangeEvent vce) {
         ArrayList lista = (ArrayList)vce.getNewValue();
+        pb1.setVisible(true);
+        pb2.setVisible(true);
+        pb3.setVisible(true);
+        pb4.setVisible(true);
+        pb5.setVisible(true);
+        pb6.setVisible(true);
         if(lista == null){
-        lista = (ArrayList)vce.getOldValue();
+            doChange();
+            return;
         }
         for(int i = 0; i < lista.size();i++){
             Object obj = lista.get(i);
             if(obj.toString().equalsIgnoreCase("Panel 1")){
-                int aux = beanSessionEstadisticos.getVisiblePb5();
-                if(aux == 0){
-                    beanSessionEstadisticos.setVisiblePb5(1);
-                    pb5.setVisible(false);
-                }else{
-                    beanSessionEstadisticos.setVisiblePb5(0);
-                    pb5.setVisible(true);
-                }
-                Utils.addTarget(pb5);
+                pb5.setVisible(false);
             }
             if(obj.toString().equalsIgnoreCase("Panel 2")){
-                int aux = beanSessionEstadisticos.getVisiblePb6();
-                if(aux == 0){
-                    beanSessionEstadisticos.setVisiblePb6(1);
-                    pb6.setVisible(false);
-                }else{
-                    beanSessionEstadisticos.setVisiblePb6(0);
-                    pb6.setVisible(true);
-                }
-                Utils.addTarget(pb6);
+                pb6.setVisible(false);
             }
             if(obj.toString().equalsIgnoreCase("Panel 3")){
-                int aux = beanSessionEstadisticos.getVisiblePb1();
-                if(aux == 0){
-                    beanSessionEstadisticos.setVisiblePb1(1);
-                    pb1.setVisible(false);
-                }else{
-                    beanSessionEstadisticos.setVisiblePb1(0);
-                    pb1.setVisible(true);
-                }
-                Utils.addTarget(pb1);
+                pb1.setVisible(false);
             }
             if(obj.toString().equalsIgnoreCase("Panel 4")){
-                int aux = beanSessionEstadisticos.getVisiblePb2();
-                if(aux == 0){
-                    beanSessionEstadisticos.setVisiblePb2(1);
-                    pb2.setVisible(false);
-                }else{
-                    beanSessionEstadisticos.setVisiblePb2(0);
-                    pb2.setVisible(true);
-                }
-                Utils.addTarget(pb2);
+                pb2.setVisible(false);
             }
             if(obj.toString().equalsIgnoreCase("Panel 5")){
-                int aux = beanSessionEstadisticos.getVisiblePb3();
-                if(aux == 0){
-                    beanSessionEstadisticos.setVisiblePb3(1);
-                    pb3.setVisible(false);
-                }else{
-                    beanSessionEstadisticos.setVisiblePb3(0);
-                    pb3.setVisible(true);
-                }
-                Utils.addTarget(pb3);
+                pb3.setVisible(false);
             }
             if(obj.toString().equalsIgnoreCase("Panel 6")){
-                int aux = beanSessionEstadisticos.getVisiblePb4();
-                if(aux == 0){
-                    beanSessionEstadisticos.setVisiblePb4(1);
-                    pb4.setVisible(false);
-                }else{
-                    beanSessionEstadisticos.setVisiblePb4(0);
-                    pb4.setVisible(true);
-                }
-                Utils.addTarget(pb4);
+                pb4.setVisible(false);
             }
         }
+        doChange();
     }
     
     public void setBeanSessionEstadisticos(SessionScopeEstadisticos beanSessionEstadisticos) {

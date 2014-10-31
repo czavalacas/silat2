@@ -3,8 +3,7 @@
                 xmlns:f="http://java.sun.com/jsf/core" xmlns:adfsilat="/webapp/untitled1.taglib"
                 xmlns:h="http://java.sun.com/jsf/html" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
     <f:view>
-        <af:panelGroupLayout id="pgl1" inlineStyle="height:70px; width:960px; background-color:rgb(113,113,113);" halign="left" layout="horizontal">
-            <af:spacer width="10" height="10" id="s1" inlineStyle="width:30px;"/>
+        <af:panelGroupLayout id="pgl1" inlineStyle="height:70px; width:960px;" halign="left" layout="horizontal">
             <af:panelFormLayout id="pfl1" maxColumns="2" inlineStyle="width:50px;">
                 <af:inputDate label="Fecha Minima: " id="id1"
                               binding="#{backingBeanScope.backing_estadistico_estadistico.id1}"
@@ -17,50 +16,53 @@
                                   binding="#{backingBeanScope.backing_estadistico_estadistico.cb1}"
                                   actionListener="#{backingBeanScope.backing_estadistico_estadistico.llenarGraficos}"/>
             </af:panelFormLayout>
+            <af:spacer width="200" height="10" id="s1"/>
+            <af:panelFormLayout id="pfl2">
+                <af:selectOneRadio label="Columnas:" id="sor1" value="#{beanSessionEstadisticos.columns}"
+                                   valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.changeDashBoardColumn}"
+                                   binding="#{backingBeanScope.backing_estadistico_estadistico.sor1}" immediate="true"
+                                   autoSubmit="true" layout="horizontal">
+                    <af:selectItem label="2" value="2" id="si1"/>
+                    <af:selectItem label="3" value="3" id="si2"/>
+                </af:selectOneRadio>
+                <af:selectOneRadio label="Tamano de Fila:" id="sor2" value="#{beanSessionEstadisticos.rowHeights}"
+                                   valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.changeDashBoardRowHeight}"
+                                   binding="#{backingBeanScope.backing_estadistico_estadistico.sor2}" autoSubmit="true"
+                                   immediate="true">
+                    <af:selectItem label="250px" value="250px" id="si3"/>
+                    <af:selectItem label="350px" value="350px" id="si4"/>
+                    <af:selectItem label="450px" value="450px" id="si5"/>
+                </af:selectOneRadio>
+            </af:panelFormLayout>
+            <af:spacer width="50" height="10" id="s2"/>
+            <af:panelFormLayout id="pfl3">
+                <af:selectManyCheckbox label="Visibilidad" id="smc1"
+                                       binding="#{backingBeanScope.backing_estadistico_estadistico.smc1}"
+                                       immediate="true" autoSubmit="true"
+                                       valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.PanelVisibleChanger}"
+                                       layout="horizontal">
+                    <af:selectItem label="Panel 1" id="si6"/>
+                    <af:selectItem label="Panel 2" id="si7"/>
+                    <af:selectItem label="Panel 3" id="si8"/>
+                    <af:selectItem label="Panel 4" id="si9"/>
+                    <af:selectItem label="Panel 5" id="si10"/>
+                    <af:selectItem label="Panel 6" id="si11"/>
+                </af:selectManyCheckbox>
+            </af:panelFormLayout>
         </af:panelGroupLayout>
-        <af:panelSplitter id="ps1" inlineStyle="height:700px; width:1100px;" splitterPosition="150">
-            <f:facet name="first">
-                <af:panelGroupLayout layout="scroll" id="pgl3" inlineStyle="background-color:rgb(113,113,113);">
-                    <af:panelFormLayout id="pfl2">
-                        <af:selectOneRadio label="Columnas:" id="sor1" value="#{beanSessionEstadisticos.columns}"
-                                           valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.changeDashBoardColumn}"
-                                           binding="#{backingBeanScope.backing_estadistico_estadistico.sor1}"
-                                           immediate="true" autoSubmit="true" layout="horizontal">
-                            <af:selectItem label="2" value="2" id="si1"/>
-                            <af:selectItem label="3" value="3" id="si2"/>
-                        </af:selectOneRadio>
-                        <af:selectOneRadio label="Tamano de Fila:" id="sor2"
-                                           value="#{beanSessionEstadisticos.rowHeights}"
-                                           valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.changeDashBoardRowHeight}"
-                                           binding="#{backingBeanScope.backing_estadistico_estadistico.sor2}"
-                                           autoSubmit="true" immediate="true">
-                            <af:selectItem label="250px" value="250px" id="si3"/>
-                            <af:selectItem label="350px" value="350px" id="si4"/>
-                            <af:selectItem label="450px" value="450px" id="si5"/>
-                        </af:selectOneRadio>
-                    </af:panelFormLayout>
-                    <af:selectManyCheckbox label="Visibilidad" id="smc1"
-                                           binding="#{backingBeanScope.backing_estadistico_estadistico.smc1}"
-                                           immediate="true" autoSubmit="true"
-                                           valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.PanelVisibleChanger}">
-                        <af:selectItem label="Panel 1" id="si6"/>
-                        <af:selectItem label="Panel 2" id="si7"/>
-                        <af:selectItem label="Panel 3" id="si8"/>
-                        <af:selectItem label="Panel 4" id="si9"/>
-                        <af:selectItem label="Panel 5" id="si10"/>
-                        <af:selectItem label="Panel 6" id="si11"/>
-                    </af:selectManyCheckbox>
-                </af:panelGroupLayout>
-            </f:facet>
+        <af:panelSplitter id="ps1" inlineStyle="height:700px; width:1050px;" splitterPosition="150">
             <f:facet name="second">
                 <af:panelDashboard id="pd1" columns="#{beanSessionEstadisticos.columns}" rowHeight="#{beanSessionEstadisticos.rowHeights}"
-                                   inlineStyle="height:700px; width:800px; background-color:Scrollbar;"
+                                   inlineStyle="height:700px; width:1050px; background-color:Scrollbar;"
                                    binding="#{backingBeanScope.backing_estadistico_estadistico.pd1}">
                     <af:panelBox text="Panel Ingresos Lineal" id="pb5"
-                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb5}">
+                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb5}"
+                                 showDisclosure="false">
                         <af:componentDragSource/>
                         <dvt:lineGraph id="graph6" inlineStyle="height:300px; width:300px;" subType="LINE_VERT_ABS"
-                                       binding="#{backingBeanScope.backing_estadistico_estadistico.graph6}">
+                                       binding="#{backingBeanScope.backing_estadistico_estadistico.graph6}"
+                                       tabularData="#{beanSessionEstadisticos.listaVacia}" dynamicResize="DYNAMIC_SIZE"
+                                       hideAndShowBehavior="withRescale">
                             <dvt:background>
                                 <dvt:specialEffects/>
                             </dvt:background>
@@ -77,10 +79,13 @@
                         </dvt:lineGraph>
                     </af:panelBox>
                     <af:panelBox text="Panel Egresos Lineal" id="pb6"
-                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb6}">
+                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb6}"
+                                 showDisclosure="false">
                         <af:componentDragSource/>
                         <dvt:lineGraph id="graph5" inlineStyle="height:300px; width:300px;" subType="LINE_VERT_ABS"
-                                       binding="#{backingBeanScope.backing_estadistico_estadistico.graph5}">
+                                       binding="#{backingBeanScope.backing_estadistico_estadistico.graph5}"
+                                       tabularData="#{beanSessionEstadisticos.listaVacia}" dynamicResize="DYNAMIC_SIZE"
+                                       hideAndShowBehavior="withRescale">
                             <dvt:background>
                                 <dvt:specialEffects/>
                             </dvt:background>
@@ -97,11 +102,14 @@
                         </dvt:lineGraph>
                     </af:panelBox>
                     <af:panelBox text="Panel Ingresos-Gastos General" id="pb1"
-                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb1}">
+                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb1}"
+                                 showDisclosure="false">
                         <af:componentDragSource/>
                         <dvt:barGraph id="graph1" subType="BAR_VERT_CLUST" 
                                               binding="#{backingBeanScope.backing_estadistico_estadistico.graph1}"
-                                      inlineStyle="height:300px; width:300px;">
+                                              tabularData="#{beanSessionEstadisticos.listaVacia}"
+                                      inlineStyle="height:300px; width:300px;" dynamicResize="DYNAMIC_SIZE"
+                                      hideAndShowBehavior="withRescale">
                                     <dvt:background>
                                         <dvt:specialEffects/>
                                     </dvt:background>
@@ -120,10 +128,13 @@
                         <f:facet name="toolbar"/>
                     </af:panelBox>
                     <af:panelBox text="Panel Ingresos" id="pb2"
-                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb2}">
+                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb2}"
+                                 showDisclosure="false">
                         <af:componentDragSource/>
                         <dvt:barGraph id="graph2" subType="BAR_VERT_CLUST" inlineStyle="height:300px; width:300px;"
-                                              binding="#{backingBeanScope.backing_estadistico_estadistico.graph2}">
+                                              binding="#{backingBeanScope.backing_estadistico_estadistico.graph2}"
+                                              tabularData="#{beanSessionEstadisticos.listaVacia}"
+                                      dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
                                     <dvt:background>
                                         <dvt:specialEffects/>
                                     </dvt:background>
@@ -142,10 +153,13 @@
                         <f:facet name="toolbar"/>
                     </af:panelBox>
                     <af:panelBox text="Panel Egresos" id="pb3"
-                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb3}">
+                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb3}"
+                                 showDisclosure="false">
                         <af:componentDragSource/>
                         <dvt:barGraph id="graph3" subType="BAR_VERT_CLUST" inlineStyle="height:300px; width:300px;"
-                                              binding="#{backingBeanScope.backing_estadistico_estadistico.graph3}">
+                                              binding="#{backingBeanScope.backing_estadistico_estadistico.graph3}"
+                                              tabularData="#{beanSessionEstadisticos.listaVacia}"
+                                      dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
                                     <dvt:background>
                                         <dvt:specialEffects/>
                                     </dvt:background>
@@ -164,10 +178,13 @@
                         <f:facet name="toolbar"/>
                     </af:panelBox>
                     <af:panelBox text="Panel Ingresos vs Egresos Totales" id="pb4"
-                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb4}">
+                                 binding="#{backingBeanScope.backing_estadistico_estadistico.pb4}"
+                                 showDisclosure="false">
                         <af:componentDragSource/>
                         <dvt:pieGraph id="graph4" subType="PIE" inlineStyle="height:300px; width:300px;"
-                                              binding="#{backingBeanScope.backing_estadistico_estadistico.graph4}">
+                                              tabularData="#{beanSessionEstadisticos.listaVacia}"
+                                              binding="#{backingBeanScope.backing_estadistico_estadistico.graph4}"
+                                      dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
                                     <dvt:background>
                                         <dvt:specialEffects/>
                                     </dvt:background>

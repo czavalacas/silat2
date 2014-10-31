@@ -2,6 +2,7 @@ package siat.view.backing.estadistico;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.List;
@@ -14,12 +15,13 @@ public class SessionScopeEstadisticos implements Serializable {
     private Date fecMin;
     private Date fecMax;
     private List<BeanCuadre> listGrafico;
-    private int visiblePb1;
-    private int visiblePb2;
-    private int visiblePb3;
-    private int visiblePb4;
-    private int visiblePb5;
-    private int visiblePb6;
+    private int visiblePb1 = 0;
+    private int visiblePb2 = 0;
+    private int visiblePb3 = 0;
+    private int visiblePb4 = 0;
+    private int visiblePb5 = 0;
+    private int visiblePb6 = 0;
+    private List listaVacia = new ArrayList();
 
     public void setColumns(int columns) {
         this.columns = columns;
@@ -108,6 +110,15 @@ public class SessionScopeEstadisticos implements Serializable {
 
     public int getVisiblePb6() {
         return visiblePb6;
+    }
+
+
+    public void setListaVacia(List listaVacia) {
+        this.listaVacia = listaVacia;
+    }
+
+    public List getListaVacia() {
+        return listaVacia;
     }
 }
 

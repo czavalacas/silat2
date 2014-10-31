@@ -16,4 +16,6 @@ public interface LN_C_SFUsuarioLocal {
     List<BeanUsuarioAutenticado> getUsuarios();
     List<BeanUsuario> lstUsuariosNoAdmin();
     ADUsuario findADUsuarioById(BigDecimal id);
+    String getUsuario();
+    String getNidParty();
 }

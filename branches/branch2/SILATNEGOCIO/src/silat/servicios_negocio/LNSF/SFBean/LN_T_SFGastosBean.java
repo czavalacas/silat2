@@ -117,6 +117,7 @@ public class LN_T_SFGastosBean implements LN_T_SFGastosRemoto,
             eGasto.setNroCheque(numCheque);
             eGasto.setC_detalle(detalle);
             eGasto.setCimgrecibo(rutaImagen);
+            eGasto.setBlobImagenRecibo(imagenFisica);
             eGasto.setTipoGasto(tipoGasto);
             eGasto.setModalidadPago(mopa);
             eGasto.setNidProtra(nidProveedor);

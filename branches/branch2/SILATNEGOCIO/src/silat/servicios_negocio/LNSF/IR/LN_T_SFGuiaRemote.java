@@ -43,4 +43,5 @@ public interface LN_T_SFGuiaRemote {
                                       String codUn,
                                       Date fecEmis,
                                       Date fecDesp);
+    void cambiarEstadoWebMovil(String cidGuia,String ruta, byte[] bytes);
 }

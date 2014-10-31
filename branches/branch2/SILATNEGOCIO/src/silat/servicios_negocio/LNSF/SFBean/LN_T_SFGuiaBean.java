@@ -278,4 +278,12 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
         }
         return bos == null ? null : bos.getBytes();
     }
+    
+    public void cambiarEstadoWebMovil(String cidGuia, String ruta, byte[] bytes){
+        TRGuia eGuia = bdL_C_SFGuiaLocal.findTRGuiaById(cidGuia);
+        eGuia.setCConformidad("1");
+        eGuia.setImgGuia(bytes);
+        eGuia.setImgGuiaProv(ruta);
+        bdL_T_SFGuiaLocal.mergeTRGuia(eGuia);
+    }
 }

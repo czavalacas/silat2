@@ -32,6 +32,8 @@
    </list>
    <list n="listOfChildren">
       <hash><url n="URL" path="SILATNEGOCIO/SILATNEGOCIO.jpr"/></hash>
+      <hash><url n="URL" path="SILATWEBMOVIL/SILATWEBMOVIL.jpr"/></hash>
+      <hash><url n="URL" path="SILATWEBMOVILEMP/SILATWEBMOVILEMP.jpr"/></hash>
       <hash><url n="URL" path="SILATWEBNEW/SILATWEBNEW.jpr"/></hash>
    </list>
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">

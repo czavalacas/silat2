@@ -192,4 +192,11 @@ public class BDL_C_SFManifiestoBean implements BDL_C_SFManifiestoRemote,
             return 0;
         }
     }
+    
+    public List<TRManifiesto> findManifiestobyEstadoporAsignar(){
+        String ejbQl = "SELECT m " +
+                       "FROM TRManifiesto m " +
+                       "WHERE 1 = 1 ";
+        return em.createQuery(ejbQl).getResultList();
+    }
 }

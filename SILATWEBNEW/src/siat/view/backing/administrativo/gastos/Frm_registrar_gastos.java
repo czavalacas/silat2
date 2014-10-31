@@ -5,8 +5,11 @@ import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import java.awt.font.TextMeasurer;
 import java.awt.image.BufferedImage;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -226,6 +229,7 @@ public class Frm_registrar_gastos {
             this.setTipoGastos(this.llenarTipoGastoCombo());            
 
             beanUsuario = (BeanUsuarioAutenticado) Utils.getSession("USER");
+            setTipoGastos(this.llenarTipoGastoCombo());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -658,6 +662,7 @@ public class Frm_registrar_gastos {
     public void uploadFileValueChangeEvent(ValueChangeEvent valueChangeEvent) {
         try{
             UploadedFile file = (UploadedFile) valueChangeEvent.getNewValue();
+            InputStream inputStream1 = file.getInputStream();
             long fileSize = file.getLength() / (1024 * 1024);//megabytes
             if(file.getLength() > 1602864){
                 Utils.throwError_Aux(ctx,"El archivo no puede ser de mas de 1.5 MB.",4);
@@ -670,7 +675,10 @@ public class Frm_registrar_gastos {
 
                 InputStream inputStream = file.getInputStream();
                 BufferedImage input = ImageIO.read(inputStream);
-
+                
+                byte [] bytes = getBytes(inputStream1);
+                beanSessionScopedRegistrarGastos.setBlobImagenRecibo(bytes);
+                
                 String cidGuiaFull = beanSessionScopedRegistrarGastos.getNidTipoGasto()+"-"+beanSessionScopedRegistrarGastos.getNidModalidadPago();
                 String timePath = GregorianCalendar.getInstance().getTimeInMillis()+"";
                 String rutaLocal = "";
@@ -687,12 +695,33 @@ public class Frm_registrar_gastos {
                 ImageIO.write(input,ext,outputFile);
             }else{
                 Utils.throwError_Aux(ctx,"El archivo no es de tipo imagen suba un jpg/png",4);
+                inputImagenRecibo.resetValue();
+                Utils.addTarget(inputImagenRecibo);
             }
         }catch(Exception e){
             Utils.throwError_Aux(ctx,"Hubo un error a subir la imagen ingrese nuevamente",4);
         }
     }
+    
+    public byte[] getBytes(InputStream is) throws IOException {
+      int len;
+      int size = 1024;
+      byte[] buf;
 
+      if (is instanceof ByteArrayInputStream) {
+        size = is.available();
+        buf = new byte[size];
+        len = is.read(buf, 0, size);
+      } else {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        buf = new byte[size];
+        while ((len = is.read(buf, 0, size)) != -1)
+          bos.write(buf, 0, len);
+        buf = bos.toByteArray();
+      }
+      return buf;
+    }
+    
     public void onDialogImagenCancel(ClientEvent ce) {
         beanSessionScopedRegistrarGastos.setRutaImagen(null);
         beanSessionScopedRegistrarGastos.setRutaImagenAux(null);

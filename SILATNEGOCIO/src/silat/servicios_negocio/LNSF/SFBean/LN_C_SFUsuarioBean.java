@@ -49,6 +49,8 @@ public class LN_C_SFUsuarioBean implements LN_C_SFUsuarioRemote,
     private BDL_C_SFUtilsLocal bdL_C_SFUtilsLocal;
     @EJB 
     private BDL_C_SFClaveLocal bdl_C_SFClaveLocal;
+    private String usuario;
+    private String nidParty;
     public LN_C_SFUsuarioBean() {
     }
     
@@ -139,6 +141,8 @@ public class LN_C_SFUsuarioBean implements LN_C_SFUsuarioRemote,
                 beanUsuario.setOutput(error);
               //  Calendar cal2 = Calendar.getInstance();
               //  System.out.println("fin : " + dateFormat.format(cal2.getTime()));
+                setUsuario(username);
+                setNidParty(""+usuario.getAdPersona().getNidParty());
                 return beanUsuario;
             }
         }catch(Exception e){
@@ -150,5 +154,28 @@ public class LN_C_SFUsuarioBean implements LN_C_SFUsuarioRemote,
         beanError = ln_C_SFCatalogoErroresLocal.getCatalogoErrores(error);
         beanUsuario.setOutput(beanError.getCDescripcionError());
         return beanUsuario;
+    }
+
+    
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    /**
+        * Método que sirve capturar el usuario entrante
+        * @return String
+        */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setNidParty(String nidParty) {
+        this.nidParty = nidParty;
+    }
+    /**
+        * Método que sirve capturar el NidParty entrante
+        * @return String
+        */
+    public String getNidParty() {
+        return nidParty;
     }
 }

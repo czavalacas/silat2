@@ -2,6 +2,7 @@ package silat.servicios_negocio.LNSF.SFBean;
 
 import java.math.BigDecimal;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import silat.servicios_negocio.LNSF.IL.LN_C_SFCatalogoErroresLocal;
 import silat.servicios_negocio.LNSF.IL.LN_C_SFGuiaLocal;
 import silat.servicios_negocio.LNSF.IL.LN_C_SFManifiestoLocal;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFManifiestoRemote;
+import silat.servicios_negocio.entidades.trans.TRManifiesto;
 import silat.servicios_negocio.util_formato.UtilsGeneral;
 
 @Stateless(name = "LN_C_SFManifiesto", mappedName = "mapLN_C_SFManifiesto")
@@ -148,5 +150,27 @@ public class LN_C_SFManifiestoBean implements LN_C_SFManifiestoRemote,
     
     public int cantManifiestosByFlota(int nidFlota){
         return bdL_C_SFManifiestoLocal.cantManifiestosByFlota(nidFlota);
+    }
+    public List<BeanManifiesto> getListaManifsSinAsignar(){
+        List<TRManifiesto> entidadManif = bdL_C_SFManifiestoLocal.findManifiestobyEstadoporAsignar();
+        List<BeanManifiesto> listaManifiesto = new ArrayList<BeanManifiesto>();
+        for(TRManifiesto entidad : entidadManif){
+            BeanManifiesto bean = new BeanManifiesto();
+            bean.setCObservaciones(entidad.getCObservaciones());
+            bean.setCTipoDoc(entidad.getCTipoDoc());
+            bean.setDescEstadoManifiestoNegocio(entidad.getEstadoManifiestoNegocio());
+            bean.setDetraccion(entidad.getDetraccion());
+            bean.setDetraccionReal(entidad.getDetraccionReal());
+            bean.setFechaManifiesto(entidad.getFechaManifiesto());
+            bean.setIgv(entidad.getIgv());
+            bean.setNAdelanto(entidad.getNAdelanto());
+            bean.setNEstManifiesto(entidad.getNEstManifiesto());
+            bean.setNFletePactado(entidad.getNFletePactado());
+            bean.setNidChof(entidad.getNidChof());
+            bean.setNidFlota(entidad.getNidFlota());
+            bean.setNidManifiesto(entidad.getNidManifiesto());
+            listaManifiesto.add(bean);
+        }   
+        return listaManifiesto;
     }
 }

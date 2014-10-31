@@ -54,4 +54,6 @@ public interface LN_C_SFGuiaLocal {
     int cantGuiasByFlota(int nidFlota);
     List<BeanTRGuia> findGuiasByManifiesto_LN(Integer nidManif);
     boolean manifiestoHasGuiasActivas_LN(int nidManifesto);
+    List<BeanTRGuia> guiasByNidPartyOK(int nidCliente);
+    List<BeanTRGuia> guiasByNidParty(int nidCliente);
 }

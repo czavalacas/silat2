@@ -32,4 +32,5 @@ public interface LN_C_SFManifiestoRemote {
     int cantManifiestosByChofer(int nidChofer);
     int cantManifiestosByFlota(int nidFlota);
     public List<BeanManifiesto> findManifiestoXPagar();
+    List<BeanManifiesto> getListaManifsSinAsignar();
 }

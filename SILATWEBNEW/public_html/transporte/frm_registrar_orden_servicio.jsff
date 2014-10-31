@@ -13,11 +13,11 @@
                                    styleClass="titulos2"/>
                 <af:spacer height="10"/>
             </af:panelGroupLayout>
-            <af:panelTabbed id="pt1" binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.pt1}"
+            <af:panelTabbed id="pt1" 
                         inlineStyle="margin:0px 50px 0px 0px;"
                         dimensionsFrom="auto">
-        <af:showDetailItem text="Guía Remisión" id="sdi1" immediate="false"
-                           binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.sdi1}">
+        <af:showDetailItem text="Orden de Servicio" id="sdi1" immediate="false"
+                         >
             <af:panelFormLayout id="pfl1" binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.pfl1}">
                 <af:inputText label="Codigo Generado de OS" id="itNidOS" disabled="true" labelStyle="text-align: left;"
                               binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.itNidOS}"
@@ -120,7 +120,7 @@
                                                 binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.socDirecRemi}"
                                                 showRequired="true" unselectedLabel="Seleccionar una dirección"
                                                 required="true"
-                                                disabled="#{sessionScope.beanSessionScopedRegistrarOS.disableComponents}"00                                                
+                                                disabled="#{sessionScope.beanSessionScopedRegistrarOS.disableComponents}"                                                
                                                 value="#{sessionScope.beanSessionScopedRegistrarOS.cidDirecRemitente}"
                                                 autoSubmit="true"
                                                 valueChangeListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.changeDireccRemi}"

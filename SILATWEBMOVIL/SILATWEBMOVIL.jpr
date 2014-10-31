@@ -109,15 +109,7 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" protocol="file" path="/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
             <value n="id" v="Start-1.0.3.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <url n="id" protocol="file" path="/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/primefaces-4.0.jar1.library"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
@@ -129,11 +121,11 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
+            <url n="id" path="../../../../Users/Carlos/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar.library"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/primefaces-4.0.jar1.library"/>
+            <url n="id" path="../../../../Users/Carlos/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/primefaces-3.5.jar.library"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -173,15 +165,7 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" protocol="file" path="/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
             <value n="id" v="Start-1.0.3.jar"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <url n="id" protocol="file" path="/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/primefaces-4.0.jar1.library"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
@@ -193,11 +177,11 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar2.library"/>
+            <url n="id" path="../../../../Users/Carlos/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/BootsFaces-0.3.7-dist.jar.library"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <url n="id" path="../../../AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/primefaces-4.0.jar1.library"/>
+            <url n="id" path="../../../../Users/Carlos/AppData/Roaming/JDeveloper/system11.1.2.3.39.62.76.1/o.jdeveloper/primefaces-3.5.jar.library"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -285,7 +269,7 @@
             <value n="name" v="Bootsfaces-b"/>
             <value n="prefix" v="b"/>
             <value n="runInEditor" v="true"/>
-            <value n="taglibURL" v="jar:file:/C:/Users/ricardo/Desktop/carpeta-branch/Nueva carpeta1/branch2/branch2/SILATWEBMOVIL/public_html/LIBS/BootsFaces-0.3.7-dist.jar!/META-INF/bootsfaces-b.taglib.xml"/>
+            <value n="taglibURL" v="jar:file:/C:/JDeveloper/mywork/branch2/SILATWEBMOVILEMP/public_html/LIBS/BootsFaces-0.3.7-dist.jar!/META-INF/bootsfaces-b.taglib.xml"/>
             <value n="URI" v="http://bootsfaces.net/ui"/>
             <value n="version" v="2.0"/>
          </hash>
@@ -297,7 +281,7 @@
             <value n="name" v="Primefaces-p"/>
             <value n="prefix" v="p"/>
             <value n="runInEditor" v="true"/>
-            <value n="taglibURL" v="jar:file:/C:/Users/ricardo/Desktop/carpeta-branch/Nueva carpeta1/branch2/branch2/SILATWEBMOVIL/public_html/LIBS/primefaces-4.0.jar!/META-INF/primefaces-p.taglib.xml"/>
+            <value n="taglibURL" v="jar:file:/C:/JDeveloper/mywork/PrimeFacesMobile/ViewController/public_html/primefaces-3.5.jar!/META-INF/primefaces-p.taglib.xml"/>
             <value n="URI" v="http://primefaces.org/ui"/>
             <value n="version" v="2.0"/>
          </hash>

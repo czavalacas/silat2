@@ -30,6 +30,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
+import oracle.adf.controller.ControllerContext;
 import oracle.adf.view.rich.component.rich.RichDocument;
 import oracle.adf.view.rich.component.rich.RichForm;
 import oracle.adf.view.rich.component.rich.input.RichInputText;
@@ -149,11 +150,25 @@ public class Frm_login {
             }
             beanUsuario = ln_C_SFUsuarioRemote.autenticarUsuario(getUsua(), getPwd());
             String error = beanUsuario.getOutput();
+            String tipoRol = beanUsuario.getRol();
             if (error != null) {
                 if ("000".equals(error)) {
-                //    beanUsuario.setNidLog(ln_T_SFLogLocal.grabarLogLogInWeb_LN(vecData, beanUsuario.getNidUsuario()));
-                    Utils.putSession("USER", beanUsuario);
-                    setRedireccionar("000");
+                
+                if("CLIENTE".equals(tipoRol)){
+                    FacesContext fCtx = FacesContext.getCurrentInstance();
+                    ExternalContext eCtx = fCtx.getExternalContext();
+                    String activityUrl = ControllerContext.getInstance().getViewActivityViewID("LUBAL_SIAT_APP-SILATWEBMOVIL-context-root/faces/Prueba.xhtml"); 
+                    try {
+                        eCtx.redirect(activityUrl);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }  
+                }else{
+                    //    beanUsuario.setNidLog(ln_T_SFLogLocal.grabarLogLogInWeb_LN(vecData, beanUsuario.getNidUsuario()));
+                        Utils.putSession("USER", beanUsuario);
+                        setRedireccionar("000"); 
+                }
+
                 } else {
                     setErrorTxt(error);
                     Utils.addTarget(otError);

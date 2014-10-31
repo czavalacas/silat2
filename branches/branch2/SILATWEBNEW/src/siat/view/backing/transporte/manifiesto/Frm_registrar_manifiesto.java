@@ -441,7 +441,7 @@ public class Frm_registrar_manifiesto {
                             getBeanSessionRegistrarManifiesto().setCertiInsc(beanFlota.getCertificadoInscripcionEmpresa());
                         } 
                     }
-                    List<BeanChofer> lstBeanChofer = ln_C_SFChoferRemote.findChofersByAttr_LN(null,beanGuia.getNidChof());
+                    List<BeanChofer> lstBeanChofer = ln_C_SFChoferRemote.findChofersByAttr_LN(null,beanGuia.getNidcambioCheckTransPropioChof());
                     if(lstBeanChofer != null){
                         if(lstBeanChofer.size() > 0){
                             BeanChofer beanChofer = lstBeanChofer.get(0);

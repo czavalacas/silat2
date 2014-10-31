@@ -96,6 +96,10 @@ import silat.servicios_negocio.entidades.admin.ADModalidadPago;
 import silat.servicios_negocio.entidades.admin.ADTipoGasto;
 import silat.servicios_negocio.entidades.admin.ADUtil;
 
+/**@author: czavalacas
+ * @class: frm_registrar_gastos
+ * @descr: clase de respaldo de la vista registrar_gastos*/
+
 public class Frm_registrar_gastos {
     private RichPanelBox pb1;
     private RichPanelFormLayout pfl1;

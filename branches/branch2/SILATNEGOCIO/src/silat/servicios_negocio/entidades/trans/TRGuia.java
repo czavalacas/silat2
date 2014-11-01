@@ -76,6 +76,11 @@ public class TRGuia implements Serializable {
     @ManyToOne
     @JoinColumn(name = "NID_PREFITM")
     private TrItemPreFactura itemPreFactura;
+    @Column(name = "COMENTARIO")
+    private String comentario;
+    @Column(name = "VALORACION")
+    private Integer valoracion;
+    
     
     public TRGuia() {
     }
@@ -259,5 +264,21 @@ public class TRGuia implements Serializable {
 
     public TrItemPreFactura getItemPreFactura() {
         return itemPreFactura;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setValoracion(Integer valoracion) {
+        this.valoracion = valoracion;
+    }
+
+    public Integer getValoracion() {
+        return valoracion;
     }
 }

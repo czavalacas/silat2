@@ -35,13 +35,6 @@
                                   immediate="true" 
                                   actionListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.abrirPopEmp}">
                 </af:commandButton>-->
-                <af:inputText value="#{bindings.cDetalle.inputValue}" label="Descripcion" required="true"
-                              columns="#{bindings.cDetalle.hints.displayWidth}"
-                              shortDesc="#{bindings.cDetalle.hints.tooltip}" id="it2"
-                              binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.it2}" rows="8"
-                              showRequired="true" labelStyle="text-align: left;" maximumLength="500">
-                    <adfsilat:setWatermarkBehavior value="Escriba la Descripcion"/>
-                </af:inputText>
                 <af:inputDate value="#{beanSessionScopedRegistrarOS.fechaHoy}"
                               label="Fecha Realizada" required="true" 
                               id="id1"
@@ -52,12 +45,13 @@
                     <af:convertDateTime pattern="dd/MM/yyyy"/>
                 </af:inputDate>
                 </af:panelFormLayout>
-                <af:panelGridLayout id="grid">
+                    <af:spacer width="10" height="20" id="s2"/>
+                    <af:panelGridLayout id="grid">
         <af:gridRow height="auto">
             <af:gridCell width="50%">          
                 <af:panelBox text="Cliente - Destino" id="pb1" showDisclosure="false"                                
-                                 background="medium">
-                            <af:panelFormLayout id="pfl4">
+                              inlineStyle="width:50%;"   background="medium">
+                            <af:panelFormLayout id="pfl4" rows="1" labelWidth="130">
                     <af:inputText label="Razón Social" id="razSocClie" disabled="true"
                                   binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.razSocClie}"
                                   columns="35" rows="2" showRequired="true"
@@ -69,6 +63,8 @@
                                             actionListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.abrirPopEmp}">
                        <!--     <af:showPopupBehavior popupId="" triggerType="click"/>  -->    
                          </af:commandButton> 
+                  </af:panelFormLayout>
+                  <af:panelFormLayout labelWidth="130">
                     <af:inputText label="R.U.C. Nº" id="rucClie" disabled="true"
                                   binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.rucClie}"
                                   columns="10" maximumLength="11"
@@ -88,9 +84,10 @@
                     </af:panelBox>
             </af:gridCell>
             <af:gridCell width="50%">
+                                
              <af:panelBox text="Remitente" id="pb2"                             
-                             inlineStyle="width:50%;" showDisclosure="false" background="medium">
-                    <af:panelFormLayout id="pfl3" rows="1" labelWidth="130">
+                                      showDisclosure="false" background="medium">
+                  <af:panelFormLayout id="pfl3" rows="1" labelWidth="130">
                         <af:inputText label="Razon Social" id="razonSocProve"
                                       visible="#{sessionScope.beanSessionScopedRegistrarOS.visibOS}"
                                       binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.razonSocProve}"
@@ -133,6 +130,7 @@
                 </af:gridCell>
         </af:gridRow>
     </af:panelGridLayout>
+    <af:spacer width="10" height="20" id="s4"/>
                 <af:panelGroupLayout>
             <af:commandButton text="Nuevo Item" id="btnNewItem" immediate="true"
                               disabled="#{sessionScope.beanSessionScopedRegistrarOS.disableComponents}"
@@ -189,6 +187,13 @@
             <af:outputText value="#{row.CCidGuiaRemitente}" id="ot12"/>
         </af:column>
     </af:table>
+    
+    <!--<af:inputText value="#{beanSessionScopedRegistrarOS.CDetalleOS}" label="Descripcion" required="true"
+                              id="it2"
+                              binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.it2}" rows="8"
+                              showRequired="true" labelStyle="text-align: left;" maximumLength="500">
+                    <adfsilat:setWatermarkBehavior value="Escriba la Descripcion"/>
+                </af:inputText>-->
      <af:popup childCreation="deferred" autoCancel="disabled" id="popItems"
               binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.popItems}">
         <af:subform id="s3" 

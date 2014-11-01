@@ -75,11 +75,14 @@ import silat.servicios_negocio.Beans.BeanError;
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
 import silat.servicios_negocio.Beans.BeanTRItem;
 import silat.servicios_negocio.Beans.BeanUnidadMedida;
+import silat.servicios_negocio.Beans.BeanUnidadNegocio;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFDireccionRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFFlotaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFOrdenServicioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRelacionEmpresaRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFUnidadMedidaRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFUnidadNegocioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFUnidadMedidaRemote;
 
 
@@ -108,11 +111,15 @@ public class Frm_registrar_orden_servicio {
     private final static String LOOKUP_NAME_SFT_UND_MEDIDA_REMOTO = "mapLN_T_SFUnidadMedida";
     private final static String LOOKUP_NAME_SFC_RELA_REMOTO       = "mapLN_C_SFRelacionEmpresa";
     private final static String LOOKUP_NAME_SFDIRECCION_REMOTO    = "LUBAL_SIAT_APP-SILATNEGOCIO-LN_C_SFDireccion";
+    private final static String LOOKUP_NAME_SFUN_REMOTO           = "mapLN_C_SFUnidadNegocio";
+    private final static String LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO = "mapLN_C_SFUnidadMedida";
     private BDL_C_SFEmpresasRemote bdL_C_SFEmpresasRemote;
     private LN_C_SFOrdenServicioRemote ln_C_SFOrdenServicioRemote;
     private LN_T_SFUnidadMedidaRemote ln_T_SFUnidadMedidaRemote;
     private LN_C_SFRelacionEmpresaRemote ln_C_SFRelacionEmpresaRemote;
     private LN_C_SFDireccionRemote ln_C_SFDireccionRemote;
+    private LN_C_SFUnidadNegocioRemote ln_C_SFUnidadNegocioRemote;
+    private LN_C_SFUnidadMedidaRemote ln_C_SFUnidadMedidaRemote;
     private String nombreEmpresa;
     private BigDecimal nidPartyEmpresa;
     private BeanOrdenServicio beanOrdenServicio = new BeanOrdenServicio();
@@ -171,13 +178,14 @@ public class Frm_registrar_orden_servicio {
             ctx = new InitialContext();
             bdL_C_SFEmpresasRemote = (BDL_C_SFEmpresasRemote) ctx.lookup(LOOKUP_NAME_SFC_EMPR_REMOTO);
             ln_C_SFOrdenServicioRemote = (LN_C_SFOrdenServicioRemote)  ctx.lookup(LOOKUP_NAME_SFORDSERV_REMOTO);
-
+            ln_C_SFUnidadNegocioRemote = (LN_C_SFUnidadNegocioRemote)       ctx.lookup(LOOKUP_NAME_SFUN_REMOTO);
             this.setFecha_Minima(FechaUtiles.fechaPast7());
             this.setFecha_Maxima(FechaUtiles.fechaFoward7());
 
             ln_T_SFUnidadMedidaRemote = (LN_T_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFT_UND_MEDIDA_REMOTO);
             ln_C_SFRelacionEmpresaRemote = (LN_C_SFRelacionEmpresaRemote)   ctx.lookup(LOOKUP_NAME_SFC_RELA_REMOTO);
             ln_C_SFDireccionRemote = (LN_C_SFDireccionRemote)               ctx.lookup(LOOKUP_NAME_SFDIRECCION_REMOTO);
+            ln_C_SFUnidadMedidaRemote = (LN_C_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO);
 
         }catch(Exception e){
             e.printStackTrace();
@@ -195,6 +203,25 @@ public class Frm_registrar_orden_servicio {
             beanSessionScopedRegistrarOS.setNidOSGenerado(ln_C_SFOrdenServicioRemote.traerSiguienteValorSequence());
         }
     }
+    public ArrayList llenarUNCombo() {
+        ArrayList unItems = new ArrayList(); 
+        List<BeanUnidadNegocio> roles = ln_C_SFUnidadNegocioRemote.getUnidadesNegocio_LN();
+        for (BeanUnidadNegocio r : roles) {
+            unItems.add(new SelectItem(r.getCidUnidadNegocio().toString(), 
+                                       r.getCidUnidadNegocio().toString()));
+        }
+        return unItems;
+    }
+    
+    public ArrayList llenarUndMedidaCombo() {
+        ArrayList umItems = new ArrayList();
+        List<BeanUnidadMedida> consts = ln_C_SFUnidadMedidaRemote.getUnidadesMedida_LN();
+        for (BeanUnidadMedida r : consts) {
+            umItems.add(new SelectItem(r.getSigla().toString(), 
+                                       r.getDescUnidadMedida().toString()));
+        }
+        return umItems;
+    }
     
     public String buscarEmpresasCliente(){
         getBeanSessionScopedRegistrarOS().setLstEmpresasCliente(this.bdL_C_SFEmpresasRemote.getADEmpresabyName(getBeanSessionScopedRegistrarOS().getRazSocial()));
@@ -209,7 +236,10 @@ public class Frm_registrar_orden_servicio {
         Object nidPar = empresa.getNidParty();//rowData.getAttribute("nidParty");
         Object razSol = empresa.getCRazonSocial();//rowData.getAttribute("CRazonSocial");
         setNidPartyEmpresa(new BigDecimal(nidPar+""));
-        ADFUtil.setEL("#{pageFlowScope.nidParty}", nidPar);
+        
+       // ADFUtil.setEL("#{pageFlowScope.nidParty}", nidPar);
+        
+        beanSessionScopedRegistrarOS.setNidPartyOS(empresa.getNidParty());
         getBeanSessionScopedRegistrarOS().setLstDirecs(this.llenarDireccionCombo(null,empresa.getNidParty().intValue(), null));
         Utils.addTarget(socDirecs);
         try{
@@ -233,10 +263,18 @@ public class Frm_registrar_orden_servicio {
     
     public void registrarOS_ActionListener(ActionEvent actionEvent) {//action
         try{
-            ADFUtil.setEL("#{pageFlowScope.fecha}",beanSessionScopedRegistrarOS.getFechaHoy());
+            
+            beanOrdenServicio= ln_C_SFOrdenServicioRemote.grabarOrdenServicio(beanSessionScopedRegistrarOS.getNidPartyOS(), 
+                                                                              beanSessionScopedRegistrarOS.getCDetalleOS(), 
+                                                                              beanSessionScopedRegistrarOS.getFechaHoy(),
+                                                                              beanSessionScopedRegistrarOS.getCidDirecDestino(),
+                                                                              beanSessionScopedRegistrarOS.getCidDirecRemitente(),
+                                                                              beanSessionScopedRegistrarOS.getNidRemitente());
+            
+           /* ADFUtil.setEL("#{pageFlowScope.fecha}",beanSessionScopedRegistrarOS.getFechaHoy());
             Utils.mandarParametro("fecha", "#{pageFlowScope.fecha}", "grabarOrdenServicio");
             Utils.mandarParametro("nidParty", "#{pageFlowScope.nidParty}", "grabarOrdenServicio");
-            beanOrdenServicio = (BeanOrdenServicio)ADFUtil.invokeEL("#{bindings.grabarOrdenServicio.execute}");
+            beanOrdenServicio = (BeanOrdenServicio)ADFUtil.invokeEL("#{bindings.grabarOrdenServicio.execute}");*/
             setError(beanOrdenServicio.getOutput());
             setCidError(beanOrdenServicio.getCidError());
         }catch(Exception e){
@@ -376,6 +414,7 @@ public class Frm_registrar_orden_servicio {
     }
     
     public void openPopUp(ActionEvent actionEvent){
+        beanSessionScopedRegistrarOS.setLstUndMedida(this.llenarUndMedidaCombo());
         this.setCCidGuiaRemitente("Segun Guia Remitente "+ (razonSocProve.getValue() == null ? "" : razonSocProve.getValue()) +" #: ");    
         beanSessionScopedRegistrarOS.setAccion(1);//Grabar
         RichPopup.PopupHints ph = new RichPopup.PopupHints();
@@ -386,6 +425,7 @@ public class Frm_registrar_orden_servicio {
             resetearItems();
         }
     }
+    
     public void resetearItems(){
         txtCantidad.resetValue();
         txtPeso.resetValue();

@@ -74,6 +74,8 @@ public class BeanTRGuia implements Serializable, Cloneable  {
     //dfloresgonz 01.05.2014 - Se agrega este campo auxiliar para poder realizar un filtro mas de busqueda
     //para realizar consultas a los items de la GUIA especificamente el texto en su campo C_CID_GUIA_REMITENTE
     private String filtroItemGuiaRemi;
+    private String comentario;
+    private Integer valoracion;
     
     public Object clone() {
         Object clone = null;
@@ -460,5 +462,21 @@ public class BeanTRGuia implements Serializable, Cloneable  {
 
     public byte[] getImgGuia() {
         return imgGuia;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setValoracion(Integer valoracion) {
+        this.valoracion = valoracion;
+    }
+
+    public Integer getValoracion() {
+        return valoracion;
     }
 }

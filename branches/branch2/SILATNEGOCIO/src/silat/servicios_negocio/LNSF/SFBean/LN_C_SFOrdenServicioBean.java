@@ -69,7 +69,7 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty, String cDetalle, Date fecha) {
+    public BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty, String cDetalle, Date fecha,String direcCli, String direcRemi, int nidRemitente) {
         String error = NO_ERROR;
         BeanOrdenServicio beanOS = new BeanOrdenServicio();
         BeanError beanError = new BeanError();
@@ -81,11 +81,18 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
             empresa.setAdParty(party);
             //empresa.setNidParty((nidParty));
             entidad.setAdEmpresa(empresa);
+            if(cDetalle!=null){
             entidad.setCDetalle(cDetalle.toUpperCase());
+            }
             entidad.setFecOrdnServ(fecha);
             entidad.setNEstadoOrden(new BigDecimal(1));
             entidad.setCEstord("P");
             entidad.setFlgVisto("0");
+            entidad.setNidDirecCli(direcCli);
+            entidad.setNidDirecProv(direcRemi);
+            if(nidRemitente!=0){
+            entidad.setNidRemitente(nidRemitente);    
+            }            
             error = bdL_T_SFOrdenServicioLocal.grabarOrdenServicio(entidad);
             //MostrarOrdenServNF();
         } catch (Exception e) {

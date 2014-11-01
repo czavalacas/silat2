@@ -13,7 +13,7 @@ import silat.servicios_negocio.Beans.BeanOrdenServicio;
 @Remote
 public interface LN_C_SFOrdenServicioRemote{
 
-    BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha);
+    BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,String direcCli, String direcRemi, int nidRemitente);
     List<BeanOrdenServicio> MostrarOrdenServ(Date fecOrdnServ);
     BeanOrdenServicio ModificarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,Integer nidOrdenServ, String estado,boolean isCambiarEmpresa,String comentario);
     List<BeanOrdenServicio> MostrarOrdenServNF();

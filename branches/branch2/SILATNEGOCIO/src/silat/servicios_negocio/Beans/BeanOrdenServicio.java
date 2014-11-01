@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+
 import silat.servicios_negocio.entidades.trans.TRItemXOrds;
 
 public class BeanOrdenServicio implements Serializable{
@@ -29,7 +31,10 @@ public class BeanOrdenServicio implements Serializable{
     private String flgVisto;
     private String comentario;
     private List<BeanTrItemXOrds> itemsLista;
-
+    private Integer nidRemitente;
+    private String nidDirecCli;
+    private String nidDirecProv;
+    
     public void setCDetalle(String cDetalle) {
         this.cDetalle = cDetalle;
     }
@@ -167,4 +172,28 @@ public class BeanOrdenServicio implements Serializable{
         return itemsLista;
     }
 
+    public void setNidRemitente(Integer nidRemitente) {
+        this.nidRemitente = nidRemitente;
+    }
+
+    public Integer getNidRemitente() {
+        return nidRemitente;
+    }
+
+
+    public void setNidDirecCli(String nidDirecCli) {
+        this.nidDirecCli = nidDirecCli;
+    }
+
+    public String getNidDirecCli() {
+        return nidDirecCli;
+    }
+
+    public void setNidDirecProv(String nidDirecProv) {
+        this.nidDirecProv = nidDirecProv;
+    }
+
+    public String getNidDirecProv() {
+        return nidDirecProv;
+    }
 }

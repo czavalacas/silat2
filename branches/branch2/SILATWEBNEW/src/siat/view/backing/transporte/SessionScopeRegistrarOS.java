@@ -1,5 +1,7 @@
 package siat.view.backing.transporte;
 
+import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -58,7 +60,9 @@ public class SessionScopeRegistrarOS {
     private String valUM;
     private String update;
     private String razonSocRemi;
-    private String rucRemi;    
+    private String rucRemi; 
+    private String cDetalleOS;
+    private BigDecimal nidPartyOS;    
     
     public void setLstEmpresasCliente(List<BeanEmpresa> lstEmpresasCliente) {
         this.lstEmpresasCliente = lstEmpresasCliente;
@@ -419,4 +423,22 @@ public class SessionScopeRegistrarOS {
     public List<BeanADRelacionEmpresa> getLstRemitentes() {
         return lstRemitentes;
     }
+
+    public void setCDetalleOS(String cDetalleOS) {
+        this.cDetalleOS = cDetalleOS;
+    }
+
+    public String getCDetalleOS() {
+        return cDetalleOS;
+    }
+
+
+    public void setNidPartyOS(BigDecimal nidPartyOS) {
+        this.nidPartyOS = nidPartyOS;
+    }
+
+    public BigDecimal getNidPartyOS() {
+        return nidPartyOS;
+    }
+
 }

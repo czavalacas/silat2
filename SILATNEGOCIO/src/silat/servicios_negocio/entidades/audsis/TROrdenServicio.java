@@ -55,7 +55,13 @@ public class TROrdenServicio implements Serializable {
     private String comentario;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "trOrdenServicio",fetch = FetchType.EAGER)
     private List<TRItemXOrds> itemsList;
-
+    @Column(name = "NID_EMP_PROV")
+    private Integer nidRemitente;
+    @Column(name = "NID_DIREC_CLI")
+    private String nidDirecCli;
+    @Column(name = "NID_DIREC_PROV")
+    private String nidDirecProv;
+        
     public TROrdenServicio() {
     }
 
@@ -159,5 +165,30 @@ public class TROrdenServicio implements Serializable {
 
     public List<TRItemXOrds> getItemsList() {
         return itemsList;
+    }
+    
+    public void setNidRemitente(Integer nidRemitente) {
+        this.nidRemitente = nidRemitente;
+    }
+
+    public Integer getNidRemitente() {
+        return nidRemitente;
+    }
+
+
+    public void setNidDirecCli(String nidDirecCli) {
+        this.nidDirecCli = nidDirecCli;
+    }
+
+    public String getNidDirecCli() {
+        return nidDirecCli;
+    }
+
+    public void setNidDirecProv(String nidDirecProv) {
+        this.nidDirecProv = nidDirecProv;
+    }
+
+    public String getNidDirecProv() {
+        return nidDirecProv;
     }
 }

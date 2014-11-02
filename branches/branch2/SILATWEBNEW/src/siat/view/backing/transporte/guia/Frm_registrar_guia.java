@@ -750,7 +750,32 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         Object cDetalle = beanOS.getCDetalle();
         String strDetalle = String.valueOf(cDetalle);
         getBeanSessionRegistrarGuia().setLstDirecs(this.llenarDireccionCombo(null,beanOS.getAdEmpresa().getNidParty().intValue(), null));
-        Utils.addTarget(socDirecs);
+        getBeanSessionRegistrarGuia().setNidRemitente(beanOS.getNidRemitente());
+        getBeanSessionRegistrarGuia().setLstDirecsRemi(this.llenarDireccionCombo(null,beanOS.getNidRemitente(), null));
+        BeanEmpresa bean=ln_C_SFEmpresasRemote.selectedEmpresa(new BigDecimal(beanOS.getNidRemitente()));
+        razonSocProve.setValue(bean.getCRazonSocial());
+        rucProve.setValue(bean.getCRuc());
+        beanSessionRegistrarGuia.setCidDirecRemitente(beanOS.getNidDirecProv());
+        
+        List<BeanTRItem> listaItems= new ArrayList<BeanTRItem>();
+        if(beanOS.getItemsLista()!=null){
+            System.out.println(":::::TAMAÑO DE ITEMS ::::"+beanOS.getItemsLista().size());
+            for(int i=0; i < beanOS.getItemsLista().size(); i++){
+            BeanTRItem beanItm =new BeanTRItem();
+            beanItm.setCCidGuiaRemitente((beanOS.getItemsLista().get(i).getCCidGuiaRemitente() != null ? beanOS.getItemsLista().get(i).getCCidGuiaRemitente().toUpperCase() : beanOS.getItemsLista().get(i).getCCidGuiaRemitente()));
+            beanItm.setCDescItem(beanOS.getItemsLista().get(i).getCDescItem().toUpperCase());
+            beanItm.setCUndMedida(beanOS.getItemsLista().get(i).getCUndMedida());
+            beanItm.setDPeso(beanOS.getItemsLista().get(i).getDPeso());
+            beanItm.setNCantidad(beanOS.getItemsLista().get(i).getNCantidad());
+            listaItems.add(beanItm);
+            }
+        }        
+        beanSessionRegistrarGuia.setLstItems(listaItems);
+        
+        Utils.addTargetMany(razonSocProve,rucProve,socDirecRemi,socDirecs,tblItms);
+        
+        
+        
         try {
             itOServicio.setValue(cDetalle);
             beanSessionRegistrarGuia.setTxtObservGuia(strDetalle);

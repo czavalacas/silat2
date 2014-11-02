@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import silat.servicios_negocio.Beans.BeanTRItem;
 import silat.servicios_negocio.entidades.admin.ADEmpresa;
 import silat.servicios_negocio.entidades.audsis.STRol;
 import silat.servicios_negocio.entidades.audsis.TROrdenServicio;
@@ -22,7 +23,7 @@ public interface BDL_T_SFOrdenServicioLocal {
 
     void removeTROrdenServicio(TROrdenServicio TROrdenServicio);
 
-    String grabarOrdenServicio(TROrdenServicio TROrdenServicio);
+    String grabarOrdenServicio(TROrdenServicio TROrdenServicio, List<BeanTRItem> listaItems);
 
     BigDecimal getNidParty(String Nombre);
     

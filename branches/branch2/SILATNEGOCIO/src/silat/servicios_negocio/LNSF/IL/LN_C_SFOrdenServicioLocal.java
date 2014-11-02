@@ -9,11 +9,12 @@ import java.util.List;
 import javax.ejb.Local;
 
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
+import silat.servicios_negocio.Beans.BeanTRItem;
 
 @Local
 public interface LN_C_SFOrdenServicioLocal {
     
-    BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,String direcCli, String direcRemi, int nidRemitente);
+    BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,String direcCli, String direcRemi, int nidRemitente, List<BeanTRItem> lstItem);
     List<BeanOrdenServicio> MostrarOrdenServ(Date fecOrdnServ);
     BeanOrdenServicio ModificarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,Integer nidOrdenServ, String estado,boolean isCambiarEmpresa,String comentario);
     List<BeanOrdenServicio> MostrarOrdenServNF();

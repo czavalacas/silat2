@@ -9,11 +9,12 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
+import silat.servicios_negocio.Beans.BeanTRItem;
 
 @Remote
 public interface LN_C_SFOrdenServicioRemote{
 
-    BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,String direcCli, String direcRemi, int nidRemitente);
+    BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,String direcCli, String direcRemi, int nidRemitente, List<BeanTRItem> lstItem);
     List<BeanOrdenServicio> MostrarOrdenServ(Date fecOrdnServ);
     BeanOrdenServicio ModificarOrdenServicio(BigDecimal nidParty,String cDetalle,Date fecha,Integer nidOrdenServ, String estado,boolean isCambiarEmpresa,String comentario);
     List<BeanOrdenServicio> MostrarOrdenServNF();

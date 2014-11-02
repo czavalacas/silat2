@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import silat.servicios_negocio.Beans.BeanTRItem;
 import silat.servicios_negocio.entidades.admin.ADEmpresa;
 import silat.servicios_negocio.entidades.audsis.STRol;
 import silat.servicios_negocio.entidades.audsis.TROrdenServicio;
@@ -22,7 +23,7 @@ public interface BDL_T_SFOrdenServicioRemoto {
 
     void removeTROrdenServicio(TROrdenServicio TROrdenServicio);
     
-    String grabarOrdenServicio(TROrdenServicio TROrdenServicio);
+    String grabarOrdenServicio(TROrdenServicio TROrdenServicio, List<BeanTRItem> listaItems);
     BigDecimal getNidParty(String Nombre);
     String ModificarOrdenServicio(TROrdenServicio TROrdenServicio);
     void flgVistoNuevasOrdenServicio_BDL();

@@ -269,7 +269,9 @@ public class Frm_registrar_orden_servicio {
                                                                               beanSessionScopedRegistrarOS.getFechaHoy(),
                                                                               beanSessionScopedRegistrarOS.getCidDirecDestino(),
                                                                               beanSessionScopedRegistrarOS.getCidDirecRemitente(),
-                                                                              beanSessionScopedRegistrarOS.getNidRemitente());
+                                                                              beanSessionScopedRegistrarOS.getNidRemitente(),
+                                                                              beanSessionScopedRegistrarOS.getLstItems());
+            
             
            /* ADFUtil.setEL("#{pageFlowScope.fecha}",beanSessionScopedRegistrarOS.getFechaHoy());
             Utils.mandarParametro("fecha", "#{pageFlowScope.fecha}", "grabarOrdenServicio");

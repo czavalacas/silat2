@@ -35,6 +35,7 @@ import silat.servicios_negocio.Beans.BeanConstraint;
 import silat.servicios_negocio.Beans.BeanEmpresa;
 import silat.servicios_negocio.Beans.BeanError;
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
+import silat.servicios_negocio.Beans.BeanTRItem;
 import silat.servicios_negocio.Beans.BeanTrItemXOrds;
 import silat.servicios_negocio.LNSF.IL.LN_C_SFCatalogoErroresLocal;
 import silat.servicios_negocio.LNSF.IL.LN_C_SFOrdenServicioLocal;
@@ -43,6 +44,7 @@ import silat.servicios_negocio.entidades.admin.ADEmpresa;
 import silat.servicios_negocio.entidades.admin.ADEvento;
 import silat.servicios_negocio.entidades.admin.ADParty;
 import silat.servicios_negocio.entidades.audsis.TROrdenServicio;
+import silat.servicios_negocio.entidades.trans.TRItemXOrds;
 import silat.servicios_negocio.util_formato.UtilsGeneral;
 
 @Stateless(name = "LN_C_SFOrdenServicio", mappedName = "mapLN_C_SFOrdenServicio")
@@ -69,7 +71,7 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty, String cDetalle, Date fecha,String direcCli, String direcRemi, int nidRemitente) {
+    public BeanOrdenServicio grabarOrdenServicio(BigDecimal nidParty, String cDetalle, Date fecha,String direcCli, String direcRemi, int nidRemitente, List<BeanTRItem> lstItem) {
         String error = NO_ERROR;
         BeanOrdenServicio beanOS = new BeanOrdenServicio();
         BeanError beanError = new BeanError();
@@ -92,8 +94,8 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
             entidad.setNidDirecProv(direcRemi);
             if(nidRemitente!=0){
             entidad.setNidRemitente(nidRemitente);    
-            }            
-            error = bdL_T_SFOrdenServicioLocal.grabarOrdenServicio(entidad);
+            }                 
+            error = bdL_T_SFOrdenServicioLocal.grabarOrdenServicio(entidad, lstItem);
             //MostrarOrdenServNF();
         } catch (Exception e) {
             e.printStackTrace();

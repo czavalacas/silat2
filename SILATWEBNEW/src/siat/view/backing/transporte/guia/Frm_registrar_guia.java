@@ -73,6 +73,7 @@ import silat.servicios_negocio.LNSF.IR.LN_C_SFDireccionRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFEmpresasRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFFlotaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFGuiaRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFItemOrdenServRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFManifiestoRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFOrdenServicioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRelacionEmpresaRemote;
@@ -279,6 +280,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     private final static String LOOKUP_NAME_SFC_UTL_REMOTO        = "mapLN_C_SFUtils";
     private final static String LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO = "mapLN_C_SFUnidadMedida";
     private final static String LOOKUP_NAME_SFT_UND_MEDIDA_REMOTO = "mapLN_T_SFUnidadMedida";
+    private final static String LOOKUP_NAME_SFITMOS_REMOTO  = "map-LN_C_SFItemOrdenServ";
     private LN_C_SFManifiestoRemote ln_C_SFManifiestoRemote;
     private LN_C_SFRelacionEmpresaRemote ln_C_SFRelacionEmpresaRemote;
     private LN_C_SFGuiaRemote ln_C_SFGuiaRemote;
@@ -293,6 +295,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     private LN_C_SFUtilsRemote ln_C_SFUtilsRemote;
     private LN_C_SFUnidadMedidaRemote ln_C_SFUnidadMedidaRemote;
     private LN_T_SFUnidadMedidaRemote ln_T_SFUnidadMedidaRemote;
+    private LN_C_SFItemOrdenServRemote ln_C_SFItemOrdenServRemote;
     private SessionScopedBeanRegistrarGuia beanSessionRegistrarGuia;
     private String correlativo = "";
     private BeanTRItem beanIteam = new BeanTRItem();
@@ -332,6 +335,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             ln_C_SFUtilsRemote = (LN_C_SFUtilsRemote)                       ctx.lookup(LOOKUP_NAME_SFC_UTL_REMOTO);
             ln_C_SFUnidadMedidaRemote = (LN_C_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO);
             ln_T_SFUnidadMedidaRemote = (LN_T_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFT_UND_MEDIDA_REMOTO);
+            ln_C_SFItemOrdenServRemote = (LN_C_SFItemOrdenServRemote)       ctx.lookup(LOOKUP_NAME_SFITMOS_REMOTO);    
             this.setFecha_Minima(FechaUtiles.fechaPast7());
             this.setFecha_Maxima(FechaUtiles.fechaFoward7());
         } catch (Exception e) {
@@ -524,7 +528,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             Utils.throwError_Aux(ctx, "Debe seleccionar una empresa Remitente.",4);
             isOk = false;
         }
-       /* if(getBeanSessionRegistrarGuia().getValorComboManif() == 0){
+        if(getBeanSessionRegistrarGuia().getValorComboManif() == 0){
             Utils.throwError_Aux(ctx, "Debe seleccionar/Registrar el Manifiesto.",4);
             isOk = false;
         }
@@ -534,7 +538,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                 Utils.throwError_Aux(ctx, "Debe seleccionar un Manifiesto.",4);
                 isOk = false;
             }
-        }*/
+        }
         if(beanSessionRegistrarGuia.getNumPaquetes() == 0){
             Utils.throwError_Aux(ctx, "Debe poner el numero de paquetes y/o bultos diferente a 0.",4);
             isOk = false;
@@ -750,28 +754,15 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         Object cDetalle = beanOS.getCDetalle();
         String strDetalle = String.valueOf(cDetalle);
         getBeanSessionRegistrarGuia().setLstDirecs(this.llenarDireccionCombo(null,beanOS.getAdEmpresa().getNidParty().intValue(), null));
+        if(beanOS.getNidRemitente()!=null){
         getBeanSessionRegistrarGuia().setNidRemitente(beanOS.getNidRemitente());
         getBeanSessionRegistrarGuia().setLstDirecsRemi(this.llenarDireccionCombo(null,beanOS.getNidRemitente(), null));
         BeanEmpresa bean=ln_C_SFEmpresasRemote.selectedEmpresa(new BigDecimal(beanOS.getNidRemitente()));
         razonSocProve.setValue(bean.getCRazonSocial());
         rucProve.setValue(bean.getCRuc());
-        beanSessionRegistrarGuia.setCidDirecRemitente(beanOS.getNidDirecProv());
-        
-        List<BeanTRItem> listaItems= new ArrayList<BeanTRItem>();
-        if(beanOS.getItemsLista()!=null){
-            System.out.println(":::::TAMAÑO DE ITEMS ::::"+beanOS.getItemsLista().size());
-            for(int i=0; i < beanOS.getItemsLista().size(); i++){
-            BeanTRItem beanItm =new BeanTRItem();
-            beanItm.setCCidGuiaRemitente((beanOS.getItemsLista().get(i).getCCidGuiaRemitente() != null ? beanOS.getItemsLista().get(i).getCCidGuiaRemitente().toUpperCase() : beanOS.getItemsLista().get(i).getCCidGuiaRemitente()));
-            beanItm.setCDescItem(beanOS.getItemsLista().get(i).getCDescItem().toUpperCase());
-            beanItm.setCUndMedida(beanOS.getItemsLista().get(i).getCUndMedida());
-            beanItm.setDPeso(beanOS.getItemsLista().get(i).getDPeso());
-            beanItm.setNCantidad(beanOS.getItemsLista().get(i).getNCantidad());
-            listaItems.add(beanItm);
-            }
-        }        
-        beanSessionRegistrarGuia.setLstItems(listaItems);
-        
+        beanSessionRegistrarGuia.setCidDirecRemitente(beanOS.getNidDirecProv());        
+        }
+        beanSessionRegistrarGuia.setLstItems(ln_C_SFItemOrdenServRemote.getListaItemsBynidOrdS(beanOS.getNidOrdnServ()));
         Utils.addTargetMany(razonSocProve,rucProve,socDirecRemi,socDirecs,tblItms);
         
         

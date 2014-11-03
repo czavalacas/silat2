@@ -76,6 +76,7 @@ public class BeanTRGuia implements Serializable, Cloneable  {
     private String filtroItemGuiaRemi;
     private String comentario;
     private Integer valoracion;
+    private String nativeCidGuia;
     
     public Object clone() {
         Object clone = null;
@@ -478,5 +479,13 @@ public class BeanTRGuia implements Serializable, Cloneable  {
 
     public Integer getValoracion() {
         return valoracion;
+    }
+
+    public void setNativeCidGuia(String nativeCidGuia) {
+        this.nativeCidGuia = nativeCidGuia;
+    }
+
+    public String getNativeCidGuia() {
+        return nativeCidGuia;
     }
 }

@@ -25,6 +25,7 @@ import net.sf.dozer.util.mapping.DozerBeanMapper;
 import net.sf.dozer.util.mapping.MapperIF;
 
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFGuiaLocal;
+import silat.servicios_negocio.BDLSF.IL.BDL_C_SFItemLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFUtilsLocal;
 import silat.servicios_negocio.Beans.BeanConstraint;
 import silat.servicios_negocio.Beans.BeanDireccion;
@@ -57,6 +58,8 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
     private BDL_C_SFUtilsLocal bdL_C_SFUtilsLocal;
     @EJB
     private LN_C_SFDireccionLocal ln_C_SFDireccionLocal;
+    @EJB
+    private BDL_C_SFItemLocal bdl_C_SFItemLocal;
 
     public LN_C_SFGuiaBean() {
     }
@@ -197,6 +200,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             
             //Solo Con TRGuia
             beanGuia.setCidGuia(entidad.getCidUnidadNegocio()+"-"+entidad.getCidGuia());
+            beanGuia.setNativeCidGuia(entidad.getCidGuia());
             beanGuia.setFechaGuia(entidad.getFechaGuia());
             beanGuia.setFechaDespacho(entidad.getFechaDespacho());
             //beanGuia.setItemsLista(passItems(entidad.getItemsList()));
@@ -675,4 +679,30 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
     public boolean manifiestoHasGuiasActivas_LN(int nidManifesto){
         return bdL_C_SFGuiaLocal.getCantidadGuiasActivasByManifiesto(nidManifesto) > 0 ? true : false;
     }
+    
+    
+    public List<BeanTRItem> getListaItemsByCidGuia(String cidGuia){
+        List<TRItem> items=bdl_C_SFItemLocal.getTrItemGuia_BD(cidGuia);
+        if(items!=null){
+        System.out.println("::::LISTA ITEMS SIZE:::"+ items.size());}
+        else{
+            System.out.println("::NULO::");}  
+        
+        List<BeanTRItem> it = new ArrayList<BeanTRItem>();
+        for(TRItem entidad:items){
+            BeanTRItem bean = new BeanTRItem();
+            bean.setCCidGuiaRemitente(entidad.getCCidGuiaRemitente());
+            bean.setCDescItem(entidad.getCDescItem());
+            bean.setCUndMedida(entidad.getCUndMedida());
+            bean.setDPeso(entidad.getDPeso());
+            bean.setIdItem(entidad.getNidItem());
+            bean.setNCantidad(entidad.getNCantidad());
+            bean.setNidItem(entidad.getNidItem());
+            bean.setOrden(entidad.getOrden());
+            
+            it.add(bean);
+        }
+        return it;
+    }
+    
 }

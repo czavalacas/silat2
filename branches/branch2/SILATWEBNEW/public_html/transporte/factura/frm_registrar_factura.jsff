@@ -121,7 +121,8 @@
                                           binding="#{backingBeanScope.backing_transporte_factura_frm_registrar_factura.itDet}"
                                           labelStyle="text-align: left;" maximumLength="100"
                                           value="#{beanSessionScopeRegistrarFactura.detalleFactura}" rows="3"
-                                          visible="#{beanSessionScopeRegistrarFactura.editable == false}"/>
+                                          visible="#{beanSessionScopeRegistrarFactura.editable == false}"
+                                          required="true" showRequired="true"/>
                         </af:panelFormLayout>
                     </af:gridCell>
                 </af:gridRow>

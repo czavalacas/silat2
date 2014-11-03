@@ -56,4 +56,6 @@ public interface LN_C_SFGuiaRemote {
     boolean manifiestoHasGuiasActivas_LN(int nidManifesto);
     List<BeanTRGuia> guiasByNidPartyOK(int nidCliente);
     List<BeanTRGuia> guiasByNidParty(int nidCliente);
+    List<BeanTRItem> passItems(List<TRItem> items);
+    List<BeanTRItem> getListaItemsByCidGuia(String cidGuia);
 }

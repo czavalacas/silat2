@@ -40,6 +40,7 @@ import siat.view.backing.utiles.Utils;
 import silat.servicios_negocio.Beans.BeanConstraint;
 import silat.servicios_negocio.Beans.BeanError;
 import silat.servicios_negocio.Beans.BeanTRGuia;
+import silat.servicios_negocio.Beans.BeanTRItem;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFGuiaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
@@ -248,7 +249,7 @@ public class Frm_consultar_guia {
             }else if("1".equals(beanGuia.getCConformidad())){//OK
                 btnAnular.setDisabled(true);
                 btnEditar.setDisabled(false);
-            }
+            }                   
             Utils.addTargetMany(btnAnular,btnEditar);
             beanSessionConsultarGuia.setGuiaSelected(beanGuia);
         }
@@ -344,6 +345,7 @@ public class Frm_consultar_guia {
     public void editarGuia(ActionEvent ae) {
         if(Utils.hasPermiso(beanUsuario.getLstPermisos(),new BigDecimal("28"))){
             if(beanSessionConsultarGuia.getGuiaSelected().getCidGuia() != null){
+                beanSessionConsultarGuia.getGuiaSelected().setItemsLista(ln_C_SFGuiaRemote.getListaItemsByCidGuia(beanSessionConsultarGuia.getGuiaSelected().getNativeCidGuia()));
                 Utils.putSession("GUIA",beanSessionConsultarGuia.getGuiaSelected());
                 Utils._redireccionar(ctx,"/WEB-INF/registrar_guia.xml#registrar_guia");
             }else{

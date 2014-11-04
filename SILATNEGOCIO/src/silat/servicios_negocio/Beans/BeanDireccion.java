@@ -19,6 +19,8 @@ public class BeanDireccion implements Serializable {
     private Integer nidDireccion;
     private BeanEmpresa party;
     
+    private String detalleWebmovilDireccion;
+    
     public BeanDireccion(String descDepartamento, String descProvincia, String descDistrito, String cDireccion){
         this.descDepartamento = descDepartamento;
         this.descProvincia = descProvincia;
@@ -110,5 +112,13 @@ public class BeanDireccion implements Serializable {
 
     public String getDescDistrito() {
         return descDistrito;
+    }
+
+    public void setDetalleWebmovilDireccion(String detalleWebmovilDireccion) {
+        this.detalleWebmovilDireccion = detalleWebmovilDireccion;
+    }
+
+    public String getDetalleWebmovilDireccion() {
+        return detalleWebmovilDireccion;
     }
 }

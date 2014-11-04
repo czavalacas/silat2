@@ -98,6 +98,7 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
             eManifiesto.setNAdelanto(adelanto);
             if("000".equals(error)){
                 eManifiesto.setEstadoManifiestoNegocio(estadoManifiestoNegocio);
+               
                 eManifiesto = bdL_T_ManifiestoLocal.registrarManifiesto(eManifiesto);
                 MapperIF mapper = new DozerBeanMapper();
                 bManifiesto = (BeanManifiesto)mapper.map(eManifiesto, BeanManifiesto.class);

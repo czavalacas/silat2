@@ -20,6 +20,7 @@ import silat.servicios_negocio.BDLSF.IL.BDL_C_SFUtilsLocal;
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFOrdenServicioLocal;
 import silat.servicios_negocio.Beans.BeanConstraint;
 import silat.servicios_negocio.entidades.audsis.TROrdenServicio;
+import silat.servicios_negocio.entidades.trans.TRItemXOrds;
 import silat.servicios_negocio.util_formato.Caracter.FormatoLetra;
 import silat.servicios_negocio.util_formato.UtilsGeneral;
 
@@ -306,5 +307,11 @@ public class BDL_C_SFOrdenServicioBean implements BDL_C_SFOrdenServicioRemote,
             e.printStackTrace();
             return null;
         }
+    }
+    public List<TRItemXOrds>getItemsbyOrd(String nidOrds){
+        List<TRItemXOrds>listaItems= new ArrayList<TRItemXOrds>();
+        String query = "select o from TRItemXOrds o where o.orden = '"+nidOrds+"'";
+        listaItems = em.createQuery(query).getResultList();
+        return listaItems;
     }
 }

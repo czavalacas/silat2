@@ -118,6 +118,7 @@ public class BDL_C_SFDireccionBean implements BDL_C_SFDireccionRemote,
             BeanDireccion beanDireccion = null;
             for(ADDireccion direc : lstDirecs){
                 beanDireccion = (BeanDireccion) mapper.map(direc,BeanDireccion.class);
+                beanDireccion.setDetalleWebmovilDireccion(direc.getCDireccion());
                 lstBeanDirec.add(beanDireccion);
             }
             return lstBeanDirec;

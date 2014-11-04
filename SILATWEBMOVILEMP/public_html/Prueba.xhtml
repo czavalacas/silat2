@@ -22,7 +22,10 @@
             document.getElementById("regManifiesto1").style.display="none";
             document.getElementById("regManifiesto2").style.display="none";
             document.getElementById("regManifiesto3").style.display="none";
-            document.getElementById("regManifiestoGuardar").style.display="none";   
+            document.getElementById("regManifiestoGuardar").style.display="none";
+            document.getElementById("detOrden").style.display="none"; 
+            document.getElementById("creaGuia").style.display="none";
+            document.getElementById("lastForm").style.display="none";
                 }
           function ocultarForm(){
               document.getElementById("ordenServicio").style.display="none";
@@ -37,6 +40,8 @@
               document.getElementById("modal-launcher").style.display="none";
               document.getElementById("abrirModalFlotas").style.display="none";
               document.getElementById("abrirModalChoferes").style.display="none";
+              document.getElementById("creaGuia").style.display="none";
+              document.getElementById("lastForm").style.display="none";
           }
           function mostrarForm(){
               document.getElementById("subManifiesto").style.display="none";
@@ -50,7 +55,9 @@
               document.getElementById("regManifiestoGuardar").style.display="none";
               document.getElementById("modal-launcher").style.display="none";
               document.getElementById("abrirModalFlotas").style.display="none";
+              document.getElementById("creaGuia").style.display="none";
               document.getElementById("abrirModalChoferes").style.display="none";
+              document.getElementById("lastForm").style.display="none";
           }
           function mostrarFormregManif(){
               document.getElementById("subManifiesto").style.display="block";
@@ -64,9 +71,45 @@
               document.getElementById("modal-launcher").style.display="block";
               document.getElementById("abrirModalFlotas").style.display="block";
               document.getElementById("abrirModalChoferes").style.display="block";
+              document.getElementById("lastForm").style.display="none";
+          }
+            function mostrarFormregOrds(){
+              document.getElementById("subManifiesto").style.display="none";
+              document.getElementById("manifiesto").style.display="none";
+              document.getElementById("regManifiesto0").style.display="none";
+              document.getElementById("regManifiesto").style.display="none";
+              document.getElementById("regManifiesto1").style.display="none";
+              document.getElementById("regManifiesto2").style.display="none";
+              document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiestoGuardar").style.display="none";
+              document.getElementById("modal-launcher").style.display="none";
+              document.getElementById("abrirModalFlotas").style.display="none";
+              document.getElementById("abrirModalChoferes").style.display="none";
+              document.getElementById("ordenServicio").style.display="none";
+              document.getElementById("creaGuia").style.display="none";
+              document.getElementById("detOrden").style.display="block";
+              document.getElementById("lastForm").style.display="none";
+          }
+          
+        function mostrarFormCreaGuia(){
+              document.getElementById("subManifiesto").style.display="none";
+              document.getElementById("manifiesto").style.display="none";
+              document.getElementById("regManifiesto0").style.display="none";
+              document.getElementById("regManifiesto").style.display="none";
+              document.getElementById("regManifiesto1").style.display="none";
+              document.getElementById("regManifiesto2").style.display="none";
+              document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiestoGuardar").style.display="none";
+              document.getElementById("modal-launcher").style.display="none";
+              document.getElementById("abrirModalFlotas").style.display="none";
+              document.getElementById("abrirModalChoferes").style.display="none";
+              document.getElementById("ordenServicio").style.display="none";
+              document.getElementById("detOrden").style.display="none";
+              document.getElementById("creaGuia").style.display="block";
+              document.getElementById("lastForm").style.display="block";
           }
         $(function(){
-	$("#modal-launcher, #modal-background, #modal-close").click(function () {
+	$("#modal-launcher, #modal-background, #modal-close,#modal-close1").click(function () {
 		$("#modal-content,#modal-background").toggleClass("active");
                     });
             });
@@ -98,6 +141,53 @@
                 document.getElementById("modalChoferes").style.display="none";
                 document.getElementById("modal-background").style.display="none";
                 document.getElementById("regManifiesto").style.display="block";
+            }
+            
+            function openModalRemitentes(){
+                document.getElementById("modalRemitentes").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalRemitentes(){
+                document.getElementById("modalRemitentes").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+                document.getElementById("creaGuia").style.display="block";
+            }
+            function openModalDireccionRemitentes(){
+                document.getElementById("modalDireccRemitentes").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalDireccionRemitentes(){
+                document.getElementById("modalDireccRemitentes").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+                document.getElementById("creaGuia").style.display="block";
+            }
+            
+            function openModalDireccionDestinos(){
+                document.getElementById("modalDireccDestinos").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalDireccionDestinos(){
+                document.getElementById("modalDireccDestinos").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+                document.getElementById("creaGuia").style.display="block";
+            }
+            function openModalManifiestos(){
+                document.getElementById("modalManifiestos").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalManifiestos(){
+                document.getElementById("modalManifiestos").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+                document.getElementById("creaGuia").style.display="block";
+            }
+            function openModalItems(){
+                document.getElementById("modalItems").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalItems(){
+                document.getElementById("modalItems").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+                document.getElementById("creaGuia").style.display="block";
             }
             function isNumber(obj){
                 var x = obj.value;
@@ -149,18 +239,15 @@
         border-radius: 10px;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
-        box-shadow: 0 0 20px 0 #222;
         -webkit-box-shadow: 0 0 20px 0 #222;
-        -moz-box-shadow: 0 0 20px 0 #222;
         display: none;
-        left: 50%;
-        margin-top: -100px;
-        margin-left: -100px;
-        padding: 10px;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
         position: absolute;
-        top: 50%;
-        width: auto;
-        height:auto;
+        position: fixed;
         z-index: 1000;
     }
     #modalFlotas {
@@ -168,18 +255,15 @@
         border-radius: 10px;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
-        box-shadow: 0 0 20px 0 #222;
         -webkit-box-shadow: 0 0 20px 0 #222;
-        -moz-box-shadow: 0 0 20px 0 #222;
         display: none;
-        left: 50%;
-        margin-top: -100px;
-        margin-left: -100px;
-        padding: 10px;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
         position: absolute;
-        top: 50%;
-        width: auto;
-        height:auto;
+        position: fixed;
         z-index: 1000;
     }
     #modalChoferes {
@@ -187,22 +271,101 @@
         border-radius: 10px;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
-        box-shadow: 0 0 20px 0 #222;
         -webkit-box-shadow: 0 0 20px 0 #222;
-        -moz-box-shadow: 0 0 20px 0 #222;
         display: none;
-        left: 50%;
-        margin-top: -100px;
-        margin-left: -100px;
-        padding: 10px;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
         position: absolute;
-        top: 50%;
-        width: auto;
-        height:auto;
+        position: fixed;
         z-index: 1000;
     }
+    #modalRemitentes {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
+        position: absolute;
+        position: fixed;
+        z-index: 1000;
+    }
+        #modalDireccRemitentes {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
+        position: absolute;
+        position: fixed;
+        z-index: 1000;
+    }
+           #modalDireccDestinos {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
+        position: absolute;
+        position: fixed;
+        z-index: 1000;
+    }
+            #modalManifiestos {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
+        position: absolute;
+        position: fixed;
+        z-index: 1000;
+    }
+        #modalItems {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
+        position: absolute;
+        position: fixed;
+        z-index: 1000;
+    }
+    
 
-    #modal-background.active, #modal-content.active, #modalFlotas.active #modalChoferes.active {
+
+    #modal-background.active, #modal-content.active, #modalFlotas.active, #modalChoferes.active ,#modalRemitentes,#modalDireccionRemitentes {
         display: block;
     }
         </style>
@@ -239,34 +402,24 @@
             <b:commandButton value="Ver Manif" icon="eye-open" onclick="return false;" style="width:50%;margin-bottom:10px;border-color : #696b72;color:white;background-color:#6888e7"/>
         </h:form>
         
-   <h:form id="ordenServicio">
-    <ui:repeat value="#{frm_WebMovilEmp.listaOrdenServicio}" var="row">
-        <ul class="pricing-table">
-          <li class="title" style="background-color:#bfea30;color:black">Orden Servicio n° #{row.nidOrdnServ}</li>
-          <li class="price">Detalle: </li>
-          <li class="description">Fecha: #{row.fecOrdnServ}</li>
-          <li class="bullet-item"></li>
-          <li class="bullet-item">dato1</li>
-          <li class="bullet-item">dato1</li>
-          <li class="cta-button">
-                <b:commandButton value="Ver" style="background-color:#bfea30;width:60%;margin-top:-20px"/>
-          </li>
-        </ul>
-        </ui:repeat>
-    </h:form>
+       <h:form id="ordenServicio">
+        <ui:repeat value="#{frm_WebMovilEmp.listaOrdenServicio}" var="row">
+            <ul class="pricing-table">
+              <li class="description">Guia n°: #{row.nidOrdnServ} || #{row.detalleWebmovilEmpresa}</li>
+            </ul>
+                    <b:commandButton value="Ver Detalle" action="#{frm_WebMovilEmp.traeInfoOrdenServicio}" onclick="mostrarFormregOrds();" ajax="true" style="background-color:#bfea30;width:60%;margin-top:-20px"
+                                      update="modDirecDest modManif modItems"  >
+                        <f:setPropertyActionListener value="#{row.nidOrdnServ}"
+                                                     target="#{frm_WebMovilEmp.ordenServElegida}"/>
+                    </b:commandButton>
+            </ui:repeat>
+        </h:form>
     
     <h:form id="manifiesto" style="display:none">
      <ui:repeat value="#{frm_WebMovilEmp.listaManifiesto}" var="row">
     <ul class="pricing-table">
           <li class="title" style="background-color:#bfea30;color:black">Manifiesto n° #{row.nidManifiesto}</li>
-          <li class="price">Detalle: </li>
           <li class="description">Fecha: #{row.fechaManifiesto}</li>
-          <li class="bullet-item"></li>
-          <li class="bullet-item">dato1</li>
-          <li class="bullet-item">dato1</li>
-          <li class="cta-button">
-                <b:commandButton value="Ver" style="background-color:#bfea30;width:60%;margin-top:-20px"/>
-          </li>
         </ul>
         </ui:repeat>
     </h:form>
@@ -275,7 +428,7 @@
     <h:outputText value="Tranporte Propio?"/>
     <br></br>  
     <h:selectBooleanCheckbox onclick="tranportePropio(this)" value="#{frm_WebMovilEmp.checkBox}" id="checkBox">
-        <f:ajax listener="#{frm_WebMovilEmp.onDelete}"/>
+        <f:ajax listener="#{frm_WebMovilEmp.onDelete}" render="modFlot modChof"/>
     </h:selectBooleanCheckbox>
     </div>
     
@@ -298,7 +451,7 @@
     <button id="abrirModalFlotas" style="width:100%;display:none" onclick="openModalFlotas()">Elegir Flota</button>
     <h:form id="regManifiesto1">
         <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
-                     value="#{frm_WebMovilEmp.razonSocialEmpresaElegida}">
+                     value="#{frm_WebMovilEmp.nombreFlota}">
             <f:facet name="prepend">
                 <h:outputText value="Flota"/>
             </f:facet>
@@ -308,7 +461,7 @@
     <button id="abrirModalChoferes" style="width:100%;display:none" onclick="openModalChoferes()">Elegir Chofer</button>
     <h:form id="regManifiesto2">
         <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
-                     value="#{frm_WebMovilEmp.razonSocialEmpresaElegida}">
+                     value="#{frm_WebMovilEmp.nombreChofer}">
             <f:facet name="prepend">
                 <h:outputText value="Chofer"/>
             </f:facet>
@@ -340,29 +493,169 @@
                 <h:outputText value="Observaciones"/>
             </f:facet>
         </b:inputText>
+                <b:commandButton style="font-size:15px;background-color: #6888E7; width: 50%;height:50px;border-color : #000000"
+                                 icon="save" iconAlign="right" ajax="true" update="form:inform regManifiesto"
+                                 value="Guardar" action="#{frm_WebMovilEmp.registrarManifiesto}"/>
+        <b:commandButton style="font-size:15px;background-color: #6888E7; width: 50%;height:50px;border-color : #000000"
+                                 icon="trash" iconAlign="right" ajax="true" update="form:inform regManifiesto modChof"
+                                 value="Limpiar" action="#{frm_WebMovilEmp.limpiarRegManifiesto}"/>
     </h:form>
     
     <h:form id="regManifiestoGuardar" style="height:70px">
-        <b:commandButton style="font-size:15px;background-color: #6888E7; width: 50%;height:50px;border-color : #000000"
-                                 icon="save" iconAlign="right" ajax="true" update="form:inform regManifiesto"
-                                 value="Guardar"/>
-        <b:commandButton style="font-size:15px;background-color: #6888E7; width: 50%;height:50px;border-color : #000000"
-                                 icon="trash" iconAlign="right" ajax="true" update="form:inform regManifiesto"
-                                 value="Limpiar"/>
+
     </h:form>
+    
+    
+    
+    
+    <h:form id="detOrden">
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.nidOrds}">
+            <f:facet name="prepend">
+                <h:outputText value="Oden.Serv n°"/>
+            </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.dateOrds}">
+            <f:facet name="prepend">
+                <h:outputText value="Fecha°"/>
+            </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.nombreEmpresaOrds}">
+            <f:facet name="prepend">
+                <h:outputText value="Empresa"/>
+            </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.comentarioOrds}">
+            <f:facet name="prepend">
+                <h:outputText value="Comentario"/>
+            </f:facet>
+        </b:inputText>
+        <div style="overflow-y: scroll;height:90px">
+        <ui:repeat value="#{frm_WebMovilEmp.lstItemsOrds}" var="row">
+                <b:alert severity="info">
+                    <p style="margin-top: .1em;">
+                        <strong>
+                            #{row.detalleWebmovilDescripcion}</strong>
+                    </p>
+                    <p class="ui-li-aside">
+                        Cantidad: 
+                        <strong>
+                            #{row.detalleWebmovilCantidad}#{row.detalleWebmovilUmedida}</strong>
+                    </p>
+                </b:alert>
+        </ui:repeat>
+        </div>
+        <b:commandButton value="Crear Guia" action="#{frm_WebMovilEmp.mostrarManifiesto}" onclick="mostrarFormCreaGuia();" ajax="true" style="background-color:#0087B3;width:100%;margin-top:20px"/>
+      </h:form>
+    
+    
+    
+    <h:form id="creaGuia" style="${frm_WebMovilEmp.styleCreaGuia}">
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.nidOrds}">
+            <f:facet name="prepend">
+                <h:outputText value="Oden.Serv n°"/>
+            </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.dateOrds}">
+            <f:facet name="prepend">
+                <h:outputText value="Fecha°"/>
+            </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.nombreEmpresaOrds}">
+            <f:facet name="prepend">
+                <h:outputText value="Destinatario"/>
+            </f:facet>
+        </b:inputText>
+        
+        <b:commandButton value="Direccion.Dest" ajax="true" style="background-color:#0087B3;width:100%;margin-top:10px;margin-bottom:10px"
+                            onclick="openModalDireccionDestinos();"/>
+
+         <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.nombreDireccionDestino}">
+            <f:facet name="prepend">
+                <h:outputText value="Direcc.Destinario"/>
+            </f:facet>
+        </b:inputText>
+          <b:commandButton value="Remitente" ajax="true" style="background-color:#0087B3;width:100%;margin-top:10px;margin-bottom:10px"
+                            onclick="openModalRemitentes();"/>
+        
+         <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.nombreRemitente}">
+            <f:facet name="prepend">
+                <h:outputText value="Remitente"/>
+            </f:facet>
+        </b:inputText>
+        
+        <b:commandButton value="Direccion.Remit" ajax="true" style="background-color:#0087B3;width:100%;margin-top:10px;margin-bottom:10px"
+                            onclick="openModalDireccionRemitentes();"/>
+                            
+        <b:inputText style="background-color: #bfea30;color:#000000;" disabled="true"
+                     value="#{frm_WebMovilEmp.nombreDireccionRemitente}">
+            <f:facet name="prepend">
+                <h:outputText value="Direccion.Rem"/>
+            </f:facet>
+        </b:inputText>      
+        <b:commandButton value="Manif" ajax="true" style="background-color:#0087B3;width:100%;margin-top:10px;margin-bottom:10px"
+                            onclick="openModalManifiestos();"/>
+        <b:inputText style="background-color: #bfea30;color:#000000;margin-top" disabled="true"
+                     value="#{frm_WebMovilEmp.nidManifiestoEleg}">
+            <f:facet name="prepend">
+                <h:outputText value="Manifiesto n°"/>
+            </f:facet>
+        </b:inputText>
+        <b:commandButton value="Items" ajax="true" style="background-color:#0087B3;width:100%;margin-top:10px;margin-bottom:10px"
+                            onclick="openModalItems();"/>
+    </h:form>
+    
+    <h:form id="lastForm" style="#{frm_WebMovilEmp.styleLastForm}">    
+    <h:outputText value="Fecha Translado"/>
+    <b:datepicker  mode="icon-popup" value="#{frm_WebMovilEmp.fechaTrans}"/>
+    <h:outputText value="Fecha Emision"/>
+    <b:datepicker  mode="icon-popup" value="#{frm_WebMovilEmp.fechaEmis}"/>
+    <div style="height:10px"/>
+    <b:inputText style="background-color: #bfea30;color:#000000;" onblur="isNull(this)" disabled="false"
+                     value="#{frm_WebMovilEmp.comentarioGuia}">
+            <f:facet name="prepend">
+                <h:outputText value="Comentario"/>
+            </f:facet>
+        </b:inputText>
+        <b:inputText style="background-color: #bfea30;color:#000000;" onblur="isNumber(this)" disabled="false"
+                     value="#{frm_WebMovilEmp.NPaquetes}">
+            <f:facet name="prepend">
+                <h:outputText value="n°paquetes"/>
+            </f:facet>
+        </b:inputText>
+
+    <b:commandButton action="#{frm_WebMovilEmp.registrarGuia}" ajax="true" value="Guardar" style="font-size:15px;background-color: #6888E7; width: 50%;height:50px;border-color : #000000"
+                     icon="save" iconAlign="right"/>      
+    </h:form>
+    
     
     <div id="modal-background"></div>
     
     <div id="modal-content">
     <h:form>
+    <div style="overflow-y: scroll;height:500px;margin-top:10px;margin-bottom:10px">
             <ui:repeat value="#{frm_WebMovilEmp.listaProov}" var="row">
                 <b:commandButton id="modal-close" action="#{frm_WebMovilEmp.editAction}"
                                  style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
-                                 icon="road" iconAlign="right" ajax="true" onclick="closeModalClientes()" update="form:inform regManifiesto"
+                                 icon="road" iconAlign="right" ajax="true" onclick="closeModalClientes()" update="form:inform regManifiesto modFlot modChof"
                                  value="#{row.adEmpresa1.CRazonSocial}">
                                  <f:setPropertyActionListener target="#{frm_WebMovilEmp.action}" value="#{row.adEmpresa1.nidParty}"/>
                 </b:commandButton>
             </ui:repeat>
+            </div>
     </h:form>
         <h:commandButton ajax="true" id="modal-close" style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
                               onclick="closeModalClientes()" value="Cerrar"/>  
@@ -371,11 +664,12 @@
   <div id="modalFlotas">
     <h:form id="modFlot">
             <ui:repeat value="#{frm_WebMovilEmp.lstFlotas}" var="row">
-                <b:commandButton id="modal-close" action="#{frm_WebMovilEmp.editAction}"
+                <b:commandButton id="modal-close2" action="#{frm_WebMovilEmp.traeinfoFlota}"
                                  style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
                                  icon="road" iconAlign="right" ajax="true" onclick="closeModalFlotas()" update="form:inform regManifiesto1"
-                                 value="#{row}">
-                                 <f:setPropertyActionListener target="#{frm_WebMovilEmp.action}" value="#{row}"/>
+                                 value="#{row.nidFlota}">
+                                 <f:setPropertyActionListener value="#{row.nidFlota}"
+                                                              target="#{frm_WebMovilEmp.flotaElegida}"/>
                 </b:commandButton>
             </ui:repeat>
     </h:form>
@@ -386,17 +680,110 @@
   <div id="modalChoferes">
     <h:form id="modChof">
             <ui:repeat value="#{frm_WebMovilEmp.lstChofers}" var="row">
-                <b:commandButton id="modal-close" action="#{frm_WebMovilEmp.editAction}"
+                <b:commandButton id="modal-close2" action="#{frm_WebMovilEmp.traeinfoChofer}"
                                  style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
                                  icon="road" iconAlign="right" ajax="true" onclick="closeModalChoferes()" update="form:inform regManifiesto2"
-                                 value="#{row}">
-                                 <f:setPropertyActionListener target="#{frm_WebMovilEmp.action}" value="#{row}"/>
+                                 value="#{row.nombres}">
+                                 <f:setPropertyActionListener target="#{frm_WebMovilEmp.choferElegido}" value="#{row.nidChofer}"/>
                 </b:commandButton>
             </ui:repeat>
     </h:form>
         <h:commandButton ajax="true" id="modal-close2"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
                               onclick="closeModalChoferes()" value="Cerrar"/>  
     </div> 
-
+    
+    <div id="modalRemitentes" style="display:none">
+        <h:form id="modRem">
+        <div style="overflow-y: scroll;height:500px;margin-top:10px;margin-bottom:10px">
+                <ui:repeat value="#{frm_WebMovilEmp.lstRemitentes}" var="row">
+                    <b:commandButton id="modal-close2" action="#{frm_WebMovilEmp.traeInfoRemitente}"
+                                     style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                                     icon="road" iconAlign="right" ajax="true" onclick="closeModalRemitentes()" update="modDirecRem"
+                                     value="#{row.adEmpresa1.CRazonSocial}">
+                                     <f:setPropertyActionListener target="#{frm_WebMovilEmp.nidRemitenteElegido}" value="#{row.adEmpresa1.nidParty}"/>
+                    </b:commandButton>
+                </ui:repeat>
+                </div>
+        </h:form>
+        <h:commandButton ajax="true" id="modal-close3"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                         onclick="closeModalRemitentes()" value="Cerrar"/>  
+    </div> 
+    
+    <div id="modalDireccRemitentes">
+        <h:form id="modDirecRem">
+            <ui:repeat value="#{frm_WebMovilEmp.direcsRemin}" var="row">
+                <b:commandButton id="modal-close2" action="#{frm_WebMovilEmp.traeInfoDireccionRemitente}"
+                                 style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                                 icon="road" iconAlign="right" ajax="true" onclick="closeModalDireccionRemitentes()"
+                                 value="#{row.detalleWebmovilDireccion}">
+                 <f:setPropertyActionListener value="#{row.nidDireccion}"
+                                              target="#{frm_WebMovilEmp.nidDireccionRemitente}"/>
+                </b:commandButton>
+            </ui:repeat>
+    </h:form>
+        <h:commandButton ajax="true" id="modal-close4"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                         onclick="closeModalDireccionRemitentes()" value="Cerrar"/>  
+    </div>
+    
+    <div id="modalDireccDestinos">
+        <h:form id="modDirecDest">
+            <ui:repeat value="#{frm_WebMovilEmp.direcsDest}" var="row">
+                <b:commandButton id="modal-close2" action="#{frm_WebMovilEmp.traeInfoDireccionDestino}"
+                                 style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                                 icon="road" iconAlign="right" ajax="true" onclick="closeModalDireccionDestinos()"
+                                 value="#{row.detalleWebmovilDireccion}">
+                 <f:setPropertyActionListener value="#{row.nidDireccion}"
+                                              target="#{frm_WebMovilEmp.nidDireccionDestino}"/>
+                </b:commandButton>
+            </ui:repeat>
+    </h:form>
+        <h:commandButton ajax="true" id="modal-close5"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                         onclick="closeModalDireccionDestinos()" value="Cerrar"/>  
+    </div>
+    
+    <div id="modalManifiestos">
+        <h:form id="modManif">
+        <div style="overflow-y: scroll;height:500px;margin-top:10px;margin-bottom:10px">
+            <ui:repeat value="#{frm_WebMovilEmp.listaManifiestoElegir}" var="row">
+                <b:commandButton id="modal-close2" action="#{frm_WebMovilEmp.traeInfoManifiesto}"
+                                 style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                                 icon="road" iconAlign="right" ajax="true" onclick="closeModalManifiestos()"
+                                 value="#{row.nidManifiesto}">
+                 <f:setPropertyActionListener value="#{row.nidManifiesto}"
+                                              target="#{frm_WebMovilEmp.nidManifiestoEleg}"/>
+                </b:commandButton>
+            </ui:repeat>
+            </div>
+    </h:form>
+        <h:commandButton ajax="true" id="modal-close6"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                         onclick="closeModalManifiestos()" value="Cerrar"/>  
+    </div>
+    
+    <div id="modalItems">
+        <h:form id="modItems">
+        <div style="overflow-y: scroll;height:500px;margin-top:10px;margin-bottom:10px">
+        <ui:repeat value="#{frm_WebMovilEmp.lstItemsOrdsRespal}" var="row" varStatus="var">
+                <b:alert severity="info">
+                    <p style="margin-top: .1em;">
+                        <strong>
+                            #{row.detalleWebmovilDescripcion}</strong>
+                    </p>
+                    <p class="ui-li-aside">
+                        Cantidad: 
+                        <strong>
+                            #{row.detalleWebmovilCantidad}#{row.detalleWebmovilUmedida}</strong>
+                    </p>
+                    <b:commandButton value="Eliminar Item" action="#{frm_WebMovilEmp.eliminarItem}" ajax="true" update="modItems">
+                        <f:setPropertyActionListener target="#{frm_WebMovilEmp.nidItem}" value="#{var.index}"/>
+                    </b:commandButton>
+                </b:alert>
+        </ui:repeat>
+        </div>
+         <b:commandButton value="Restaurar" action="#{frm_WebMovilEmp.restaurarItems}" ajax="true" update="modItems"
+         style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"/>
+    </h:form>
+        <h:commandButton ajax="true" id="modal-close7"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                         onclick="closeModalItems()" value="Cerrar"/>  
+    </div>
     </h:body>
 </html>

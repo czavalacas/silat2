@@ -10,6 +10,7 @@ import javax.ejb.Local;
 
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
 import silat.servicios_negocio.Beans.BeanTRItem;
+import silat.servicios_negocio.Beans.BeanTrItemXOrds;
 
 @Local
 public interface LN_C_SFOrdenServicioLocal {

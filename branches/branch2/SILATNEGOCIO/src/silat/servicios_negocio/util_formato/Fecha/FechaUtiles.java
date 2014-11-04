@@ -24,6 +24,28 @@ public class FechaUtiles {
         }
     }
 
+    public static Date getPrimerDiaDelANIO() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(cal.get(Calendar.YEAR),
+                cal.getActualMinimum(Calendar.MONTH),
+                cal.getActualMinimum(Calendar.DAY_OF_MONTH),
+                cal.getMinimum(Calendar.HOUR_OF_DAY),
+                cal.getMinimum(Calendar.MINUTE),
+                cal.getMinimum(Calendar.SECOND));
+        return cal.getTime();
+    }
+
+    public static Date getUltimoDiaDelANIO() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(cal.get(Calendar.YEAR),
+                cal.getActualMaximum(Calendar.MONTH),
+                cal.getActualMaximum(Calendar.DAY_OF_MONTH),
+                cal.getMaximum(Calendar.HOUR_OF_DAY),
+                cal.getMaximum(Calendar.MINUTE),
+                cal.getMaximum(Calendar.SECOND));
+        return cal.getTime();
+    }
+
     public void swapFechas(Timestamp fecMenor, Timestamp fecMayor) {
         Timestamp temp = null;
         temp = fecMenor;

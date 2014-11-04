@@ -243,6 +243,9 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
             bean.setFecOrdnServ(entida.getFecOrdnServ());
             bean.setComentario(entida.getComentario());
             bean.setNidEmpresa(entida.getAdEmpresa().getNidParty());
+            bean.setDetalleWebmovilComentario(entida.getComentario());
+            bean.setDetalleWebmovilEmpresa((entida.getAdEmpresa().getCRazonSocial()));
+            bean.setDetalleWebmovilNIDEmpresa(entida.getAdEmpresa().getNidParty()+"");
             int cantGuiasVig = bdL_C_SFGuiaLocal.getCountGuiasVigentesByOrdenServ(entida.getNidOrdnServ());
             String flagVist = "1";
             if(cantGuiasVig == 0){
@@ -282,9 +285,30 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
             bean.setNidEmpresa(entidad.getAdEmpresa().getNidParty());
             bean.setCEstord(entidad.getCEstord().equals("P") ? "Pendiente" : "Finalizado");
             
+            bean.setDetalleWebmovilComentario(entidad.getComentario());
+            bean.setDetalleWebmovilEmpresa(entidad.getAdEmpresa().getCRazonSocial());
+            
             listbos.add(bean);
         }
         
         return listbos;
+    }
+    
+    public List<BeanTrItemXOrds> ItemsbyOrdenServicio(String nidOrds){
+        List<TRItemXOrds> items = bdL_C_SFOrdenServicioLocal.getItemsbyOrd(nidOrds);
+        List<BeanTrItemXOrds> listaItems = new ArrayList<BeanTrItemXOrds>();
+        for(TRItemXOrds entida : items)
+        {
+            BeanTrItemXOrds bean = new BeanTrItemXOrds();
+            bean.setNidItem(entida.getNidItem());
+            bean.setDPeso(entida.getDPeso());
+            bean.setDetalleWebmovilCantidad(entida.getNCantidad());
+            bean.setDetalleWebmovilDescripcion(entida.getCDescItem());
+            bean.setDetalleWebmovilUmedida(entida.getCUndMedida());
+            
+            listaItems.add(bean);
+        }
+        
+        return listaItems;
     }
 }

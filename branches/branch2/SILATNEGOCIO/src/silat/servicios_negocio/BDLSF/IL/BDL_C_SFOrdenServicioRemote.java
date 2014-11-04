@@ -7,6 +7,7 @@ import javax.ejb.Remote;
 
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
 import silat.servicios_negocio.entidades.audsis.TROrdenServicio;
+import silat.servicios_negocio.entidades.trans.TRItemXOrds;
 
 @Remote
 public interface BDL_C_SFOrdenServicioRemote {
@@ -19,4 +20,5 @@ public interface BDL_C_SFOrdenServicioRemote {
     int verificarOSConGuia(Integer nidOrdenServicio);
     int countNuevasOS();
     List<TROrdenServicio> findOrdenServicioPendientesByAttributes_ParaGuia(BeanOrdenServicio beanParametro);
+    List<TRItemXOrds>getItemsbyOrd(String nidOrds);
 }

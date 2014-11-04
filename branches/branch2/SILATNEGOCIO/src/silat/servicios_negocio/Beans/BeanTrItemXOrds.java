@@ -19,6 +19,10 @@ public class BeanTrItemXOrds implements Serializable {
     private Integer orden;
     private String ruta;//tipo 2 factura
     
+    private Double detalleWebmovilCantidad;
+    private String detalleWebmovilUmedida;
+    private String detalleWebmovilDescripcion;
+    
     @Override
     public boolean equals(Object obj){
         if(obj == null){
@@ -143,5 +147,29 @@ public class BeanTrItemXOrds implements Serializable {
 
     public BeanOrdenServicio getTrOrdenServicio() {
         return trOrdenServicio;
+    }
+
+    public void setDetalleWebmovilUmedida(String detalleWebmovilUmedida) {
+        this.detalleWebmovilUmedida = detalleWebmovilUmedida;
+    }
+
+    public String getDetalleWebmovilUmedida() {
+        return detalleWebmovilUmedida;
+    }
+
+    public void setDetalleWebmovilDescripcion(String detalleWebmovilDescripcion) {
+        this.detalleWebmovilDescripcion = detalleWebmovilDescripcion;
+    }
+
+    public String getDetalleWebmovilDescripcion() {
+        return detalleWebmovilDescripcion;
+    }
+
+    public void setDetalleWebmovilCantidad(Double detalleWebmovilCantidad) {
+        this.detalleWebmovilCantidad = detalleWebmovilCantidad;
+    }
+
+    public Double getDetalleWebmovilCantidad() {
+        return detalleWebmovilCantidad;
     }
 }

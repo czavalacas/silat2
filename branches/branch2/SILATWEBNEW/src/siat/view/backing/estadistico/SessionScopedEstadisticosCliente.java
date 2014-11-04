@@ -4,23 +4,18 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import java.util.List;
 
-import silat.servicios_negocio.Beans.BeanCuadre;
 import silat.servicios_negocio.Beans.BeanEstCliente;
 
-public class SessionScopeEstadisticos implements Serializable {
-    @SuppressWarnings("compatibility:8100234900757476178")
+public class SessionScopedEstadisticosCliente implements Serializable{
+    @SuppressWarnings("compatibility:-5648964018413670710")
     private static final long serialVersionUID = 1L;
     private int columns= 2;
     private String rowHeights = "350px";
     private Date fecMin;
     private Date fecMax;
-    private List<BeanCuadre> listGrafico;
-    private List<BeanEstCliente> listGraficoGasMES;
-    private List<BeanEstCliente> listGraficoGastosGen;
-    private List<BeanEstCliente> listGraficoIngMes;
+    private int limite;
     private int visiblePb1 = 0;
     private int visiblePb2 = 0;
     private int visiblePb3 = 0;
@@ -28,6 +23,11 @@ public class SessionScopeEstadisticos implements Serializable {
     private int visiblePb5 = 0;
     private int visiblePb6 = 0;
     private List listaVacia = new ArrayList();
+    private List<BeanEstCliente> lista_Ordenes_Fina;
+    private List<BeanEstCliente> lista_Ordenes_Anul;
+    private List<BeanEstCliente> lista_Ordenes_MES;
+    private List<BeanEstCliente> lista_Clientes;
+    private List<BeanEstCliente> lista_Clientes_MES;
 
     public void setColumns(int columns) {
         this.columns = columns;
@@ -61,14 +61,13 @@ public class SessionScopeEstadisticos implements Serializable {
         return fecMax;
     }
 
-    public void setListGrafico(List<BeanCuadre> listGrafico) {
-        this.listGrafico = listGrafico;
+    public void setLimite(int limite) {
+        this.limite = limite;
     }
 
-    public List<BeanCuadre> getListGrafico() {
-        return listGrafico;
+    public int getLimite() {
+        return limite;
     }
-
 
     public void setVisiblePb1(int visiblePb1) {
         this.visiblePb1 = visiblePb1;
@@ -118,7 +117,6 @@ public class SessionScopeEstadisticos implements Serializable {
         return visiblePb6;
     }
 
-
     public void setListaVacia(List listaVacia) {
         this.listaVacia = listaVacia;
     }
@@ -127,28 +125,43 @@ public class SessionScopeEstadisticos implements Serializable {
         return listaVacia;
     }
 
-    public void setListGraficoGasMES(List<BeanEstCliente> listGraficoGasMES) {
-        this.listGraficoGasMES = listGraficoGasMES;
+    public void setLista_Ordenes_Fina(List<BeanEstCliente> lista_Ordenes_Fina) {
+        this.lista_Ordenes_Fina = lista_Ordenes_Fina;
     }
 
-    public List<BeanEstCliente> getListGraficoGasMES() {
-        return listGraficoGasMES;
+    public List<BeanEstCliente> getLista_Ordenes_Fina() {
+        return lista_Ordenes_Fina;
     }
 
-    public void setListGraficoGastosGen(List<BeanEstCliente> listGraficoGastosGen) {
-        this.listGraficoGastosGen = listGraficoGastosGen;
+    public void setLista_Ordenes_Anul(List<BeanEstCliente> lista_Ordenes_Anul) {
+        this.lista_Ordenes_Anul = lista_Ordenes_Anul;
     }
 
-    public List<BeanEstCliente> getListGraficoGastosGen() {
-        return listGraficoGastosGen;
+    public List<BeanEstCliente> getLista_Ordenes_Anul() {
+        return lista_Ordenes_Anul;
     }
 
-    public void setListGraficoIngMes(List<BeanEstCliente> listGraficoIngMes) {
-        this.listGraficoIngMes = listGraficoIngMes;
+    public void setLista_Ordenes_MES(List<BeanEstCliente> lista_Ordenes_MES) {
+        this.lista_Ordenes_MES = lista_Ordenes_MES;
     }
 
-    public List<BeanEstCliente> getListGraficoIngMes() {
-        return listGraficoIngMes;
+    public List<BeanEstCliente> getLista_Ordenes_MES() {
+        return lista_Ordenes_MES;
+    }
+
+    public void setLista_Clientes(List<BeanEstCliente> lista_Clientes) {
+        this.lista_Clientes = lista_Clientes;
+    }
+
+    public List<BeanEstCliente> getLista_Clientes() {
+        return lista_Clientes;
+    }
+
+    public void setLista_Clientes_MES(List<BeanEstCliente> lista_Clientes_MES) {
+        this.lista_Clientes_MES = lista_Clientes_MES;
+    }
+
+    public List<BeanEstCliente> getLista_Clientes_MES() {
+        return lista_Clientes_MES;
     }
 }
-

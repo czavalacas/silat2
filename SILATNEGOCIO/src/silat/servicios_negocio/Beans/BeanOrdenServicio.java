@@ -30,11 +30,15 @@ public class BeanOrdenServicio implements Serializable{
     private BeanError beanError;
     private String flgVisto;
     private String comentario;
+    
+    private String detalleWebmovilEmpresa;
+    private String detalleWebmovilComentario;
+    
     private List<BeanTrItemXOrds> itemsLista;
     private Integer nidRemitente;
     private String nidDirecCli;
     private String nidDirecProv;
-    
+
     public void setCDetalle(String cDetalle) {
         this.cDetalle = cDetalle;
     }
@@ -174,7 +178,7 @@ public class BeanOrdenServicio implements Serializable{
 
     public void setNidRemitente(Integer nidRemitente) {
         this.nidRemitente = nidRemitente;
-    }
+}
 
     public Integer getNidRemitente() {
         return nidRemitente;
@@ -195,5 +199,21 @@ public class BeanOrdenServicio implements Serializable{
 
     public String getNidDirecProv() {
         return nidDirecProv;
+    }
+
+    public void setDetalleWebmovilEmpresa(String detalleWebmovilEmpresa) {
+        this.detalleWebmovilEmpresa = detalleWebmovilEmpresa;
+    }
+
+    public String getDetalleWebmovilEmpresa() {
+        return detalleWebmovilEmpresa;
+    }
+
+    public void setDetalleWebmovilComentario(String detalleWebmovilComentario) {
+        this.detalleWebmovilComentario = detalleWebmovilComentario;
+    }
+
+    public String getDetalleWebmovilComentario() {
+        return detalleWebmovilComentario;
     }
 }

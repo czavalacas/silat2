@@ -25,4 +25,5 @@ public interface LN_C_SFOrdenServicioRemote{
     int traerSiguienteValorSequence();
     String cambiarFechaOS_Permiso56(Integer nidOrdenServ,Date fechaOS);
     List<BeanOrdenServicio> ordenServicioPendiente();
+    List<BeanTrItemXOrds> ItemsbyOrdenServicio(String nidOrds);
 }

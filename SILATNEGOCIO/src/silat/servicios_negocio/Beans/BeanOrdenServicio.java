@@ -33,6 +33,7 @@ public class BeanOrdenServicio implements Serializable{
     
     private String detalleWebmovilEmpresa;
     private String detalleWebmovilComentario;
+    private String detalleWebmovilNIDEmpresa;
     
     private List<BeanTrItemXOrds> itemsLista;
     private Integer nidRemitente;
@@ -215,5 +216,13 @@ public class BeanOrdenServicio implements Serializable{
 
     public String getDetalleWebmovilComentario() {
         return detalleWebmovilComentario;
+    }
+
+    public void setDetalleWebmovilNIDEmpresa(String detalleWebmovilNIDEmpresa) {
+        this.detalleWebmovilNIDEmpresa = detalleWebmovilNIDEmpresa;
+    }
+
+    public String getDetalleWebmovilNIDEmpresa() {
+        return detalleWebmovilNIDEmpresa;
     }
 }

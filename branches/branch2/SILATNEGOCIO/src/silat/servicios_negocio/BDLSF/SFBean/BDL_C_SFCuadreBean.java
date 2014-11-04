@@ -29,6 +29,7 @@ import oracle.jdbc.OracleTypes;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFCuadreLocal;
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFCuadreRemote;
 import silat.servicios_negocio.Beans.BeanCuadre;
+import silat.servicios_negocio.Beans.BeanEstCliente;
 import silat.servicios_negocio.util_formato.Fecha.FechaUtiles;
 import silat.servicios_negocio.util_formato.UtilsGeneral;
 
@@ -240,4 +241,166 @@ public class BDL_C_SFCuadreBean implements BDL_C_SFCuadreRemote,
             return null;
         }
     }
+    
+    
+    public List<BeanEstCliente> call_Procedure_GET_GASTOSXMES(Date fecMin, Date fecMax){
+        try {
+            conn = lubalDS.getConnection();
+            String query = "CALL GET_GASTOSXMES(?,?);";
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.setString(1,FechaUtiles.getFechaStr(fecMin));
+            stmt.setString(2,FechaUtiles.getFechaStr(fecMax));          
+            ResultSet  rs =   stmt.executeQuery();  
+            List<BeanEstCliente> lstBeanEstCliente = new ArrayList<BeanEstCliente>();
+            while (rs.next()) {
+                BeanEstCliente beanEstCliente = new BeanEstCliente();
+                beanEstCliente.setYear(rs.getInt("ANIO")+"");
+                beanEstCliente.setMes(rs.getInt("MES")+"");
+                beanEstCliente.setRazonSocial(rs.getString("NOMBRE"));
+                beanEstCliente.setConteo(rs.getDouble("MONT"));
+                lstBeanEstCliente.add(beanEstCliente);
+            }
+            conn.close();
+            return lstBeanEstCliente;
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
+                try {
+                    conn.close();
+                } catch (SQLException f) {
+                    f.printStackTrace();
+                }
+            return null;
+        }
+    }
+    
+    public List<BeanEstCliente> call_Procedure_GET_GASTOSXMESADMANI(Date fecMin, Date fecMax){
+        try {
+            conn = lubalDS.getConnection();
+            String query = "CALL GET_GASTOSXMESADMANI(?,?);";
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.setString(1,FechaUtiles.getFechaStr(fecMin));
+            stmt.setString(2,FechaUtiles.getFechaStr(fecMax));          
+            ResultSet  rs =   stmt.executeQuery();  
+            List<BeanEstCliente> lstBeanEstCliente = new ArrayList<BeanEstCliente>();
+            while (rs.next()) {
+                BeanEstCliente beanEstCliente = new BeanEstCliente();
+                beanEstCliente.setYear(rs.getInt("ANIO")+"");
+                beanEstCliente.setMes(rs.getInt("MES")+"");
+                beanEstCliente.setRazonSocial("Adelanto Manifiesto");
+                beanEstCliente.setConteo(rs.getDouble("MONT"));
+                lstBeanEstCliente.add(beanEstCliente);
+            }
+            conn.close();
+            return lstBeanEstCliente;
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
+                try {
+                    conn.close();
+                } catch (SQLException f) {
+                    f.printStackTrace();
+                }
+            return null;
+        }
+    }
+    
+    public List<BeanEstCliente> call_Procedure_GET_GASTOSXMESCOMPLMANI(Date fecMin, Date fecMax){
+        try {
+            conn = lubalDS.getConnection();
+            String query = "CALL GET_GASTOSXMESCOMPLMANI(?,?);";
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.setString(1,FechaUtiles.getFechaStr(fecMin));
+            stmt.setString(2,FechaUtiles.getFechaStr(fecMax));          
+            ResultSet  rs =   stmt.executeQuery();  
+            List<BeanEstCliente> lstBeanEstCliente = new ArrayList<BeanEstCliente>();
+            while (rs.next()) {
+                BeanEstCliente beanEstCliente = new BeanEstCliente();
+                beanEstCliente.setYear(rs.getInt("ANIO")+"");
+                beanEstCliente.setMes(rs.getInt("MES")+"");
+                beanEstCliente.setRazonSocial("Manifiesto");
+                beanEstCliente.setConteo(rs.getDouble("MONT"));
+                lstBeanEstCliente.add(beanEstCliente);
+            }
+            conn.close();
+            return lstBeanEstCliente;
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
+                try {
+                    conn.close();
+                } catch (SQLException f) {
+                    f.printStackTrace();
+                }
+            return null;
+        }
+    }
+    
+    public List<BeanEstCliente> call_Procedure_GET_INGXMESFACT(Date fecMin, Date fecMax){
+        try {
+            conn = lubalDS.getConnection();
+            String query = "CALL GET_INGXMESFACT(?,?);";
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.setString(1,FechaUtiles.getFechaStr(fecMin));
+            stmt.setString(2,FechaUtiles.getFechaStr(fecMax));          
+            ResultSet  rs =   stmt.executeQuery();  
+            List<BeanEstCliente> lstBeanEstCliente = new ArrayList<BeanEstCliente>();
+            while (rs.next()) {
+                BeanEstCliente beanEstCliente = new BeanEstCliente();
+                beanEstCliente.setYear(rs.getInt("ANIO")+"");
+                beanEstCliente.setMes(rs.getInt("MES")+"");
+                beanEstCliente.setRazonSocial("Factura");
+                beanEstCliente.setConteo(rs.getDouble("MONT"));
+                lstBeanEstCliente.add(beanEstCliente);
+            }
+            conn.close();
+            return lstBeanEstCliente;
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
+                try {
+                    conn.close();
+                } catch (SQLException f) {
+                    f.printStackTrace();
+                }
+            return null;
+        }
+    }
+    
+    public List<BeanEstCliente> call_Procedure_GET_DIFERENCIALNOTA(Date fecMin, Date fecMax, String tipo){
+        try {
+            conn = lubalDS.getConnection();
+            String query = "CALL GET_DIFERENCIALNOTA(?,?,?);";
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.setString(1,FechaUtiles.getFechaStr(fecMin));
+            stmt.setString(2,FechaUtiles.getFechaStr(fecMax));
+            stmt.setString(3, tipo);
+            ResultSet  rs =   stmt.executeQuery();  
+            List<BeanEstCliente> lstBeanEstCliente = new ArrayList<BeanEstCliente>();
+            while (rs.next()) {
+                BeanEstCliente beanEstCliente = new BeanEstCliente();
+                beanEstCliente.setYear(rs.getInt("ANIO")+"");
+                beanEstCliente.setMes(rs.getInt("MES")+"");
+                if(tipo.equals("C")){
+                    beanEstCliente.setRazonSocial("Notas Credito");    
+                }else{
+                    beanEstCliente.setRazonSocial("Notas Debito");    
+                }
+                beanEstCliente.setConteo(rs.getDouble("MONT"));
+                lstBeanEstCliente.add(beanEstCliente);
+            }
+            conn.close();
+            return lstBeanEstCliente;
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
+                try {
+                    conn.close();
+                } catch (SQLException f) {
+                    f.printStackTrace();
+                }
+            return null;
+        }
+    }
+    
 }

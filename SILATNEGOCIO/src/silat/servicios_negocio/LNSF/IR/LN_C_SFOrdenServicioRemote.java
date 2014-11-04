@@ -10,6 +10,7 @@ import javax.ejb.Remote;
 
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
 import silat.servicios_negocio.Beans.BeanTRItem;
+import silat.servicios_negocio.Beans.BeanTrItemXOrds;
 
 @Remote
 public interface LN_C_SFOrdenServicioRemote{

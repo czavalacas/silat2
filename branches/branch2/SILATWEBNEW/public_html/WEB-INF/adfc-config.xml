@@ -421,4 +421,19 @@
     <managed-bean-class>siat.view.backing.estadistico.SessionScopeEstadisticos</managed-bean-class>
     <managed-bean-scope>session</managed-bean-scope>
   </managed-bean>
+  <managed-bean id="__80">
+    <managed-bean-name>backing_estadistico_estadistico_cliente</managed-bean-name>
+    <managed-bean-class>siat.view.backing.estadistico.Frm_estadisticos_cliente</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <managed-property id="__82">
+      <property-name>beanSessionEstadisticosCliente</property-name>
+      <property-class>siat.view.backing.estadistico.SessionScopedEstadisticosCliente</property-class>
+      <value>#{beanSessionEstadisticosCliente}</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__81">
+    <managed-bean-name>beanSessionEstadisticosCliente</managed-bean-name>
+    <managed-bean-class>siat.view.backing.estadistico.SessionScopedEstadisticosCliente</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
 </adfc-config>

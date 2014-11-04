@@ -1000,4 +1000,40 @@
             </business-interface-jndi-name-map>
         </stateless-session-descriptor>
     </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>BDL_C_SFEstaCliente</ejb-name>
+        <stateless-session-descriptor>
+            <business-interface-jndi-name-map>
+                <business-remote>silat.servicios_negocio.BDLSF.IR.BDL_C_SFEstaClienteRemoto</business-remote>
+                <jndi-name>map-BDL_C_SFEstaCliente</jndi-name>
+            </business-interface-jndi-name-map>
+        </stateless-session-descriptor>
+    </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>LN_C_SFEstaCliente</ejb-name>
+        <stateless-session-descriptor>
+            <business-interface-jndi-name-map>
+                <business-remote>silat.servicios_negocio.LNSF.IR.LN_C_SFEstaClienteRemote</business-remote>
+                <jndi-name>map-LN_C_SFEstaCliente</jndi-name>
+            </business-interface-jndi-name-map>
+        </stateless-session-descriptor>
+    </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>BDL_C_SFEstaViajes</ejb-name>
+        <stateless-session-descriptor>
+            <business-interface-jndi-name-map>
+                <business-remote>silat.servicios_negocio.BDLSF.IR.BDL_C_SFEstaViajesRemote</business-remote>
+                <jndi-name>map-BDL_C_SFEstaViajes</jndi-name>
+            </business-interface-jndi-name-map>
+        </stateless-session-descriptor>
+    </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>LN_C_SFEstaViajes</ejb-name>
+        <stateless-session-descriptor>
+            <business-interface-jndi-name-map>
+                <business-remote>silat.servicios_negocio.LNSF.IR.LN_C_SFEstaViajesRemote</business-remote>
+                <jndi-name>map-LN_C_SFEstaViajes</jndi-name>
+            </business-interface-jndi-name-map>
+        </stateless-session-descriptor>
+    </weblogic-enterprise-bean>
 </weblogic-ejb-jar>

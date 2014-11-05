@@ -101,6 +101,8 @@ public class Frm_WebMovil extends HttpServlet{
     private int exec = 0;
     private String style;
     private String style1 = "visibility:hidden;width:0px;height:0px";
+    private String style2;
+    private String style3 = "font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918";
     private String nombreBoton = "Guardar";
     public String action;
     private String onbsereVacionesGuiaMod;
@@ -162,6 +164,8 @@ public class Frm_WebMovil extends HttpServlet{
         setListaGuias(listaGuiasOK);
         setStyle("visibility:hidden;width:0px;height:0px");
         setStyle1("visibility:visible");
+        setStyle2("visibility:hidden;width:0px;height:0px");
+        setStyle3("font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918;display:none;");
         setNombreBoton("Cerrar");
         setEs(1);
     }
@@ -169,6 +173,8 @@ public class Frm_WebMovil extends HttpServlet{
         setListaGuias(listaGuiasPendientes);
         setStyle("visibility:visible");
         setStyle1("visibility:hidden;width:0px;height:0px");
+        setStyle2("visibility:visible");
+        setStyle3("font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918;display:block;");
         setNombreBoton("Guardar");
         setEs(0);
     }
@@ -235,8 +241,39 @@ public class Frm_WebMovil extends HttpServlet{
         String h = request.getParameter("manifg");
         int manif = Integer.parseInt(h);     
         String [] check = request.getParameterValues("check");//null=no
+        
+        String radio = request.getParameter("check1");  
+ 
+        boolean chec = false;
+        if(radio != null && radio != null && radio != null && radio != null && radio != null){
+            chec = true;
+        }
+        
+        String comentario = request.getParameter("comentario");
+        
         String g = request.getParameter("guiag");
-        if(request.getParameter("fileName") != null && check != null){
+        
+        if(request.getParameter("fileName") != null && check != null && chec == true && comentario!=""){
+            
+        int valoracion = 0;
+        
+        if(radio.equals("1")){
+            valoracion = 1;
+        }
+        if(radio.equals("2")){
+            valoracion = 2;
+        }
+        if(radio.equals("3")){
+            valoracion = 3;
+        }
+        if(radio.equals("4")){
+            valoracion = 4;
+        }
+        if(radio.equals("5")){
+            valoracion = 5;
+        }
+        
+            
             int cantGuias = lN_C_SFGuiaRemote.cantGuiasVigentesByManifiesto_LN(manif);
         String string = "";    
         String byte64 = request.getParameter("byte64");
@@ -269,7 +306,7 @@ public class Frm_WebMovil extends HttpServlet{
                 restoredBytes =  decodeLines(parteBuena);
             }
              
-        ln_T_SFGuiaRemote.cambiarEstadoWebMovil(g, fileName, restoredBytes);
+        ln_T_SFGuiaRemote.cambiarEstadoWebMovil(g, fileName, restoredBytes,valoracion,comentario);
             if(cantGuias<=1){
                 String f = "f";
                 ln_T_SFManifiestoRemote.cambiarEstadoManifiesto(manif, "2");
@@ -694,5 +731,21 @@ public class Frm_WebMovil extends HttpServlet{
 
     public String getNidManifGuia() {
         return nidManifGuia;
+    }
+
+    public void setStyle2(String style2) {
+        this.style2 = style2;
+    }
+
+    public String getStyle2() {
+        return style2;
+    }
+
+    public void setStyle3(String style3) {
+        this.style3 = style3;
+    }
+
+    public String getStyle3() {
+        return style3;
     }
 }

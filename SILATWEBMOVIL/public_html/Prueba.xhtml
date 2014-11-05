@@ -194,14 +194,28 @@
                     <img style="visibility:hidden;width:0px;height:0px;margin-top:-20px" id="img_prev" src="#" alt="your image"/>
                     </b:column>
                     </b:row>
-                    <b:alert id="alert" title="#{frm_WebMovil.alertaNoImage}" severity="info"/>
+                    <b:alert id="alert" title="#{frm_WebMovil.alertaNoImage}" severity="info"/>                    
+                </div>
+                <div id="lastDiv" style="${frm_WebMovil.style2}">
+                <h5>Valoracion</h5>
+                    1
+                    <input name="check1" type="radio" value="1"></input>
+                    2
+                    <input name="check1" type="radio" value="2"></input> 
+                    3
+                    <input name="check1" type="radio" value="3"></input>
+                    4
+                    <input name="check1" type="radio" value="4"></input>
+                    5
+                    <input name="check1" type="radio" value="5"></input>
+                    
+                    <h5>Comentario</h5>
+                    <input type="text" name="comentario"/>
                 </div>
                        <h:form>
                        <div style="${frm_WebMovil.style}">
-                       <b:commandButton id="btnMostrar" style="font-size:15px;background-color: #bfea30; width: 50%;height:50px;border-color : #16a918"
+                       <b:commandButton id="btnMostrar" style="#{frm_WebMovil.style3}"
                        type="submit" onclick="capturar();" value="${frm_WebMovil.nombreBoton}"/>
-                       <b:commandButton style="font-size:15px;background-color: #bfea30; width: 50%;height:50px;border-color : #16a918"
-                       type="submit" onclick="im();" value="Cerrar"/>
                        </div>
                        <div style="${frm_WebMovil.style1}">
                        
@@ -210,7 +224,7 @@
                        <img id="img_prev" src="${frm_WebMovil.encodeImg}" alt="your image"/>
                        </b:column>
                        </b:row>
-                <b:commandButton style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
+                <b:commandButton style="#{frm_WebMovil.style3}"
                        type="submit" onclick="im();" value="${frm_WebMovil.nombreBoton}"/>
                        </div>
                        </h:form>

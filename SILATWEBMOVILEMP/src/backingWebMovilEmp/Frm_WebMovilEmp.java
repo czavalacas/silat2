@@ -211,6 +211,25 @@ public class Frm_WebMovilEmp {
         String estGuia = "1";
         Date fechaEmision = getFechaEmis();
         Date fechaDespacho = getFechaTrans();
+            
+        Date fechaActual = new Date();
+            if(fechaEmision.before(fechaActual)){
+                String g = "";
+                int i = Integer.parseInt(g);
+            }
+            if(fechaDespacho.before(fechaActual)){
+                String g = "";
+                int i = Integer.parseInt(g);
+            }
+            if(fechaEmision.after(fechaDespacho)){
+                String g = "";
+                int i = Integer.parseInt(g);
+            }
+            if(getComentarioGuia().trim().equals("")){
+                String g = "";
+                int i = Integer.parseInt(g);
+            }
+            
         int nidRemitente = Integer.parseInt(nidRemitenteElegido);
         int nidOS = Integer.parseInt(ordenServElegida);
         int nidManif = Integer.parseInt(nidManifiestoEleg);
@@ -470,7 +489,6 @@ public class Frm_WebMovilEmp {
 
     public String registrarManifiesto(){
         try{
-        if(getNidPartyEmpresaElegida()!=null && getFletePactado()!=null && getAdelanto()!=null && getComentario()!=null && getFlotaElegida()!=null && getChoferElegido()!=null){
             Date date  =  new Date();
             Double pactado= Double.parseDouble(getFletePactado());
             Double adel= Double.parseDouble(getAdelanto());
@@ -498,7 +516,7 @@ public class Frm_WebMovilEmp {
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto1");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto2");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto3");
-        }
+        
         }catch(Exception e){
             
         }

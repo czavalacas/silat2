@@ -319,7 +319,16 @@ public class Frm_registrar_cliente {
         int repetido=0;
         int accion = getBeanSessionRegistrarCliente().getAccion();
         resetearDatoFlota();
-        
+            int lstSize =
+                getBeanSessionRegistrarCliente().getListFlota() == null ? 0 : getBeanSessionRegistrarCliente().getListFlota().size();
+            int index = 0;
+            if (accion == 1) {
+                index = (lstSize == 0) ? 0 : (lstSize == 1) ? lstSize : lstSize - 1;
+            }
+            if (accion == 2) {
+                index = getBeanSessionRegistrarCliente().getBeanFlota().getNidFlota().intValue();
+                getBeanSessionRegistrarCliente().getListFlota().remove(index);
+            }
         if (!getBeanSessionRegistrarCliente().contieneFlota(beanFlota)) {
             if(beanSessionRegistrarCliente.getBeanFlota()!=null){
             for(BeanFlota flota : beanSessionRegistrarCliente.getListFlota()){
@@ -331,16 +340,6 @@ public class Frm_registrar_cliente {
                 }            
             }
         if(repetido==0){
-            int lstSize =
-                getBeanSessionRegistrarCliente().getListFlota() == null ? 0 : getBeanSessionRegistrarCliente().getListFlota().size();
-            int index = 0;
-            if (accion == 1) {
-                index = (lstSize == 0) ? 0 : (lstSize == 1) ? lstSize : lstSize - 1;
-            }
-            if (accion == 2) {
-                index = getBeanSessionRegistrarCliente().getBeanFlota().getNidFlota().intValue();
-                getBeanSessionRegistrarCliente().getListFlota().remove(index);
-            }
             beanFlota.setNidFlota(index);
             beanFlota.setCMarvehi(marcaVehiculo.toUpperCase());
             beanFlota.setCPlaca(placaVehiculo.toUpperCase());
@@ -365,7 +364,16 @@ public class Frm_registrar_cliente {
         int repetido=0;
         int accion = getBeanSessionRegistrarCliente().getAccion();
         resetearDatoChofer();     
-          
+            int lstSize =
+                getBeanSessionRegistrarCliente().getListChofer() == null ? 0 : getBeanSessionRegistrarCliente().getListChofer().size();
+            int index = 0;
+            if (accion == 1) {
+                index = (lstSize == 0) ? 0 : (lstSize == 1) ? lstSize : lstSize - 1;
+            }
+            if (accion == 2) {
+                index = getBeanSessionRegistrarCliente().getBeanChofer().getNidChofer().intValue();
+                getBeanSessionRegistrarCliente().getListChofer().remove(index);
+            }
         if (!getBeanSessionRegistrarCliente().contiene(beanChofer)) {
             if(beanSessionRegistrarCliente.getListChofer()!=null){
             for(BeanChofer chofer : beanSessionRegistrarCliente.getListChofer()){
@@ -377,16 +385,6 @@ public class Frm_registrar_cliente {
             }            
             }
             if(repetido==0){
-            int lstSize =
-                getBeanSessionRegistrarCliente().getListChofer() == null ? 0 : getBeanSessionRegistrarCliente().getListChofer().size();
-            int index = 0;
-            if (accion == 1) {
-                index = (lstSize == 0) ? 0 : (lstSize == 1) ? lstSize : lstSize - 1;
-            }
-            if (accion == 2) {
-                index = getBeanSessionRegistrarCliente().getBeanChofer().getNidChofer().intValue();
-                getBeanSessionRegistrarCliente().getListChofer().remove(index);
-            }
             beanChofer.setNombres(nombreChofer.toUpperCase());
             beanChofer.setLicencia(licenciaChofer.toUpperCase());
             beanChofer.setNidChofer(index);

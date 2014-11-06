@@ -38,6 +38,7 @@ public class SessionScopeBeanActualizarOrdServ implements Serializable {
     private BigDecimal nidEmp;
     private Integer nidOS;
     private List<BeanTRItem> lstItemsOrdnS=new ArrayList<BeanTRItem>();
+    private List lstEstados = new ArrayList();
     
     
     //dfloresgonz 19.06.2014 - Se agrega variable saber si tiene el permiso de modificar fechas
@@ -228,5 +229,13 @@ public class SessionScopeBeanActualizarOrdServ implements Serializable {
 
     public List<BeanTRItem> getLstItemsOrdnS() {
         return lstItemsOrdnS;
+    }
+
+    public void setLstEstados(List lstEstados) {
+        this.lstEstados = lstEstados;
+    }
+
+    public List getLstEstados() {
+        return lstEstados;
     }
 }

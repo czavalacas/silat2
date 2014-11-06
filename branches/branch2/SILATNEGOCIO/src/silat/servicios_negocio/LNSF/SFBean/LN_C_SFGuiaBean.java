@@ -705,4 +705,8 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
         return it;
     }
     
+    public int contieneGuiasPendientesByOS(int nidOS){
+        return bdL_C_SFGuiaLocal.getCountGuiasVigentesByOrdenServ(nidOS);
+    }
+    
 }

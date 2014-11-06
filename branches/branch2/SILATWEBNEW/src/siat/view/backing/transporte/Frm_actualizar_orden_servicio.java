@@ -60,6 +60,7 @@ import silat.servicios_negocio.BDLSF.IR.BDL_C_SFFlotaRemote;
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFModalidadPago;
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFTipoGastoRemoto;
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFUtilsRemote;
+import silat.servicios_negocio.Beans.BeanConstraint;
 import silat.servicios_negocio.Beans.BeanEmpresa;
 import silat.servicios_negocio.Beans.BeanError;
 import silat.servicios_negocio.Beans.BeanGasto;
@@ -68,6 +69,7 @@ import silat.servicios_negocio.Beans.BeanOrdenServicio;
 import silat.servicios_negocio.Beans.BeanTipoGasto;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFGastosRemoto;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFGuiaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFItemOrdenServRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFOrdenServicioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRelacionEmpresaRemote;
@@ -119,18 +121,20 @@ public class Frm_actualizar_orden_servicio {
     private String error = "";
     private String cidError = "";
     private boolean anulada = false;
-    private SessionScopeBeanActualizarOrdServ beanSessionActualizarOrdenServicio;
     private List lstEstados = new ArrayList();
+    private SessionScopeBeanActualizarOrdServ beanSessionActualizarOrdenServicio;    
     private LN_C_SFUtilsRemote ln_C_SFUtilsRemote = null;
     private final static String LOOKUP_NAME_SFUTILS_REMOTO    = "mapLN_C_SFUtils";
     private final static String LOOKUP_NAME_SFCONTORDS_REMOTO = "LUBAL_SIAT_APP-SILATNEGOCIO-BDL_C_SFOrdenServicio";
     private final static String LOOKUP_NAME_SFC_EMPR_REMOTO   = "mapBDL_C_SFEmpresas";
     private final static String LOOKUP_NAME_SFORDSERV_REMOTO  = "mapLN_C_SFOrdenServicio";
     private final static String LOOKUP_NAME_SFITMOS_REMOTO  = "map-LN_C_SFItemOrdenServ";
+    private final static String LOOKUP_NAME_GUIA_REMOTO = "mapLN_C_SFGuia";
     private BDL_C_SFOrdenServicioRemote bdl_C_SFOrdenServicioRemote;
     private LN_C_SFOrdenServicioRemote ln_C_SFOrdenServicioRemote;
     private BDL_C_SFEmpresasRemote bdL_C_SFEmpresasRemote;
     private LN_C_SFItemOrdenServRemote ln_C_SFItemOrdenServRemote;
+    private LN_C_SFGuiaRemote ln_C_SFGuiaRemote;
     FacesContext ctx = FacesContext.getCurrentInstance();
     private BeanUsuarioAutenticado beanUsuario = (BeanUsuarioAutenticado) Utils.getSession("USER");
     private Date fecha_Minima;
@@ -144,12 +148,12 @@ public class Frm_actualizar_orden_servicio {
         try {
             final Context ctx;
             ctx = new InitialContext();
-            ln_C_SFUtilsRemote = (LN_C_SFUtilsRemote)                  ctx.lookup(LOOKUP_NAME_SFUTILS_REMOTO);
-            this.setLstEstados(Utils.llenarCombos(ln_C_SFUtilsRemote.getListADMCONS("TRMORDS", "C_ESTORD")));
+            ln_C_SFUtilsRemote = (LN_C_SFUtilsRemote)                  ctx.lookup(LOOKUP_NAME_SFUTILS_REMOTO);            
             ln_C_SFOrdenServicioRemote = (LN_C_SFOrdenServicioRemote)  ctx.lookup(LOOKUP_NAME_SFORDSERV_REMOTO);
             bdl_C_SFOrdenServicioRemote = (BDL_C_SFOrdenServicioRemote)ctx.lookup(LOOKUP_NAME_SFCONTORDS_REMOTO);
             bdL_C_SFEmpresasRemote = (BDL_C_SFEmpresasRemote)          ctx.lookup(LOOKUP_NAME_SFC_EMPR_REMOTO);
-
+            ln_C_SFGuiaRemote = (LN_C_SFGuiaRemote)                    ctx.lookup(LOOKUP_NAME_GUIA_REMOTO);
+            this.setLstEstados(Utils.llenarCombos(ln_C_SFUtilsRemote.getListADMCONS("TRMORDS", "C_ESTORD")));
             this.setFecha_Minima(FechaUtiles.fechaPast7());
             this.setFecha_Maxima(FechaUtiles.fechaFoward7());
 
@@ -268,6 +272,15 @@ public class Frm_actualizar_orden_servicio {
     
     public String showPopUp(){
         try{
+            List<BeanConstraint> lstaCons=ln_C_SFUtilsRemote.getListADMCONS("TRMORDS", "C_ESTORD");
+            if(ln_C_SFGuiaRemote.contieneGuiasPendientesByOS(beanSessionActualizarOrdenServicio.getNidOrdenServ())==0){                
+                for(int i=0; i<lstaCons.size(); i++){
+                    if(lstaCons.get(i).getCDescrip().equals("CERRADA")){
+                        lstaCons.remove(i);
+                    }                   
+                }                
+            }
+            beanSessionActualizarOrdenServicio.setLstEstados(Utils.llenarCombos(lstaCons));
             Utils.showPopUpMIDDLE(p2);
         }catch(Exception e){
             e.printStackTrace();
@@ -341,7 +354,7 @@ public class Frm_actualizar_orden_servicio {
             btnFec.setDisabled(false);
         }else{
             btnFec.setDisabled(true);
-        }
+        }        
         Utils.addTargetMany(btnFec,btnEditar);
     }
     
@@ -662,14 +675,6 @@ public class Frm_actualizar_orden_servicio {
         return btnBuscar;
     }
 
-    public void setLstEstados(List lstEstados) {
-        this.lstEstados = lstEstados;
-    }
-
-    public List getLstEstados() {
-        return lstEstados;
-    }
-
     public void setChoiceEditarEstado(RichSelectOneChoice soc1) {
         this.choiceEditarEstado = soc1;
     }
@@ -817,4 +822,11 @@ public class Frm_actualizar_orden_servicio {
         return tbItems;
     }
 
+    public void setLstEstados(List lstEstados) {
+        this.lstEstados = lstEstados;
+    }
+
+    public List getLstEstados() {
+        return lstEstados;
+    }
 }

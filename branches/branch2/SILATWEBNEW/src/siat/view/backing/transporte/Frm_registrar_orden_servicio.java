@@ -79,6 +79,7 @@ import silat.servicios_negocio.Beans.BeanUnidadNegocio;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFDireccionRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFFlotaRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFGuiaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFOrdenServicioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRelacionEmpresaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUnidadMedidaRemote;
@@ -112,14 +113,14 @@ public class Frm_registrar_orden_servicio {
     private final static String LOOKUP_NAME_SFC_RELA_REMOTO       = "mapLN_C_SFRelacionEmpresa";
     private final static String LOOKUP_NAME_SFDIRECCION_REMOTO    = "LUBAL_SIAT_APP-SILATNEGOCIO-LN_C_SFDireccion";
     private final static String LOOKUP_NAME_SFUN_REMOTO           = "mapLN_C_SFUnidadNegocio";
-    private final static String LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO = "mapLN_C_SFUnidadMedida";
+    private final static String LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO = "mapLN_C_SFUnidadMedida";    
     private BDL_C_SFEmpresasRemote bdL_C_SFEmpresasRemote;
     private LN_C_SFOrdenServicioRemote ln_C_SFOrdenServicioRemote;
     private LN_T_SFUnidadMedidaRemote ln_T_SFUnidadMedidaRemote;
     private LN_C_SFRelacionEmpresaRemote ln_C_SFRelacionEmpresaRemote;
     private LN_C_SFDireccionRemote ln_C_SFDireccionRemote;
     private LN_C_SFUnidadNegocioRemote ln_C_SFUnidadNegocioRemote;
-    private LN_C_SFUnidadMedidaRemote ln_C_SFUnidadMedidaRemote;
+    private LN_C_SFUnidadMedidaRemote ln_C_SFUnidadMedidaRemote;    
     private String nombreEmpresa;
     private BigDecimal nidPartyEmpresa;
     private BeanOrdenServicio beanOrdenServicio = new BeanOrdenServicio();
@@ -176,17 +177,15 @@ public class Frm_registrar_orden_servicio {
         try{
             final Context ctx;
             ctx = new InitialContext();
-            bdL_C_SFEmpresasRemote = (BDL_C_SFEmpresasRemote) ctx.lookup(LOOKUP_NAME_SFC_EMPR_REMOTO);
-            ln_C_SFOrdenServicioRemote = (LN_C_SFOrdenServicioRemote)  ctx.lookup(LOOKUP_NAME_SFORDSERV_REMOTO);
+            bdL_C_SFEmpresasRemote = (BDL_C_SFEmpresasRemote)               ctx.lookup(LOOKUP_NAME_SFC_EMPR_REMOTO);
+            ln_C_SFOrdenServicioRemote = (LN_C_SFOrdenServicioRemote)       ctx.lookup(LOOKUP_NAME_SFORDSERV_REMOTO);
             ln_C_SFUnidadNegocioRemote = (LN_C_SFUnidadNegocioRemote)       ctx.lookup(LOOKUP_NAME_SFUN_REMOTO);
             this.setFecha_Minima(FechaUtiles.fechaPast7());
             this.setFecha_Maxima(FechaUtiles.fechaFoward7());
-
             ln_T_SFUnidadMedidaRemote = (LN_T_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFT_UND_MEDIDA_REMOTO);
             ln_C_SFRelacionEmpresaRemote = (LN_C_SFRelacionEmpresaRemote)   ctx.lookup(LOOKUP_NAME_SFC_RELA_REMOTO);
             ln_C_SFDireccionRemote = (LN_C_SFDireccionRemote)               ctx.lookup(LOOKUP_NAME_SFDIRECCION_REMOTO);
             ln_C_SFUnidadMedidaRemote = (LN_C_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO);
-
         }catch(Exception e){
             e.printStackTrace();
             Utils.redireccionar("/silat/faces/frm_login");

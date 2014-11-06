@@ -123,10 +123,10 @@
                                         binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.choiceEditarEstado}"
                                         value="#{beanSessionActualizarOrdenServicio.estadoOrdnServicioEditar}"
                                         valueChangeListener="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.eventoEstadoOrdServEditar}"
-                                        autoSubmit="true">
+                                        autoSubmit="true" immediate="true">
                         <f:selectItems id="si1"
                                        binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.si1}"
-                                       value="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.lstEstados}"/>
+                                       value="#{beanSessionActualizarOrdenServicio.lstEstados}"/>
                     </af:selectOneChoice>
                     <af:inputText value="#{sessionScope.beanSessionActualizarOrdenServicio.beanOrden.comentario}" 
                                   label="Comentario: " labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
@@ -158,30 +158,30 @@
                             rowSelection="single"
                             selectionListener="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.getActualizar}"
                             varStatus="vs" columnStretching="column:c3" inlineStyle="margin:0px 50px 0px 0px;">
-                <af:column width="20" id="c9" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
+                <af:column width="25" id="c9" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
                     <af:outputText value="#{vs.index + 1}" id="ot10"/>
                 </af:column>
-                <af:column sortable="true" headerText="Codigo" width="40" visible="true" sortProperty="nidOrdnServ" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
+                <af:column sortable="true" headerText="Codigo" width="44" visible="true" sortProperty="nidOrdnServ" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
                     <af:outputText value="#{row.nidOrdnServ}" />
                 </af:column>
-                 <af:column sortable="true" headerText="Razon Social" id="c3" width="140" sortProperty="CRazonSocial" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
+                 <af:column sortable="true" headerText="Razon Social" id="c3" width="689" sortProperty="CRazonSocial" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
                     <af:outputText value="#{row.CRazonSocial}" id="ot3"/>
                 </af:column>
-                <af:column sortProperty="CDetalle" width="275" sortable="true" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};"
+                <af:column sortProperty="CDetalle" width="281" sortable="true" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};"
                            headerText="Detalle" id="c1">
                     <af:outputText value="#{row.CDetalle}" id="ot1"/>
                 </af:column>               
-                <af:column sortable="true" headerText="Estado" width="75"  sortProperty="CEstadoOrdenDesc" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
+                <af:column sortable="true" headerText="Estado" width="81"  sortProperty="CEstadoOrdenDesc" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};">
                     <af:outputText value="#{row.CEstadoOrdenDesc}"/>
                 </af:column>
                 <af:column  sortProperty="fecOrdnServ" sortable="true" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};"
-                           headerText="Fecha Hecha" id="c2" width="75">
+                           headerText="Fecha Hecha" id="c2" width="81">
                     <af:outputText value="#{row.fecOrdnServ}" id="ot2">
                         <af:convertDateTime pattern="dd/MM/yyyy"/>
                     </af:outputText>
                 </af:column>
                 <af:column  sortProperty="comentario" sortable="true" inlineStyle="#{(row.flgVisto == '0') ? 'font-weight:bold;':''};"
-                           headerText="Comentario" id="c15" width="110">
+                           headerText="Comentario" id="c15" width="116">
                     <af:outputText value="#{row.comentario}" id="ot15"/>
                 </af:column>
             </af:table>

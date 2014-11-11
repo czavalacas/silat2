@@ -22,6 +22,7 @@ public class BeanTrItemXOrds implements Serializable {
     private Double detalleWebmovilCantidad;
     private String detalleWebmovilUmedida;
     private String detalleWebmovilDescripcion;
+    private String cEstado;
     
     @Override
     public boolean equals(Object obj){
@@ -171,5 +172,13 @@ public class BeanTrItemXOrds implements Serializable {
 
     public Double getDetalleWebmovilCantidad() {
         return detalleWebmovilCantidad;
+    }
+
+    public void setCEstado(String cEstado) {
+        this.cEstado = cEstado;
+    }
+
+    public String getCEstado() {
+        return cEstado;
     }
 }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!DOCTYPE xhtml>
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:b="http://bootsfaces.net/ui" 
       xmlns:f="http://java.sun.com/jsf/core"
@@ -66,7 +66,7 @@
                 }
     if(fileExtension == "jpg" || fileExtension == "png" || fileExtension == "jpeg" || fileExtension == "PNG" || fileExtension == "JPG" || fileExtension == "JPEG"){     
                 if (input.files || input.files[0]) {
-                if(300000>file.size){
+                if(500000>file.size){
                   var reader = new FileReader();
                   reader.onload = function (e) {
                       var x = document.getElementById("img_prev").width;
@@ -123,9 +123,11 @@
                 </b:commandButton>
             </ui:repeat>
             </h:form>
-            <footer>
+           <footer>
             <h:outputText id="info" style="width:100%;" value=""/>
-            </footer>
+            </footer> 
+            
+            
         <b:modal id="amodal" title="Detalle de Guia de Remision" rendered="true">
             <form id="img" action="servlet"  method="POST">
             <input type="text" style="display:none" name="guiag" value="#{frm_WebMovil.idGuia}"/>

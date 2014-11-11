@@ -327,7 +327,6 @@ public class Frm_registrar_cliente {
             }
             if (accion == 2) {
                 index = getBeanSessionRegistrarCliente().getBeanFlota().getNidFlota().intValue();
-                getBeanSessionRegistrarCliente().getListFlota().remove(index);
             }
         if (!getBeanSessionRegistrarCliente().contieneFlota(beanFlota)) {
             if(beanSessionRegistrarCliente.getBeanFlota()!=null){
@@ -340,6 +339,9 @@ public class Frm_registrar_cliente {
                 }            
             }
         if(repetido==0){
+        if(!getBeanSessionRegistrarCliente().getListFlota().isEmpty() && accion==2){
+            getBeanSessionRegistrarCliente().getListFlota().remove(index);
+        }
             beanFlota.setNidFlota(index);
             beanFlota.setCMarvehi(marcaVehiculo.toUpperCase());
             beanFlota.setCPlaca(placaVehiculo.toUpperCase());
@@ -372,7 +374,6 @@ public class Frm_registrar_cliente {
             }
             if (accion == 2) {
                 index = getBeanSessionRegistrarCliente().getBeanChofer().getNidChofer().intValue();
-                getBeanSessionRegistrarCliente().getListChofer().remove(index);
             }
         if (!getBeanSessionRegistrarCliente().contiene(beanChofer)) {
             if(beanSessionRegistrarCliente.getListChofer()!=null){
@@ -385,6 +386,9 @@ public class Frm_registrar_cliente {
             }            
             }
             if(repetido==0){
+            if(!getBeanSessionRegistrarCliente().getListChofer().isEmpty() && accion==2){
+                getBeanSessionRegistrarCliente().getListChofer().remove(index);
+            }
             beanChofer.setNombres(nombreChofer.toUpperCase());
             beanChofer.setLicencia(licenciaChofer.toUpperCase());
             beanChofer.setNidChofer(index);

@@ -43,6 +43,8 @@ public class TRItemXOrds implements Serializable {
     private TROrdenServicio trOrdenServicio;
     @Column(name = "ORDEN")
     private Integer orden;
+    @Column(name = "C_ESTADO", nullable = true, length = 110)
+    private String cEstado;
 
     public TRItemXOrds() {
     }
@@ -121,5 +123,13 @@ public class TRItemXOrds implements Serializable {
 
     public TROrdenServicio getTrOrdenServicio() {
         return trOrdenServicio;
+    }
+
+    public void setCEstado(String cEstado) {
+        this.cEstado = cEstado;
+    }
+
+    public String getCEstado() {
+        return cEstado;
     }
 }

@@ -105,7 +105,8 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
             String ejbQl = "SELECT g " +
                            "FROM TRGuia g " +
                            "WHERE g.ordenServicio.adEmpresa.nidParty = '"+""+nidCliente+"' " +
-                           "AND g.cConformidad = '2'";
+                           "AND g.cConformidad = '2' "+
+                           "AND g.trManifiesto.nEstManifiesto = '1'";
             return em.createQuery(ejbQl).getResultList();
     }
     

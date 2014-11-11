@@ -87,6 +87,7 @@ public class BDL_T_SFOrdenServicioBean implements BDL_T_SFOrdenServicioRemoto,
                     itmXOrd.setDPeso(listaItems.get(i).getDPeso());
                     itmXOrd.setNCantidad(listaItems.get(i).getNCantidad());
                     itmXOrd.setOrden(orden.getNidOrdnServ());
+                    itmXOrd.setCEstado("0");
                     bdl_T_SFItemXOrdenServLocal.persistTRItemXOrds(itmXOrd);                     
                 }
             }

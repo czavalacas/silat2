@@ -310,7 +310,8 @@ public class BDL_C_SFOrdenServicioBean implements BDL_C_SFOrdenServicioRemote,
     }
     public List<TRItemXOrds>getItemsbyOrd(String nidOrds){
         List<TRItemXOrds>listaItems= new ArrayList<TRItemXOrds>();
-        String query = "select o from TRItemXOrds o where o.orden = '"+nidOrds+"'";
+        String query = "SELECT o FROM TRItemXOrds o WHERE o.orden = '"+nidOrds+"' " +
+                       "AND o.cEstado = 0";
         listaItems = em.createQuery(query).getResultList();
         return listaItems;
     }

@@ -168,6 +168,11 @@
                                                       actionListener="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.editarGuia}"
                                                       rendered="#{beanSessionConsultarGuia.renderBtnEditar}"
                                                       disabled="true"/>
+                                    <af:commandButton text="Ver Imagen" id="btnverImagen"
+                                                      binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.btnverImagen}"
+                                                      actionListener="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.verImagen}"
+                                                      rendered="#{beanSessionConsultarGuia.renderBtnverImagen}"
+                                                      disabled="false"/>
                                     <af:commandButton text="Anular Guia" id="btnAnular"
                                                       binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.btnAnular}"
                                                       actionListener="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.anularGuia}"
@@ -304,6 +309,17 @@
                                               value="#{beanSessionConsultarGuia.guiaSelected != null ? beanSessionConsultarGuia.guiaSelected.fechaDespacho : null}">
                                     <af:convertDateTime pattern="dd/MM/yyyy"/>
                                 </af:inputDate>
+                           </af:panelFormLayout>
+                      </af:dialog>
+            </af:popup>
+            
+            <af:popup id="popImagen"
+                      binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.popImagen}"
+                      childCreation="deferred" animate="false">
+                      <af:dialog id="diagImg"
+                               title="Imagen de Confirmacion">
+                           <af:panelFormLayout>
+                                <img src="#{beanSessionConsultarGuia.img}"/>
                            </af:panelFormLayout>
                       </af:dialog>
             </af:popup>

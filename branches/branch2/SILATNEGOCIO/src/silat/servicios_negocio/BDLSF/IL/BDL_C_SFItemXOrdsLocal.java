@@ -13,4 +13,5 @@ public interface BDL_C_SFItemXOrdsLocal {
     List<TRItemXOrds> getTRItemXOrdsFindAll();
     TRItemXOrds findTRItemtById(BigDecimal id);
     List<TRItemXOrds> getTrItemOrdenServicio_BD(int nidOrdenServ); 
+    TRItemXOrds traeItemsporID(String id);
 }

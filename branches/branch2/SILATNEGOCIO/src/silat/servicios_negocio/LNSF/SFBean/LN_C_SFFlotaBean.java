@@ -57,6 +57,7 @@ public class LN_C_SFFlotaBean implements LN_C_SFFlotaRemote,
         while(it.hasNext()){
             ADFlota entida = (ADFlota) it.next();
             BeanFlota beanFlota = (BeanFlota) mapper.map(entida, BeanFlota.class);
+            beanFlota.setPlacaWebMovil(entida.getCPlaca());
             listaFlota.add(beanFlota);
         }
         return listaFlota;

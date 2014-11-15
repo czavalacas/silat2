@@ -1036,4 +1036,13 @@
             </business-interface-jndi-name-map>
         </stateless-session-descriptor>
     </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>LN_T_SFItemxOrds</ejb-name>
+        <stateless-session-descriptor>
+            <business-interface-jndi-name-map>
+                <business-remote>silat.servicios_negocio.LNSF.IR.LN_T_SFItemxOrdsRemota</business-remote>
+                <jndi-name>map-LN_T_SFItemxOrds</jndi-name>
+            </business-interface-jndi-name-map>
+        </stateless-session-descriptor>
+    </weblogic-enterprise-bean>
 </weblogic-ejb-jar>

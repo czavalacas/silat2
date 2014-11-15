@@ -39,6 +39,9 @@ public class SessionScopedBeanConsultarGuia {
     private String codigoFacturaFiltro;
     //dfloresgonz 19.06.2014 - Se agrega variable saber si tiene el permiso de modificar fechas
     private boolean renderBtnFecha = false;
+    
+    private boolean renderBtnverImagen = true;
+    private String img;
 
     public void setLstGuiasTabla(List<BeanTRGuia> lstGuiasTabla) {
         this.lstGuiasTabla = lstGuiasTabla;
@@ -262,5 +265,21 @@ public class SessionScopedBeanConsultarGuia {
 
     public boolean isRenderBtnFecha() {
         return renderBtnFecha;
+    }
+
+    public void setRenderBtnverImagen(boolean renderBtnverImagen) {
+        this.renderBtnverImagen = renderBtnverImagen;
+    }
+
+    public boolean isRenderBtnverImagen() {
+        return renderBtnverImagen;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
     }
 }

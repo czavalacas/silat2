@@ -244,6 +244,9 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
             bean.setComentario(entida.getComentario());
             bean.setNidEmpresa(entida.getAdEmpresa().getNidParty());
             bean.setDetalleWebmovilComentario(entida.getComentario());
+            bean.setNidRemitente(entida.getNidRemitente());
+            bean.setNidDirecCli(entida.getNidDirecCli());
+            bean.setNidDirecProv(entida.getNidDirecProv());
             bean.setDetalleWebmovilEmpresa((entida.getAdEmpresa().getCRazonSocial()));
             bean.setDetalleWebmovilNIDEmpresa(entida.getAdEmpresa().getNidParty()+"");
             int cantGuiasVig = bdL_C_SFGuiaLocal.getCountGuiasVigentesByOrdenServ(entida.getNidOrdnServ());
@@ -297,6 +300,7 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
     public List<BeanTrItemXOrds> ItemsbyOrdenServicio(String nidOrds){
         List<TRItemXOrds> items = bdL_C_SFOrdenServicioLocal.getItemsbyOrd(nidOrds);
         List<BeanTrItemXOrds> listaItems = new ArrayList<BeanTrItemXOrds>();
+        int i = 1;
         for(TRItemXOrds entida : items)
         {
             BeanTrItemXOrds bean = new BeanTrItemXOrds();
@@ -305,6 +309,8 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
             bean.setDetalleWebmovilCantidad(entida.getNCantidad());
             bean.setDetalleWebmovilDescripcion(entida.getCDescItem());
             bean.setDetalleWebmovilUmedida(entida.getCUndMedida());
+            bean.setIndex(i);
+            i++;
             
             listaItems.add(bean);
         }

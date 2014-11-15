@@ -23,6 +23,7 @@ public class BeanTrItemXOrds implements Serializable {
     private String detalleWebmovilUmedida;
     private String detalleWebmovilDescripcion;
     private String cEstado;
+    private Integer index;
     
     @Override
     public boolean equals(Object obj){
@@ -180,5 +181,13 @@ public class BeanTrItemXOrds implements Serializable {
 
     public String getCEstado() {
         return cEstado;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
+    }
+
+    public Integer getIndex() {
+        return index;
     }
 }

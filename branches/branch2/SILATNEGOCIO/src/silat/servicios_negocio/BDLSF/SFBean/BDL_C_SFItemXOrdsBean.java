@@ -56,4 +56,10 @@ public class BDL_C_SFItemXOrdsBean implements BDL_C_SFItemXOrdsRemote,
             return new ArrayList<TRItemXOrds>();
         }
     }
+    public TRItemXOrds traeItemsporID(String id){
+        TRItemXOrds item = new TRItemXOrds();
+        String query = "SELECT o FROM TRItemXOrds o WHERE o.nidItem = "+id;
+        item = (TRItemXOrds) em.createQuery(query).getResultList().get(0);
+        return item;
+    }
 }

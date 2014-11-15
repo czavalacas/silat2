@@ -20,7 +20,7 @@
                                 disabled="#{sessionScope.beanSessionRegistrarManifiesto.disableComponents}"
                                 showRequired="true" unselectedLabel="Seleccionar Opción" valuePassThru="true"
                                 valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.cambioManif}"
-                                value="#{sessionScope.beanSessionRegistrarManifiesto.comboTipoManif}">
+                                value="#{sessionScope.beanSessionRegistrarManifiesto.comboTipoManif}" visible="false">
                 <af:selectItem label="Crear Nuevo Manifiesto" value="1" id="itemManif1"
                                binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itemManif1}"/>
                 <af:selectItem label="Seleccionar existente" value="2" id="itemManif2"
@@ -45,7 +45,7 @@
                         </af:commandButton>  
                         </af:panelFormLayout>
                        <af:panelFormLayout  labelWidth="80"> 
-                          <af:selectBooleanCheckbox label="Transporte Propio" id="ckbTraPro" rendered="#{sessionScope.beanSessionRegistrarManifiesto.valorComboManif == 1}"
+                          <af:selectBooleanCheckbox label="Transporte Propio" id="ckbTraPro" rendered="true"
                                                     binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.ckbTraPro}"
                                                     valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.cambioCheckTransPropio}"
                                                     autoSubmit="true" labelStyle="text-align: left;"/>

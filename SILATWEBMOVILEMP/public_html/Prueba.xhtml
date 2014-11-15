@@ -26,6 +26,7 @@
             document.getElementById("detOrden").style.display="none"; 
             document.getElementById("creaGuia").style.display="none";
             document.getElementById("lastForm").style.display="none";
+            document.getElementById("detOrden").style.display="none";
                 }
           function ocultarForm(){
               document.getElementById("ordenServicio").style.display="none";
@@ -42,6 +43,7 @@
               document.getElementById("abrirModalChoferes").style.display="none";
               document.getElementById("creaGuia").style.display="none";
               document.getElementById("lastForm").style.display="none";
+              document.getElementById("detOrden").style.display="none";
           }
           function mostrarForm(){
               document.getElementById("subManifiesto").style.display="none";
@@ -58,6 +60,7 @@
               document.getElementById("creaGuia").style.display="none";
               document.getElementById("abrirModalChoferes").style.display="none";
               document.getElementById("lastForm").style.display="none";
+              document.getElementById("detOrden").style.display="none";
           }
           function mostrarFormregManif(){
               document.getElementById("subManifiesto").style.display="block";
@@ -72,6 +75,7 @@
               document.getElementById("abrirModalFlotas").style.display="block";
               document.getElementById("abrirModalChoferes").style.display="block";
               document.getElementById("lastForm").style.display="none";
+              document.getElementById("detOrden").style.display="none";
           }
             function mostrarFormregOrds(){
               document.getElementById("subManifiesto").style.display="none";
@@ -107,6 +111,7 @@
               document.getElementById("detOrden").style.display="none";
               document.getElementById("creaGuia").style.display="block";
               document.getElementById("lastForm").style.display="block";
+              document.getElementById("detOrden").style.display="none";
           }
         $(function(){
 	$("#modal-launcher, #modal-background, #modal-close,#modal-close1").click(function () {
@@ -405,7 +410,7 @@
        <h:form id="ordenServicio">
         <ui:repeat value="#{frm_WebMovilEmp.listaOrdenServicio}" var="row">
             <ul class="pricing-table">
-              <li class="description">Guia n°: #{row.nidOrdnServ} || #{row.detalleWebmovilEmpresa}</li>
+              <li class="description">Orden.Serv n°: #{row.nidOrdnServ} || #{row.detalleWebmovilEmpresa}</li>
             </ul>
                     <b:commandButton value="Ver Detalle" action="#{frm_WebMovilEmp.traeInfoOrdenServicio}" onclick="mostrarFormregOrds();" ajax="true" style="background-color:#bfea30;width:60%;margin-top:-20px"
                                       update="modDirecDest modManif modItems"  >
@@ -536,7 +541,7 @@
                 <h:outputText value="Comentario"/>
             </f:facet>
         </b:inputText>
-        <div style="overflow-y: scroll;height:90px">
+        <div style="overflow-y: scroll;height:150px">
         <ui:repeat value="#{frm_WebMovilEmp.lstItemsOrds}" var="row">
                 <b:alert severity="info">
                     <p style="margin-top: .1em;">
@@ -636,7 +641,19 @@
                 <h:outputText value="n°paquetes"/>
             </f:facet>
         </b:inputText>
-
+        <div style="background-color: #bfea30;color:#000000;margin-bottom:10px;text-align:center" id="regManifiesto0">
+    <h:outputText value="Cerrar Orden.Servicio?"/>
+    <br></br>  
+    <h:selectBooleanCheckbox value="#{frm_WebMovilEmp.checkBox1}" id="checkBox1">
+        <f:ajax listener="#{frm_WebMovilEmp.cerrarOS}"/>
+    </h:selectBooleanCheckbox>
+    <br></br> 
+    <h:outputText value="Manifiesto en Transito?"/>
+    <br></br> 
+    <h:selectBooleanCheckbox value="#{frm_WebMovilEmp.checkBox2}" id="checkBox2">
+        <f:ajax listener="#{frm_WebMovilEmp.manifiestoEnTransito}"/>
+    </h:selectBooleanCheckbox>
+    </div>
     <b:commandButton action="#{frm_WebMovilEmp.registrarGuia}" ajax="true" value="Guardar" style="font-size:15px;background-color: #6888E7; width: 100%;height:50px;border-color : #000000"
                      icon="save" iconAlign="right"/>      
     </h:form>
@@ -645,7 +662,9 @@
     <div id="modal-background"></div>
     
     <div id="modal-content">
-    <h:form>
+    <h:form id="modProv">
+            <b:inputText value="#{frm_WebMovilEmp.busquedaProveedor}"/>
+        <b:commandButton value="Buscar" action="#{frm_WebMovilEmp.buscarProovedor}" ajax="true" update="modProv"/>
     <div style="overflow-y: scroll;height:280px;margin-top:10px;margin-bottom:10px">
             <ui:repeat value="#{frm_WebMovilEmp.listaProov}" var="row">
                 <b:commandButton id="modal-close" action="#{frm_WebMovilEmp.editAction}"
@@ -667,7 +686,7 @@
                 <b:commandButton id="modal-close2" action="#{frm_WebMovilEmp.traeinfoFlota}"
                                  style="font-size:15px;background-color: #bfea30; width: 100%;height:50px;border-color : #16a918"
                                  icon="road" iconAlign="right" ajax="true" onclick="closeModalFlotas()" update="form:inform regManifiesto1"
-                                 value="#{row.nidFlota}">
+                                 value="#{row.placaWebMovil}">
                                  <f:setPropertyActionListener value="#{row.nidFlota}"
                                                               target="#{frm_WebMovilEmp.flotaElegida}"/>
                 </b:commandButton>
@@ -694,6 +713,9 @@
     
     <div id="modalRemitentes" style="display:none">
         <h:form id="modRem">
+        <b:inputText value="#{frm_WebMovilEmp.busquedaRemitente}"/>
+        <b:commandButton value="Buscar" action="#{frm_WebMovilEmp.buscarRmitentes}" ajax="true" update="modRem"
+         style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"/>
         <div style="overflow-y: scroll;height:280px;margin-top:10px;margin-bottom:10px">
                 <ui:repeat value="#{frm_WebMovilEmp.lstRemitentes}" var="row">
                     <b:commandButton id="modal-close2" action="#{frm_WebMovilEmp.traeInfoRemitente}"

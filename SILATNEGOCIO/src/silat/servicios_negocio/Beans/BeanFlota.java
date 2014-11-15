@@ -20,6 +20,8 @@ public class BeanFlota implements Serializable {
     private Integer nEstadoFlota;
     private String certificadoInscripcionEmpresa;
     private BeanError beanError;  
+    
+    private String placaWebMovil;
 
     public void setCConfveh(String cConfveh) {
         this.cConfveh = cConfveh;
@@ -99,5 +101,13 @@ public class BeanFlota implements Serializable {
 
     public BeanError getBeanError() {
         return beanError;
+    }
+
+    public void setPlacaWebMovil(String placaWebMovil) {
+        this.placaWebMovil = placaWebMovil;
+    }
+
+    public String getPlacaWebMovil() {
+        return placaWebMovil;
     }
 }

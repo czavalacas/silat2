@@ -11,6 +11,13 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+
+import net.sf.jmimemagic.Magic;
+
+import net.sf.jmimemagic.MagicException;
+import net.sf.jmimemagic.MagicMatchNotFoundException;
+import net.sf.jmimemagic.MagicParseException;
+
 import oracle.adf.model.bean.DCDataRow;
 import oracle.adf.view.rich.component.rich.RichDialog;
 import oracle.adf.view.rich.component.rich.RichPopup;
@@ -27,11 +34,11 @@ import oracle.adf.view.rich.component.rich.layout.RichPanelFormLayout;
 import oracle.adf.view.rich.component.rich.layout.RichPanelGridLayout;
 import oracle.adf.view.rich.component.rich.layout.RichPanelGroupLayout;
 import oracle.adf.view.rich.component.rich.nav.RichCommandButton;
+import oracle.adf.view.rich.component.rich.output.RichImage;
 import oracle.adf.view.rich.component.rich.output.RichOutputLabel;
 import oracle.adf.view.rich.component.rich.output.RichSeparator;
 import oracle.adf.view.rich.event.DialogEvent;
 import oracle.adf.view.rich.model.SortCriterion;
-import oracle.adfinternal.view.faces.model.binding.FacesCtrlHierNodeBinding;
 import oracle.jbo.uicli.binding.JUCtrlHierNodeBinding;
 import org.apache.myfaces.trinidad.component.UIXGroup;
 import org.apache.myfaces.trinidad.event.RangeChangeEvent;
@@ -114,6 +121,10 @@ public class Frm_consultar_guia {
     private SessionScopedBeanConsultarGuia beanSessionConsultarGuia;
     private BeanUsuarioAutenticado beanUsuario = new BeanUsuarioAutenticado();
     FacesContext ctx = FacesContext.getCurrentInstance();
+    
+    private RichCommandButton btnverImagen;
+    private RichPopup popImagen;
+    private RichImage imgGuia;
 
     public Frm_consultar_guia(){
         try{
@@ -138,9 +149,11 @@ public class Frm_consultar_guia {
             //buscarTabla(); //dfloresgonz 01.05.2014 se comenta para que al inicio no cargue todo sino el usuario tenga que aplastar el boton
             if(Utils.hasPermiso(beanUsuario.getLstPermisos(),new BigDecimal(28))){
                 beanSessionConsultarGuia.setRenderBtnEditar(true);
+                beanSessionConsultarGuia.setRenderBtnverImagen(true);
                 beanSessionConsultarGuia.setRenderBtnAnular(true);
             }else{
                 beanSessionConsultarGuia.setRenderBtnEditar(false);
+                beanSessionConsultarGuia.setRenderBtnverImagen(false);
                 beanSessionConsultarGuia.setRenderBtnAnular(false);
             }
             if(Utils.hasPermiso(beanUsuario.getLstPermisos(),new BigDecimal(56))){//Cambiar Fechas
@@ -243,12 +256,17 @@ public class Frm_consultar_guia {
                 beanGuia.setIsDisableWhenOk_Anulado(1);
                 btnAnular.setDisabled(true);
                 btnEditar.setDisabled(true);
+                btnverImagen.setDisabled(true);
             }else if("2".equals(beanGuia.getCConformidad())){//PENDIENTE
                 btnAnular.setDisabled(false);
                 btnEditar.setDisabled(false);
+                btnverImagen.setDisabled(true);
             }else if("1".equals(beanGuia.getCConformidad())){//OK
                 btnAnular.setDisabled(true);
                 btnEditar.setDisabled(false);
+                if(beanGuia.getImgGuia()!=null){
+                    btnverImagen.setDisabled(false);
+                }
             }                   
             Utils.addTargetMany(btnAnular,btnEditar);
             beanSessionConsultarGuia.setGuiaSelected(beanGuia);
@@ -352,6 +370,35 @@ public class Frm_consultar_guia {
                 Utils.throwError_Aux(ctx,"Seleccione una Guia para editarla.",4);    
                 return;
             }
+        }
+    }
+    
+    public void verImagen(ActionEvent ae){
+        if(beanSessionConsultarGuia.getGuiaSelected() != null){
+            beanSessionConsultarGuia.setImg("");
+            byte [] img = beanSessionConsultarGuia.getGuiaSelected().getImgGuia();
+            if(img!=null){
+            String s = new sun.misc.BASE64Encoder().encode(img);
+            
+            if(s!=""){
+                String ext = "";
+                try {
+                    ext = Magic.getMagicMatch(img).getExtension();
+                } catch (MagicParseException e) {
+                } catch (MagicMatchNotFoundException e) {
+                } catch (MagicException e) {
+                }
+                beanSessionConsultarGuia.setImg("data:image/"+ext+";base64,"+s);
+                Utils.showPopUpMIDDLE(popImagen);
+            }else{
+                beanSessionConsultarGuia.setImg("#");
+                Utils.showPopUpMIDDLE(popImagen);
+            }
+            }
+            
+            
+            
+            
         }
     }
            
@@ -855,5 +902,29 @@ public class Frm_consultar_guia {
 
     public RichInputDate getFecDespEdit() {
         return fecDespEdit;
+    }
+
+    public void setBtnverImagen(RichCommandButton btnverImagen) {
+        this.btnverImagen = btnverImagen;
+    }
+
+    public RichCommandButton getBtnverImagen() {
+        return btnverImagen;
+    }
+
+    public void setPopImagen(RichPopup popImagen) {
+        this.popImagen = popImagen;
+    }
+
+    public RichPopup getPopImagen() {
+        return popImagen;
+    }
+
+    public void setImgGuia(RichImage imgGuia) {
+        this.imgGuia = imgGuia;
+    }
+
+    public RichImage getImgGuia() {
+        return imgGuia;
     }
 }

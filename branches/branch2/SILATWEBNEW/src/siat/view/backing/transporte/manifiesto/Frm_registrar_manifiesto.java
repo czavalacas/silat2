@@ -353,8 +353,14 @@ public class Frm_registrar_manifiesto {
     @PostConstruct
     public void methodInvokeOncedOnPageLoad(){
         if(getBeanSessionRegistrarManifiesto().getExec() == 0){
+            mostrarRemitentes();
+            mostrarManif();
+            mostrarProveedores();
+            mostrarOS();
+            beanSessionRegistrarManifiesto.setLstUndMedida(this.llenarUndMedidaCombo());
+            nuevoManifiesto();
             getBeanSessionRegistrarManifiesto().setExec(1);
-            if(Utils.getSession("GUIA") != null){//Modificar
+           /* if(Utils.getSession("GUIA") != null){//Modificar
                 getBeanSessionRegistrarManifiesto().setTituloWindow("Modificar Guia de Remision");
                 getBeanSessionRegistrarManifiesto().setUpdate("2");
                 BeanTRGuia beanGuia = (BeanTRGuia) Utils.getSession("GUIA");
@@ -496,13 +502,9 @@ public class Frm_registrar_manifiesto {
                 getBeanSessionRegistrarManifiesto().setConfo("2");
                 getBeanSessionRegistrarManifiesto().setUpdate("1"); 
                 getBeanSessionRegistrarManifiesto().setListaUNs(this.llenarUNCombo());
-            }
-        }else{  
-            mostrarRemitentes();
-            mostrarManif();
-            mostrarProveedores();
-            mostrarOS();
-            beanSessionRegistrarManifiesto.setLstUndMedida(this.llenarUndMedidaCombo());
+            }*/
+        }else{              
+          
         }
     }
     public void abrirConfEstados(ActionEvent actionEvent) {
@@ -1276,52 +1278,65 @@ public class Frm_registrar_manifiesto {
     
     public void nuevoManifiesto(){
         beanSessionRegistrarManifiesto.setNidManifiesto(ln_C_SFUtilsRemote.traerSiguienteValorSequence("trmanifiesto.nid_manifiesto"));
-        ckbTraPro.setRendered(true);
+      //  ckbTraPro.setRendered(true);
         panelNuevoManif(true);
-        txtFletePact.setDisabled(false);
-        txtAdelanto.setDisabled(false);
-        tipoDocManif.setDisabled(false);
-        txtObsManif.setDisabled(false);
+      //  txtFletePact.setDisabled(false);
+        beanSessionRegistrarManifiesto.setTxtFleteDisable(false);
+      //  txtAdelanto.setDisabled(false);
+        beanSessionRegistrarManifiesto.setTxtAdelaDisable(false);        
+      //  tipoDocManif.setDisabled(false);
+        beanSessionRegistrarManifiesto.setTxtTipDocuDisable(false);
+      //  txtObsManif.setDisabled(false);
+        beanSessionRegistrarManifiesto.setTxtObsvDisable(false);
         beanSessionRegistrarManifiesto.setVisibTxtRazSocProvTransBehav(true);
-        socFlota.setDisabled(false);
-        socChofer.setDisabled(false);
-        itSaldo.resetValue();
+      //  socFlota.setDisabled(false);
+        beanSessionRegistrarManifiesto.setDisabSocFlota(false);
+      //  socChofer.setDisabled(false);
+        beanSessionRegistrarManifiesto.setDisabSocChofer(false);
+      //  itSaldo.resetValue();
+        
         beanSessionRegistrarManifiesto.setRendBuscManif(false);
-        itIGV.resetValue();
-        itDetraccion.resetValue();
-        itMontoFin.resetValue();
+        //itIGV.resetValue();
+        //itDetraccion.resetValue();
+        //itMontoFin.resetValue();
         getBeanSessionRegistrarManifiesto().setSaldo(0.0);
-        txtAdelanto.resetValue();
-        txtFletePact.resetValue();
+        //txtAdelanto.resetValue();
+        //txtFletePact.resetValue();
         beanSessionRegistrarManifiesto.setLstChofers(null);
         beanSessionRegistrarManifiesto.setLstFlotas(null);
-        socFlota.resetValue();
-        socChofer.resetValue();
-        txtRazSocEmpTransp.resetValue();
-        txtRazSocEmpTransp2.setRendered(false);
-        txtRazSocEmpTransp.setRendered(true);
-        txtRazSocEmpTransp.resetValue();
-        txtRazSocEmpTransp.setVisible(true);
-        beanSessionRegistrarManifiesto.setDisabRegisManif(false);
-        btnRegManif.setDisabled(false);
-        beanSessionRegistrarManifiesto.setVisibTxtRazSocProvTransBehav(true);
-        rucEmpTransp.resetValue();
+        //socFlota.resetValue();
+        //socChofer.resetValue();
+        //txtRazSocEmpTransp.resetValue();
+       // txtRazSocEmpTransp2.setRendered(false);
+        beanSessionRegistrarManifiesto.setVisibTxtRazSocProvTrans2(false);
+      //  txtRazSocEmpTransp.setRendered(true);
+        beanSessionRegistrarManifiesto.setEstadoFormManif(true);
+        //txtRazSocEmpTransp.resetValue();
+       // txtRazSocEmpTransp.setVisible(true);
+        beanSessionRegistrarManifiesto.setVisibTxtRazSocProvTransBehav(true);     
+      //  btnRegManif.setDisabled(false);
+        beanSessionRegistrarManifiesto.setDisabRegisManif(false);   
+        //rucEmpTransp.resetValue();
         //itBuscarManif.setRendered(false);
-        socGuiasManif.setRendered(false);
-        rucEmpTransp.setRendered(true);
+        //socGuiasManif.setRendered(false);
+       // beanSessionRegistrarManifiesto.setEstadoFormManif(false);
+        //rucEmpTransp.setRendered(true);
         beanSessionRegistrarManifiesto.setVisibRucEmpTrans(true);
-        beanSessionRegistrarManifiesto.setVisibSocChofer(true);
+        //socFlota.setRendered(true);
         beanSessionRegistrarManifiesto.setVisibSocFlota(true);
-        socFlota.setRendered(true);
-        socChofer.setRendered(true);
-        txtMarcVehi.setRendered(true);
-        txtPlaca.setRendered(true);
-        txtConfigVehi.setRendered(true);
-        txtCertInsc.setRendered(true);
-        socGuiasManif.setRendered(false);
-        txtLicCondu.setRendered(true);
-        txtConductor.setRendered(true);
-        resetNewManif();
+        //socChofer.setRendered(true);
+        beanSessionRegistrarManifiesto.setVisibSocChofer(true);
+        //txtMarcVehi.setRendered(true);
+        beanSessionRegistrarManifiesto.setPboxDatosTransVis(true);
+        //txtPlaca.setRendered(true);
+        //txtConfigVehi.setRendered(true);
+        //txtLicCondu.setRendered(true);
+        //txtConductor.setRendered(true);
+        //txtCertInsc.setRendered(true);
+              
+        //socGuiasManif.setRendered(false);
+       // beanSessionRegistrarManifiesto.setEstadoFormManif(false);
+        //resetNewManif();
         beanSessionRegistrarManifiesto.setFecManif(FechaUtiles.fechaActual());
         beanSessionRegistrarManifiesto.setFletePactado(null);
         beanSessionRegistrarManifiesto.setAdelanto(null);
@@ -1329,15 +1344,16 @@ public class Frm_registrar_manifiesto {
         beanSessionRegistrarManifiesto.setObserv(null);
         beanSessionRegistrarManifiesto.setRucEmpSC(null);
         beanSessionRegistrarManifiesto.setEmpresaSC(null);
-        txtMarcVehi.resetValue();
+      /*txtMarcVehi.resetValue();
         txtPlaca.resetValue();
         txtConfigVehi.resetValue();
         txtCertInsc.resetValue();
         txtLicCondu.resetValue();
-        txtConductor.resetValue();
-        pboxDatosEmp.setText("Datos de Empresa Proveedora de Transporte");
-        Utils.addTargetMany(txtMarcVehi,txtPlaca,txtConfigVehi,txtCertInsc,txtLicCondu,txtConductor,socFlota,socChofer,
-                            itSaldo,txtFletePact,itIGV,itMontoFin,txtAdelanto,socGuiasManif,itDetraccion,btnRegManif);
+        txtConductor.resetValue();*/
+        //pboxDatosEmp.setText("Datos de Empresa Proveedora de Transporte");
+        beanSessionRegistrarManifiesto.setPboxDatosEmpTitulo("Datos de Empresa Proveedora de Transporte");
+      //  Utils.addTargetMany(txtMarcVehi,txtPlaca,txtConfigVehi,txtCertInsc,txtLicCondu,txtConductor,socFlota,socChofer,
+      //                      itSaldo,txtFletePact,itIGV,itMontoFin,txtAdelanto,socGuiasManif,itDetraccion,btnRegManif);
     }
     
     public void existenteManifiesto(){
@@ -1521,13 +1537,13 @@ public class Frm_registrar_manifiesto {
     
     public void panelNuevoManif(boolean estado){
         getBeanSessionRegistrarManifiesto().setEstadoFormManif(estado);
-        pboxDatosEmp.setVisible(estado);
-        pboxDatosTrans.setVisible(estado);
-        pboxManifiesto.setVisible(estado);
+       // pboxDatosEmp.setVisible(estado);
+        //pboxDatosTrans.setVisible(estado);
+       // pboxManifiesto.setVisible(estado);
         getBeanSessionRegistrarManifiesto().setPboxDatosEmpVis(estado);
         getBeanSessionRegistrarManifiesto().setPboxDatosTransVis(estado);
         getBeanSessionRegistrarManifiesto().setPboxManifiestoVis(estado);
-        Utils.addTargetMany(pboxDatosEmp,pboxDatosTrans,pflNewManif,pboxManifiesto);
+     //   Utils.addTargetMany(pboxDatosEmp,pboxDatosTrans,pflNewManif,pboxManifiesto);
     }
 
     public void changeDireccRemi(ValueChangeEvent vce) {

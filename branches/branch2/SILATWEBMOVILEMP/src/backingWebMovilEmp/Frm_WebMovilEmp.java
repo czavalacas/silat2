@@ -52,7 +52,11 @@ import silat.servicios_negocio.LNSF.IR.LN_C_SFUsuarioRemote;
 
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFGuiaRemote;
+import silat.servicios_negocio.LNSF.IR.LN_T_SFItemxOrdsRemota;
 import silat.servicios_negocio.LNSF.SFBean.LN_C_SFFlotaBean;
+
+
+import silat.servicios_negocio.LNSF.SFBean.LN_T_SFItemxOrdsBean;
 
 import utils.system;
 
@@ -83,6 +87,8 @@ public class Frm_WebMovilEmp {
     private LN_C_SFUtilsRemote ln_C_SFUtilsRemote;
     private final static String LOOKUP_NAME_SFC_UTL_REMOTO        = "mapLN_C_SFUtils";
     
+    private LN_T_SFItemxOrdsRemota lN_T_SFItemxOrdsRemota;
+    private final static String LOOKUP_NAME_SFITEMORDS_REMOTO        = "map-LN_T_SFItemxOrds";
     
     //VARIABLES LISTAS
     private List<BeanOrdenServicio> listaOrdenServicio = new ArrayList<BeanOrdenServicio>();
@@ -113,10 +119,18 @@ public class Frm_WebMovilEmp {
     private String adelanto;
     private String comentario;
     private boolean checkBox;
+    private boolean checkBox1;
+    private boolean checkBox2;
+    private boolean cerrarOS;
     private int varia = 0;
+    private int varia1 = 0;
+    private int varia2 = 0;
+    private boolean manifTransito;
     private int tipoDoc = 1;
     private String flotaElegida;
     private String choferElegido;
+    private String busquedaRemitente;
+    private String busquedaProveedor;
     
     private String nombreChofer;
     private String nombreFlota;
@@ -171,6 +185,7 @@ public class Frm_WebMovilEmp {
         ln_T_SFManifiestoRemote = (LN_T_SFManifiestoRemote)             ctx.lookup(LOOKUP_NAME_SFMANIFIESTO_REMOTO);
         ln_C_SFUtilsRemote = (LN_C_SFUtilsRemote)                       ctx.lookup(LOOKUP_NAME_SFC_UTL_REMOTO);
         ln_T_SFGuiaRemote = (LN_T_SFGuiaRemote)                         ctx.lookup(LOOKUP_NAME_SFGUIA_REMOTO);
+        lN_T_SFItemxOrdsRemota = (LN_T_SFItemxOrdsRemota)       ctx.lookup(LOOKUP_NAME_SFITEMORDS_REMOTO);
         
         }catch(Exception e){}
     }
@@ -256,7 +271,17 @@ public class Frm_WebMovilEmp {
             guia.setCidGuia(cidGuia);
             bean1.setTrGuia(guia);
             lstItems.add(bean1);
+            
+            lN_T_SFItemxOrdsRemota.cambiarEstadoItemOrds(bean.getNidItem()+"");
         }
+/*             
+            for(BeanTrItemXOrds bean : getLstItemsOrdsRespal()){
+                for(BeanTrItemXOrds bean1 : getLstItemsOrds()){
+                    if(bean.getIndex().equals(bean1.getIndex())){
+                        
+                    }
+                }
+            } */
         
         BeanTRGuia bGuia = ln_T_SFGuiaRemote.registrarGuia_LN(cidGuia, 
                                                               npaq, 
@@ -277,8 +302,8 @@ public class Frm_WebMovilEmp {
                                                               codUn,
                                                               estadoManif,
                                                               null,
-                                                              true,
-                                                              true);
+                                                              isCerrarOS(),
+                                                              isManifTransito());
             FacesContext ctx = FacesContext.getCurrentInstance();
             ExternalContext extContext = ctx.getExternalContext();
             String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/faces/Prueba.xhtml"));
@@ -288,7 +313,7 @@ public class Frm_WebMovilEmp {
                 throw new FacesException(ioe);
             }
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
         return "";
     }
@@ -334,6 +359,17 @@ public class Frm_WebMovilEmp {
     }
     
     public String traeInfoRemitente(){
+        setNombreDireccionRemitente("");
+        setNombreDireccionRemitente("");
+        setNidManifiestoEleg("");
+        setNombreDireccionDestino("");
+        setNombreDireccionRemitente("");
+        setNombreRemitente("");
+        setComentarioGuia("");
+        setNPaquetes("");
+        setFechaEmis(new Date());
+        setFechaTrans(new Date());
+        
         String h = nidRemitenteElegido;
         BeanEmpresa empresa = ln_C_SFEmpresasRemote.selectedEmpresa(new BigDecimal(h));
         setNombreRemitente(empresa.getCRazonSocial());
@@ -375,17 +411,29 @@ public class Frm_WebMovilEmp {
         setLstItemsOrds(lN_C_SFOrdenServicioRemote.ItemsbyOrdenServicio(ordenServElegida));
         setLstItemsOrdsRespal(lN_C_SFOrdenServicioRemote.ItemsbyOrdenServicio(ordenServElegida));
         setListaManifiestoElegir(ln_C_SFManifiestoRemote.getListaManifsSinAsignar());
+        //HCO
+        String h1 = lstBeanOrd.get(0).getNidRemitente()+"";
+        BeanEmpresa empresa = ln_C_SFEmpresasRemote.selectedEmpresa(new BigDecimal(h1));
+        setNombreRemitente(empresa.getCRazonSocial());
+        setNidRemitenteElegido(h1);
         
-        setNombreDireccionRemitente("");
-        setNombreDireccionRemitente("");
-        setNidManifiestoEleg("");
-        setNombreDireccionDestino("");
-        setNombreDireccionRemitente("");
-        setNombreRemitente("");
-        setComentarioGuia("");
-        setNPaquetes("");
-        setFechaEmis(null);
-        setFechaTrans(null);
+        int nid = Integer.parseInt(h1);
+        setDirecsRemin(LN_C_SFDireccionRemote.getDireccionByProp_LN(null,nid,null));
+        
+        String h3 = lstBeanOrd.get(0).getNidDirecProv();
+        int nidDire = Integer.parseInt(h3);
+        int nidEmp = Integer.parseInt(h1);
+        List<BeanDireccion> direccion = LN_C_SFDireccionRemote.getDireccionByProp_LN(nidDire,nidEmp,null);
+        setNombreDireccionRemitente(direccion.get(0).getCDireccion());
+        setNidDireccionDestino(direccion.get(0).getNidDireccion()+"");
+        
+        String h4 = lstBeanOrd.get(0).getNidDirecCli();
+        String g4 = getNidDestinoElegido();
+        int nidDirec = Integer.parseInt(h4);
+        int nidEmpc = Integer.parseInt(g4);
+        List<BeanDireccion> direccion1 = LN_C_SFDireccionRemote.getDireccionByProp_LN(nidDirec,nidEmpc,null);
+        setNombreDireccionDestino(direccion1.get(0).getCDireccion());
+        setNidDireccionRemitente(direccion1.get(0).getNidDireccion()+"");
         
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("detOrden");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("creaGuia");
@@ -435,8 +483,8 @@ public class Frm_WebMovilEmp {
                 setNombreFlota("");
                 setComentarioGuia("");
                 setNPaquetes("");
-                setFechaEmis(null);
-                setFechaTrans(null);
+                setFechaEmis(new Date());
+                setFechaTrans(new Date());
                 FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto1");
                 FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto2");
                return "";
@@ -484,6 +532,48 @@ public class Frm_WebMovilEmp {
             varia = 0;
         }
         return true;
+    }
+    
+    public boolean cerrarOS(AjaxBehaviorEvent event){
+        if(varia1 == 0){
+            setCerrarOS(true);
+            varia1 = 1;
+        }else{
+            setCerrarOS(false);
+            varia1 = 0;
+        }
+        
+        
+        return true;
+        
+    }
+    
+    public boolean manifiestoEnTransito(AjaxBehaviorEvent event){
+        if(varia2 == 0){
+            setManifTransito(true);
+            varia2 = 1;
+        }else{
+            setManifTransito(false);
+            varia2 = 0;
+        }
+        
+        
+        return true;
+        
+    }
+    
+    public String buscarRmitentes(){
+        String razRemi = getBusquedaRemitente();
+        setLstRemitentes(this.ln_C_SFRelacionEmpresaRemote.getEmpresaProveedoresCliente((razRemi == null ? "" : razRemi.toUpperCase()),""));
+        setStyleCreaGuia("display:block");
+        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("creaGuia");
+        return "";
+    }
+    
+    public String buscarProovedor(){
+        String razRemi = getBusquedaProveedor();
+        setListaProov(ln_C_SFRelacionEmpresaRemote.getEmpresaProveedores(razRemi == null ? "" : razRemi.toUpperCase()));
+        return "";
     }
     
 
@@ -955,5 +1045,53 @@ public class Frm_WebMovilEmp {
 
     public String getNidItem() {
         return nidItem;
+    }
+
+    public void setCheckBox1(boolean checkBox1) {
+        this.checkBox1 = checkBox1;
+    }
+
+    public boolean isCheckBox1() {
+        return checkBox1;
+    }
+
+    public void setCerrarOS(boolean cerrarOS) {
+        this.cerrarOS = cerrarOS;
+    }
+
+    public boolean isCerrarOS() {
+        return cerrarOS;
+    }
+
+    public void setBusquedaRemitente(String busquedaRemitente) {
+        this.busquedaRemitente = busquedaRemitente;
+    }
+
+    public String getBusquedaRemitente() {
+        return busquedaRemitente;
+    }
+
+    public void setBusquedaProveedor(String busquedaProveedor) {
+        this.busquedaProveedor = busquedaProveedor;
+    }
+
+    public String getBusquedaProveedor() {
+        return busquedaProveedor;
+    }
+
+    public void setCheckBox2(boolean checkBox2) {
+        this.checkBox2 = checkBox2;
+    }
+
+    public boolean isCheckBox2() {
+        return checkBox2;
+    }
+
+    public void setManifTransito(boolean manifTransito) {
+        this.manifTransito = manifTransito;
+    }
+
+    public boolean isManifTransito() {
+        return manifTransito;
     }
 }

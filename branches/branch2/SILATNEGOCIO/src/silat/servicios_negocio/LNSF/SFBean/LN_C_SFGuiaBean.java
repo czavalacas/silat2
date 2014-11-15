@@ -268,6 +268,9 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             beanFactGuia.setCidUnidadNegocio(beanGuia.getCidUnidadNegocio());
             beanGuia.setTrFactura(beanFactGuia);
             
+            if(entidad.getImgGuia()!=null){
+                beanGuia.setImgGuia(entidad.getImgGuia());
+            }
             listBeanGuias.add(beanGuia); 
             
         }

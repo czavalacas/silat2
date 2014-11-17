@@ -762,7 +762,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         rucProve.setValue(bean.getCRuc());
         beanSessionRegistrarGuia.setCidDirecRemitente(beanOS.getNidDirecProv());        
         }
-        beanSessionRegistrarGuia.setLstItems(ln_C_SFItemOrdenServRemote.getListaItemsBynidOrdS(beanOS.getNidOrdnServ()));
+        beanSessionRegistrarGuia.setLstItems(ln_C_SFItemOrdenServRemote.getListaItemsBynidOrdS(beanOS.getNidOrdnServ(),0));
         Utils.addTargetMany(razonSocProve,rucProve,socDirecRemi,socDirecs,tblItms);
         
         

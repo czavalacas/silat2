@@ -34,8 +34,11 @@ import javax.persistence.PersistenceContext;
 
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFEmpresasLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFGuiaLocal;
+import silat.servicios_negocio.BDLSF.IL.BDL_C_SFItemXOrdsLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFManifiestoLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_T_SFGuiaLocal;
+import silat.servicios_negocio.BDLSF.IL.BDL_T_SFItemXOrdenServLocal;
+import silat.servicios_negocio.BDLSF.IL.BDL_T_SFOrdenServicioLocal;
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFOrdenServicioLocal;
 import silat.servicios_negocio.Beans.BeanError;
 import silat.servicios_negocio.Beans.BeanTRGuia;
@@ -51,6 +54,7 @@ import silat.servicios_negocio.entidades.admin.ADEmpresa;
 import silat.servicios_negocio.entidades.audsis.TROrdenServicio;
 import silat.servicios_negocio.entidades.trans.TRGuia;
 import silat.servicios_negocio.entidades.trans.TRItem;
+import silat.servicios_negocio.entidades.trans.TRItemXOrds;
 import silat.servicios_negocio.entidades.trans.TRManifiesto;
 import silat.servicios_negocio.util_formato.Fecha.FechaUtiles;
 import silat.servicios_negocio.util_formato.UtilsGeneral;
@@ -81,7 +85,11 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
     @EJB
     private LN_C_SFManifiestoLocal ln_C_SFManifiestoLocal;
     @EJB
-    private LN_T_SFManifiestoLocal ln_T_SFManifiestoLocal;
+    private  LN_T_SFManifiestoLocal ln_T_SFManifiestoLocal;
+    @EJB
+    private BDL_T_SFItemXOrdenServLocal bdl_T_SFItemXOrdenServLocal;
+    @EJB
+    private BDL_C_SFItemXOrdsLocal bdl_C_SFItemXOrdsLocal;  
     
     public LN_T_SFGuiaBean() {
     }
@@ -136,6 +144,13 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                 if(cerrarOS){
                     ordenServicio.get(0).setCEstord("C");//CERRAR LA OS
                 }
+                /**Asociar la Guia a Crear con la OS Previa*/
+                if(ordenServicio.get(0).getCDetalle().equals("SIN GUIAS")){
+                    ordenServicio.get(0).setCDetalle("# "+eGuia.getCidGuia());
+                }else {
+                    ordenServicio.get(0).setCDetalle(ordenServicio.get(0).getCDetalle()+"-"+eGuia.getCidGuia());
+                }         
+                /***********************************/
                 eGuia.setOrdenServicio(ordenServicio.get(0));
                 if(nidManif != 0){
                     TRManifiesto manifiesto = bdL_C_SFManifiestoLocal.findTRManifiestoById(nidManif);
@@ -145,9 +160,45 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                     eGuia.setTrManifiesto(manifiesto);
                 }
                 List<TRItem> itemsBefore = eGuia.getItemsList();
+               
+                /**czavalacas 17.11.2014
+                 * Codigo para acttualizar el estado de los items que se usaron de la OS a 1 (En Uso o Activo)*/
+                List<TRItemXOrds> itemXord=bdl_C_SFItemXOrdsLocal.getTrItemOrdenServicio_BD(nidOS,0);
+                if(lstItems!=null){
+                    for(int i=0; i<lstItems.size(); i++){
+                        if(lstItems.get(i).getNidItem()!=null){                          
+                          for(int j=0; j<itemXord.size(); j++){                          
+                            if(itemXord.get(j).getNidItem().intValue()==lstItems.get(i).getNidItem().intValue()){
+                                itemXord.get(j).setCEstado("1");
+                                itemXord.get(j).setCidGuia(cidGuia);
+                                bdl_T_SFItemXOrdenServLocal.mergeTRItemXOrds(itemXord.get(j));
+                               }
+                            }
+                           
+                            } else{/**Al no tener un nidItem en el Bean Indica que es un item nuevo 
+                                    *y lo asociamos a la OS*/
+                                TRItemXOrds itmXOrd=new TRItemXOrds(); 
+                                TROrdenServicio ordenServ=new TROrdenServicio();
+                                ordenServ.setNidOrdnServ(nidOS);
+                                itmXOrd.setTrOrdenServicio(ordenServ);
+                                itmXOrd.setCCidGuiaRemitente(lstItems.get(i).getCCidGuiaRemitente());
+                                itmXOrd.setCDescItem(lstItems.get(i).getCDescItem());
+                                itmXOrd.setCUndMedida(lstItems.get(i).getCUndMedida());
+                                itmXOrd.setDPeso(lstItems.get(i).getDPeso());
+                                itmXOrd.setNCantidad(lstItems.get(i).getNCantidad());
+                                itmXOrd.setOrden(nidOS);
+                                itmXOrd.setCEstado("1");
+                                itmXOrd.setCidGuia(cidGuia);
+                                bdl_T_SFItemXOrdenServLocal.persistTRItemXOrds(itmXOrd);                             
+                            }                     
+                    }                
+                }            
+
+                /***************************************/
                 List<TRItem> eItems = LN_C_SFUtilsLocal.beanItemToEntity(lstItems,eGuia);
                 eGuia.setItemsList(eItems);
-                eGuia = bdL_T_SFGuiaLocal.registrarGuia_BD(eGuia, opc);
+                eGuia = bdL_T_SFGuiaLocal.registrarGuia_BD(eGuia, opc);                
+           
                 if(itemsBefore != null){
                     if(itemsBefore.size() > 0){
                         ln_T_SFItemLocal.borrarItems(lstItems,itemsBefore);

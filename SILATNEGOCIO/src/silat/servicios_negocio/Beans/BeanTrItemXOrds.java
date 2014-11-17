@@ -17,13 +17,14 @@ public class BeanTrItemXOrds implements Serializable {
     private BigDecimal idItem;
     private BeanOrdenServicio trOrdenServicio;
     private Integer orden;
-    private String ruta;//tipo 2 factura
-    
+    private String ruta;//tipo 2 factura    
     private Double detalleWebmovilCantidad;
     private String detalleWebmovilUmedida;
     private String detalleWebmovilDescripcion;
     private String cEstado;
     private Integer index;
+    private String cidGuia;
+    private String descEstado;//adm cons BD   
     
     @Override
     public boolean equals(Object obj){
@@ -189,5 +190,21 @@ public class BeanTrItemXOrds implements Serializable {
 
     public Integer getIndex() {
         return index;
+    }
+
+    public void setCidGuia(String cidGuia) {
+        this.cidGuia = cidGuia;
+    }
+
+    public String getCidGuia() {
+        return cidGuia;
+    }
+
+    public void setDescEstado(String descEstado) {
+        this.descEstado = descEstado;
+    }
+
+    public String getDescEstado() {
+        return descEstado;
     }
 }

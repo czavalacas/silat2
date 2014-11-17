@@ -12,6 +12,6 @@ import silat.servicios_negocio.entidades.trans.TRItemXOrds;
 public interface BDL_C_SFItemXOrdsRemote {
     List<TRItemXOrds> getTRItemXOrdsFindAll();
     TRItemXOrds findTRItemtById(BigDecimal id);
-    List<TRItemXOrds> getTrItemOrdenServicio_BD(int nidOrdenServ); 
+    List<TRItemXOrds> getTrItemOrdenServicio_BD(int nidOrdenServ, int opc); 
     TRItemXOrds traeItemsporID(String id);
 }

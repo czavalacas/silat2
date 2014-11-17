@@ -239,8 +239,8 @@ public class Frm_registrar_orden_servicio {
        // ADFUtil.setEL("#{pageFlowScope.nidParty}", nidPar);
         
         beanSessionScopedRegistrarOS.setNidPartyOS(empresa.getNidParty());
-        getBeanSessionScopedRegistrarOS().setLstDirecs(this.llenarDireccionCombo(null,empresa.getNidParty().intValue(), null));
-        Utils.addTarget(socDirecs);
+       // getBeanSessionScopedRegistrarOS().setLstDirecs(this.llenarDireccionCombo(null,empresa.getNidParty().intValue(), null));
+       // Utils.addTarget(socDirecs);
         try{
             it1.setValue(razSol);
             it4.setValue(new BigDecimal(nidPar+""));
@@ -563,8 +563,8 @@ public class Frm_registrar_orden_servicio {
         Object _selectedRowData = t.getSelectedRowData();
         BeanADRelacionEmpresa rela = (BeanADRelacionEmpresa) _selectedRowData;
         getBeanSessionScopedRegistrarOS().setNidRemitente(rela.getAdEmpresa1().getNidParty().intValue());
-        getBeanSessionScopedRegistrarOS().setLstDirecsRemi(this.llenarDireccionCombo(null,rela.getAdEmpresa1().getNidParty().intValue(), null));
-        Utils.addTarget(socDirecRemi);
+      //  getBeanSessionScopedRegistrarOS().setLstDirecsRemi(this.llenarDireccionCombo(null,rela.getAdEmpresa1().getNidParty().intValue(), null));
+       // Utils.addTarget(socDirecRemi);
         try {
             razonSocProve.setValue(rela.getAdEmpresa1().getCRazonSocial());
             rucProve.setValue(rela.getAdEmpresa1().getCRuc());

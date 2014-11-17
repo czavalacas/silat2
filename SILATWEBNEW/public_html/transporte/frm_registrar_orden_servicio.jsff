@@ -70,7 +70,7 @@
                                   columns="10" maximumLength="11"
                                   value="#{sessionScope.beanSessionScopedRegistrarOS.rucCliente}"
                                   labelStyle="text-align: left;"/>
-                    <af:selectOneChoice label="Dirección"
+              <!--      <af:selectOneChoice label="Dirección"
                                         disabled="#{sessionScope.beanSessionScopedRegistrarOS.disableComponents}"
                                         requiredMessageDetail="Debe seleccionar una dirección" id="socDirecs"
                                         binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.socDirecs}"
@@ -79,7 +79,7 @@
                                         valueChangeListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.changeDirecDest}"
                                         labelStyle="text-align: left;">
                                      <f:selectItems value="#{beanSessionScopedRegistrarOS.lstDirecs}" id="si6"/>
-                    </af:selectOneChoice> 
+                    </af:selectOneChoice> -->
                             </af:panelFormLayout>
                     </af:panelBox>
             </af:gridCell>
@@ -113,7 +113,7 @@
                                           columns="10" maximumLength="11"
                                           value="#{sessionScope.beanSessionScopedRegistrarOS.rucRemitente}"
                                           labelStyle="text-align: left;"/>
-                            <af:selectOneChoice label="Dirección" id="socDirecRemi"
+                           <!-- <af:selectOneChoice label="Dirección" id="socDirecRemi"
                                                 binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.socDirecRemi}"
                                                 showRequired="true" unselectedLabel="Seleccionar una dirección"
                                                 required="true"
@@ -124,7 +124,7 @@
                                                 labelStyle="text-align: left;">
                                                 
                                 <f:selectItems value="#{beanSessionScopedRegistrarOS.lstDirecsRemi}" id="si7"/>
-                            </af:selectOneChoice>
+                            </af:selectOneChoice>-->
                     </af:panelFormLayout>
                 </af:panelBox>
                 </af:gridCell>

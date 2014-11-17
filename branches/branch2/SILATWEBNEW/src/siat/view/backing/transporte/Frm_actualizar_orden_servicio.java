@@ -328,7 +328,7 @@ public class Frm_actualizar_orden_servicio {
     
     }
     public void verItemsOrdenServicio(ActionEvent actionEvent) {
-     beanSessionActualizarOrdenServicio.setLstItemsOrdnS(ln_C_SFItemOrdenServRemote.getListaItemsBynidOrdS(beanSessionActualizarOrdenServicio.getNidOrdenServ()));
+     beanSessionActualizarOrdenServicio.setLstItemsOrdnS(ln_C_SFItemOrdenServRemote.getListaItemsBynidOrdS(beanSessionActualizarOrdenServicio.getNidOrdenServ(),1));
      Utils.showPopUpMIDDLE(popItemsORds);   
     }
 

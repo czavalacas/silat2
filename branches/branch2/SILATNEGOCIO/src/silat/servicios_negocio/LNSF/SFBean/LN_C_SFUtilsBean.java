@@ -80,6 +80,7 @@ public class LN_C_SFUtilsBean implements LN_C_SFUtilsRemote,
         for(BeanTRItem item : lstItems){
             TRItem eItem = (TRItem) mapper.map(item,TRItem.class);
             eItem.setTrGuia(eGuia);
+            eItem.setNidItem(null);//Para que no chape el NidDel Item de OS
             items.add(eItem);
         }
         return items;

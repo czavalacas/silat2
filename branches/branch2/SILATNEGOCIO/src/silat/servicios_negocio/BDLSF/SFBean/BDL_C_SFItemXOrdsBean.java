@@ -45,12 +45,15 @@ public class BDL_C_SFItemXOrdsBean implements BDL_C_SFItemXOrdsRemote,
         }
     }
     
-    public List<TRItemXOrds> getTrItemOrdenServicio_BD(int nidOrdenServ) {
+    public List<TRItemXOrds> getTrItemOrdenServicio_BD(int nidOrdenServ, int opc) {//opc==0; items no usados en alguna guia
         try{
             String query = "SELECT o " +
                            "FROM TRItemXOrds o " +
-                           "WHERE o.trOrdenServicio.nidOrdnServ = :nidOrdServ " +
-                           "ORDER BY o.orden ASC";           
+                           "WHERE o.trOrdenServicio.nidOrdnServ = :nidOrdServ ";
+                   if(opc==0){    
+                   query = query.concat("AND o.cEstado='0' ") ;
+                            }            
+                   query = query.concat("ORDER BY o.orden ASC")    ;
             return em.createQuery(query).setParameter("nidOrdServ",nidOrdenServ).getResultList();
            }catch(Exception e){
             return new ArrayList<TRItemXOrds>();

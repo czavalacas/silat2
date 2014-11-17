@@ -233,23 +233,24 @@
             <af:popup id="popItemsOs"
                       binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.popItemsORds}"
                       animate="false">      
-                       <af:dialog id="diagitms">
+                       <af:dialog id="diagitms" inlineStyle="width:700px; height:120px;" >
                        <af:panelFormLayout>
                     <af:table value="#{beanSessionActualizarOrdenServicio.lstItemsOrdnS}" var="row"
                                   id="tbItms"  rowBandingInterval="0" summary="Tabla Items" varStatus="vs"
-                                  rowSelection="single" width="330"
+                                  rowSelection="single" 
                                   binding="#{backingBeanScope.backing_transporte_frm_actualizar_orden_servicio.tbItems}"
-                                 >
-                            <af:column sortable="false" headerText="Orden" align="start"  width="50">
+                                  inlineStyle="width:700px; height:120px;"
+                                   >
+                            <af:column sortable="false" headerText="Orden" align="start"  width="30">
             <af:outputText value="#{row.orden}" />
         </af:column>
-        <af:column sortable="false" headerText="Cantidad" align="start" id="c11" width="107">
+        <af:column sortable="false" headerText="Cantidad" align="start" id="c11" width="50">
             <af:outputText value="#{row.NCantidad}" id="ot11"/>
         </af:column>
-        <af:column sortable="false" headerText="Peso" align="start" id="c10" width="105" visible="false">
+        <af:column sortable="false" headerText="Peso" align="start" id="c10" width="50" visible="false">
             <af:outputText value="#{row.DPeso}" id="ot120"/>
         </af:column>
-        <af:column sortable="false" headerText="Und. Medida" align="start" id="ce9" width="105">
+        <af:column sortable="false" headerText="Und. Medida" align="start" id="ce9" width="50">
             <af:outputText value="#{row.CUndMedida}" id="ot9"/>
         </af:column>
         <af:column sortable="false" headerText="Descripción de Bienes" align="start" id="c8" width="205">
@@ -257,6 +258,12 @@
         </af:column>
         <af:column id="c12" sortable="false" headerText="Guía Remitente" align="start" width="105">
             <af:outputText value="#{row.CCidGuiaRemitente}" id="ot12"/>
+        </af:column>
+         <af:column id="c13" sortable="false" headerText="Estado" align="center" width="105">
+            <af:outputText value="#{row.descEstado}" id="ot13"/>
+        </af:column>
+         <af:column id="c14" sortable="false" headerText="Guía de Remision" align="center" width="105">
+            <af:outputText value="#{row.cidGuia}" id="ot14"/>
         </af:column>
                         </af:table>         
                     </af:panelFormLayout>

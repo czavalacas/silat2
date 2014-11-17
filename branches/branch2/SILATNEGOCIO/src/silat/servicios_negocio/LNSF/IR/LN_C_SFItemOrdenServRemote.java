@@ -9,5 +9,5 @@ import silat.servicios_negocio.Beans.BeanTrItemXOrds;
 
 @Remote
 public interface LN_C_SFItemOrdenServRemote {
-    List<BeanTRItem> getListaItemsBynidOrdS(int nidOrds);
+    List<BeanTRItem> getListaItemsBynidOrdS(int nidOrds, int opc);
 }

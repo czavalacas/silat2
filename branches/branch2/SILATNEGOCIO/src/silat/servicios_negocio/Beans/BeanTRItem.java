@@ -19,6 +19,8 @@ public class BeanTRItem implements Serializable {
     private BigDecimal precioAux4AddToItmRepo;
     private int grupo;
     private String ruta;//tipo 2 factura
+    private String descEstado;//adm cons BD   
+    private String cidGuia;
     
     @Override
     public boolean equals(Object obj){
@@ -157,5 +159,21 @@ public class BeanTRItem implements Serializable {
 
     public String getRuta() {
         return ruta;
+    }
+
+    public void setDescEstado(String descEstado) {
+        this.descEstado = descEstado;
+    }
+
+    public String getDescEstado() {
+        return descEstado;
+    }
+
+    public void setCidGuia(String cidGuia) {
+        this.cidGuia = cidGuia;
+    }
+
+    public String getCidGuia() {
+        return cidGuia;
     }
 }

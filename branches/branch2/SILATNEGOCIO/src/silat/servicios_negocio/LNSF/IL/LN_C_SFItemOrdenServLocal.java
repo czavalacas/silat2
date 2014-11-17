@@ -9,5 +9,5 @@ import silat.servicios_negocio.Beans.BeanTrItemXOrds;
 
 @Local
 public interface LN_C_SFItemOrdenServLocal {
-    List<BeanTRItem> getListaItemsBynidOrdS(int nidOrds);
+    List<BeanTRItem> getListaItemsBynidOrdS(int nidOrds, int opc);
 }

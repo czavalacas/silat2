@@ -83,9 +83,10 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
             empresa.setAdParty(party);
             //empresa.setNidParty((nidParty));
             entidad.setAdEmpresa(empresa);
-            if(cDetalle!=null){
+       /*     if(cDetalle!=null){
             entidad.setCDetalle(cDetalle.toUpperCase());
-            }
+            }*/
+            entidad.setCDetalle("SIN GUIAS");
             entidad.setFecOrdnServ(fecha);
             entidad.setNEstadoOrden(new BigDecimal(1));
             entidad.setCEstord("P");

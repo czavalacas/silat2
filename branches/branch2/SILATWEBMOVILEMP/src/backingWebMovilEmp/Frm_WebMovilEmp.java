@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import java.math.BigDecimal;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -40,14 +42,17 @@ import silat.servicios_negocio.Beans.BeanTRGuia;
 import silat.servicios_negocio.Beans.BeanTRItem;
 import silat.servicios_negocio.Beans.BeanTRItemsWebMovil;
 import silat.servicios_negocio.Beans.BeanTrItemXOrds;
+import silat.servicios_negocio.Beans.BeanUnidadMedida;
 import silat.servicios_negocio.LNSF.IL.LN_T_SFManifiestoRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFChoferRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFDireccionRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFEmpresasRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFFlotaRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFGuiaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFManifiestoRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFOrdenServicioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFRelacionEmpresaRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFUnidadMedidaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUsuarioRemote;
 
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
@@ -89,6 +94,10 @@ public class Frm_WebMovilEmp {
     
     private LN_T_SFItemxOrdsRemota lN_T_SFItemxOrdsRemota;
     private final static String LOOKUP_NAME_SFITEMORDS_REMOTO        = "map-LN_T_SFItemxOrds";
+    private LN_C_SFGuiaRemote ln_C_SFGuiaRemote;
+    private final static String LOOKUP_NAME_SFCGUIA_REMOTO = "mapLN_C_SFGuia";
+    private LN_C_SFUnidadMedidaRemote ln_C_SFUnidadMedidaRemote; 
+    private final static String LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO = "mapLN_C_SFUnidadMedida";
     
     //VARIABLES LISTAS
     private List<BeanOrdenServicio> listaOrdenServicio = new ArrayList<BeanOrdenServicio>();
@@ -98,6 +107,8 @@ public class Frm_WebMovilEmp {
     private List<BeanFlota> lstFlotas = new ArrayList<BeanFlota>();
     private List<BeanChofer> lstChofers = new ArrayList<BeanChofer>();
     
+    private List<BeanTRGuia> lstGuiasdeManifiesto = new ArrayList<BeanTRGuia>();
+    
     private List<BeanTrItemXOrds> lstItemsOrds = new ArrayList<BeanTrItemXOrds>();
     private List<BeanTrItemXOrds> lstItemsOrdsRespal = new ArrayList<BeanTrItemXOrds>();
     
@@ -106,6 +117,8 @@ public class Frm_WebMovilEmp {
     List<BeanDireccion> direcsRemin = new ArrayList<BeanDireccion>();
     
     List<BeanDireccion> direcsDest = new ArrayList<BeanDireccion>();
+    
+    List<BeanUnidadMedida> lstUndMedida = new ArrayList<BeanUnidadMedida>();
     
     //OTRAS VARIABLES
     private String bienvenida="Bienvenido Usuario";
@@ -137,7 +150,7 @@ public class Frm_WebMovilEmp {
     
     private String ordenServElegida;
     private String nombreEmpresaOrds;
-    private Date dateOrds;
+    private String dateOrds;
     private String comentarioOrds;
     private String nidOrds;
     
@@ -172,6 +185,17 @@ public class Frm_WebMovilEmp {
     
     private String styleItemsDetalleOrdenServicio = "overflow-y: scroll;height:150px";
     private String styleItemsCrearGuia = "overflow-y: scroll;height:280px;margin-top:10px;margin-bottom:10px";
+    
+    private String ManifiestoElegido;
+    
+    private String fechaMnifiestoInfo;
+    private String fletePactadoInfo;
+    private String adelantoInfo;
+    private String observacionesInfo;
+    
+    private String nidUmedida;
+    private String cantidadNewItem;
+    private String descripcionNewItem;
 
     public Frm_WebMovilEmp() {
         try {
@@ -189,6 +213,8 @@ public class Frm_WebMovilEmp {
         ln_C_SFUtilsRemote = (LN_C_SFUtilsRemote)                       ctx.lookup(LOOKUP_NAME_SFC_UTL_REMOTO);
         ln_T_SFGuiaRemote = (LN_T_SFGuiaRemote)                         ctx.lookup(LOOKUP_NAME_SFGUIA_REMOTO);
         lN_T_SFItemxOrdsRemota = (LN_T_SFItemxOrdsRemota)       ctx.lookup(LOOKUP_NAME_SFITEMORDS_REMOTO);
+        ln_C_SFGuiaRemote = (LN_C_SFGuiaRemote) ctx.lookup(LOOKUP_NAME_SFCGUIA_REMOTO);
+        ln_C_SFUnidadMedidaRemote = (LN_C_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO);
         
         }catch(Exception e){}
     }
@@ -203,8 +229,82 @@ public class Frm_WebMovilEmp {
             setListaManifiesto(ln_C_SFManifiestoRemote.getListaManifsSinAsignar());
             setListaProov(ln_C_SFRelacionEmpresaRemote.getEmpresaProveedores(""));
             setLstRemitentes(this.ln_C_SFRelacionEmpresaRemote.getEmpresaProveedoresCliente("",""));
+            setLstUndMedida(this.llenarUndMedidaCombo());
         } else {
         }
+    }
+    
+    public String añardirnuevoItem(){
+        try{
+            String g = nidUmedida;
+            BeanTrItemXOrds bean = new BeanTrItemXOrds();
+            String cidGuia  = ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"); 
+            bean.setCCidGuiaRemitente(cidGuia);
+            bean.setCDescItem(getDescripcionNewItem());
+            bean.setCUndMedida(getNidUmedida());
+            double cantidad = Double.parseDouble(getCantidadNewItem());
+            bean.setNCantidad(cantidad);
+            //vista
+            bean.setDetalleWebmovilCantidad(cantidad);
+            bean.setDetalleWebmovilDescripcion(getDescripcionNewItem());
+            bean.setDetalleWebmovilUmedida(getNidUmedida());
+            getLstItemsOrdsRespal().add(bean);
+            getLstItemsOrds().add(bean);
+            
+            if(getLstItemsOrdsRespal().size() == 5){
+                setStyleItemsCrearGuia("overflow-y: scroll;height:390px;margin-top:10px;margin-bottom:10px");
+            }
+            if(getLstItemsOrdsRespal().size() == 4){
+                setStyleItemsCrearGuia("overflow-y: scroll;height:320px;margin-top:10px;margin-bottom:10px");
+            }
+            if(getLstItemsOrdsRespal().size() == 3){
+                setStyleItemsCrearGuia("overflow-y: scroll;height:250px;margin-top:10px;margin-bottom:10px");
+            }
+            if(getLstItemsOrdsRespal().size() == 2){
+                setStyleItemsCrearGuia("overflow-y: scroll;height:160px;margin-top:10px;margin-bottom:10px");
+            }
+            if(getLstItemsOrdsRespal().size() == 1){
+                setStyleItemsCrearGuia("overflow-y: scroll;height:100px;margin-top:10px;margin-bottom:10px");
+            }
+            if(getLstItemsOrdsRespal().size() == 0){
+                setStyleItemsCrearGuia("overflow-y: scroll;height:0px;margin-top:10px;margin-bottom:10px");
+            }
+            
+            setDescripcionNewItem("");
+            setCantidadNewItem("");
+            
+        }catch(Exception e){
+                setDescripcionNewItem("");
+                setCantidadNewItem("");
+            }
+        return "";
+    }
+    
+    public ArrayList llenarUndMedidaCombo() {
+        ArrayList umItems = new ArrayList();
+        List<BeanUnidadMedida> consts = ln_C_SFUnidadMedidaRemote.getUnidadesMedida_LN();
+        for (BeanUnidadMedida r : consts) {
+            umItems.add(new SelectItem(r.getSigla().toString(), 
+                                       r.getDescUnidadMedida().toString()));
+        }
+        return umItems;
+    }
+    
+    public String traeInfoManifiessto(){
+        String  h = ManifiestoElegido;
+        BeanManifiesto bean = new BeanManifiesto();
+        int g = Integer.parseInt(h);
+        bean.setNidManifiesto(g);
+        List<BeanManifiesto> manif= ln_C_SFManifiestoRemote._findManifiestosByAttr_LN(null, null, g, null, null, null, null, null, null, null, null, null);
+        
+        setFechaMnifiestoInfo(manif.get(0).getFechaManifiesto().getDay()+"/"+manif.get(0).getFechaManifiesto().getMonth()+"/"+manif.get(0).getFechaManifiesto().getYear());
+        setFletePactadoInfo(manif.get(0).getNFletePactado()+"");
+        setAdelantoInfo(manif.get(0).getNAdelanto()+"");
+        setObservacionesInfo(manif.get(0).getCObservaciones());
+        
+        setLstGuiasdeManifiesto(ln_C_SFGuiaRemote.getGuiasByManifiesto_LN(g));
+        
+        return "";
     }
     
     public String restaurarItems(){
@@ -398,7 +498,10 @@ public class Frm_WebMovilEmp {
         List <BeanOrdenServicio> lstBeanOrd = lN_C_SFOrdenServicioRemote.findOrdenServicioByAttributesAux(bean);
         setNombreEmpresaOrds(lstBeanOrd.get(0).getDetalleWebmovilEmpresa());
         setComentarioOrds(lstBeanOrd.get(0).getDetalleWebmovilComentario());
-        setDateOrds(lstBeanOrd.get(0).getFecOrdnServ());
+        
+           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss");
+           String folderName = formatter.format(lstBeanOrd.get(0).getFecOrdnServ());
+        setDateOrds(folderName);
         setNidOrds(lstBeanOrd.get(0).getNidOrdnServ()+"");
         
         
@@ -413,24 +516,24 @@ public class Frm_WebMovilEmp {
         
         setLstItemsOrds(lN_C_SFOrdenServicioRemote.ItemsbyOrdenServicio(ordenServElegida));
         if(getLstItemsOrds().size() == 5){
-            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:140px");
-            setStyleItemsCrearGuia("overflow-y: scroll;height:250px;margin-top:10px;margin-bottom:10px");
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:390px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:390px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 4){
             setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:320px");
-            setStyleItemsCrearGuia("overflow-y: scroll;height:200px;margin-top:10px;margin-bottom:10px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:320px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 3){
             setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:250px");
-            setStyleItemsCrearGuia("overflow-y: scroll;height:150px;margin-top:10px;margin-bottom:10px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:250px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 2){
             setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:160px");
-            setStyleItemsCrearGuia("overflow-y: scroll;height:100px;margin-top:10px;margin-bottom:10px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:160px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 1){
-            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:80px");
-            setStyleItemsCrearGuia("overflow-y: scroll;height:50px;margin-top:10px;margin-bottom:10px");
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:100px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:100px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 0){
             setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:0px");
@@ -450,11 +553,12 @@ public class Frm_WebMovilEmp {
         setNidRemitenteElegido(h1);
         }
         
-        if(h1 != "" || lstBeanOrd.get(0).getNidDirecProv()==null){
-        int nid = Integer.parseInt(h1);
-        setDirecsRemin(LN_C_SFDireccionRemote.getDireccionByProp_LN(null,nid,null));
+        if(lstBeanOrd.get(0).getNidRemitente() == null || lstBeanOrd.get(0).getNidDirecProv()==null){
+        
         }
         else{
+        int nid = Integer.parseInt(h1);
+        setDirecsRemin(LN_C_SFDireccionRemote.getDireccionByProp_LN(null,nid,null));
         String h3 = lstBeanOrd.get(0).getNidDirecProv();
         int nidDire = Integer.parseInt(h3);
         int nidEmp = Integer.parseInt(h1);
@@ -873,11 +977,11 @@ public class Frm_WebMovilEmp {
         return comentarioOrds;
     }
 
-    public void setDateOrds(Date dateOrds) {
+    public void setDateOrds(String dateOrds) {
         this.dateOrds = dateOrds;
     }
 
-    public Date getDateOrds() {
+    public String getDateOrds() {
         return dateOrds;
     }
 
@@ -1151,5 +1255,85 @@ public class Frm_WebMovilEmp {
 
     public String getStyleItemsCrearGuia() {
         return styleItemsCrearGuia;
+    }
+
+    public void setManifiestoElegido(String ManifiestoElegido) {
+        this.ManifiestoElegido = ManifiestoElegido;
+    }
+
+    public String getManifiestoElegido() {
+        return ManifiestoElegido;
+    }
+
+    public void setFechaMnifiestoInfo(String fechaMnifiestoInfo) {
+        this.fechaMnifiestoInfo = fechaMnifiestoInfo;
+    }
+
+    public String getFechaMnifiestoInfo() {
+        return fechaMnifiestoInfo;
+    }
+
+    public void setFletePactadoInfo(String fletePactadoInfo) {
+        this.fletePactadoInfo = fletePactadoInfo;
+    }
+
+    public String getFletePactadoInfo() {
+        return fletePactadoInfo;
+    }
+
+    public void setAdelantoInfo(String adelantoInfo) {
+        this.adelantoInfo = adelantoInfo;
+    }
+
+    public String getAdelantoInfo() {
+        return adelantoInfo;
+    }
+
+    public void setObservacionesInfo(String observacionesInfo) {
+        this.observacionesInfo = observacionesInfo;
+    }
+
+    public String getObservacionesInfo() {
+        return observacionesInfo;
+    }
+
+    public void setLstGuiasdeManifiesto(List<BeanTRGuia> lstGuiasdeManifiesto) {
+        this.lstGuiasdeManifiesto = lstGuiasdeManifiesto;
+    }
+
+    public List<BeanTRGuia> getLstGuiasdeManifiesto() {
+        return lstGuiasdeManifiesto;
+    }
+
+    public void setLstUndMedida(List<BeanUnidadMedida> lstUndMedida) {
+        this.lstUndMedida = lstUndMedida;
+    }
+
+    public List<BeanUnidadMedida> getLstUndMedida() {
+        return lstUndMedida;
+    }
+
+    public void setNidUmedida(String nidUmedida) {
+        this.nidUmedida = nidUmedida;
+    }
+
+    public String getNidUmedida() {
+        return nidUmedida;
+    }
+
+    public void setCantidadNewItem(String cantidadNewItem) {
+        this.cantidadNewItem = cantidadNewItem;
+    }
+
+    public String getCantidadNewItem() {
+        return cantidadNewItem;
+    }
+
+    public void setDescripcionNewItem(String descripcionNewItem) {
+        this.descripcionNewItem = descripcionNewItem;
+    }
+
+    public String getDescripcionNewItem() {
+        return descripcionNewItem;
     }
 }

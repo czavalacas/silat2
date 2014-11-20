@@ -160,8 +160,8 @@ public class Frm_WebMovilEmp {
     private String nidFlotaEleg;
     private String nidChofEleg;
     
-    private Date fechaTrans;
-    private Date fechaEmis;
+    private Date fechaTrans = new Date();
+    private Date fechaEmis = new Date();
     
     private String nidRemitenteGuardar;
     
@@ -417,19 +417,19 @@ public class Frm_WebMovilEmp {
             setStyleItemsCrearGuia("overflow-y: scroll;height:250px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 4){
-            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:120px");
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:320px");
             setStyleItemsCrearGuia("overflow-y: scroll;height:200px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 3){
-            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:100px");
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:250px");
             setStyleItemsCrearGuia("overflow-y: scroll;height:150px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 2){
-            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:80px");
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:160px");
             setStyleItemsCrearGuia("overflow-y: scroll;height:100px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 1){
-            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:40px");
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:80px");
             setStyleItemsCrearGuia("overflow-y: scroll;height:50px;margin-top:10px;margin-bottom:10px");
         }
         if(getLstItemsOrds().size() == 0){

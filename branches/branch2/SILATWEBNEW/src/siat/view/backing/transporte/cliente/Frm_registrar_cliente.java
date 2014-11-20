@@ -339,7 +339,7 @@ public class Frm_registrar_cliente {
                 }            
             }
         if(repetido==0){
-        if(!getBeanSessionRegistrarCliente().getListFlota().isEmpty() && accion==2){
+        if(!getBeanSessionRegistrarCliente().getListFlota().isEmpty() && accion == 2){
             getBeanSessionRegistrarCliente().getListFlota().remove(index);
         }
             beanFlota.setNidFlota(index);
@@ -386,7 +386,7 @@ public class Frm_registrar_cliente {
             }            
             }
             if(repetido==0){
-            if(!getBeanSessionRegistrarCliente().getListChofer().isEmpty() && accion==2){
+                if(!getBeanSessionRegistrarCliente().getListChofer().isEmpty() && accion ==2){
                 getBeanSessionRegistrarCliente().getListChofer().remove(index);
             }
             beanChofer.setNombres(nombreChofer.toUpperCase());

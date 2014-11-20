@@ -152,7 +152,8 @@
             <af:commandButton text="#{sessionScope.beanSessionScopedRegistrarOS.nombBtnImg}" id="btnImg"
                               actionListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.abrirPopImg}"
                               partialSubmit="true" immediate="true"
-                              binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.btnImg}"/>
+                              binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.btnImg}"
+                              visible="false"/>
             <af:commandButton text="Nueva Unidad Medida" id="btnAddUndMed" immediate="true" partialSubmit="true"
                               binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.btnAddUndMed}">
                 <af:showPopupBehavior popupId="popUM" triggerType="click"/>

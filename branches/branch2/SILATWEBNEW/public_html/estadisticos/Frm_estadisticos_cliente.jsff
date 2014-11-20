@@ -17,6 +17,11 @@
                                   actionListener="#{backingBeanScope.backing_estadistico_estadistico_cliente.llenarGraficos}"/>
             </af:panelFormLayout>
             <af:spacer width="200" height="10" id="s1"/>
+            <af:commandButton text="Descargar PDF" id="cb2">
+                <af:fileDownloadActionListener filename="Graficos_Clientes.pdf"
+                                                contentType="application/pdf"
+                                               method="#{backingBeanScope.backing_estadistico_estadistico_cliente.exportPdf}"/>
+            </af:commandButton>
             <af:panelFormLayout id="pfl2">
                 <af:selectOneRadio label="Columnas:" id="sor1" value="#{beanSessionEstadisticosCliente.columns}"
                                    valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico_cliente.changeDashBoardColumn}"
@@ -35,12 +40,16 @@
                 </af:selectOneRadio>
             </af:panelFormLayout>
             <af:spacer width="50" height="10" id="s2"/>
+            <af:selectManyChoice label="Clientes:" id="smc2"
+                                 valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico_cliente.changeGraphic}"
+                                 immediate="true" autoSubmit="true">
+                <f:selectItems value="#{beanSessionEstadisticosCliente.listChoice}" id="si12"/>
+            </af:selectManyChoice>
             <af:panelFormLayout id="pfl3">
                 <af:selectManyCheckbox label="Visibilidad" id="smc1"
                                        binding="#{backingBeanScope.backing_estadistico_estadistico_cliente.smc1}"
                                        immediate="true" autoSubmit="true"
-                                       valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico_cliente.PanelVisibleChanger}"
-                                       layout="horizontal">
+                                       valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico_cliente.PanelVisibleChanger}">
                     <af:selectItem label="Panel 1" id="si6"/>
                     <af:selectItem label="Panel 2" id="si7"/>
                     <af:selectItem label="Panel 3" id="si8"/>
@@ -74,9 +83,9 @@
                                 <dvt:o1Axis/>
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER"/>
-                                <dvt:graphTitle text="Ingresos Lineal"/>
-                                <dvt:o1Title text="Transacciones"/>
-                                <dvt:y1Title text="Dinero"/>
+                                <dvt:graphTitle text="Ordenes Por Mes"/>
+                                <dvt:o1Title text="Ordenes"/>
+                                <dvt:y1Title text="Cantidad"/>
                             </dvt:lineGraph>
                         </af:panelBox>
                         <af:panelBox text="Panel Ganancias Por Mes" id="pb6"
@@ -96,7 +105,7 @@
                                 <dvt:o1Axis/>
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER"/>
-                                <dvt:graphTitle text="Panel Egresos Lineal"/>
+                                <dvt:graphTitle text="Panel Ganancias por Mes"/>
                                 <dvt:o1Title text="Transacciones"/>
                                 <dvt:y1Title text="Dinero"/>
                             </dvt:lineGraph>
@@ -120,9 +129,9 @@
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER" position="LAP_TOP"/>
                                 <dvt:graphSubtitle text="Subtitle" rendered="false"/>
-                                <dvt:graphTitle text="Egresos vs Ingresos"/>
-                                <dvt:o1Title text="Transacciones"/>
-                                <dvt:y1Title text="Dinero"/>
+                                <dvt:graphTitle text="Ordenes Atendidas"/>
+                                <dvt:o1Title text="Ordenes"/>
+                                <dvt:y1Title text="Cantidad"/>
                             </dvt:barGraph>
                             <f:facet name="toolbar"/>
                         </af:panelBox>
@@ -144,9 +153,9 @@
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER" position="LAP_TOP"/>
                                 <dvt:graphSubtitle text="Subtitle" rendered="false"/>
-                                <dvt:graphTitle text="Ingresos"/>
-                                <dvt:o1Title text="Transacciones"/>
-                                <dvt:y1Title text="Dinero"/>
+                                <dvt:graphTitle text="Ordenes Anuladas"/>
+                                <dvt:o1Title text="Ordenes"/>
+                                <dvt:y1Title text="Cantidad"/>
                             </dvt:barGraph>
                             <f:facet name="toolbar"/>
                         </af:panelBox>
@@ -168,8 +177,8 @@
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER" position="LAP_TOP"/>
                                 <dvt:graphSubtitle text="Subtitle" rendered="false"/>
-                                <dvt:graphTitle text="Egresos"/>
-                                <dvt:o1Title text="Transacciones"/>
+                                <dvt:graphTitle text="Ganancias"/>
+                                <dvt:o1Title text="Clientes"/>
                                 <dvt:y1Title text="Dinero"/>
                             </dvt:barGraph>
                             <f:facet name="toolbar"/>
@@ -191,9 +200,7 @@
                                 <dvt:sliceLabel/>
                                 <dvt:pieLabel rendered="true"/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER"/>
-                                <dvt:graphTitle id="graphTitle1" text="Ingresos vs Egresos" rendered="true"/>
-                                <dvt:x1Title text="Aprobados"/>
-                                <dvt:y1Title text="Aprobados"/>
+                                <dvt:graphTitle id="graphTitle1" text="Ganancias Comparativo" rendered="true"/>
                             </dvt:pieGraph>
                             <f:facet name="toolbar"/>
                         </af:panelBox>

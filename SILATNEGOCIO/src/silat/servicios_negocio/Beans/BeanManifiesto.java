@@ -31,6 +31,8 @@ public class BeanManifiesto implements Serializable, Prototype {
     private String descEstadoManifiestoNegocio;
     private int index;
     private Double detraccionReal;
+    
+    private String detalleWebMovilEMPManifiesto;
 
     public BeanManifiesto(){
         
@@ -265,5 +267,13 @@ public class BeanManifiesto implements Serializable, Prototype {
 
     public Double getDetraccionReal() {
         return detraccionReal;
+    }
+
+    public void setDetalleWebMovilEMPManifiesto(String detalleWebMovilEMPManifiesto) {
+        this.detalleWebMovilEMPManifiesto = detalleWebMovilEMPManifiesto;
+    }
+
+    public String getDetalleWebMovilEMPManifiesto() {
+        return detalleWebMovilEMPManifiesto;
     }
 }

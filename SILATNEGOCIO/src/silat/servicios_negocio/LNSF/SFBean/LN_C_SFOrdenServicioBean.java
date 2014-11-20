@@ -244,7 +244,7 @@ public class LN_C_SFOrdenServicioBean implements LN_C_SFOrdenServicioRemote,
             bean.setFecOrdnServ(entida.getFecOrdnServ());
             bean.setComentario(entida.getComentario());
             bean.setNidEmpresa(entida.getAdEmpresa().getNidParty());
-            bean.setDetalleWebmovilComentario(entida.getComentario());
+            bean.setDetalleWebmovilComentario(entida.getCDetalle());
             bean.setNidRemitente(entida.getNidRemitente());
             bean.setNidDirecCli(entida.getNidDirecCli());
             bean.setNidDirecProv(entida.getNidDirecProv());

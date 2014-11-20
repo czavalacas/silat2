@@ -169,6 +169,9 @@ public class Frm_WebMovilEmp {
     
     private String styleCreaGuia = "display:none";
     private String styleLastForm ="display:none"; 
+    
+    private String styleItemsDetalleOrdenServicio = "overflow-y: scroll;height:150px";
+    private String styleItemsCrearGuia = "overflow-y: scroll;height:280px;margin-top:10px;margin-bottom:10px";
 
     public Frm_WebMovilEmp() {
         try {
@@ -263,6 +266,7 @@ public class Frm_WebMovilEmp {
         List<BeanTRItem> lstItems = new ArrayList<BeanTRItem>();
         for(BeanTrItemXOrds bean : getLstItemsOrdsRespal()){
             BeanTRItem bean1 = new BeanTRItem();
+            bean1.setNidItem(bean.getNidItem());
             bean1.setCDescItem(bean.getDetalleWebmovilDescripcion());
             bean1.setCUndMedida(bean.getDetalleWebmovilUmedida());
             bean1.setNCantidad(bean.getDetalleWebmovilCantidad());
@@ -270,9 +274,8 @@ public class Frm_WebMovilEmp {
                 BeanTRGuia guia = new BeanTRGuia();
             guia.setCidGuia(cidGuia);
             bean1.setTrGuia(guia);
+            bean1.setCidGuia(cidGuia);
             lstItems.add(bean1);
-            
-            lN_T_SFItemxOrdsRemota.cambiarEstadoItemOrds(bean.getNidItem()+"");
         }
 /*             
             for(BeanTrItemXOrds bean : getLstItemsOrdsRespal()){
@@ -409,31 +412,70 @@ public class Frm_WebMovilEmp {
         setStyleCreaGuia("display:none");
         
         setLstItemsOrds(lN_C_SFOrdenServicioRemote.ItemsbyOrdenServicio(ordenServElegida));
+        if(getLstItemsOrds().size() == 5){
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:140px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:250px;margin-top:10px;margin-bottom:10px");
+        }
+        if(getLstItemsOrds().size() == 4){
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:120px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:200px;margin-top:10px;margin-bottom:10px");
+        }
+        if(getLstItemsOrds().size() == 3){
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:100px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:150px;margin-top:10px;margin-bottom:10px");
+        }
+        if(getLstItemsOrds().size() == 2){
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:80px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:100px;margin-top:10px;margin-bottom:10px");
+        }
+        if(getLstItemsOrds().size() == 1){
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:40px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:50px;margin-top:10px;margin-bottom:10px");
+        }
+        if(getLstItemsOrds().size() == 0){
+            setStyleItemsDetalleOrdenServicio("overflow-y: scroll;height:0px");
+            setStyleItemsCrearGuia("overflow-y: scroll;height:0px;margin-top:10px;margin-bottom:10px");
+        }
         setLstItemsOrdsRespal(lN_C_SFOrdenServicioRemote.ItemsbyOrdenServicio(ordenServElegida));
         setListaManifiestoElegir(ln_C_SFManifiestoRemote.getListaManifsSinAsignar());
         //HCO
-        String h1 = lstBeanOrd.get(0).getNidRemitente()+"";
+        String h1 = "";
+        if (lstBeanOrd.get(0).getNidRemitente() == null) {
+        setNombreRemitente("No tiene");
+        setNidRemitenteElegido(null);
+        } else {
+        h1 = lstBeanOrd.get(0).getNidRemitente()+"";
         BeanEmpresa empresa = ln_C_SFEmpresasRemote.selectedEmpresa(new BigDecimal(h1));
         setNombreRemitente(empresa.getCRazonSocial());
         setNidRemitenteElegido(h1);
+        }
         
+        if(h1 != "" || lstBeanOrd.get(0).getNidDirecProv()==null){
         int nid = Integer.parseInt(h1);
         setDirecsRemin(LN_C_SFDireccionRemote.getDireccionByProp_LN(null,nid,null));
-        
+        }
+        else{
         String h3 = lstBeanOrd.get(0).getNidDirecProv();
         int nidDire = Integer.parseInt(h3);
         int nidEmp = Integer.parseInt(h1);
         List<BeanDireccion> direccion = LN_C_SFDireccionRemote.getDireccionByProp_LN(nidDire,nidEmp,null);
         setNombreDireccionRemitente(direccion.get(0).getCDireccion());
         setNidDireccionDestino(direccion.get(0).getNidDireccion()+"");
+        }
         
-        String h4 = lstBeanOrd.get(0).getNidDirecCli();
-        String g4 = getNidDestinoElegido();
-        int nidDirec = Integer.parseInt(h4);
-        int nidEmpc = Integer.parseInt(g4);
-        List<BeanDireccion> direccion1 = LN_C_SFDireccionRemote.getDireccionByProp_LN(nidDirec,nidEmpc,null);
-        setNombreDireccionDestino(direccion1.get(0).getCDireccion());
-        setNidDireccionRemitente(direccion1.get(0).getNidDireccion()+"");
+        String h4 = "";
+        String g4 = "";
+        if(lstBeanOrd.get(0).getNidDirecCli() == null || getNidDestinoElegido() == null){
+
+        }else{
+            h4 = lstBeanOrd.get(0).getNidDirecCli();
+            g4 = getNidDestinoElegido();
+            int nidDirec = Integer.parseInt(h4);
+            int nidEmpc = Integer.parseInt(g4);
+            List<BeanDireccion> direccion1 = LN_C_SFDireccionRemote.getDireccionByProp_LN(nidDirec,nidEmpc,null);
+            setNombreDireccionDestino(direccion1.get(0).getCDireccion());
+            setNidDireccionRemitente(direccion1.get(0).getNidDireccion()+"");
+        }
         
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("detOrden");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("creaGuia");
@@ -1093,5 +1135,21 @@ public class Frm_WebMovilEmp {
 
     public boolean isManifTransito() {
         return manifTransito;
+    }
+
+    public void setStyleItemsDetalleOrdenServicio(String styleItemsDetalleOrdenServicio) {
+        this.styleItemsDetalleOrdenServicio = styleItemsDetalleOrdenServicio;
+    }
+
+    public String getStyleItemsDetalleOrdenServicio() {
+        return styleItemsDetalleOrdenServicio;
+    }
+
+    public void setStyleItemsCrearGuia(String styleItemsCrearGuia) {
+        this.styleItemsCrearGuia = styleItemsCrearGuia;
+    }
+
+    public String getStyleItemsCrearGuia() {
+        return styleItemsCrearGuia;
     }
 }

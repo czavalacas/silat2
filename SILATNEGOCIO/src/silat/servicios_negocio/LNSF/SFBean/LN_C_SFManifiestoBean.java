@@ -169,6 +169,7 @@ public class LN_C_SFManifiestoBean implements LN_C_SFManifiestoRemote,
             bean.setNidChof(entidad.getNidChof());
             bean.setNidFlota(entidad.getNidFlota());
             bean.setNidManifiesto(entidad.getNidManifiesto());
+            bean.setDetalleWebMovilEMPManifiesto(entidad.getTrManifiesto().getCRazonSocial()+"|Detraccion: S/"+entidad.getDetraccionReal());
             listaManifiesto.add(bean);
         }   
         return listaManifiesto;

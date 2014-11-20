@@ -2,6 +2,8 @@ package silat.servicios_negocio.LNSF.SFBean;
 
 import java.math.BigDecimal;
 
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -356,6 +358,13 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             for (TRGuia guia : lstGuia) {
                 beanGuia = new BeanTRGuia();
                 beanGuia.setCConformidad(guia.getCConformidad());
+                beanGuia.setCObservaciones(guia.getCObservaciones());
+                
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss");
+                String folderName = formatter.format(guia.getFechaGuia());
+                Date d1 = formatter.parse(folderName);
+                
+                beanGuia.setFechaGuia(d1);
                 beanGuia.setCidGuia(guia.getCidUnidadNegocio() + "-" + guia.getCidGuia());
                 lstBeanGuias.add(beanGuia);
             }

@@ -27,6 +27,7 @@
             document.getElementById("creaGuia").style.display="none";
             document.getElementById("lastForm").style.display="none";
             document.getElementById("detOrden").style.display="none";
+            document.getElementById("manifiestoInfo").style.display="none";
                 }
           function ocultarForm(){
               document.getElementById("ordenServicio").style.display="none";
@@ -44,6 +45,7 @@
               document.getElementById("creaGuia").style.display="none";
               document.getElementById("lastForm").style.display="none";
               document.getElementById("detOrden").style.display="none";
+              document.getElementById("manifiestoInfo").style.display="none";
           }
           function mostrarForm(){
               document.getElementById("subManifiesto").style.display="none";
@@ -61,6 +63,7 @@
               document.getElementById("abrirModalChoferes").style.display="none";
               document.getElementById("lastForm").style.display="none";
               document.getElementById("detOrden").style.display="none";
+              document.getElementById("manifiestoInfo").style.display="none";
           }
           function mostrarFormregManif(){
               document.getElementById("subManifiesto").style.display="block";
@@ -76,6 +79,7 @@
               document.getElementById("abrirModalChoferes").style.display="block";
               document.getElementById("lastForm").style.display="none";
               document.getElementById("detOrden").style.display="none";
+              document.getElementById("manifiestoInfo").style.display="none";
           }
             function mostrarFormregOrds(){
               document.getElementById("subManifiesto").style.display="none";
@@ -93,6 +97,7 @@
               document.getElementById("creaGuia").style.display="none";
               document.getElementById("detOrden").style.display="block";
               document.getElementById("lastForm").style.display="none";
+              document.getElementById("manifiestoInfo").style.display="none";
           }
           
         function mostrarFormCreaGuia(){
@@ -112,7 +117,29 @@
               document.getElementById("creaGuia").style.display="block";
               document.getElementById("lastForm").style.display="block";
               document.getElementById("detOrden").style.display="none";
+              document.getElementById("manifiestoInfo").style.display="none";
           }
+          function mostrarFormInfoManif(){
+              document.getElementById("subManifiesto").style.display="none";
+              document.getElementById("manifiesto").style.display="none";
+              document.getElementById("regManifiesto0").style.display="none";
+              document.getElementById("regManifiesto").style.display="none";
+              document.getElementById("regManifiesto1").style.display="none";
+              document.getElementById("regManifiesto2").style.display="none";
+              document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiestoGuardar").style.display="none";
+              document.getElementById("modal-launcher").style.display="none";
+              document.getElementById("abrirModalFlotas").style.display="none";
+              document.getElementById("abrirModalChoferes").style.display="none";
+              document.getElementById("ordenServicio").style.display="none";
+              document.getElementById("detOrden").style.display="none";
+              document.getElementById("creaGuia").style.display="none";
+              document.getElementById("lastForm").style.display="none";
+              document.getElementById("detOrden").style.display="none";
+              document.getElementById("manifiestoInfo").style.display="block";
+          }
+          
+          
         $(function(){
 	$("#modal-launcher, #modal-background, #modal-close,#modal-close1").click(function () {
 		$("#modal-content,#modal-background").toggleClass("active");
@@ -194,6 +221,17 @@
                 document.getElementById("modal-background").style.display="none";
                 document.getElementById("creaGuia").style.display="block";
             }
+            function openModalRegItems(){
+                document.getElementById("modalRegistrarItem").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalRegItems(){
+                document.getElementById("modalRegistrarItem").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+            }
+            
+            
+            
             function isNumber(obj){
                 var x = obj.value;
                 if(isNaN(x)){
@@ -367,6 +405,22 @@
         position: fixed;
         z-index: 1000;
     }
+        #modalRegistrarItem {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
+        position: absolute;
+        position: fixed;
+        z-index: 1000;
+    }
     
 
 
@@ -422,11 +476,17 @@
         </h:form>
     
     <h:form id="manifiesto" style="display:none">
+     <div style="background-color:#DDDDDD;text-align:center;margin-bottom:10px">
+       <h:outputText value="Manifiesto.Guias por asignar" style="font-size: 180%;"/>
+       </div>
      <ui:repeat value="#{frm_WebMovilEmp.listaManifiesto}" var="row">
-    <ul class="pricing-table">
-          <li class="title" style="background-color:#DDDDDD;color:black">#{row.detalleWebMovilEMPManifiesto}</li>
-          <li class="description">Fecha: #{row.fechaManifiesto}</li>
-        </ul>
+     <ul class="pricing-table">
+     </ul>
+        <b:commandButton value="#{row.detalleWebMovilEMPManifiesto}" action="#{frm_WebMovilEmp.traeInfoManifiessto}" onclick="mostrarFormInfoManif();" ajax="true" style="background-color:#0087B3;width:100%;margin-top:-20px;color:#ffffff;font-weight: bold;"
+                          update="manifiestoInfo" >                                                                                                                            
+                        <f:setPropertyActionListener value="#{row.nidManifiesto}"
+                                                     target="#{frm_WebMovilEmp.manifiestoElegido}"/>
+     </b:commandButton>
         </ui:repeat>
     </h:form>
     
@@ -665,6 +725,50 @@
                      icon="save" iconAlign="right"/>      
     </h:form>
     
+    <h:form id="manifiestoInfo">
+        <b:inputText style="color:#000000;" disabled="true"
+                         value="#{frm_WebMovilEmp.fechaMnifiestoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Fecha"/>
+                </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="color:#000000;" disabled="true"
+                         value="#{frm_WebMovilEmp.observacionesInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Observacion"/>
+                </f:facet>
+        </b:inputText>
+    
+        <b:inputText style="color:#000000;" disabled="true"
+                         value="#{frm_WebMovilEmp.fletePactadoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Flete Pactado"/>
+                </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="color:#000000;" disabled="true"
+                         value="#{frm_WebMovilEmp.adelantoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Adelanto"/>
+                </f:facet>
+        </b:inputText>
+        Guias Relacionadas
+        <ui:repeat value="#{frm_WebMovilEmp.lstGuiasdeManifiesto}" var="row" varStatus="var">
+                <b:alert severity="info">
+                    <p style="margin-top: .1em;">
+                        <strong>
+                            #{row.cidGuia}</strong>
+                    </p>
+                    <p class="ui-li-aside">
+                        Fecha: 
+                        <strong>
+                            #{row.fechaGuia}</strong>
+                    </p>
+                </b:alert>
+        </ui:repeat>
+    </h:form>
+    
     
     <div id="modal-background"></div>
     
@@ -790,6 +894,8 @@
     
     <div id="modalItems">
         <h:form id="modItems">
+        <b:commandButton value="Agregar Item" ajax="true" onclick="openModalRegItems()"
+         style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"/>
         <div style="${frm_WebMovilEmp.styleItemsCrearGuia}">
         <ui:repeat value="#{frm_WebMovilEmp.lstItemsOrdsRespal}" var="row" varStatus="var">
                 <b:alert severity="info">
@@ -813,6 +919,36 @@
     </h:form>
         <h:commandButton ajax="true" id="modal-close7"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
                          onclick="closeModalItems()" value="Cerrar"/>  
+    </div>
+    
+    
+    <div id="modalRegistrarItem">
+        <h:form id="modRegItem">
+            <b:inputText style="color:#000000;" disabled="false"
+                         value="#{frm_WebMovilEmp.cantidadNewItem}">
+                <f:facet name="prepend">
+                    <h:outputText value="Cantidad"/>
+                </f:facet>
+            </b:inputText>
+            
+            <h:selectOneMenu value="#{frm_WebMovilEmp.nidUmedida}"> 
+                    <f:selectItem itemLabel="Select One" itemValue="0" />
+                    <f:selectItems value="#{frm_WebMovilEmp.lstUndMedida}" var="row" 
+                                   itemLabel="#{row.descUnidadMedida}" itemValue="#{row.descUnidadMedida}"/>
+            </h:selectOneMenu>
+            
+            <b:inputText style="color:#000000;" 
+                         value="#{frm_WebMovilEmp.descripcionNewItem}">
+                <f:facet name="prepend">
+                    <h:outputText value="Descripcion"/>
+                </f:facet>
+            </b:inputText>
+            
+            <b:commandButton value="Crear" action="#{frm_WebMovilEmp.añardirnuevoItem}" onclick="closeModalRegItems()" ajax="true" update="modItems modRegItem"
+         style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"/>
+    </h:form>
+        <h:commandButton ajax="true" id="modal-close10"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                         onclick="closeModalRegItems()" value="Cerrar" update="modRegItem"/>  
     </div>
     </h:body>
 </html>

@@ -67,6 +67,7 @@ public class LN_C_SFPartyBean implements LN_C_SFPartyRemote,
         party.setCTelf(cTelf);
         party.setCTipoParty("E");
         party = bdL_T_SFPartyLocal.mergeADParty(party);
+        System.out.println("::MERGE PARTY:::");
         return party;
     }
 }

@@ -30,5 +30,6 @@ public interface LN_C_SFDireccionLocal {
                                            String cDireccion);
     void  borrarDireccion(BigDecimal nidDireccion);
     BeanDireccion getDireccionUbigeosDesc_Para_Factura(Integer nidDireccion);
+    String getDescripcionDirecByNid(Integer nidDireccion);
 
 }

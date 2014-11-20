@@ -147,7 +147,7 @@ public class LN_C_SFEmpresasBean implements LN_C_SFEmpresasRemote,
             }else if(cant > 0){
                 error = "LUB-0027";
             }else if(error.equals("000")){
-                ADParty party = new ADParty();            
+                ADParty party = new ADParty();   
                 empresa.setCPagWeb(cPagWeb);
                 empresa.setCRazonSocial(cRazonSocial.toUpperCase());
                 empresa.setCRuc(cRuc);
@@ -168,7 +168,6 @@ public class LN_C_SFEmpresasBean implements LN_C_SFEmpresasRemote,
                 bdL_T_SFEmpresaLocal.mergeADEmpresa(empresa);
             }
         }catch(Exception e){
-            System.out.println(error);
         }
         beanError = ln_C_SFCatalogoErroresLocal.getCatalogoErrores(error);
         return beanError;

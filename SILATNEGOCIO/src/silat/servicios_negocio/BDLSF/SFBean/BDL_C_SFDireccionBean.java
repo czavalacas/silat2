@@ -127,4 +127,21 @@ public class BDL_C_SFDireccionBean implements BDL_C_SFDireccionRemote,
             return new ArrayList<BeanDireccion>();
         }
     }
+    
+    public String getDescripcionDireccionByNid(int nidDireccion){
+        try{
+            String query = "SELECT d.cDireccion " +
+                           "FROM ADDireccion d " +
+                           "WHERE d.nidDireccion = :nidDireccion";
+            Object o = em.createQuery(query).setParameter("nidDireccion",nidDireccion).getSingleResult();
+            String direccion = "";
+            if(o != null){
+                direccion = o.toString();
+            }
+            return direccion;
+        }catch(Exception e){
+            e.printStackTrace();
+            return "error";
+        }
+    }
 }

@@ -15,4 +15,5 @@ public interface BDL_C_SFDireccionRemote {
     List<ADDireccion> getDireccionOfParty(BigDecimal nidParty);
     List<BeanDireccion> findDireccionessByAttributes(BeanDireccion beanDireccion);
     BeanDireccion getDireccionUbigeosDesc_Para_Factura(Integer nidDireccion);
+    String getDescripcionDireccionByNid(int nidDireccion);
 }

@@ -469,10 +469,10 @@
             </ul>
                     <b:commandButton value="Orden.Serv N°: #{row.nidOrdnServ} || #{row.detalleWebmovilEmpresa}" action="#{frm_WebMovilEmp.traeInfoOrdenServicio}" onclick="mostrarFormregOrds();" ajax="true" style="background-color:#0087B3;width:100%;margin-top:-20px;color:#ffffff;font-weight: bold;"
                                       update="modDirecDest modManif modItems modDirecRem"  >                                                                                                                            
-                        <f:setPropertyActionListener value="#{row.nidOrdnServ}"
+                        <f:setPropertyActionListener value="#{row.nidOrdnServ}" 
                                                      target="#{frm_WebMovilEmp.ordenServElegida}"/>
                     </b:commandButton>
-            </ui:repeat>
+        </ui:repeat>
         </h:form>
     
     <h:form id="manifiesto" style="display:none">

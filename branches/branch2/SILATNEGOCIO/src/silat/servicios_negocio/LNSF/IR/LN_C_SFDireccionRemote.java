@@ -30,4 +30,5 @@ public interface LN_C_SFDireccionRemote {
                                            String cDireccion);
 void  borrarDireccion(BigDecimal nidDireccion);
     BeanDireccion getDireccionUbigeosDesc_Para_Factura(Integer nidDireccion);
+    String getDescripcionDirecByNid(Integer nidDireccion);
 }

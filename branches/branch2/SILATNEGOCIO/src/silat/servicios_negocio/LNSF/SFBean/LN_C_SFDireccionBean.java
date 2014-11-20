@@ -169,4 +169,8 @@ public class LN_C_SFDireccionBean implements LN_C_SFDireccionRemote,
     public BeanDireccion getDireccionUbigeosDesc_Para_Factura(Integer nidDireccion){
         return bdL_C_SFDireccionLocal.getDireccionUbigeosDesc_Para_Factura(nidDireccion);
     }
+    /***metodo perzonalizado para traer las descripciones de direccion en la guia , mejora la rapidez**/
+    public String getDescripcionDirecByNid(Integer nidDireccion){
+        return bdL_C_SFDireccionLocal.getDescripcionDireccionByNid(nidDireccion);
+    }
 }

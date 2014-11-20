@@ -38,7 +38,6 @@ public class LN_C_SFItemOrdenServBean implements LN_C_SFItemOrdenServRemote,
     }
     public List<BeanTRItem> getListaItemsBynidOrdS(int nidOrds, int opc){
         List<BeanTRItem> listaItms=new ArrayList<BeanTRItem>();
-        System.out.println("OPCION FIRST ::::: " +opc);
         List<TRItemXOrds> lisEntida=bdl_C_SFItemXOrdsLocal.getTrItemOrdenServicio_BD(nidOrds, opc);     
         if(lisEntida!=null){  
             for(int i=0; i<lisEntida.size(); i++){

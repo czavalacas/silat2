@@ -71,75 +71,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                                                String hasManif,Integer nidManif,String prov,String cObservaciones,
                                                String nEstadoGuia,int nidOS,String detOS,String hasFactura,String codFactura,
                                                int nEstadoFactura,BigDecimal nidParty,String descCidGuiaRemi_ITEM){
-        try{
-            BeanTRGuia beanGuia = new BeanTRGuia();
-            if(empProvCarga != null){ 
-                BeanEmpresa beanEmpresa = new BeanEmpresa();
-                beanEmpresa.setCRazonSocial(empProvCarga);
-                beanGuia.setAdEmpresa(beanEmpresa);
-            }
-            if(nidParty != new BigDecimal(0)){
-                beanGuia.setNidCliente(nidParty);
-            }else{
-                beanGuia.setNidCliente(null);
-            }
-            if(nidManif != null){
-                BeanManifiesto manif = new BeanManifiesto();
-                manif.setNidManifiesto(nidManif);
-                beanGuia.setTrManifiesto(manif);
-            }
-            if(prov != null){
-                BeanEmpresa beanEmpresaProvTransp = new BeanEmpresa();
-                beanEmpresaProvTransp.setCRazonSocial(prov);
-                BeanManifiesto manif = new BeanManifiesto();
-                manif.setTrManifiesto(beanEmpresaProvTransp);
-                beanGuia.setTrManifiesto(manif);
-            }
-            if(nidOS != 0){
-                BeanOrdenServicio ordenServicio = new BeanOrdenServicio();
-                ordenServicio.setNidOrdnServ(nidOS);
-                beanGuia.setOrdenServicio(ordenServicio);
-            }
-            if(detOS != null){
-                if(beanGuia.getOrdenServicio() != null){
-                    beanGuia.getOrdenServicio().setCDetalle(detOS);
-                    beanGuia.getOrdenServicio().setNidOrdnServ(nidOS);
-                }else{
-                    BeanOrdenServicio ordenServicio = new BeanOrdenServicio();
-                    ordenServicio.setCDetalle(detOS);
-                    ordenServicio.setNidOrdnServ(nidOS);
-                }
-            }
-            if(codFactura != null){
-                BeanFactura bFact = new BeanFactura();
-                bFact.setCCodFactura(codFactura);
-                bFact.setNEstadoFactura(nEstadoFactura);
-                beanGuia.setTrFactura(bFact);
-            }
-            if(nEstadoFactura != 0){
-                if(beanGuia.getTrFactura() != null){
-                    beanGuia.getTrFactura().setNEstadoFactura(nEstadoFactura);
-                }else{
-                    BeanFactura bFact = new BeanFactura();
-                    bFact.setNEstadoFactura(nEstadoFactura);
-                    beanGuia.setTrFactura(bFact);
-                }
-            }
-            beanGuia.setFiltroItemGuiaRemi(descCidGuiaRemi_ITEM);
-            beanGuia.setHasFactura(hasFactura);
-            beanGuia.setCConformidad(estGuia);
-            beanGuia.setNEstadoGuia(nEstadoGuia);
-            beanGuia.setCidGuia(cidGuia);
-            beanGuia.setCObservaciones(cObservaciones);
-            beanGuia.setEmpCliente(empCliente);
-            beanGuia.setFecDespachoMax(fecDespMax);
-            beanGuia.setFecDespachoMin(fecDespMin);
-            beanGuia.setFecGuiaMin(fecEmisMin);
-            beanGuia.setFecGuiaMax(fecEmisMax);
-            beanGuia.setHasManifiesto(hasManif);
-            if("0".equals(hasFactura)){//ELIGIO GUIAS NO FACTURADAS
-                beanGuia.setNEstadoGuia("1");
-            }
+        try{      
             List<BeanTRGuia> getListaGuias = getListaGuias(bdL_C_SFGuiaLocal.findGuiasByAttributes_BD(cidGuia,fecEmisMin,fecEmisMax, fecDespMin, 
                                                 fecDespMax, empCliente, empProvCarga, estGuia,
                                                 hasManif, nidManif, prov, cObservaciones,
@@ -190,7 +122,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
     
     public List<BeanTRGuia> getListaGuias(List<TRGuia> listGuia){
         try{
-        List<BeanTRGuia> listBeanGuias = new ArrayList<BeanTRGuia>();
+        List<BeanTRGuia> listBeanGuias = new ArrayList<BeanTRGuia>();            
         for(TRGuia entidad:listGuia){
             BeanTRGuia beanGuia = new BeanTRGuia();
             BeanOrdenServicio beanOrdenervicio = new BeanOrdenServicio();
@@ -217,18 +149,10 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",entidad.getCConformidad());
             beanGuia.setDescConformidad(constr.getCDescrip());
             beanGuia.setCConformidad(entidad.getCConformidad());
-            List<BeanDireccion> direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(entidad.getNidDireccionDestino(),null,null);
-            if(direcs != null){
-                if(direcs.size() > 0){
-                    beanGuia.setCDireccionDestino(direcs.get(0).getCDireccion());
-                }
-            }
-            direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(entidad.getNidDireccionRemitente(),null,null);
-            if(direcs != null){
-                if(direcs.size() > 0){
-                    beanGuia.setCDireccionRemitente(direcs.get(0).getCDireccion());
-                }
-            }
+            /***Nuevo para Direcciones**/           
+            beanGuia.setCDireccionDestino(ln_C_SFDireccionLocal.getDescripcionDirecByNid(entidad.getNidDireccionDestino()));
+            beanGuia.setCDireccionRemitente(ln_C_SFDireccionLocal.getDescripcionDirecByNid(entidad.getNidDireccionRemitente()));
+                /****/  
                 //solo con Empresa-TRGuia
                 beanEmpGuia.setCRazonSocial(entidad.getAdEmpresa().getCRazonSocial());
                 beanEmpGuia.setCRuc(entidad.getAdEmpresa().getCRuc());
@@ -276,75 +200,8 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             listBeanGuias.add(beanGuia); 
             
         }
-/*         try{
-            MapperIF mapper = new DozerBeanMapper();
-            List<BeanTRGuia> lstBeanGuias = new ArrayList<BeanTRGuia>();
-            BeanTRGuia beanGuias = new BeanTRGuia();
-            int idx = 0;
-            for(TRGuia guia : lstGuia){
-                beanGuias = (BeanTRGuia) mapper.map(guia,BeanTRGuia.class);
-                BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",guia.getCConformidad());
-                beanGuias.setDescConformidad(constr.getCDescrip());
-                if(guia.getOrdenServicio().getAdEmpresa() != null){
-                    beanGuias.setEmpCliente(guia.getOrdenServicio().getAdEmpresa().getCRazonSocial());    
-                }
-                beanGuias.setCidGuia(beanGuias.getCidUnidadNegocio()+"-"+beanGuias.getCidGuia());
-                if(guia.getNidDireccionDestino() != null && guia.getNidDireccionRemitente() != null){
-                    List<BeanDireccion> direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionDestino(),null,null);
-                    if(direcs != null){
-                        if(direcs.size() > 0){
-                            beanGuias.setCDireccionDestino(direcs.get(0).getCDireccion());
-                        }
-                    }
-                    direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionRemitente(),null,null);
-                    if(direcs != null){
-                        if(direcs.size() > 0){
-                            beanGuias.setCDireccionRemitente(direcs.get(0).getCDireccion());
-                        }
-                    }    
-                }
-                if("0".equals(guia.getNEstadoGuia())){
-                    beanGuias.setStyleAnulado("background-color:Red;color:White;");
-                }
-                beanGuias.setItemsLista(this.entityItemListtoBean(guia.getItemsList()));
-                beanGuias.setPrecio(new BigDecimal(0));
-                lstBeanGuias.add(beanGuias);
-                if((idx + 1) < lstGuia.size()){
-                    int nextCidGuia = new Integer(lstGuia.get((idx + 1 )).getCidGuia());
-                    int thisGuia = new Integer(guia.getCidGuia());
-                    int cantGuiasFaltantes = thisGuia - nextCidGuia;
-                    if(cantGuiasFaltantes > 1){//Quiere decir que faltan
-                        BeanTRGuia g = null;
-                        for(int i = 0 ; i < cantGuiasFaltantes - 1; i++){
-                            g = new BeanTRGuia();
-                            String newCidGuia = ""+((thisGuia - (i + 1)));
-                            if(newCidGuia.length() < 6){
-                                int cantCeros = 6 - newCidGuia.length();
-                                String ceros = "";
-                                for(int j = 0 ; j < cantCeros; j++){
-                                    ceros = "0";
-                                }
-                                newCidGuia = ceros + newCidGuia;
-                            }
-                            if(!bdL_C_SFGuiaLocal.isGuiaExistente("001", newCidGuia)){
-                                g.setCidGuia("001-"+newCidGuia);
-                                g.setCidUnidadNegocio("001");
-                                g.setNEstadoGuia("0");
-                                g.setEmpCliente("GUIA AUN NO REGISTRADA");
-                                g.setStyleAnulado("background-color:Grey;color:Black;");
-                                lstBeanGuias.add(g);
-                            }
-                        }
-                    }
-                }
-                idx++;
-            }
-            return lstBeanGuias;
-        }catch(Exception e){
-            e.printStackTrace();
-            return new ArrayList<BeanTRGuia>();
-        } */
-     return listBeanGuias;   
+            
+         return listBeanGuias;   
     }catch(Exception e){
             e.printStackTrace();
             return new ArrayList<BeanTRGuia>();

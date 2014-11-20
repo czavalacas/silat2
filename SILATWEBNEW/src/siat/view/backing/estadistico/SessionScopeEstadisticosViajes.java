@@ -4,32 +4,29 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import java.util.List;
 
-import javax.faces.model.SelectItem;
-
-import silat.servicios_negocio.Beans.BeanCuadre;
 import silat.servicios_negocio.Beans.BeanEstCliente;
 
-public class SessionScopeEstadisticos implements Serializable {
-    @SuppressWarnings("compatibility:8100234900757476178")
+public class SessionScopeEstadisticosViajes implements Serializable {
+    @SuppressWarnings("compatibility:3574118774553731317")
     private static final long serialVersionUID = 1L;
     private int columns= 2;
     private String rowHeights = "350px";
     private Date fecMin;
     private Date fecMax;
-    private List<BeanCuadre> listGrafico;
-    private List<BeanEstCliente> listGraficoGasMES;
-    private List<BeanEstCliente> listGraficoGastosGen;
-    private List<BeanEstCliente> listGraficoIngMes;
-    private List<SelectItem> listChoice;
+    private int limite;
     private int visiblePb1 = 0;
     private int visiblePb2 = 0;
     private int visiblePb3 = 0;
     private int visiblePb4 = 0;
     private int visiblePb5 = 0;
     private int visiblePb6 = 0;
+    private List<BeanEstCliente> listaViajesExitosos;
+    private List<BeanEstCliente> listaViajesFallidos;
+    private List<BeanEstCliente> listaViajesTotal;
+    private List<BeanEstCliente> listaProv;
+    private List<BeanEstCliente> listaProp;
     private List listaVacia = new ArrayList();
 
     public void setColumns(int columns) {
@@ -64,14 +61,13 @@ public class SessionScopeEstadisticos implements Serializable {
         return fecMax;
     }
 
-    public void setListGrafico(List<BeanCuadre> listGrafico) {
-        this.listGrafico = listGrafico;
+    public void setLimite(int limite) {
+        this.limite = limite;
     }
 
-    public List<BeanCuadre> getListGrafico() {
-        return listGrafico;
+    public int getLimite() {
+        return limite;
     }
-
 
     public void setVisiblePb1(int visiblePb1) {
         this.visiblePb1 = visiblePb1;
@@ -121,7 +117,6 @@ public class SessionScopeEstadisticos implements Serializable {
         return visiblePb6;
     }
 
-
     public void setListaVacia(List listaVacia) {
         this.listaVacia = listaVacia;
     }
@@ -130,36 +125,43 @@ public class SessionScopeEstadisticos implements Serializable {
         return listaVacia;
     }
 
-    public void setListGraficoGasMES(List<BeanEstCliente> listGraficoGasMES) {
-        this.listGraficoGasMES = listGraficoGasMES;
+    public void setListaViajesExitosos(List<BeanEstCliente> listaViajesExitosos) {
+        this.listaViajesExitosos = listaViajesExitosos;
     }
 
-    public List<BeanEstCliente> getListGraficoGasMES() {
-        return listGraficoGasMES;
+    public List<BeanEstCliente> getListaViajesExitosos() {
+        return listaViajesExitosos;
     }
 
-    public void setListGraficoGastosGen(List<BeanEstCliente> listGraficoGastosGen) {
-        this.listGraficoGastosGen = listGraficoGastosGen;
+    public void setListaViajesFallidos(List<BeanEstCliente> listaViajesFallidos) {
+        this.listaViajesFallidos = listaViajesFallidos;
     }
 
-    public List<BeanEstCliente> getListGraficoGastosGen() {
-        return listGraficoGastosGen;
+    public List<BeanEstCliente> getListaViajesFallidos() {
+        return listaViajesFallidos;
     }
 
-    public void setListGraficoIngMes(List<BeanEstCliente> listGraficoIngMes) {
-        this.listGraficoIngMes = listGraficoIngMes;
+    public void setListaViajesTotal(List<BeanEstCliente> listaViajesTotal) {
+        this.listaViajesTotal = listaViajesTotal;
     }
 
-    public List<BeanEstCliente> getListGraficoIngMes() {
-        return listGraficoIngMes;
+    public List<BeanEstCliente> getListaViajesTotal() {
+        return listaViajesTotal;
     }
 
-    public void setListChoice(List<SelectItem> listChoice) {
-        this.listChoice = listChoice;
+    public void setListaProv(List<BeanEstCliente> listaProv) {
+        this.listaProv = listaProv;
     }
 
-    public List<SelectItem> getListChoice() {
-        return listChoice;
+    public List<BeanEstCliente> getListaProv() {
+        return listaProv;
+    }
+
+    public void setListaProp(List<BeanEstCliente> listaProp) {
+        this.listaProp = listaProp;
+    }
+
+    public List<BeanEstCliente> getListaProp() {
+        return listaProp;
     }
 }
-

@@ -6,51 +6,45 @@
         <af:panelGroupLayout id="pgl1" inlineStyle="height:70px; width:960px;" halign="left" layout="horizontal">
             <af:panelFormLayout id="pfl1" maxColumns="2" inlineStyle="width:50px;">
                 <af:inputDate label="Fecha Minima: " id="id1"
-                              binding="#{backingBeanScope.backing_estadistico_estadistico.id1}"
-                              value="#{beanSessionEstadisticos.fecMin}"/>
+                              binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.id1}"
+                              value="#{beanSessionEstadisticosViajes.fecMin}"/>
                 <af:inputDate label="Fecha Maxima:" id="id2"
-                              binding="#{backingBeanScope.backing_estadistico_estadistico.id2}"
-                              value="#{beanSessionEstadisticos.fecMax}"/>
+                              binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.id2}"
+                              value="#{beanSessionEstadisticosViajes.fecMax}"/>
                 <af:commandButton text="Buscar" id="cb1"
                                   inlineStyle="background-color:Red; width:50px; border-color:Red; border-style:dotted;"
-                                  binding="#{backingBeanScope.backing_estadistico_estadistico.cb1}"
-                                  actionListener="#{backingBeanScope.backing_estadistico_estadistico.llenarGraficos}"/>
+                                  binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.cb1}"
+                                  actionListener="#{backingBeanScope.backing_estadistico_estadistico_viajes.llenarGraficos}"/>
             </af:panelFormLayout>
-            <af:spacer width="200" height="10" id="s1"/>
+            <af:spacer width="100" height="10" id="s1"/>
             <af:commandButton text="Descargar PDF" id="cb2">
-                <af:fileDownloadActionListener filename="Graficos_Est_Ganancias.pdf"
-                                                contentType="application/pdf"
-                                                method="#{backingBeanScope.backing_estadistico_estadistico.exportPdf}"/>
+                <af:fileDownloadActionListener filename="Graficos_Viajes.pdf"
+                                               contentType="application/pdf"
+                                               method="#{backingBeanScope.backing_estadistico_estadistico_viajes.exportPdf}"/>
             </af:commandButton>
             <af:panelFormLayout id="pfl2">
-                <af:selectOneRadio label="Columnas:" id="sor1" value="#{beanSessionEstadisticos.columns}"
-                                   valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.changeDashBoardColumn}"
-                                   binding="#{backingBeanScope.backing_estadistico_estadistico.sor1}" immediate="true"
+                <af:selectOneRadio label="Columnas:" id="sor1" value="#{beanSessionEstadisticosCliente.columns}"
+                                   valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico_viajes.changeDashBoardColumn}"
+                                   binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.sor1}" immediate="true"
                                    autoSubmit="true" layout="horizontal">
                     <af:selectItem label="2" value="2" id="si1"/>
                     <af:selectItem label="3" value="3" id="si2"/>
                 </af:selectOneRadio>
-                <af:selectOneRadio label="Tamano de Fila:" id="sor2" value="#{beanSessionEstadisticos.rowHeights}"
-                                   valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.changeDashBoardRowHeight}"
-                                   binding="#{backingBeanScope.backing_estadistico_estadistico.sor2}" autoSubmit="true"
+                <af:selectOneRadio label="Tamano de Fila:" id="sor2" value="#{beanSessionEstadisticosCliente.rowHeights}"
+                                   valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico_viajes.changeDashBoardRowHeight}"
+                                   binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.sor2}" autoSubmit="true"
                                    immediate="true">
                     <af:selectItem label="250px" value="250px" id="si3"/>
                     <af:selectItem label="350px" value="350px" id="si4"/>
                     <af:selectItem label="450px" value="450px" id="si5"/>
                 </af:selectOneRadio>
             </af:panelFormLayout>
-            <af:spacer width="50" height="10" id="s2"/>
-            <af:selectManyChoice label="Gastos:" id="smc2"
-                                 valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.changeGraphic}"
-                                 immediate="true" autoSubmit="true">
-                <f:selectItems value="#{beanSessionEstadisticos.listChoice}" id="si12"/>
-            </af:selectManyChoice>
+            <af:spacer width="30" height="10" id="s2"/>
             <af:panelFormLayout id="pfl3">
                 <af:selectManyCheckbox label="Visibilidad" id="smc1"
-                                       binding="#{backingBeanScope.backing_estadistico_estadistico.smc1}"
+                                       binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.smc1}"
                                        immediate="true" autoSubmit="true"
-                                       valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico.PanelVisibleChanger}"
-                                       layout="vertical">
+                                       valueChangeListener="#{backingBeanScope.backing_estadistico_estadistico_viajes.PanelVisibleChanger}">
                     <af:selectItem label="Panel 1" id="si6"/>
                     <af:selectItem label="Panel 2" id="si7"/>
                     <af:selectItem label="Panel 3" id="si8"/>
@@ -63,37 +57,16 @@
         <af:panelSplitter id="ps1" inlineStyle="height:700px; width:1050px;" splitterPosition="150">
             <f:facet name="second">
                 <af:panelGroupLayout layout="scroll" id="pgl2">
-                    <af:panelBox text="Gastos x meses" id="pb7" inlineStyle="height:350px; width:1050px;" type="stretch"
-                                 showDisclosure="false" titleHalign="center">
-                        <dvt:lineGraph id="lg2" inlineStyle="height:300px; width:900px;" subType="LINE_VERT_ABS"
-                                       binding="#{backingBeanScope.backing_estadistico_estadistico.graph7}"
-                                       tabularData="#{beanSessionEstadisticos.listaVacia}" dynamicResize="DYNAMIC_SIZE"
-                                       hideAndShowBehavior="withRescale">
-                            <dvt:background>
-                                <dvt:specialEffects/>
-                            </dvt:background>
-                            <dvt:graphPlotArea/>
-                            <dvt:seriesSet>
-                                <dvt:series/>
-                            </dvt:seriesSet>
-                            <dvt:o1Axis/>
-                            <dvt:y1Axis/>
-                            <dvt:legendArea automaticPlacement="AP_NEVER"/>
-                            <dvt:graphTitle text="Gastos por MES"/>
-                            <dvt:o1Title text="Transacciones"/>
-                            <dvt:y1Title text="Dinero"/>
-                        </dvt:lineGraph>
-                    </af:panelBox>
-                    <af:panelDashboard id="pd1" columns="#{beanSessionEstadisticos.columns}"
-                                       rowHeight="#{beanSessionEstadisticos.rowHeights}"
+                    <af:panelDashboard id="pd1" columns="#{beanSessionEstadisticosViajes.columns}"
+                                       rowHeight="#{beanSessionEstadisticosViajes.rowHeights}"
                                        inlineStyle="height:700px; width:1050px; background-color:Scrollbar;"
-                                       binding="#{backingBeanScope.backing_estadistico_estadistico.pd1}">
-                        <af:panelBox text="Panel Ingresos Lineal" id="pb5"
-                                     binding="#{backingBeanScope.backing_estadistico_estadistico.pb5}">
+                                       binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.pd1}">
+                        <af:panelBox text="Panel Viajes Por Tipo Por Mes" id="pb5"
+                                     binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.pb5}">
                             <af:componentDragSource/>
-                            <dvt:lineGraph id="graph6" inlineStyle="height:300px; width:300px;" subType="LINE_VERT_ABS"
-                                           binding="#{backingBeanScope.backing_estadistico_estadistico.graph6}"
-                                           tabularData="#{beanSessionEstadisticos.listaVacia}"
+                            <dvt:lineGraph id="graph6" inlineStyle="height:300px; width:400px;" subType="LINE_VERT_ABS"
+                                           binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.graph6}"
+                                           tabularData="#{beanSessionEstadisticosViajes.listaVacia}"
                                            dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
                                 <dvt:background>
                                     <dvt:specialEffects/>
@@ -106,16 +79,16 @@
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER"/>
                                 <dvt:graphTitle text="Ingresos Lineal"/>
-                                <dvt:o1Title text="Transacciones"/>
-                                <dvt:y1Title text="Dinero"/>
+                                <dvt:o1Title text="Empresas"/>
+                                <dvt:y1Title text="Conteo"/>
                             </dvt:lineGraph>
                         </af:panelBox>
-                        <af:panelBox text="Panel Egresos Lineal" id="pb6"
-                                     binding="#{backingBeanScope.backing_estadistico_estadistico.pb6}">
+                        <af:panelBox text="Panel Exito de Viajes Por Mes" id="pb6"
+                                     binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.pb6}">
                             <af:componentDragSource/>
                             <dvt:lineGraph id="graph5" inlineStyle="height:300px; width:300px;" subType="LINE_VERT_ABS"
-                                           binding="#{backingBeanScope.backing_estadistico_estadistico.graph5}"
-                                           tabularData="#{beanSessionEstadisticos.listaVacia}"
+                                           binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.graph5}"
+                                           tabularData="#{beanSessionEstadisticosViajes.listaVacia}"
                                            dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
                                 <dvt:background>
                                     <dvt:specialEffects/>
@@ -127,17 +100,17 @@
                                 <dvt:o1Axis/>
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER"/>
-                                <dvt:graphTitle text="Panel Egresos Lineal"/>
-                                <dvt:o1Title text="Transacciones"/>
-                                <dvt:y1Title text="Dinero"/>
+                                <dvt:graphTitle text="Exitosos vs No exitosos"/>
+                                <dvt:o1Title text="Viajes"/>
+                                <dvt:y1Title text="Empresas"/>
                             </dvt:lineGraph>
                         </af:panelBox>
-                        <af:panelBox text="Panel Ingresos-Gastos General" id="pb1"
-                                     binding="#{backingBeanScope.backing_estadistico_estadistico.pb1}">
+                        <af:panelBox text="Panel Exito de Viajes Por Mes Barra" id="pb1"
+                                     binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.pb1}">
                             <af:componentDragSource/>
                             <dvt:barGraph id="graph1" subType="BAR_VERT_CLUST"
-                                          binding="#{backingBeanScope.backing_estadistico_estadistico.graph1}"
-                                          tabularData="#{beanSessionEstadisticos.listaVacia}"
+                                          binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.graph1}"
+                                          tabularData="#{beanSessionEstadisticosViajes.listaVacia}"
                                           inlineStyle="height:300px; width:300px;" dynamicResize="DYNAMIC_SIZE"
                                           hideAndShowBehavior="withRescale">
                                 <dvt:background>
@@ -151,18 +124,18 @@
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER" position="LAP_TOP"/>
                                 <dvt:graphSubtitle text="Subtitle" rendered="false"/>
-                                <dvt:graphTitle text="Egresos vs Ingresos"/>
-                                <dvt:o1Title text="Transacciones"/>
-                                <dvt:y1Title text="Dinero"/>
+                                <dvt:graphTitle text="Viajes segun Exitosos"/>
+                                <dvt:o1Title text="Empresas"/>
+                                <dvt:y1Title text="Viajes"/>
                             </dvt:barGraph>
                             <f:facet name="toolbar"/>
                         </af:panelBox>
-                        <af:panelBox text="Panel Ingresos" id="pb2"
-                                     binding="#{backingBeanScope.backing_estadistico_estadistico.pb2}">
+                        <af:panelBox text="Panel Viajes Totales Barra" id="pb2"
+                                     binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.pb2}">
                             <af:componentDragSource/>
-                            <dvt:barGraph id="graph2" subType="BAR_VERT_CLUST" inlineStyle="height:300px; width:300px;"
-                                          binding="#{backingBeanScope.backing_estadistico_estadistico.graph2}"
-                                          tabularData="#{beanSessionEstadisticos.listaVacia}"
+                            <dvt:lineGraph id="graph2" subType="BAR_VERT_CLUST" inlineStyle="height:300px; width:300px;"
+                                          binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.graph2}"
+                                          tabularData="#{beanSessionEstadisticosViajes.listaVacia}"
                                           dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
                                 <dvt:background>
                                     <dvt:specialEffects/>
@@ -175,18 +148,18 @@
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER" position="LAP_TOP"/>
                                 <dvt:graphSubtitle text="Subtitle" rendered="false"/>
-                                <dvt:graphTitle text="Ingresos"/>
-                                <dvt:o1Title text="Transacciones"/>
-                                <dvt:y1Title text="Dinero"/>
-                            </dvt:barGraph>
+                                <dvt:graphTitle text="Viajes Totales"/>
+                                <dvt:o1Title text="Viajes"/>
+                                <dvt:y1Title text="Empresas"/>
+                            </dvt:lineGraph>
                             <f:facet name="toolbar"/>
                         </af:panelBox>
-                        <af:panelBox text="Panel Egresos" id="pb3"
-                                     binding="#{backingBeanScope.backing_estadistico_estadistico.pb3}">
+                        <af:panelBox text="Panel Viajes Totales Lineal" id="pb3"
+                                     binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.pb3}">
                             <af:componentDragSource/>
-                            <dvt:barGraph id="graph3" subType="BAR_VERT_CLUST" inlineStyle="height:300px; width:300px;"
-                                          binding="#{backingBeanScope.backing_estadistico_estadistico.graph3}"
-                                          tabularData="#{beanSessionEstadisticos.listaVacia}"
+                            <dvt:lineGraph id="graph3" subType="LINE_VERT_ABS" inlineStyle="height:300px; width:300px;"
+                                          binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.graph3}"
+                                          tabularData="#{beanSessionEstadisticosViajes.listaVacia}"
                                           dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
                                 <dvt:background>
                                     <dvt:specialEffects/>
@@ -199,18 +172,18 @@
                                 <dvt:y1Axis/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER" position="LAP_TOP"/>
                                 <dvt:graphSubtitle text="Subtitle" rendered="false"/>
-                                <dvt:graphTitle text="Egresos"/>
-                                <dvt:o1Title text="Transacciones"/>
-                                <dvt:y1Title text="Dinero"/>
-                            </dvt:barGraph>
+                                <dvt:graphTitle text="Viajes Totales"/>
+                                <dvt:o1Title text="Viajes"/>
+                                <dvt:y1Title text="Empresas"/>
+                            </dvt:lineGraph>
                             <f:facet name="toolbar"/>
                         </af:panelBox>
-                        <af:panelBox text="Panel Ingresos vs Egresos Totales" id="pb4"
-                                     binding="#{backingBeanScope.backing_estadistico_estadistico.pb4}">
+                        <af:panelBox text="Panel Comparativo de Propio Vs Proveedor" id="pb4"
+                                     binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.pb4}">
                             <af:componentDragSource/>
                             <dvt:pieGraph id="graph4" subType="PIE" inlineStyle="height:300px; width:300px;"
-                                          tabularData="#{beanSessionEstadisticos.listaVacia}"
-                                          binding="#{backingBeanScope.backing_estadistico_estadistico.graph4}"
+                                          tabularData="#{beanSessionEstadisticosViajes.listaVacia}"
+                                          binding="#{backingBeanScope.backing_estadistico_estadistico_viajes.graph4}"
                                           dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
                                 <dvt:background>
                                     <dvt:specialEffects/>
@@ -223,8 +196,6 @@
                                 <dvt:pieLabel rendered="true"/>
                                 <dvt:legendArea automaticPlacement="AP_NEVER"/>
                                 <dvt:graphTitle id="graphTitle1" text="Ingresos vs Egresos" rendered="true"/>
-                                <dvt:x1Title text="Aprobados"/>
-                                <dvt:y1Title text="Aprobados"/>
                             </dvt:pieGraph>
                             <f:facet name="toolbar"/>
                         </af:panelBox>
@@ -234,3 +205,4 @@
         </af:panelSplitter>
     </f:view>
 </ui:composition>
+

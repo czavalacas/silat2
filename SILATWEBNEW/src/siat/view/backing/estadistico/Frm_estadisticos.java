@@ -1,7 +1,30 @@
 package siat.view.backing.estadistico;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
+
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
+
+import java.awt.Dimension;
+
+import java.io.File;
+
+import java.io.FileNotFoundException;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import java.net.MalformedURLException;
+
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -9,8 +32,12 @@ import javax.faces.event.ActionEvent;
 
 import javax.faces.event.ValueChangeEvent;
 
+import javax.faces.model.SelectItem;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
+
+import javax.servlet.ServletContext;
 
 import oracle.adf.view.faces.bi.component.graph.UIGraph;
 import oracle.adf.view.rich.component.rich.input.RichInputDate;
@@ -21,9 +48,13 @@ import oracle.adf.view.rich.component.rich.layout.RichPanelDashboard;
 
 import oracle.adf.view.rich.component.rich.nav.RichCommandButton;
 
+import oracle.dss.dataView.ImageView;
+
 import oracle.javatools.parser.java.v2.internal.compiler.Obj;
 
 import siat.view.backing.utiles.Utils;
+
+import siat.view.backing.utiles.fecha.FechaUtiles;
 
 import silat.servicios_negocio.BDLSF.IR.BDL_C_SFEstaClienteRemoto;
 import silat.servicios_negocio.Beans.BeanCuadre;
@@ -71,6 +102,223 @@ public class Frm_estadisticos {
     
     public void llenarGraficos(ActionEvent actionEvent){
         llenarListIngresos_Egresos();
+        llenarChoice(beanSessionEstadisticos.getListGraficoGasMES());
+    }
+    
+    public void llenarChoice(List<BeanEstCliente> lista){
+        List<SelectItem> outPut = new ArrayList<SelectItem>();
+        for(BeanEstCliente bean : lista){
+            SelectItem item = new SelectItem();
+            item.setLabel(bean.getRazonSocial());
+            item.setValue(bean.getRazonSocial());
+            boolean condition = true;
+            for(SelectItem aux : outPut){
+                if(aux.getValue().equals(item.getValue())){
+                    condition = false; 
+                }
+            }
+            if(condition){
+                outPut.add(item);
+            }
+        }
+        beanSessionEstadisticos.setListChoice(outPut);
+    }
+    
+    public void exportPdf(FacesContext facesContext, java.io.OutputStream outputStream) {
+        generarPdf(outputStream);
+    }
+    
+    public String rutaImagenes(){
+        String rutaLocal = "";
+        if(File.separator.equals("/")){
+            rutaLocal = File.separator+"recursos" + File.separator + "img" + File.separator;     
+        }else{
+            rutaLocal = "recursos" + File.separator + "img" + File.separator;   
+        }
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ServletContext servletCtx = (ServletContext)ctx.getExternalContext().getContext();
+        String imageDirPath = servletCtx.getRealPath("/");
+        return imageDirPath + rutaLocal;
+    }
+    
+    public String exportGrafPNG(UIGraph graph, String ruta){
+        if(graph != null){
+            UIGraph dvtgraph = graph; 
+            ImageView imgView = dvtgraph.getImageView();
+            imgView.setImageSize(new Dimension(600,400));
+            try{
+                File file = null; 
+                FileOutputStream fos;
+                file = new File(ruta); 
+                fos = new FileOutputStream(file); 
+                imgView.exportToPNG(fos); 
+                fos.close(); 
+            }catch(FileNotFoundException e){
+                e.printStackTrace();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        return ruta;                       
+    }
+    
+    public void mostrarFiltro(Document document,
+                              String titulo,
+                              String selecionado) throws DocumentException {
+        Paragraph  paragraph =new Paragraph(titulo,
+                       FontFactory.getFont(FontFactory.TIMES, 11, Font.BOLD));
+        paragraph.setAlignment(Paragraph.ALIGN_JUSTIFIED);
+        document.add(paragraph);
+        if(selecionado != null){
+            Paragraph  paragraph2 =new Paragraph(selecionado,
+                           FontFactory.getFont(FontFactory.TIMES, 9, Font.NORMAL));
+            paragraph2.setAlignment(Paragraph.ALIGN_JUSTIFIED);
+            document.add(paragraph2);
+        }        
+    }
+    
+    public void addSelectFiltro(Document document) throws DocumentException {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Paragraph  paragraph =new Paragraph("Filtro",
+                       FontFactory.getFont(FontFactory.TIMES, 12, Font.BOLDITALIC));
+        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+        document.add(paragraph); 
+        mostrarFiltro(document,"Documento creado el "+FechaUtiles.fechaHoy(),null);
+        String dateE = "Fecha de Resultados:\t";
+        if(beanSessionEstadisticos.getFecMin() != null){
+            dateE = dateE.concat("Desde el "+formato.format(beanSessionEstadisticos.getFecMin()));
+        } else {
+            dateE = dateE.concat("Desde el principio de año ");
+        }
+        if(beanSessionEstadisticos.getFecMax() != null ){
+            dateE = dateE.concat(" hasta el "+formato.format(beanSessionEstadisticos.getFecMax()));
+        } else {
+            dateE = dateE.concat(" hasta el "+FechaUtiles.fechaHoy());
+        }
+        mostrarFiltro(document, dateE,null);
+        String filtroUsados = "Se mostraran los graficos: ";
+        mostrarFiltro(document,filtroUsados,null);
+        filtroUsados = "- Grafico Gastos por Mes";
+        mostrarFiltro(document,filtroUsados,null);
+        if(pb5.isVisible()){
+            filtroUsados = "- Grafico Gastos General Lineal";
+            mostrarFiltro(document,filtroUsados,null);
+        }
+        if(pb6.isVisible()){
+            filtroUsados = "- Grafico Ingresos Lineal";
+            mostrarFiltro(document,filtroUsados,null);
+        }
+        if(pb1.isVisible()){
+            filtroUsados = "- Grafico Barra Ingresos Vs Egresos";
+            mostrarFiltro(document,filtroUsados,null);
+        }
+        if(pb2.isVisible()){
+            filtroUsados = "- Grafico Barra Ingresos General";
+            mostrarFiltro(document,filtroUsados,null);
+        }
+        if(pb3.isVisible()){
+            filtroUsados = "- Grafico Barra Egresos General";
+            mostrarFiltro(document,filtroUsados,null);
+        }
+        if(pb4.isVisible()){
+            filtroUsados = "- Grafico Pie Ingresos Vs Egresos\n";
+            mostrarFiltro(document,filtroUsados,null);
+        }
+        mostrarFiltro(document,filtroUsados,null);
+    }
+    
+    public void generarPdf(java.io.OutputStream fos) {
+        String timePath = GregorianCalendar.getInstance().getTimeInMillis() + "";
+        String rutaImg = rutaImagenes();
+        String rutaSave = rutaImg + timePath;
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, fos);
+            document.open();
+            Image img = Image.getInstance(rutaImg + "cabecera.png"); //cabecera.png
+            img.scalePercent(24);
+            img.setAlignment(Image.ALIGN_CENTER);
+            document.add(img);
+            addSelectFiltro(document);
+            int cont = 0;
+            if (beanSessionEstadisticos.getListGraficoGasMES() != null) {
+                addImagenes(document, "Grafico Gastos por Mes",
+                            exportGrafPNG(graph7, rutaSave + "GR.png"));
+                cont++;
+                addEspacio(cont, document);
+            }
+            if (pb5.isVisible() &&
+                beanSessionEstadisticos.getListGraficoGastosGen() != null) {
+                addImagenes(document, "Grafico Gastos General Lineal",
+                            exportGrafPNG(graph5, rutaSave + "GR.png"));
+                cont++;
+                addEspacio(cont, document);
+            }
+            if (pb6.isVisible() &&
+                beanSessionEstadisticos.getListGraficoGastosGen() != null) {
+                addImagenes(document, "Grafico Ingresos Mensual",
+                            exportGrafPNG(graph6, rutaSave + "GR.png"));
+                cont++;
+                addEspacio(cont, document);
+            }
+            if (pb1.isVisible() &&
+                beanSessionEstadisticos.getListGrafico() != null) {
+                addImagenes(document, "Grafico Ingresos vs Egresos",
+                            exportGrafPNG(graph1, rutaSave + "GR.png"));
+                cont++;
+                addEspacio(cont, document);
+            }
+            if (pb2.isVisible() &&
+                beanSessionEstadisticos.getListGrafico() != null) {
+                addImagenes(document, "Grafico Barra Ingresos",
+                            exportGrafPNG(graph2, rutaSave + "GR.png"));
+                cont++;
+                addEspacio(cont, document);
+            }
+            if (pb3.isVisible() &&
+                beanSessionEstadisticos.getListGrafico() != null) {
+                addImagenes(document, "Grafico Barra Egresos",
+                            exportGrafPNG(graph3, rutaSave + "GR.png"));
+                cont++;
+                addEspacio(cont, document);
+            }
+            if (pb4.isVisible() &&
+                beanSessionEstadisticos.getListGrafico() != null) {
+                addImagenes(document, "Grafico Pie Ingresos vs Egresos",
+                            exportGrafPNG(graph4, rutaSave + "GR.png"));
+                cont++;
+                addEspacio(cont, document);
+            }
+            document.close();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void addImagenes(Document document, 
+                            String titulo, 
+                            String rutaImg) throws DocumentException, MalformedURLException, IOException {
+        Paragraph  paragraph =new Paragraph("\n"+titulo+"\n",
+                       FontFactory.getFont(FontFactory.HELVETICA, 13, Font.BOLDITALIC));
+        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+        document.add(paragraph);
+        Image img = Image.getInstance(rutaImg);
+        img.scalePercent(75);
+        img.setAlignment(Image.ALIGN_CENTER);
+        File archivo = new File(rutaImg);
+        archivo.delete();
+        document.add(img);
+    }
+    
+    public void addEspacio(int i,Document document) throws DocumentException {
+        if(i == 1 || i == 3){
+            document.newPage();
+        }
     }
     
     public void llenarListIngresos_Egresos(){
@@ -87,11 +335,10 @@ public class Frm_estadisticos {
         this.getGraph7().setTabularData(this.DataGraficoLine(beanSessionEstadisticos.getListGraficoGasMES()));
         Utils.addTargetMany(graph1,graph2,graph3,graph4,graph5,graph6,graph7);
     }
-    
+        
     public void setListaGraficosIngXMES(){
         List <BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
         lista.addAll(ln_C_SFCuadreRemote.getIngresosFactura(beanSessionEstadisticos.getFecMin(), beanSessionEstadisticos.getFecMax()));
-        lista.addAll(ln_C_SFCuadreRemote.getDiferencialNota(beanSessionEstadisticos.getFecMin(), beanSessionEstadisticos.getFecMax(),"D"));
         beanSessionEstadisticos.setListGraficoIngMes(lista);
     }
     
@@ -100,18 +347,19 @@ public class Frm_estadisticos {
         lista.addAll(ln_C_SFCuadreRemote.getGastosXMES(beanSessionEstadisticos.getFecMin(), beanSessionEstadisticos.getFecMax()));
         lista.addAll(ln_C_SFCuadreRemote.getGastosAdelantos(beanSessionEstadisticos.getFecMin(), beanSessionEstadisticos.getFecMax()));
         lista.addAll(ln_C_SFCuadreRemote.getGastosManifiestos(beanSessionEstadisticos.getFecMin(), beanSessionEstadisticos.getFecMax()));
-        lista.addAll(ln_C_SFCuadreRemote.getDiferencialNota(beanSessionEstadisticos.getFecMin(), beanSessionEstadisticos.getFecMax(), "C"));
         beanSessionEstadisticos.setListGraficoGasMES(lista);
     }
     
     public List DataGraficoLine(List<BeanEstCliente> lista){
         ArrayList data = new ArrayList();
         for(BeanEstCliente bean: lista){
-            Object[] data2 = new Object[3];
-            data2[0]= bean.getYear()+" "+bean.getMes();
-            data2[1]= bean.getRazonSocial();
-            data2[2] = bean.getConteo();
-            data.add(data2);
+            if(!bean.isFlag()){
+                Object[] data2 = new Object[3];
+                data2[0]= bean.getYear()+" "+bean.getMes();
+                data2[1]= bean.getRazonSocial();
+                data2[2] = bean.getConteo();
+                data.add(data2);
+            }
         }
         return data; 
     }
@@ -156,11 +404,13 @@ public class Frm_estadisticos {
                     if(tipo.equalsIgnoreCase(cuadreHijo.getDescCuadre())){
                         List<BeanCuadre> listCuadreHijo = cuadreHijo.getLstSubCuadres();
                         for(BeanCuadre cuadreNieto: listCuadreHijo){
-                            Object[] data2 = new Object[3];
-                            data2[0]= cuadreHijo.getDescCuadre();
-                            data2[1]= cuadreNieto.getDescCuadre();
-                            data2[2] = cuadreNieto.getEgreso().intValue()+cuadreNieto.getIngreso().intValue();
-                            data.add(data2);
+                            if(!cuadreNieto.getDescCuadre().equals("Notas de Debito")){
+                                Object[] data2 = new Object[3];
+                                data2[0]= cuadreHijo.getDescCuadre();
+                                data2[1]= cuadreNieto.getDescCuadre();
+                                data2[2] = cuadreNieto.getEgreso().intValue()+cuadreNieto.getIngreso().intValue();
+                                data.add(data2);
+                            }
                         }
                     }
                 }
@@ -196,6 +446,29 @@ public class Frm_estadisticos {
             }
         }
         return data;
+    }
+    
+    public void changeGraphic(ValueChangeEvent vce) {
+        ArrayList lista = (ArrayList)vce.getNewValue();
+        changeFlags(lista);
+        this.getGraph7().setTabularData(this.DataGraficoLine(beanSessionEstadisticos.getListGraficoGasMES()));
+        Utils.addTarget(graph7);
+    }
+    
+    public void changeFlags(ArrayList lista){
+        for(int j = 0; j<beanSessionEstadisticos.getListGraficoGasMES().size(); j++){
+            beanSessionEstadisticos.getListGraficoGasMES().get(j).setFlag(false);    
+        }
+        if(lista == null){
+            return;
+        }
+        for(int i = 0; i < lista.size(); i++){
+            for(int j = 0; j<beanSessionEstadisticos.getListGraficoGasMES().size(); j++){
+                if(beanSessionEstadisticos.getListGraficoGasMES().get(j).getRazonSocial().equals(lista.get(i))){
+                    beanSessionEstadisticos.getListGraficoGasMES().get(j).setFlag(true);    
+                }
+            }
+        }
     }
     
     public void changeDashBoardColumn(ValueChangeEvent vcl) {
@@ -422,4 +695,5 @@ public class Frm_estadisticos {
     public UIGraph getGraph7() {
         return graph7;
     }
+
 }

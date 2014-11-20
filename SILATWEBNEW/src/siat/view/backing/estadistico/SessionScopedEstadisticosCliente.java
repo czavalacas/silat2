@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 import silat.servicios_negocio.Beans.BeanEstCliente;
 
 public class SessionScopedEstadisticosCliente implements Serializable{
@@ -28,6 +30,7 @@ public class SessionScopedEstadisticosCliente implements Serializable{
     private List<BeanEstCliente> lista_Ordenes_MES;
     private List<BeanEstCliente> lista_Clientes;
     private List<BeanEstCliente> lista_Clientes_MES;
+    private List<SelectItem> listChoice;
 
     public void setColumns(int columns) {
         this.columns = columns;
@@ -163,5 +166,13 @@ public class SessionScopedEstadisticosCliente implements Serializable{
 
     public List<BeanEstCliente> getLista_Clientes_MES() {
         return lista_Clientes_MES;
+    }
+
+    public void setListChoice(List<SelectItem> listChoice) {
+        this.listChoice = listChoice;
+    }
+
+    public List<SelectItem> getListChoice() {
+        return listChoice;
     }
 }

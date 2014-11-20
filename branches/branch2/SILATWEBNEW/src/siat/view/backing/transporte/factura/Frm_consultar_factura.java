@@ -315,6 +315,7 @@ public class Frm_consultar_factura {
                 btnNota.setDisabled(true);
                 btnActFact.setDisabled(true);
             }else{
+                btnPagar.setDisabled(false);
                 btnAnular.setDisabled(false);
                 if(beanSessionScopeConsFactura.isRenderPagarFactura57()){//seteado en el postConstruct
                     btnPagar.setDisabled(false);   

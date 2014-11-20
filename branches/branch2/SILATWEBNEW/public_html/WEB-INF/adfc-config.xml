@@ -436,4 +436,19 @@
     <managed-bean-class>siat.view.backing.estadistico.SessionScopedEstadisticosCliente</managed-bean-class>
     <managed-bean-scope>session</managed-bean-scope>
   </managed-bean>
+  <managed-bean id="__83">
+    <managed-bean-name>backing_estadistico_estadistico_viajes</managed-bean-name>
+    <managed-bean-class>siat.view.backing.estadistico.Frm_estadisticos_viajes</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+    <managed-property id="__85">
+      <property-name>beanSessionEstadisticosViajes</property-name>
+      <property-class>siat.view.backing.estadistico.SessionScopeEstadisticosViajes</property-class>
+      <value>#{beanSessionEstadisticosViajes}</value>
+    </managed-property>
+  </managed-bean>
+  <managed-bean id="__84">
+    <managed-bean-name>beanSessionEstadisticosViajes</managed-bean-name>
+    <managed-bean-class>siat.view.backing.estadistico.SessionScopeEstadisticosViajes</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
 </adfc-config>

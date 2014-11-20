@@ -12,6 +12,7 @@ public class BeanEstCliente  implements Serializable{
     private String year;
     private String mes;
     private String tipo;
+    private boolean flag = false;
 
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
@@ -51,5 +52,13 @@ public class BeanEstCliente  implements Serializable{
 
     public String getTipo() {
         return tipo;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    public boolean isFlag() {
+        return flag;
     }
 }

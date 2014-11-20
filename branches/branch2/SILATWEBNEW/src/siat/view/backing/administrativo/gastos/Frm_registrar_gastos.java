@@ -533,6 +533,7 @@ public class Frm_registrar_gastos {
             beanSessionScopedRegistrarGastos.setManifiesto(ln_C_SFManifiestoRemote.findManifiestosByAttr_LN(null, null, Integer.parseInt(newValue), null, null, null).get(0));
             beanSessionScopedRegistrarGastos.getManifiesto().setEstadoManifiestoNegocio(4+"");
             inputTextMonto.setValue(beanSessionScopedRegistrarGastos.getManifiesto().getNFletePactado());
+            beanSessionScopedRegistrarGastos.setMontoGeneral(new BigDecimal(beanSessionScopedRegistrarGastos.getManifiesto().getNFletePactado()));
             inputDetalle.setValue("Pago de Manifiesto "+newValue);
             Utils.addTargetMany(inputTextMonto,inputDetalle);
         }

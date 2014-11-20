@@ -476,7 +476,7 @@ public class Frm_WebMovil extends HttpServlet{
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         
-        String url = extContext.encodeActionURL("http://127.0.0.1:7101/silat/faces/frm_login");
+        String url = extContext.encodeActionURL("http://192.168.16.3:7101/silat/faces/frm_login");
         try {
             extContext.redirect(url);
         } catch (IOException ioe) {

@@ -25,9 +25,8 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.ValueChangeEvent;
 
-import javax.faces.model.SelectItem;
+import javax.faces.event.ValueChangeEvent;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -36,11 +35,11 @@ import javax.servlet.ServletContext;
 
 import oracle.adf.view.faces.bi.component.graph.UIGraph;
 import oracle.adf.view.rich.component.rich.input.RichInputDate;
+
 import oracle.adf.view.rich.component.rich.input.RichSelectManyCheckbox;
 import oracle.adf.view.rich.component.rich.input.RichSelectOneRadio;
 import oracle.adf.view.rich.component.rich.layout.RichPanelBox;
 import oracle.adf.view.rich.component.rich.layout.RichPanelDashboard;
-
 import oracle.adf.view.rich.component.rich.nav.RichCommandButton;
 
 import oracle.dss.dataView.ImageView;
@@ -51,124 +50,114 @@ import siat.view.backing.utiles.fecha.FechaUtiles;
 
 import silat.servicios_negocio.Beans.BeanEstCliente;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFEstaClienteRemote;
-import silat.servicios_negocio.LNSF.SFBean.LN_C_SFEstaClienteBean;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFEstaViajesRemote;
 
-public class Frm_estadisticos_cliente {
-    private SessionScopedEstadisticosCliente beanSessionEstadisticosCliente;
-    private LN_C_SFEstaClienteRemote ln_C_SFEstaCliente;
-    private final static String LOOKUP_NAME_SFESTACLIENTE = "map-LN_C_SFEstaCliente";
+public class Frm_estadisticos_viajes {
+    private SessionScopeEstadisticosViajes beanSessionEstadisticosViajes;
+    private final static String LOOKUP_NAME_SFESTAViajes = "map-LN_C_SFEstaViajes";
+    private LN_C_SFEstaViajesRemote ln_C_SFEstaViajes;
     private RichInputDate id1;
     private RichInputDate id2;
+    private RichCommandButton cb1;
     private RichSelectOneRadio sor1;
     private RichSelectOneRadio sor2;
     private RichSelectManyCheckbox smc1;
     private RichPanelDashboard pd1;
     private RichPanelBox pb5;
-    private UIGraph graph6;
     private RichPanelBox pb6;
-    private UIGraph graph5;
-    private RichPanelBox pb1;
     private UIGraph graph1;
-    private RichPanelBox pb2;
     private UIGraph graph2;
-    private RichPanelBox pb3;
     private UIGraph graph3;
-    private RichPanelBox pb4;
     private UIGraph graph4;
-    private RichCommandButton cb1;
-
-
-    public Frm_estadisticos_cliente(){
+    private RichPanelBox pb4;
+    private RichPanelBox pb3;
+    private RichPanelBox pb2;
+    private RichPanelBox pb1;
+    private UIGraph graph6;
+    private UIGraph graph5;
+    
+    
+    public Frm_estadisticos_viajes(){
         try{
             final Context ctx;
             ctx = new InitialContext();
-            ln_C_SFEstaCliente = (LN_C_SFEstaClienteRemote)ctx.lookup(LOOKUP_NAME_SFESTACLIENTE);
+            ln_C_SFEstaViajes = (LN_C_SFEstaViajesRemote)ctx.lookup(LOOKUP_NAME_SFESTAViajes);
         }
         catch(Exception e){
             e.printStackTrace();
-        }
-    }
-
-    public void llenarGraficos(ActionEvent actionEvent){
-        llenarListIngresos_Egresos();
-        llenarChoice(beanSessionEstadisticosCliente.getLista_Clientes());
+        }   
     }
     
-    public void llenarChoice(List<BeanEstCliente> lista){
-        List<SelectItem> outPut = new ArrayList<SelectItem>();
-        for(BeanEstCliente bean : lista){
-            SelectItem item = new SelectItem();
-            item.setLabel(bean.getRazonSocial());
-            item.setValue(bean.getRazonSocial());
-            boolean condition = true;
-            for(SelectItem aux : outPut){
-                if(aux.getValue().equals(item.getValue())){
-                    condition = false; 
-                }
-            }
-            if(condition){
-                outPut.add(item);
-            }
-        }
-        beanSessionEstadisticosCliente.setListChoice(outPut);
+    public void llenarGraficos(ActionEvent actionEvent){
+        llenarListIngresos_Egresos();
+    }
+    
+    public void setListasCompletas(){
+        setListaViajesExitos();
+        setListaViajesFallidos();
+        setListaTotalViajes();
+        setListaViajesProp();
+        setListaViajesProv();
     }
     
     public void llenarListIngresos_Egresos(){
-        setListaOrdenesAprob();
-        setListaOrdenesAnul();
-        setListaOrdenesXMES();
-        setListaGananciasCliente();
-        setListaGananciasClienteMES();
-        this.getGraph1().setTabularData(this.DataGraficoBARSIMPLE(beanSessionEstadisticosCliente.getLista_Ordenes_Fina(),"Ordenes"));
-        this.getGraph2().setTabularData(this.DataGraficoBARSIMPLE(beanSessionEstadisticosCliente.getLista_Ordenes_Anul(),"Ordenes"));
-        this.getGraph3().setTabularData(this.DataGraficoBARSIMPLE(beanSessionEstadisticosCliente.getLista_Clientes(),"Clientes"));
-        this.getGraph4().setTabularData(this.DataGraficoBARSIMPLE(beanSessionEstadisticosCliente.getLista_Clientes(),"Clientes"));
-        this.getGraph5().setTabularData(this.DataGraficoLine(beanSessionEstadisticosCliente.getLista_Clientes_MES()));
-        this.getGraph6().setTabularData(this.DataGraficoLine(beanSessionEstadisticosCliente.getLista_Ordenes_MES()));
-        Utils.addTargetMany(graph1,graph2,graph3,graph4,graph5,graph6);
+        setListasCompletas();
+        List<BeanEstCliente> aux = new ArrayList<BeanEstCliente>();
+        aux.addAll(beanSessionEstadisticosViajes.getListaViajesExitosos());
+        aux.addAll(beanSessionEstadisticosViajes.getListaViajesFallidos());
+        List<BeanEstCliente> aux2 = new ArrayList<BeanEstCliente>();
+        aux2.addAll(beanSessionEstadisticosViajes.getListaProp());
+        aux2.addAll(beanSessionEstadisticosViajes.getListaProv());
+        this.getGraph5().setTabularData(DataGraficoLineEspecial(aux));
+        this.getGraph6().setTabularData(DataGraficoLine(aux2));
+        this.getGraph1().setTabularData(DataGraficoLineEspecial(aux));
+        this.getGraph2().setTabularData(DataGraficoLine(beanSessionEstadisticosViajes.getListaViajesTotal()));
+        this.getGraph3().setTabularData(DataGraficoLine(beanSessionEstadisticosViajes.getListaViajesTotal()));
+        this.getGraph4().setTabularData(DataGraficoBARSIMPLEViajes(aux2));
     }
-    
-    public void setListaGananciasCliente(){
-        List <BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
-        lista.addAll(ln_C_SFEstaCliente.getGanaciasGeneralCliente(beanSessionEstadisticosCliente.getFecMin(), beanSessionEstadisticosCliente.getFecMax(), 5));
-        beanSessionEstadisticosCliente.setLista_Clientes(lista);
-    }
-    
-    public void setListaGananciasClienteMES(){
-        List <BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
-        lista.addAll(ln_C_SFEstaCliente.getGanaciasXMESCliente(beanSessionEstadisticosCliente.getFecMin(), beanSessionEstadisticosCliente.getFecMax()));
-        beanSessionEstadisticosCliente.setLista_Clientes_MES(lista);
-    }
-    
-    public void setListaOrdenesXMES(){
-        List <BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
-        lista.addAll(ln_C_SFEstaCliente.getOrdenesXMeses(beanSessionEstadisticosCliente.getFecMin(), beanSessionEstadisticosCliente.getFecMax(), "F"));
-        beanSessionEstadisticosCliente.setLista_Ordenes_MES(lista);
-    }
-    
-    public void setListaOrdenesAprob(){
-        List <BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
-        lista.addAll(ln_C_SFEstaCliente.getOrdenesServicioXCLIENTE(beanSessionEstadisticosCliente.getFecMin(), beanSessionEstadisticosCliente.getFecMax(), 5, "F"));
-        beanSessionEstadisticosCliente.setLista_Ordenes_Fina(lista);
-    }
-    
-    public void setListaOrdenesAnul(){
-        List <BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
-        lista.addAll(ln_C_SFEstaCliente.getOrdenesServicioXCLIENTE(beanSessionEstadisticosCliente.getFecMin(), beanSessionEstadisticosCliente.getFecMax(), 5, "A"));
-        beanSessionEstadisticosCliente.setLista_Ordenes_Fina(lista);
-    }
-    
+
     public List DataGraficoLine(List<BeanEstCliente> lista){
         ArrayList data = new ArrayList();
         for(BeanEstCliente bean: lista){
-            if(!bean.isFlag()){
-                Object[] data2 = new Object[3];
-                data2[0]= bean.getYear()+" "+bean.getMes();
-                data2[1]= bean.getRazonSocial();
-                data2[2] = bean.getConteo();
-                data.add(data2);
+            Object[] data2 = new Object[3];
+            data2[0]= bean.getYear()+" "+bean.getMes();
+            data2[1]= bean.getRazonSocial();
+            System.out.println("Tipo:"+bean.getRazonSocial());
+            data2[2] = bean.getConteo();
+            data.add(data2);
+        }
+        return data; 
+    }
+    
+    public List DataGraficoLineEspecial(List<BeanEstCliente> lista){
+        ArrayList data = new ArrayList();
+        for(BeanEstCliente bean: lista){
+            Object[] data2 = new Object[3];
+            data2[0]= bean.getYear()+" "+bean.getMes();
+            data2[1]= bean.getTipo()+" - "+bean.getRazonSocial();
+            data2[2] = bean.getConteo();
+            data.add(data2);
+        }
+        return data; 
+    }
+    
+    public List DataGraficoBARSIMPLEViajes(List<BeanEstCliente> lista){
+        ArrayList data = new ArrayList();
+        double countProp = 0;
+        double countProv = 0;
+        if(lista == null){return data;}
+        for(BeanEstCliente bean: lista){
+            if(bean.getRazonSocial().equalsIgnoreCase("Propio")){
+                countProp = countProp + bean.getConteo();
+            }
+            else{
+                countProv = countProv + bean.getConteo();
             }
         }
+        Object[] dataaux = {"Viajes","Propio",countProp};
+        Object[] dataaux2 = {"Viajes","Proveedor",countProv};
+        data.add(dataaux);
+        data.add(dataaux2);
         return data; 
     }
     
@@ -176,64 +165,27 @@ public class Frm_estadisticos_cliente {
         ArrayList data = new ArrayList();
         if(lista == null){return data;}
         for(BeanEstCliente bean: lista){
-            if(!bean.isFlag()){
-                Object[] data2 = new Object[3];
-                data2[0]= input;
-                data2[1]= bean.getRazonSocial();
-                data2[2] = bean.getConteo();
-                data.add(data2);
-            }
+            Object[] data2 = new Object[3];
+            data2[0]= input;
+            data2[1]= bean.getRazonSocial();
+            System.out.println("Conteo: "+bean.getConteo());
+            data2[2] = bean.getConteo();
+            data.add(data2);
         }
         return data; 
-    }
-    
-    public void changeGraphic(ValueChangeEvent vce) {
-        ArrayList lista = (ArrayList)vce.getNewValue();
-        changeFlags(lista);
-        this.getGraph5().setTabularData(this.DataGraficoLine(beanSessionEstadisticosCliente.getLista_Clientes_MES()));
-        this.getGraph3().setTabularData(this.DataGraficoBARSIMPLE(beanSessionEstadisticosCliente.getLista_Clientes(),"Clientes"));
-        this.getGraph4().setTabularData(this.DataGraficoBARSIMPLE(beanSessionEstadisticosCliente.getLista_Clientes(),"Clientes"));
-        Utils.addTargetMany(graph5,graph3,graph4);
-    }
-    
-    public void changeFlags(ArrayList lista){
-        for(int j = 0; j<beanSessionEstadisticosCliente.getLista_Clientes_MES().size(); j++){
-            beanSessionEstadisticosCliente.getLista_Clientes_MES().get(j).setFlag(false);    
-        }
-        for(int j = 0; j<beanSessionEstadisticosCliente.getLista_Clientes().size(); j++){
-            beanSessionEstadisticosCliente.getLista_Clientes().get(j).setFlag(false);    
-        }
-        if(lista == null){
-            return;
-        }
-        for(int i = 0; i < lista.size(); i++){
-            for(int j = 0; j<beanSessionEstadisticosCliente.getLista_Clientes_MES().size(); j++){
-                if(beanSessionEstadisticosCliente.getLista_Clientes_MES().get(j).getRazonSocial().equals(lista.get(i))){
-                    beanSessionEstadisticosCliente.getLista_Clientes_MES().get(j).setFlag(true);    
-                }
-            }
-        }
-        for(int i = 0; i < lista.size(); i++){
-            for(int j = 0; j<beanSessionEstadisticosCliente.getLista_Clientes().size(); j++){
-                if(beanSessionEstadisticosCliente.getLista_Clientes().get(j).getRazonSocial().equals(lista.get(i))){
-                    beanSessionEstadisticosCliente.getLista_Clientes().get(j).setFlag(true);    
-                }
-            }
-        }
     }
     
     public void changeDashBoardColumn(ValueChangeEvent vcl) {
         vcl.getComponent().processUpdates(FacesContext.getCurrentInstance());
         int column = Integer.parseInt(vcl.getNewValue()+"");
-        beanSessionEstadisticosCliente.setColumns(column);
+        beanSessionEstadisticosViajes.setColumns(column);
         Utils.addTarget(pd1);
     }
     
     public void changeDashBoardRowHeight(ValueChangeEvent vcl) {
         vcl.getComponent().processUpdates(FacesContext.getCurrentInstance());
         String rowHeight = (String)vcl.getNewValue();
-        beanSessionEstadisticosCliente.setRowHeights(rowHeight);
-        System.out.println(beanSessionEstadisticosCliente.getRowHeights());
+        beanSessionEstadisticosViajes.setRowHeights(rowHeight);
         Utils.addTarget(pd1);
     }
     
@@ -275,6 +227,36 @@ public class Frm_estadisticos_cliente {
             }
         }
         doChange();
+    }
+
+    public void setListaViajesExitos(){
+        List<BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
+        lista.addAll(ln_C_SFEstaViajes.getViajesExitosos(beanSessionEstadisticosViajes.getFecMin(), beanSessionEstadisticosViajes.getFecMax(), 3, 5));
+        beanSessionEstadisticosViajes.setListaViajesExitosos(lista);
+    }
+    
+    public void setListaViajesFallidos(){
+        List<BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
+        lista.addAll(ln_C_SFEstaViajes.getViajesExitosos(beanSessionEstadisticosViajes.getFecMin(), beanSessionEstadisticosViajes.getFecMax(), 1, 2));
+        beanSessionEstadisticosViajes.setListaViajesFallidos(lista);
+    }
+    
+    public void setListaTotalViajes(){
+        List<BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
+        lista.addAll(ln_C_SFEstaViajes.getViajesMesGeneral(beanSessionEstadisticosViajes.getFecMin(), beanSessionEstadisticosViajes.getFecMax()));
+        beanSessionEstadisticosViajes.setListaViajesTotal(lista);
+    }
+    
+    public void setListaViajesProv(){
+        List<BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
+        lista.addAll(ln_C_SFEstaViajes.getViajesProvProp(beanSessionEstadisticosViajes.getFecMin(), beanSessionEstadisticosViajes.getFecMax(),1));
+        beanSessionEstadisticosViajes.setListaProv(lista);
+    }
+    
+    public void setListaViajesProp(){
+        List<BeanEstCliente> lista = new ArrayList<BeanEstCliente>();
+        lista.addAll(ln_C_SFEstaViajes.getViajesProvProp(beanSessionEstadisticosViajes.getFecMin(), beanSessionEstadisticosViajes.getFecMax(),2));
+        beanSessionEstadisticosViajes.setListaProp(lista);
     }
     
     public void exportPdf(FacesContext facesContext, java.io.OutputStream outputStream) {
@@ -338,13 +320,13 @@ public class Frm_estadisticos_cliente {
         document.add(paragraph); 
         mostrarFiltro(document,"Documento creado el "+FechaUtiles.fechaHoy(),null);
         String dateE = "Fecha de Resultados:\t";
-        if(beanSessionEstadisticosCliente.getFecMin() != null){
-            dateE = dateE.concat("Desde el "+formato.format(beanSessionEstadisticosCliente.getFecMin()));
+        if(beanSessionEstadisticosViajes.getFecMin() != null){
+            dateE = dateE.concat("Desde el "+formato.format(beanSessionEstadisticosViajes.getFecMin()));
         } else {
             dateE = dateE.concat("Desde el principio de año ");
         }
-        if(beanSessionEstadisticosCliente.getFecMax() != null ){
-            dateE = dateE.concat(" hasta el "+formato.format(beanSessionEstadisticosCliente.getFecMax()));
+        if(beanSessionEstadisticosViajes.getFecMax() != null ){
+            dateE = dateE.concat(" hasta el "+formato.format(beanSessionEstadisticosViajes.getFecMax()));
         } else {
             dateE = dateE.concat(" hasta el "+FechaUtiles.fechaHoy());
         }
@@ -352,27 +334,27 @@ public class Frm_estadisticos_cliente {
         String filtroUsados = "Se mostraran los graficos: ";
         mostrarFiltro(document,filtroUsados,null);
         if(pb6.isVisible()){
-            filtroUsados = "- Grafico Ordenes de Servicio por Mes lineal";
+            filtroUsados = "- Grafico Viajes Por Tipo Mes Lineal";
             mostrarFiltro(document,filtroUsados,null);
         }
         if(pb5.isVisible()){
-            filtroUsados = "- Grafico Ganancias por Mes Lineal";
+            filtroUsados = "- Grafico Exito por Viajes por Mes Lineal";
             mostrarFiltro(document,filtroUsados,null);
         }
         if(pb1.isVisible()){
-            filtroUsados = "- Grafico Ordenes de Servicio Atendidas Barra";
+            filtroUsados = "- Grafico Exito por Viajes por Mes Barra";
             mostrarFiltro(document,filtroUsados,null);
         }
         if(pb2.isVisible()){
-            filtroUsados = "- Grafico Ordenes de Servicio Anuladas Barra";
+            filtroUsados = "- Grafico Viajes Totales Barra";
             mostrarFiltro(document,filtroUsados,null);
         }
         if(pb3.isVisible()){
-            filtroUsados = "- Grafico Ganancias Generales Barra";
+            filtroUsados = "- Grafico Viajes Totales Lineal";
             mostrarFiltro(document,filtroUsados,null);
         }
         if(pb4.isVisible()){
-            filtroUsados = "- Grafico Comparativo de Ganancias Pie";
+            filtroUsados = "- Grafico Comparativo de Viajes Vs Proveedor Pie";
             mostrarFiltro(document,filtroUsados,null);
         }
         mostrarFiltro(document,filtroUsados,null);
@@ -393,43 +375,43 @@ public class Frm_estadisticos_cliente {
             addSelectFiltro(document);
             int cont = 0;
             if (pb6.isVisible() &&
-                beanSessionEstadisticosCliente.getLista_Ordenes_MES() != null) {
-                addImagenes(document, "Grafico Ordenes de Servicio por Mes lineal",
+                beanSessionEstadisticosViajes.getListaViajesExitosos() != null) {
+                addImagenes(document, "Grafico Viajes Por Tipo Mes Lineal",
                             exportGrafPNG(graph6, rutaSave + "GR.png"));
                 cont++;
                 addEspacio(cont, document);
             }
             if (pb5.isVisible() &&
-                beanSessionEstadisticosCliente.getLista_Clientes_MES() != null) {
-                addImagenes(document, "Grafico Ganancias por Mes Lineal",
+                beanSessionEstadisticosViajes.getListaProp() != null) {
+                addImagenes(document, "Grafico Exito por Viajes por Mes Lineal",
                             exportGrafPNG(graph5, rutaSave + "GR.png"));
                 cont++;
                 addEspacio(cont, document);
             }
             if (pb1.isVisible() &&
-                beanSessionEstadisticosCliente.getLista_Ordenes_Fina() != null ) {
-                addImagenes(document, "Grafico Ordenes de Servicio Atendidas Lineal",
+                beanSessionEstadisticosViajes.getListaViajesExitosos() != null ) {
+                addImagenes(document, "Grafico Exito por Viajes por Mes Barra",
                             exportGrafPNG(graph1, rutaSave + "GR.png"));
                 cont++;
                 addEspacio(cont, document);
             }
             if (pb2.isVisible() &&
-                beanSessionEstadisticosCliente.getLista_Ordenes_Anul() != null ) {
-                addImagenes(document, "Grafico Ordenes de Servicio Anuladas Barra",
+                beanSessionEstadisticosViajes.getListaViajesTotal() != null ) {
+                addImagenes(document, "Grafico Viajes Totales Barra",
                             exportGrafPNG(graph2, rutaSave + "GR.png"));
                 cont++;
                 addEspacio(cont, document);
             }
             if (pb3.isVisible() &&
-                beanSessionEstadisticosCliente.getLista_Clientes_MES() != null) {
-                addImagenes(document, "Grafico Ganancias Generales Barra",
+                beanSessionEstadisticosViajes.getListaViajesTotal() != null) {
+                addImagenes(document, "Grafico Viajes Totales Lineal",
                             exportGrafPNG(graph3, rutaSave + "GR.png"));
                 cont++;
                 addEspacio(cont, document);
             }
             if (pb4.isVisible() &&
-                beanSessionEstadisticosCliente.getLista_Ordenes_MES() != null) {
-                addImagenes(document, "Grafico Comparativo de Ganancias Pie",
+                beanSessionEstadisticosViajes.getListaProp() != null) {
+                addImagenes(document, "Grafico Comparativo de Viajes Vs Proveedor Pie",
                             exportGrafPNG(graph4, rutaSave + "GR.png"));
                 cont++;
                 addEspacio(cont, document);
@@ -482,6 +464,14 @@ public class Frm_estadisticos_cliente {
         return id2;
     }
 
+    public void setCb1(RichCommandButton cb1) {
+        this.cb1 = cb1;
+    }
+
+    public RichCommandButton getCb1() {
+        return cb1;
+    }
+
     public void setSor1(RichSelectOneRadio sor1) {
         this.sor1 = sor1;
     }
@@ -522,36 +512,12 @@ public class Frm_estadisticos_cliente {
         return pb5;
     }
 
-    public void setGraph6(UIGraph graph6) {
-        this.graph6 = graph6;
-    }
-
-    public UIGraph getGraph6() {
-        return graph6;
-    }
-
     public void setPb6(RichPanelBox pb6) {
         this.pb6 = pb6;
     }
 
     public RichPanelBox getPb6() {
         return pb6;
-    }
-
-    public void setGraph5(UIGraph graph5) {
-        this.graph5 = graph5;
-    }
-
-    public UIGraph getGraph5() {
-        return graph5;
-    }
-
-    public void setPb1(RichPanelBox pb1) {
-        this.pb1 = pb1;
-    }
-
-    public RichPanelBox getPb1() {
-        return pb1;
     }
 
     public void setGraph1(UIGraph graph1) {
@@ -562,28 +528,12 @@ public class Frm_estadisticos_cliente {
         return graph1;
     }
 
-    public void setPb2(RichPanelBox pb2) {
-        this.pb2 = pb2;
-    }
-
-    public RichPanelBox getPb2() {
-        return pb2;
-    }
-
     public void setGraph2(UIGraph graph2) {
         this.graph2 = graph2;
     }
 
     public UIGraph getGraph2() {
         return graph2;
-    }
-
-    public void setPb3(RichPanelBox pb3) {
-        this.pb3 = pb3;
-    }
-
-    public RichPanelBox getPb3() {
-        return pb3;
     }
 
     public void setGraph3(UIGraph graph3) {
@@ -594,14 +544,6 @@ public class Frm_estadisticos_cliente {
         return graph3;
     }
 
-    public void setPb4(RichPanelBox pb4) {
-        this.pb4 = pb4;
-    }
-
-    public RichPanelBox getPb4() {
-        return pb4;
-    }
-
     public void setGraph4(UIGraph graph4) {
         this.graph4 = graph4;
     }
@@ -610,19 +552,59 @@ public class Frm_estadisticos_cliente {
         return graph4;
     }
 
-    public void setBeanSessionEstadisticosCliente(SessionScopedEstadisticosCliente beanSessionEstadisticosCliente) {
-        this.beanSessionEstadisticosCliente = beanSessionEstadisticosCliente;
+    public void setPb4(RichPanelBox pb4) {
+        this.pb4 = pb4;
     }
 
-    public SessionScopedEstadisticosCliente getBeanSessionEstadisticosCliente() {
-        return beanSessionEstadisticosCliente;
+    public RichPanelBox getPb4() {
+        return pb4;
     }
 
-    public void setCb1(RichCommandButton cb1) {
-        this.cb1 = cb1;
+    public void setPb3(RichPanelBox pb3) {
+        this.pb3 = pb3;
     }
 
-    public RichCommandButton getCb1() {
-        return cb1;
+    public RichPanelBox getPb3() {
+        return pb3;
+    }
+
+    public void setPb2(RichPanelBox pb2) {
+        this.pb2 = pb2;
+    }
+
+    public RichPanelBox getPb2() {
+        return pb2;
+    }
+
+    public void setPb1(RichPanelBox pb1) {
+        this.pb1 = pb1;
+    }
+
+    public RichPanelBox getPb1() {
+        return pb1;
+    }
+
+    public void setGraph6(UIGraph graph6) {
+        this.graph6 = graph6;
+    }
+
+    public UIGraph getGraph6() {
+        return graph6;
+    }
+
+    public void setGraph5(UIGraph graph5) {
+        this.graph5 = graph5;
+    }
+
+    public UIGraph getGraph5() {
+        return graph5;
+    }
+
+    public void setBeanSessionEstadisticosViajes(SessionScopeEstadisticosViajes beanSessionEstadisticosViajes) {
+        this.beanSessionEstadisticosViajes = beanSessionEstadisticosViajes;
+    }
+
+    public SessionScopeEstadisticosViajes getBeanSessionEstadisticosViajes() {
+        return beanSessionEstadisticosViajes;
     }
 }

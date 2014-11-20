@@ -47,6 +47,7 @@ public class BDL_C_SFEstaViajesBean implements BDL_C_SFEstaViajesRemote, BDL_C_S
             CallableStatement stmt = conn.prepareCall(query);
             stmt.setString(1,FechaUtiles.getFechaStr(fecMin));
             stmt.setString(2,FechaUtiles.getFechaStr(fecMax));          
+            System.out.println(FechaUtiles.getFechaStr(fecMin)+" al "+FechaUtiles.getFechaStr(fecMax));
             stmt.setInt(3, limitInf);
             stmt.setInt(4, limitSup);
             ResultSet  rs =   stmt.executeQuery();  
@@ -59,13 +60,13 @@ public class BDL_C_SFEstaViajesBean implements BDL_C_SFEstaViajesRemote, BDL_C_S
                     beanEstCliente.setRazonSocial("No Exitoso");
                 }
                 else{
-                    beanEstCliente.setRazonSocial(rs.getString("Exitoso"));
+                    beanEstCliente.setRazonSocial("Exitoso");
                 }
                 if(rs.getInt("TRANSPORTISTA") == 1){
                     beanEstCliente.setTipo("Proveedor");
                 }
                 else{
-                    beanEstCliente.setTipo(rs.getString("Propio"));
+                    beanEstCliente.setTipo("Propio");
                 }
                 beanEstCliente.setConteo(rs.getDouble("conteo"));
                 lstBeanEstCliente.add(beanEstCliente);
@@ -98,6 +99,7 @@ public class BDL_C_SFEstaViajesBean implements BDL_C_SFEstaViajesRemote, BDL_C_S
                 beanEstCliente.setYear(rs.getString("ANIO"));
                 beanEstCliente.setMes(rs.getString("MES"));
                 beanEstCliente.setConteo(rs.getDouble("conteo"));
+                beanEstCliente.setRazonSocial("Viajes");
                 lstBeanEstCliente.add(beanEstCliente);
             }
             conn.close();

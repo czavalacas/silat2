@@ -133,7 +133,8 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             BeanFactura beanFactGuia = new BeanFactura();
             
             //Solo Con TRGuia
-            beanGuia.setCidGuia(entidad.getCidUnidadNegocio()+"-"+entidad.getCidGuia());
+            beanGuia.setCidGuia(entidad.getCidGuia());
+            beanGuia.setCidUnidadNegocio(entidad.getCidUnidadNegocio());
             beanGuia.setNativeCidGuia(entidad.getCidGuia());
             beanGuia.setFechaGuia(entidad.getFechaGuia());
             beanGuia.setFechaDespacho(entidad.getFechaDespacho());

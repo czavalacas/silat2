@@ -208,7 +208,7 @@
                             <af:outputText value="#{vs.index + 1}"/>
                         </af:column>
                         <af:column headerText="Guia" align="start" id="c4" width="70" sortable="true" sortProperty="cidGuia" frozen="true" inlineStyle="#{row.styleAnulado}">
-                            <af:outputText value="#{row.cidGuia}" id="ot4"/>
+                            <af:outputText value="#{row.cidGuia}-#{row.cidUnidadNegocio}" id="ot4"/>
                         </af:column>
                         <af:column sortable="true" headerText="Cliente" align="start" id="c8" sortProperty="empCliente" inlineStyle="#{row.styleAnulado}" width="150">
                             <af:outputText value="#{row.empCliente}" id="ot8"/>

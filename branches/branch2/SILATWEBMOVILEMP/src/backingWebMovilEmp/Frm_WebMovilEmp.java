@@ -196,6 +196,8 @@ public class Frm_WebMovilEmp {
     private String nidUmedida;
     private String cantidadNewItem;
     private String descripcionNewItem;
+    
+
 
     public Frm_WebMovilEmp() {
         try {
@@ -416,7 +418,7 @@ public class Frm_WebMovilEmp {
                 throw new FacesException(ioe);
             }
         }catch(Exception e){
-            e.printStackTrace();
+            
         }
         return "";
     }
@@ -552,13 +554,16 @@ public class Frm_WebMovilEmp {
         setNombreRemitente(empresa.getCRazonSocial());
         setNidRemitenteElegido(h1);
         }
-        
+        if(lstBeanOrd.get(0).getNidRemitente() == null){
+            
+        }else{
+            int nid = Integer.parseInt(h1);
+            setDirecsRemin(LN_C_SFDireccionRemote.getDireccionByProp_LN(null,nid,null)); 
+        }
         if(lstBeanOrd.get(0).getNidRemitente() == null || lstBeanOrd.get(0).getNidDirecProv()==null){
         
         }
         else{
-        int nid = Integer.parseInt(h1);
-        setDirecsRemin(LN_C_SFDireccionRemote.getDireccionByProp_LN(null,nid,null));
         String h3 = lstBeanOrd.get(0).getNidDirecProv();
         int nidDire = Integer.parseInt(h3);
         int nidEmp = Integer.parseInt(h1);
@@ -566,6 +571,7 @@ public class Frm_WebMovilEmp {
         setNombreDireccionRemitente(direccion.get(0).getCDireccion());
         setNidDireccionDestino(direccion.get(0).getNidDireccion()+"");
         }
+        
         
         String h4 = "";
         String g4 = "";

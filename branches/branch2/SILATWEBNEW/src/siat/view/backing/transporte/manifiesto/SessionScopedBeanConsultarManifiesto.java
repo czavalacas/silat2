@@ -47,6 +47,7 @@ public class SessionScopedBeanConsultarManifiesto {
     private String estadoManifActivoNoAct = "1";
     //dfloresgonz 19.06.2014 - Se agrega variable saber si tiene el permiso de modificar fechas
     private boolean renderBtnFecha = false;
+    private int executeCheck=0;
     
     public void setExec(int exec) {
         this.exec = exec;
@@ -334,5 +335,13 @@ public class SessionScopedBeanConsultarManifiesto {
 
     public boolean isRenderBtnFecha() {
         return renderBtnFecha;
+    }
+
+    public void setExecuteCheck(int executeCheck) {
+        this.executeCheck = executeCheck;
+    }
+
+    public int getExecuteCheck() {
+        return executeCheck;
     }
 }

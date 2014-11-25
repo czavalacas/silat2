@@ -50,7 +50,8 @@ public class BackingBean_Region {
                 Utils.removeSession("beanSessionConsPreFactura");
                 Utils.removeSession("beanSessionScopeModificarUsuario");
                 Utils.removeSession("beanSessionRegistrarManifiesto");
-                Utils.removeSession("beanSessionScopedRegistrarOS");               
+                Utils.removeSession("beanSessionScopedRegistrarOS");    
+                Utils.removeSession("beanSessionConsultarManifiesto");   
            }
         }catch(Exception e){
             taskFlowId = "/WEB-INF/mainTF.xml#mainTF";

@@ -2,36 +2,24 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
                 xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
+        <af:panelGroupLayout>
              <af:panelGroupLayout>
                <af:spacer height="10"/>
                     <af:outputLabel value="Registrar Manifiestos" id="olTitulo" styleClass="titulos"
                                   binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.olTituloPopUp}"/>
               <af:spacer height="10"/>
              </af:panelGroupLayout>
+             <af:panelGroupLayout >
              <af:panelTabbed id="pt1" 
                         inlineStyle="margin:0px 50px 0px 0px;"
-                        dimensionsFrom="auto">
-                        
+                        dimensionsFrom="auto">                        
                         <af:showDetailItem text="Manifiesto" id="sdi2" immediate="false"
                            binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.sdi2}">
-            <af:selectOneChoice label="Manifiesto por asignar a la Guía" autoSubmit="true"
-                                requiredMessageDetail="Se debe seleccionar una opción" id="tipoManf"
-                                binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.tipoManf}"
-                                disabled="#{sessionScope.beanSessionRegistrarManifiesto.disableComponents}"
-                                showRequired="true" unselectedLabel="Seleccionar Opción" valuePassThru="true"
-                                valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.cambioManif}"
-                                value="#{sessionScope.beanSessionRegistrarManifiesto.comboTipoManif}" visible="false">
-                <af:selectItem label="Crear Nuevo Manifiesto" value="1" id="itemManif1"
-                               binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itemManif1}"/>
-                <af:selectItem label="Seleccionar existente" value="2" id="itemManif2"
-                               binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.itemManif2}"/>
-              
-            </af:selectOneChoice>
-           
+      
             <af:panelBox text="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosEmpTitulo}" id="pboxDatosEmp" showDisclosure="false"
                          inlineStyle = "width:400px;" background="light"
                          binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.pboxDatosEmp}"
-                         visible="#{sessionScope.beanSessionRegistrarManifiesto.pboxDatosEmpVis}">
+                         visible="true">
                     <af:panelFormLayout id="pfl8" binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.pfl8}" rows="1" labelWidth="80">
                             <af:inputText label="Razón Social" id="txtRazSocEmpTransp" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
                                           binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtRazSocEmpTransp}"
@@ -45,10 +33,10 @@
                         </af:commandButton>  
                         </af:panelFormLayout>
                        <af:panelFormLayout  labelWidth="80"> 
-                          <af:selectBooleanCheckbox label="Transporte Propio" id="ckbTraPro" rendered="true"
-                                                    binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.ckbTraPro}"
-                                                    valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.cambioCheckTransPropio}"
-                                                    autoSubmit="true" labelStyle="text-align: left;"/>
+                          <af:selectBooleanCheckbox label="Transporte Propio" id="ckbTraPro" 
+                                                    
+                                                    autoSubmit="true" labelStyle="text-align: left;"
+                                                    valueChangeListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.checkBoxTransportePropio}"/>
                         <af:inputText label="Razón Social:" id="txtRazSocEmpTransp2" rendered="#{sessionScope.beanSessionRegistrarManifiesto.visibTxtRazSocProvTrans2}" disabled="true"
                                       value="#{sessionScope.beanSessionRegistrarManifiesto.empresaSC}" labelStyle="text-align: left;"
                                       binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.txtRazSocEmpTransp2}"
@@ -170,7 +158,7 @@
                                         showRequired="true" required="true"
                                         value="#{sessionScope.beanSessionRegistrarManifiesto.tipDoc}"
                                         disabled="#{sessionScope.beanSessionRegistrarManifiesto.txtTipDocuDisable}"
-                                        labelStyle="text-align: left;">
+                                        labelStyle="text-align: left;" autoSubmit="true" immediate="true">
                         <af:selectItem label="Factura" value="1" id="tipoDoc1" disabled="#{beanSessionRegistrarManifiesto.transportePropio}"
                                        binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.tipoDoc1}"/>
                         <af:selectItem label="Transporte Propio" value="2" id="tipoDoc2"
@@ -191,7 +179,8 @@
                         <af:commandButton text="Registrar Manifiesto" id="btnRegManif" rendered="#{sessionScope.beanSessionRegistrarManifiesto.estadoFormManif}"
                                           binding="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.btnRegManif}"
                                           actionListener="#{backingBeanScope.backing_transporte_manifiesto_registrar_manifiesto.validarManifiesto}"
-                                          disabled="#{sessionScope.beanSessionRegistrarManifiesto.disabRegisManif}"/>
+                                          disabled="#{sessionScope.beanSessionRegistrarManifiesto.disabRegisManif}"
+                                          />
             </af:panelFormLayout>
                     </af:panelBox> 
             <af:panelBox text="Datos de Identificacion de la Unidad de Transporte y del Conductor"
@@ -335,9 +324,8 @@
                        
                         </af:panelTabbed>
              
+             </af:panelGroupLayout>
              
-             
+               </af:panelGroupLayout>
              </f:view>
-               <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_manifiesto_registrar_manifiesto-->
-
   </ui:composition>

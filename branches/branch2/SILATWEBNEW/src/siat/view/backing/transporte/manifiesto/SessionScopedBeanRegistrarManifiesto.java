@@ -1125,4 +1125,5 @@ public class SessionScopedBeanRegistrarManifiesto {
     public boolean isTransportePropio() {
         return transportePropio;
     }
+
 }

@@ -78,6 +78,8 @@ public class BeanTRGuia implements Serializable, Cloneable  {
     private Integer valoracion;
     private String nativeCidGuia;
     
+    private String fechaGuiaWebMovilEmp;
+    
     public Object clone() {
         Object clone = null;
         try {
@@ -487,5 +489,13 @@ public class BeanTRGuia implements Serializable, Cloneable  {
 
     public String getNativeCidGuia() {
         return nativeCidGuia;
+    }
+
+    public void setFechaGuiaWebMovilEmp(String fechaGuiaWebMovilEmp) {
+        this.fechaGuiaWebMovilEmp = fechaGuiaWebMovilEmp;
+    }
+
+    public String getFechaGuiaWebMovilEmp() {
+        return fechaGuiaWebMovilEmp;
     }
 }

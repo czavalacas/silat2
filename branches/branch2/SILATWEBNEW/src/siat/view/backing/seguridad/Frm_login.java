@@ -154,6 +154,17 @@ public class Frm_login {
             if (error != null) {
                 if ("000".equals(error)) {
                 
+                if("OPERARIO".equals(tipoRol)){
+                        FacesContext fCtx = FacesContext.getCurrentInstance();
+                        ExternalContext eCtx = fCtx.getExternalContext();
+                        String activityUrl = ControllerContext.getInstance().getViewActivityViewID("LUBAL_SIAT_APP-SILATWEBMOVILEMP-context-root/faces/Prueba.xhtml"); 
+                        try {
+                            eCtx.redirect(activityUrl);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }  
+                    }
+                
                 if("CLIENTE".equals(tipoRol)){
                     FacesContext fCtx = FacesContext.getCurrentInstance();
                     ExternalContext eCtx = fCtx.getExternalContext();

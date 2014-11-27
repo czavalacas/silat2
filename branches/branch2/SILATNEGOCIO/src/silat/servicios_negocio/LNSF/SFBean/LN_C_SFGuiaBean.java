@@ -218,11 +218,10 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                 beanGuia.setCConformidad(guia.getCConformidad());
                 beanGuia.setCObservaciones(guia.getCObservaciones());
                 
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss");
-                String folderName = formatter.format(guia.getFechaGuia());
-                Date d1 = formatter.parse(folderName);
+                String newstring = new SimpleDateFormat("yyyy-MM-dd").format(guia.getFechaGuia());
+                beanGuia.setFechaGuiaWebMovilEmp(newstring);
                 
-                beanGuia.setFechaGuia(d1);
+                beanGuia.setFechaGuia(guia.getFechaGuia());
                 beanGuia.setCidGuia(guia.getCidUnidadNegocio() + "-" + guia.getCidGuia());
                 lstBeanGuias.add(beanGuia);
             }

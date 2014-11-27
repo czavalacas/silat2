@@ -231,7 +231,6 @@
             }
             
             
-            
             function isNumber(obj){
                 var x = obj.value;
                 if(isNaN(x)){
@@ -276,7 +275,7 @@
         filter: alpha(opacity=50);
         z-index: 1000;
     }
-    
+
     #modal-content {
         background-color: white;
         border-radius: 10px;
@@ -422,6 +421,22 @@
         z-index: 1000;
     }
     
+    #modalMensajeGuia{
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
+        position: absolute;
+        position: fixed;
+        z-index: 1000;
+    }
 
 
     #modal-background.active, #modal-content.active, #modalFlotas.active, #modalChoferes.active ,#modalRemitentes,#modalDireccionRemitentes {
@@ -500,7 +515,7 @@
     
     <button id="modal-launcher" style="width:100%;display:none;background-color:#0087B3;font-size: 110%" onclick="openModalClientes()">Elegir Razon.Soc</button>
     <h:form id="regManifiesto">
-        <b:inputText style="background-color: #DDDDDD;color:#000000;" disabled="true"
+        <b:inputText style="#{frm_WebMovilEmp.stylerazonSocialManifiesto}" disabled="true"
                      value="#{frm_WebMovilEmp.razonSocialEmpresaElegida}">
             <f:facet name="prepend">
                 <h:outputText value="Razon Social"/>
@@ -559,6 +574,14 @@
                 <h:outputText value="Observaciones"/>
             </f:facet>
         </b:inputText>
+        <b:alert severity="danger">
+        <ui:repeat var="sms" value="#{frm_WebMovilEmp.mensajeManif}">
+                    <p style="margin-top: .1em;">
+                        <strong>#{sms}</strong>
+                    </p>
+        </ui:repeat>
+        </b:alert>
+        
                 <b:commandButton style="font-size:15px;background-color:#0087B3; width: 50%;height:50px;border-color : #000000;color:#ffffff;font-size: 110%"
                                  icon="save" iconAlign="right" ajax="true" update="form:inform regManifiesto"
                                  value="Guardar" action="#{frm_WebMovilEmp.registrarManifiesto}"/>
@@ -708,6 +731,15 @@
                 <h:outputText value="n°paquetes"/>
             </f:facet>
         </b:inputText>
+        
+        <b:alert severity="danger">
+        <ui:repeat var="sms" value="#{frm_WebMovilEmp.mensajeGuia}">
+                    <p style="margin-top: .1em;">
+                        <strong>#{sms}</strong>
+                    </p>
+        </ui:repeat>
+        </b:alert>
+        
         <div style="background-color: #DDDDDD;color:#000000;margin-bottom:10px;text-align:center" id="regManifiesto0">
     <h:outputText value="Cerrar Orden.Servicio?"/>
     <br></br>  
@@ -763,7 +795,7 @@
                     <p class="ui-li-aside">
                         Fecha: 
                         <strong>
-                            #{row.fechaGuia}</strong>
+                            #{row.fechaGuiaWebMovilEmp}</strong>
                     </p>
                 </b:alert>
         </ui:repeat>

@@ -13,7 +13,8 @@ public interface LN_T_SFFlotaLocal {
                                       String marca, 
                                       String placa, 
                                       String configuracion, 
-                                      String descripcion);
+                                      String descripcion,
+                                      String cCerIns);
     void removerFlota(Integer nidFlota);
     BeanFlota actualizarFlota(BigDecimal nidParty, 
                                       Integer nidFlota,

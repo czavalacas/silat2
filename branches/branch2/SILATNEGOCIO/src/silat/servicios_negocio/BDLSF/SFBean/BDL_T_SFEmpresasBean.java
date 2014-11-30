@@ -87,7 +87,8 @@ public class BDL_T_SFEmpresasBean implements BDL_T_SFEmpresasRemote,
                                        String [] cMarcaFlota,
                                        String [] cPlacaFlota,
                                        String [] cConfFlota,
-                                       String [] cDescripcionFlota){
+                                       String [] cDescripcionFlota,
+                                       String [] cCerInsCripFlota){
         String error = "000";
         try{
             adEmpresa = this.persistADEmpresa(adEmpresa);
@@ -101,7 +102,7 @@ public class BDL_T_SFEmpresasBean implements BDL_T_SFEmpresasRemote,
                 ln_T_SFChoferLocal.guardarChofer(adEmpresa.getNidParty(), cNombChof[i], cLicencia[i]);
             }
             for(int i = 0; i <cMarcaFlota.length; i++){
-                ln_T_SFFlotaLocal.registrarFlota(adEmpresa.getNidParty(), cMarcaFlota[i], cPlacaFlota[i], cConfFlota[i], cDescripcionFlota[i]);
+                ln_T_SFFlotaLocal.registrarFlota(adEmpresa.getNidParty(), cMarcaFlota[i], cPlacaFlota[i], cConfFlota[i], cDescripcionFlota[i], cCerInsCripFlota[i]);
             }
         }catch(Exception e){
             e.printStackTrace();

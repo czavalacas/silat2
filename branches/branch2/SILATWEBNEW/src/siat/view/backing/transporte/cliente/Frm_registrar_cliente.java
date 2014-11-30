@@ -163,6 +163,7 @@ public class Frm_registrar_cliente {
     private SessionScopedBeanRegistrarCliente beanSessionRegistrarCliente;
     private String nombreChofer;
     private String licenciaChofer;
+    private String certificadoInscripcionFlota;
     private BeanChofer beanChofer = new BeanChofer();
     private BeanDireccion beanDire2 = new BeanDireccion();
     private BeanFlota beanFlota = new BeanFlota();
@@ -345,13 +346,14 @@ public class Frm_registrar_cliente {
             beanFlota.setNidFlota(index);
             beanFlota.setCMarvehi(marcaVehiculo.toUpperCase());
             beanFlota.setCPlaca(placaVehiculo.toUpperCase());
-            beanFlota.setCConfveh(configVehiculo.toString());
+            beanFlota.setCConfveh(configVehiculo.toString());            
             if (descripVehiculo != null) {
                 beanFlota.setCDescFlota(descripVehiculo.toUpperCase());
             }
             if (descripVehiculo == null) {
                 beanFlota.setCDescFlota("");
             }
+            beanFlota.setCCerins(certificadoInscripcionFlota.toUpperCase());
             getBeanSessionRegistrarCliente().setBeanFlota(beanFlota);
             getBeanSessionRegistrarCliente().getListFlota().add(index, beanFlota);
             Utils.unselectFilas(tabFlot);
@@ -533,6 +535,7 @@ public class Frm_registrar_cliente {
             String placaFlota[] = new String[this.getBeanSessionRegistrarCliente().getListFlota().size()];
             String configFlota[] = new String[this.getBeanSessionRegistrarCliente().getListFlota().size()];
             String descripFlota[] = new String[this.getBeanSessionRegistrarCliente().getListFlota().size()];
+            String certiInscripFlota[] = new String[this.getBeanSessionRegistrarCliente().getListFlota().size()];
             Iterator iter3 = this.getBeanSessionRegistrarCliente().getListFlota().iterator();
             int m = 0;
             while (iter3.hasNext()) {
@@ -540,7 +543,8 @@ public class Frm_registrar_cliente {
                 marcaFlota[m] = beanFlote.getCMarvehi();
                 placaFlota[m] = beanFlote.getCPlaca();
                 configFlota[m] = beanFlote.getCConfveh();
-                descripFlota[m] = beanFlote.getCDescFlota();              
+                descripFlota[m] = beanFlote.getCDescFlota();    
+                certiInscripFlota[m] = beanFlote.getCCerins();
                 m++;
             }
             ADFUtil.setEL("#{pageFlowScope.cMarcaFlota}", marcaFlota);
@@ -551,6 +555,8 @@ public class Frm_registrar_cliente {
             Utils.mandarParametro("cConfFlota", "#{pageFlowScope.cConfFlota}", "crearEmpresa");
             ADFUtil.setEL("#{pageFlowScope.cDescripcionFlota}", descripFlota);
             Utils.mandarParametro("cDescripcionFlota", "#{pageFlowScope.cDescripcionFlota}", "crearEmpresa");
+            ADFUtil.setEL("#{pageFlowScope.cCerInsCripFlota}", certiInscripFlota);
+            Utils.mandarParametro("cCerInsCripFlota", "#{pageFlowScope.cCerInsCripFlota}", "crearEmpresa");
             if(beanSessionRegistrarCliente.getListDirec()!=null){
                 if(beanSessionRegistrarCliente.getListDirec().size() > 0){
                     beanError = (BeanError)ADFUtil.invokeEL("#{bindings.crearEmpresa.execute}"); 
@@ -1088,22 +1094,22 @@ public class Frm_registrar_cliente {
                 }
             }
             if (num != 0) {
-                labelCertficado.setDisabled(false);
+           /*     labelCertficado.setDisabled(false);
                 labelCertficado.setVisible(true);
                 labelCertficado.setRequired(true);
                 beanSessionRegistrarCliente.setIsDisa(false);
                 beanSessionRegistrarCliente.setIsReq_Vis(true);
-                AdfFacesContext.getCurrentInstance().addPartialTarget(labelCertficado);
+                AdfFacesContext.getCurrentInstance().addPartialTarget(labelCertficado);*/
                 controlarTablas(true);  
             }
             if (num == 0) {
-                labelCertficado.setDisabled(true);
+             /*   labelCertficado.setDisabled(true);
                 labelCertficado.setVisible(false);
                 labelCertficado.setRequired(false);
                 beanSessionRegistrarCliente.setIsDisa(true);
-                beanSessionRegistrarCliente.setIsReq_Vis(false);
+                beanSessionRegistrarCliente.setIsReq_Vis(false);              
+                AdfFacesContext.getCurrentInstance().addPartialTarget(labelCertficado);*/
                 controlarTablas(false);
-                AdfFacesContext.getCurrentInstance().addPartialTarget(labelCertficado);
                 List milista = new ArrayList<String>();
                 List milista2 = new ArrayList<String>();
                 getBeanSessionRegistrarCliente().setListChofer(milista); //LIMPIA LA LISTA
@@ -1504,5 +1510,13 @@ public class Frm_registrar_cliente {
 
     public RichSeparator getS2() {
         return s2;
+    }
+
+    public void setCertificadoInscripcionFlota(String certificadoInscripcionFlota) {
+        this.certificadoInscripcionFlota = certificadoInscripcionFlota;
+    }
+
+    public String getCertificadoInscripcionFlota() {
+        return certificadoInscripcionFlota;
     }
 }

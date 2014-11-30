@@ -363,7 +363,8 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                 getBeanSessionRegistrarGuia().setFechaEmision(beanGuia.getFechaGuia());
                 getBeanSessionRegistrarGuia().setFechaDespacho(beanGuia.getFechaDespacho());
                 getBeanSessionRegistrarGuia().setCidGuia(beanGuia.getCidGuia().substring(beanGuia.getCidGuia().indexOf("-")+1,beanGuia.getCidGuia().length()));
-                getBeanSessionRegistrarGuia().setCodUN(beanGuia.getCidGuia().substring(0,beanGuia.getCidGuia().indexOf("-")));
+               // getBeanSessionRegistrarGuia().setCodUN(beanGuia.getCidGuia().substring(0,beanGuia.getCidGuia().indexOf("-")));
+                beanSessionRegistrarGuia.setCodUN(beanGuia.getCidUnidadNegocio());
                 getBeanSessionRegistrarGuia().setNombOS(beanGuia.getOrdenServicio().getCDetalle());
                 getBeanSessionRegistrarGuia().setNidOs(beanGuia.getOrdenServicio().getNidOrdnServ());
                 //Aqui se cae

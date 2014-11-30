@@ -29,7 +29,8 @@ public interface LN_C_SFEmpresasRemote {
                                         String [] cMarcaFlota,
                                         String [] cPlacaFlota,
                                         String [] cConfFlota,
-                                        String [] cDescripcionFlota);
+                                        String [] cDescripcionFlota,
+                                        String [] cCerInsCripFlota);
     BeanError modificarEmpresa(  BigDecimal nidParty,                                   
                                     String cPagWeb,
                                     String cRazonSocial,

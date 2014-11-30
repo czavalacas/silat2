@@ -24,6 +24,7 @@ public interface BDL_T_SFEmpresasRemote {
                                            String [] cMarcaFlota,
                                            String [] cPlacaFlota,
                                            String [] cConfFlota,
-                                           String [] cDescripcionFlota);
+                                           String [] cDescripcionFlota,
+                                           String [] cCerInsCripFlota);
     int borrarEmpresa(BigDecimal nidEmpresa);
 }

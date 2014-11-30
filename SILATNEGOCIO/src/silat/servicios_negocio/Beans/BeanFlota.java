@@ -20,6 +20,7 @@ public class BeanFlota implements Serializable {
     private Integer nEstadoFlota;
     private String certificadoInscripcionEmpresa;
     private BeanError beanError;  
+    private String cCerins;;
     
     private String placaWebMovil;
 
@@ -109,5 +110,13 @@ public class BeanFlota implements Serializable {
 
     public String getPlacaWebMovil() {
         return placaWebMovil;
+    }
+
+    public void setCCerins(String cCerins) {
+        this.cCerins = cCerins;
+    }
+
+    public String getCCerins() {
+        return cCerins;
     }
 }

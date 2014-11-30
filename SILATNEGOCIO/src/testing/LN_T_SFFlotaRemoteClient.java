@@ -18,7 +18,7 @@ public class LN_T_SFFlotaRemoteClient {
             final Context context = getInitialContext();
             LN_T_SFFlotaRemote lN_T_SFFlotaRemote =
                 (LN_T_SFFlotaRemote)context.lookup("LUBAL_SIAT_APP-SILATNEGOCIO-LN_T_SFFlota#silat.servicios_negocio.LNSF.IR.LN_T_SFFlotaRemote");
-            lN_T_SFFlotaRemote.registrarFlota(new BigDecimal(5), "toyota", "sge-999", "setre", "nada");
+            lN_T_SFFlotaRemote.registrarFlota(new BigDecimal(5), "toyota", "sge-999", "setre", "nada","q323");
         } catch (CommunicationException ex) {
             System.out.println(ex.getClass().getName());
             System.out.println(ex.getRootCause().getLocalizedMessage());

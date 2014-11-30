@@ -88,7 +88,8 @@ public class LN_C_SFEmpresasBean implements LN_C_SFEmpresasRemote,
                                     String [] cMarcaFlota,
                                     String [] cPlacaFlota,
                                     String [] cConfFlota,
-                                    String [] cDescripcionFlota){
+                                    String [] cDescripcionFlota,
+                                    String [] cCerInsCripFlota){
         String error = "000";
         BeanError beanError = new BeanError();
         try{
@@ -115,7 +116,7 @@ public class LN_C_SFEmpresasBean implements LN_C_SFEmpresasRemote,
                     empresa.setCCerins(cCerins);
                 }                
                 empresa.setAdParty(party);
-                error = bdL_T_SFEmpresaLocal.registrarEmpresa_BDL(empresa, cidUbigeo, cDireccion, nidTire,cNombChofer,cLicenciaChofer,cMarcaFlota,cPlacaFlota,cConfFlota,cDescripcionFlota);
+                error = bdL_T_SFEmpresaLocal.registrarEmpresa_BDL(empresa, cidUbigeo, cDireccion, nidTire,cNombChofer,cLicenciaChofer,cMarcaFlota,cPlacaFlota,cConfFlota,cDescripcionFlota,cCerInsCripFlota);
             }
         }catch(Exception e){
             e.getMessage().toUpperCase();

@@ -242,6 +242,9 @@
                                 <af:inputText label="Descripcion Vehiculo" id="txtDescVehiculo" required="true" showRequired="true" labelStyle="color: rgb(19,76,149);font-weight:800;"
                                               binding="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.txtDescVehiculo}"
                                               value="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.descripVehiculo}"/> 
+                                <af:inputText label="Certificado de Inscripcion" id="txtCertInscripcion" required="true" showRequired="true" labelStyle="color: rgb(19,76,149);font-weight:800;"
+                                              value="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.certificadoInscripcionFlota}"
+                                              maximumLength="9"/> 
                                 <af:commandButton text="Registrar" id="btnRegistrarFlota"
                                                   binding="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.btnRegistrarFlota}"
                                                   actionListener="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.registrarFlota}"/>
@@ -298,6 +301,9 @@
                         </af:column>-->
                         <af:column sortable="false" headerText="Configuracion" id="c10" align="start">
                             <af:outputText value="#{row.CConfveh}" id="ot11"/>
+                        </af:column>
+                          <af:column sortable="false" headerText="Certificado Inscripcion" id="c13" align="start">
+                            <af:outputText value="#{row.CCerins}" id="ot13"/>
                         </af:column>
                         <af:column sortable="false" headerText="Descripcion" id="c11" align="start">
                             <af:outputText value="#{row.CDescFlota}" id="ot12"/>

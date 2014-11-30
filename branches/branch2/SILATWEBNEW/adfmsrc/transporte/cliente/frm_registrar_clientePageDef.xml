@@ -35,6 +35,7 @@
       <NamedData NDName="cPlacaFlota" NDType="java.lang.String[]"/>
       <NamedData NDName="cConfFlota" NDType="java.lang.String[]"/>
       <NamedData NDName="cDescripcionFlota" NDType="java.lang.String[]"/>
+      <NamedData NDName="cCerInsCripFlota" NDType="java.lang.String[]"/>
     </methodAction>
     <attributeValues IterBinding="variables" id="cPagWeb">
       <AttrNames>

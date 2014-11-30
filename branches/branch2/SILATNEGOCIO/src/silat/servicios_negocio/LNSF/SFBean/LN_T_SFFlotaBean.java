@@ -44,7 +44,7 @@ public class LN_T_SFFlotaBean implements LN_T_SFFlotaRemote,
     }
 
     public ADFlota registrarFlota(BigDecimal nidParty, String marca, String placa, String configuracion,
-                                  String descripcion) {
+                                  String descripcion, String cCerIns) {
         ADParty party = new ADParty();
         party.setNidParty(nidParty);
         ADEmpresa empresa = new ADEmpresa();
@@ -59,6 +59,7 @@ public class LN_T_SFFlotaBean implements LN_T_SFFlotaRemote,
         } else {
             entida.setCDescFlota(descripcion.toUpperCase());
         }
+        entida.setCCerins(cCerIns.toUpperCase());
         entida.setNEstadoFlota(1);
         entida.setEmpresa(empresa);
         return bdl_T_SFFlotaLocal.persistADFlota(entida);

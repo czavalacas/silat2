@@ -46,6 +46,8 @@ public class ADFlota implements Serializable {
     private Integer nEstadoFlota;
     @OneToMany(mappedBy = "adFlota")
     private List<ADGasto> gastosList;
+    @Column(name = "C_CERINS", length = 30)
+    private String cCerins;
 
     public ADFlota() {
     }
@@ -139,5 +141,13 @@ public class ADFlota implements Serializable {
 
     public ADEmpresa getEmpresa() {
         return empresa;
+    }
+
+    public void setCCerins(String cCerins) {
+        this.cCerins = cCerins;
+    }
+
+    public String getCCerins() {
+        return cCerins;
     }
 }

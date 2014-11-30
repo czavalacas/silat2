@@ -159,10 +159,12 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                     }
                     eGuia.setTrManifiesto(manifiesto);
                 }
-                List<TRItem> itemsBefore = eGuia.getItemsList();
-               
+              
+                
                 /**czavalacas 17.11.2014
                  * Codigo para acttualizar el estado de los items que se usaron de la OS a 1 (En Uso o Activo)*/
+                
+               
                 List<TRItemXOrds> itemXord=bdl_C_SFItemXOrdsLocal.getTrItemOrdenServicio_BD(nidOS,0);
                 if(lstItems!=null){
                     for(int i=0; i<lstItems.size(); i++){
@@ -193,17 +195,28 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                             }                     
                     }                
                 }            
-
+                                
                 /***************************************/
-                List<TRItem> eItems = LN_C_SFUtilsLocal.beanItemToEntity(lstItems,eGuia);
-                eGuia.setItemsList(eItems);
+                
+                List<TRItem> itemsBefore = eGuia.getItemsList();
+                if(opc==1){
+                   List<TRItem> eItems = LN_C_SFUtilsLocal.beanItemToEntity(lstItems,eGuia);    
+                    eGuia.setItemsList(eItems);
+                }
                 eGuia = bdL_T_SFGuiaLocal.registrarGuia_BD(eGuia, opc);                
            
                 if(itemsBefore != null){
+                    System.out.println("ENTRO:1::");
+                    System.out.println("ENTRO:1::"+itemsBefore.size());
                     if(itemsBefore.size() > 0){
+                        System.out.println("ENTRO:2::");
                         ln_T_SFItemLocal.borrarItems(lstItems,itemsBefore);
                     }
                 }
+                
+                
+                
+                
                 if(estadoManif != null){
                     BeanError bError = ln_C_SFManifiestoLocal.guiasOK(nidManif, codUn, cidGuia, 1);
                     if(bError != null){

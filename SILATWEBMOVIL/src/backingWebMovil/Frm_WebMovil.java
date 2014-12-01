@@ -16,6 +16,11 @@ import java.io.PrintWriter;
 
 import java.math.BigDecimal;
 
+import java.net.InetAddress;
+
+import java.net.ServerSocket;
+import java.net.UnknownHostException;
+
 import java.sql.Blob;
 
 import java.sql.ResultSet;
@@ -475,10 +480,10 @@ public class Frm_WebMovil extends HttpServlet{
     public String redirectLogin() {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
-        
-        String url = extContext.encodeActionURL("http://192.168.16.3:7101/silat/faces/frm_login");
+        String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/frm_login"));
+        String h = url.replaceAll("LUBAL_SIAT_APP-SILATWEBMOVIL-context-root", "silat");
         try {
-            extContext.redirect(url);
+            extContext.redirect(h);
         } catch (IOException ioe) {
             throw new FacesException(ioe);
         }

@@ -222,7 +222,8 @@
                                                     value="#{beanSessionScopedRegistrarGastos.nidManifiesto}"
                                                     autoSubmit="true" labelStyle="text-align: left;"
                                                     valueChangeListener="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.eventoTipoManifiesto}"
-                                                    visible="#{beanSessionScopedRegistrarGastos.estadoInManifiesto}">
+                                                    visible="#{beanSessionScopedRegistrarGastos.estadoInManifiesto}"
+                                                    immediate="true">
                                     <f:selectItems value="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.listaManifiestos}" 
                                                    id="si11"
                                                    binding="#{backingBeanScope.backing_administrativo_gastos_frm_registrar_gastos.si11}"

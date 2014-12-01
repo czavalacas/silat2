@@ -224,6 +224,7 @@ public class Frm_actualizar_cliente {
     private BeanEmpresa beanEmpresa=new BeanEmpresa();
     private BeanUsuarioAutenticado beanUsuario= new BeanUsuarioAutenticado();
     FacesContext ctx = FacesContext.getCurrentInstance();
+    private RichInputText inputCerInsFlota;
 
     public Frm_actualizar_cliente() {
         try {
@@ -313,24 +314,24 @@ public class Frm_actualizar_cliente {
             if (num != 0) {
                 btnEditChofe.setDisabled(false);
                 btnEditFlotas.setDisabled(false);
-                if (inputCertificadoInscripcion != null) {
+         /*       if (inputCertificadoInscripcion != null) {
                     inputCertificadoInscripcion.setVisible(true);
                     inputCertificadoInscripcion.setRequired(true);
                 }
                 beanSessionActualizarCliente.setEstadoRequieredInputText(true);
-                beanSessionActualizarCliente.setEstadoVisibleInputText(true);
+                beanSessionActualizarCliente.setEstadoVisibleInputText(true);*/
                 AdfFacesContext.getCurrentInstance().addPartialTarget(btnEditChofe);
                 AdfFacesContext.getCurrentInstance().addPartialTarget(btnEditFlotas);
             }
             if (num == 0) {
                 btnEditChofe.setDisabled(true);
                 btnEditFlotas.setDisabled(true);
-                beanSessionActualizarCliente.setEstadoRequieredInputText(false);
+       /*         beanSessionActualizarCliente.setEstadoRequieredInputText(false);
                 beanSessionActualizarCliente.setEstadoVisibleInputText(false);
                 if (inputCertificadoInscripcion != null) {
                     inputCertificadoInscripcion.setVisible(false);
                     inputCertificadoInscripcion.setRequired(false);
-                }
+                }*/
                 AdfFacesContext.getCurrentInstance().addPartialTarget(btnEditChofe);
                 AdfFacesContext.getCurrentInstance().addPartialTarget(btnEditFlotas);
             }
@@ -347,7 +348,7 @@ public class Frm_actualizar_cliente {
                     num++;
                 }
             }
-            if (num != 0) {
+           /* if (num != 0) {
                 beanSessionActualizarCliente.setEstadoRequieredInputText(true);
                 beanSessionActualizarCliente.setEstadoVisibleInputText(true);
                 inputCertificadoInscripcion.setVisible(true);
@@ -360,7 +361,7 @@ public class Frm_actualizar_cliente {
                 inputCertificadoInscripcion.setVisible(false);
                 inputCertificadoInscripcion.setRequired(false);
                 AdfFacesContext.getCurrentInstance().addPartialTarget(inputCertificadoInscripcion);
-            }
+            }*/
         }
     }
     
@@ -430,6 +431,7 @@ public class Frm_actualizar_cliente {
         beanSessionActualizarCliente.setPlacaVehiculo(beanFlota.getCPlaca());
         beanSessionActualizarCliente.setConfVehicular(beanFlota.getCConfveh());
         beanSessionActualizarCliente.setDescripcionVehiculo(beanFlota.getCDescFlota());
+        beanSessionActualizarCliente.setCCerInsFlota(beanFlota.getCCerins());
         Utils.showPopUpMIDDLE(popupNuevaFlota);
     }
     
@@ -532,11 +534,13 @@ public class Frm_actualizar_cliente {
         beanSessionActualizarCliente.setPlacaVehiculo(""); 
         beanSessionActualizarCliente.setConfVehicular("");
         beanSessionActualizarCliente.setDescripcionVehiculo("");
+        beanSessionActualizarCliente.setCCerInsFlota("");
         txtMarca.resetValue();
         txtPlaca.resetValue();
         txtDescripcion.resetValue();
         choiceConfig.resetValue();
-        Utils.addTargetMany(txtMarca,txtPlaca,txtDescripcion,choiceConfig);
+        inputCerInsFlota.resetValue();
+        Utils.addTargetMany(txtMarca,txtPlaca,txtDescripcion,choiceConfig,inputCerInsFlota);
     }
     public void resetearDatosDireccion() {
         txtDireccion.resetValue();
@@ -604,6 +608,8 @@ public class Frm_actualizar_cliente {
                 Utils.mandarParametro("placa", "#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.txtPlaca.value}", "registrarFlota");
                 Utils.mandarParametro("configuracion",  "#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.choiceConfig.value}", "registrarFlota");
                 Utils.mandarParametro("descripcion", "#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.txtDescripcion.value}", "registrarFlota");
+                ADFUtil.setEL("#{pageFlowScope.cCerIns}", beanSessionActualizarCliente.getCCerInsFlota());
+                Utils.mandarParametro("cCerIns", "#{pageFlowScope.cCerIns}", "registrarFlota");
                 ADFUtil.invokeEL("#{bindings.registrarFlota.execute}");
                 beanSessionActualizarCliente.setBeanListFlota(ln_C_SFFlotaRemote.getFlotasPorEmpresa(beanSessionActualizarCliente.getNidParty().intValue()));
                 resetearDatosFlota();
@@ -619,6 +625,8 @@ public class Frm_actualizar_cliente {
                 Utils.mandarParametro("placa", "#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.txtPlaca.value}", "actualizarFlota");
                 Utils.mandarParametro("configuracion",  "#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.choiceConfig.value}", "actualizarFlota");
                 Utils.mandarParametro("descripcion", "#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.txtDescripcion.value}", "actualizarFlota");
+                ADFUtil.setEL("#{pageFlowScope.cCeInsFlota}", beanSessionActualizarCliente.getCCerInsFlota());
+                Utils.mandarParametro("cCeInsFlota", "#{pageFlowScope.cCeInsFlota}", "actualizarFlota");
                 BeanFlota bFlota = (BeanFlota) ADFUtil.invokeEL("#{bindings.actualizarFlota.execute}");
                 if(bFlota != null){
                     if(bFlota.getBeanError() != null){
@@ -1903,5 +1911,13 @@ public class Frm_actualizar_cliente {
 
     public RichOutputText getOtMsjBorrar() {
         return otMsjBorrar;
+    }
+
+    public void setInputCerInsFlota(RichInputText inputCerInsFlota) {
+        this.inputCerInsFlota = inputCerInsFlota;
+    }
+
+    public RichInputText getInputCerInsFlota() {
+        return inputCerInsFlota;
     }
 }

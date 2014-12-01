@@ -20,7 +20,8 @@
                                               value="#{beanSessionConsultarCliente.razonSocial}" autoSubmit="true"/>
                                 <af:inputText label="RUC" id="it2" labelStyle="text-align: left;"
                                               binding="#{backingBeanScope.backing_transporte_cliente_frm_consultar_cliente.it2}"
-                                              autoSubmit="true" value="#{beanSessionConsultarCliente.ruc}"/>
+                                              autoSubmit="true" value="#{beanSessionConsultarCliente.ruc}"
+                                              maximumLength="11"/>
                                 <af:selectOneChoice label="Tipo Empresa" id="soc1" labelStyle="text-align: left;"
                                                     binding="#{backingBeanScope.backing_transporte_cliente_frm_consultar_cliente.soc1}"
                                                     value="#{beanSessionConsultarCliente.relacionEmpresa}"
@@ -143,6 +144,9 @@
                                 <af:column sortable="false" headerText="Configuracion" id="c18" width="116">
                                     <af:outputText value="#{row.CConfveh}" id="ot19"/>
                                 </af:column>
+                                <af:column sortable="false" headerText="Certificado de Inscripcion" id="c29" width="173">
+                                    <af:outputText value="#{row.CCerins}" id="ot22"/>
+                                </af:column>                                
                                 <af:column sortable="false" headerText="Descripcion" id="c19" width="173">
                                     <af:outputText value="#{row.CDescFlota}" id="ot20"/>
                                 </af:column>

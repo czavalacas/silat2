@@ -80,6 +80,7 @@
       <NamedData NDName="placa" NDType="java.lang.String"/>
       <NamedData NDName="configuracion" NDType="java.lang.String"/>
       <NamedData NDName="descripcion" NDType="java.lang.String"/>
+      <NamedData NDName="cCerIns" NDType="java.lang.String"/>
     </methodAction>
     <methodAction id="actualizarFlota" InstanceName="data.LN_T_SFFlotaLocal.dataProvider"
                   DataControl="LN_T_SFFlotaLocal" RequiresUpdateModel="true" Action="invokeMethod"
@@ -91,6 +92,7 @@
       <NamedData NDName="placa" NDType="java.lang.String"/>
       <NamedData NDName="configuracion" NDType="java.lang.String"/>
       <NamedData NDName="descripcion" NDType="java.lang.String"/>
+      <NamedData NDName="cCeInsFlota" NDType="java.lang.String"/>
     </methodAction>
     <methodAction id="removerFlota" InstanceName="data.LN_T_SFFlotaLocal.dataProvider" DataControl="LN_T_SFFlotaLocal"
                   RequiresUpdateModel="true" Action="invokeMethod" MethodName="removerFlota" IsViewObjectMethod="false">

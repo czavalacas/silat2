@@ -169,7 +169,8 @@ public class Frm_registrar_cliente {
     private BeanFlota beanFlota = new BeanFlota();
     FacesContext ctx = FacesContext.getCurrentInstance();
     private LN_C_SFEmpresasRemote ln_C_SFEmpresasRemote;
-    private final static String LOOKUP_NAME_SFEmpresa_REMOTO = "mapLN_C_SFEmpresas";//#silat.servicios_negocio.LNSF.IR.LN_C_SFEmpresasRemote
+    private final static String LOOKUP_NAME_SFEmpresa_REMOTO = "mapLN_C_SFEmpresas";
+    private RichInputText inputCerInsFlota; //#silat.servicios_negocio.LNSF.IR.LN_C_SFEmpresasRemote
     
     
 
@@ -196,6 +197,7 @@ public class Frm_registrar_cliente {
             txtMarcaVehiculo.resetValue();
             txtDescVehiculo.resetValue();
             choiceConfVehicular.resetValue();
+            inputCerInsFlota.resetValue();
         }
     }
 
@@ -459,6 +461,7 @@ public class Frm_registrar_cliente {
             txtMarcaVehiculo.setValue(beanFlota.getCMarvehi());
             txtDescVehiculo.setValue(beanFlota.getCDescFlota());
             choiceConfVehicular.setValue(beanFlota.getCConfveh());
+            inputCerInsFlota.setValue(beanFlota.getCCerins());
             getBeanSessionRegistrarCliente().setAccion(2); //Modificar   
         }
     }
@@ -1518,5 +1521,13 @@ public class Frm_registrar_cliente {
 
     public String getCertificadoInscripcionFlota() {
         return certificadoInscripcionFlota;
+    }
+
+    public void setInputCerInsFlota(RichInputText inputCerInsFlota) {
+        this.inputCerInsFlota = inputCerInsFlota;
+    }
+
+    public RichInputText getInputCerInsFlota() {
+        return inputCerInsFlota;
     }
 }

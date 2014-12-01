@@ -607,8 +607,8 @@ public class Frm_registrar_gastos {
              * Codigo agregado para cambiar el estado de u manifiesto a pagado
              */
             
-            if(beanSessionScopedRegistrarGastos.getNidManifiesto() != null){
-                int nidMan = beanSessionScopedRegistrarGastos.getNidManifiesto();
+            if(beanSessionScopedRegistrarGastos.getManifiesto().getNidManifiesto() != null){
+                int nidMan = beanSessionScopedRegistrarGastos.getManifiesto().getNidManifiesto();
                 System.out.println("Valor de nidManifiesto "+ nidMan);
                 ln_T_SFManifiestoRemote.cambiarEstadoManifiesto(nidMan, 4+"");
             }

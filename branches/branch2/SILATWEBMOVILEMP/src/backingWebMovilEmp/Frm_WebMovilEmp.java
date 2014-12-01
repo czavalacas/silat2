@@ -911,6 +911,19 @@ public class Frm_WebMovilEmp {
         setListaOrdenServicio(lN_C_SFOrdenServicioRemote.ordenServicioPendiente());
         return "";
     }
+    
+    public String redirectLogin() {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/frm_login"));
+        String h = url.replaceAll("LUBAL_SIAT_APP-SILATWEBMOVILEMP-context-root", "silat");
+        try {
+            extContext.redirect(h);
+        } catch (IOException ioe) {
+            throw new FacesException(ioe);
+        }
+        return null; 
+    }
 
     public void setBienvenida(String bienvenida) {
         this.bienvenida = bienvenida;

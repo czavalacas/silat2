@@ -70,7 +70,8 @@ public class LN_T_SFFlotaBean implements LN_T_SFFlotaRemote,
                                      String marca, 
                                      String placa,
                                      String configuracion,
-                                     String descripcion) {
+                                     String descripcion,
+                                     String cCeInsFlota) {
         String error = "000";
         BeanError beanError = new BeanError();
         BeanFlota bFlota = new BeanFlota();
@@ -90,6 +91,7 @@ public class LN_T_SFFlotaBean implements LN_T_SFFlotaRemote,
             } else {
                 entida.setCDescFlota(descripcion.toUpperCase());
             }
+            entida.setCCerins(cCeInsFlota);
             entida.setNEstadoFlota(1);
             entida.setEmpresa(empresa);
             bdl_T_SFFlotaLocal.mergeADFlota(entida);

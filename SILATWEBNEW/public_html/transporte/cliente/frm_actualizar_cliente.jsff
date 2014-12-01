@@ -22,7 +22,8 @@
                                                   labelStyle="text-align: left;"/>
                                     <af:inputText label="RUC" id="it9" labelStyle="text-align: left;"
                                                   binding="#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.it9}"
-                                                  autoSubmit="true" value="#{beanSessionActualizarCliente.ruc}"/>
+                                                  autoSubmit="true" value="#{beanSessionActualizarCliente.ruc}"
+                                                  maximumLength="11"/>
                               
                                     <af:selectOneChoice label="Tipo Empresa" id="soc4" labelStyle="text-align: left;"
                                                         binding="#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.soc4}"
@@ -247,6 +248,9 @@
                                 <af:column sortable="false" headerText="Configuracion" id="c22" width="95">
                                     <af:outputText value="#{row.CConfveh}" id="ot23"/>
                                 </af:column>
+                                  <af:column sortable="false" headerText="Certificado de Inscripcion" id="c26" width="182">
+                                    <af:outputText value="#{row.CCerins}" id="ot26"/>
+                                </af:column>
                                 <af:column sortable="false" headerText="Descripcion" id="c23" width="182">
                                     <af:outputText value="#{row.CDescFlota}" id="ot24"/>
                                 </af:column>
@@ -350,6 +354,11 @@
                                                    binding="#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.si13}"
                                                    value="T3S3"/>
                                 </af:selectOneChoice>
+                                <af:inputText label="Certificado de Inscripcion" id="txtcertInsFlota" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
+                                              required="true" showRequired="true"
+                                              value="#{beanSessionActualizarCliente.CCerInsFlota}" maximumLength="9"
+                                              immediate="true" autoSubmit="true"
+                                              binding="#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.inputCerInsFlota}"/>
                                 <af:inputText label="Descripcion" id="txtDescripcion" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
                                               binding="#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.txtDescripcion}" required="true" showRequired="true"
                                               value="#{beanSessionActualizarCliente.descripcionVehiculo}"/>
@@ -570,5 +579,6 @@
                  </af:panelCollection>
        </af:panelGroupLayout>
     </f:view>
-    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_cliente_frm_actualizar_cliente-->
-</jsp:root>
+       <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_cliente_frm_actualizar_cliente-->
+
+ </jsp:root>

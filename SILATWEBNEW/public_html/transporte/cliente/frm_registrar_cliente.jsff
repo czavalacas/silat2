@@ -2,8 +2,8 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
                 xmlns:f="http://java.sun.com/jsf/core" xmlns:adfsilat="/webapp/untitled1.taglib">
-    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_cliente_frm_registrar_cliente-->
-    <f:view>
+     <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_cliente_frm_registrar_cliente-->
+     <f:view>
          <af:panelGroupLayout>
                 <af:spacer height="10"/>
                  <af:outputText value="Registrar Empresa" id="ot1"
@@ -244,7 +244,8 @@
                                               value="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.descripVehiculo}"/> 
                                 <af:inputText label="Certificado de Inscripcion" id="txtCertInscripcion" required="true" showRequired="true" labelStyle="color: rgb(19,76,149);font-weight:800;"
                                               value="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.certificadoInscripcionFlota}"
-                                              maximumLength="9"/> 
+                                              maximumLength="9"
+                                              binding="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.inputCerInsFlota}"/> 
                                 <af:commandButton text="Registrar" id="btnRegistrarFlota"
                                                   binding="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.btnRegistrarFlota}"
                                                   actionListener="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.registrarFlota}"/>

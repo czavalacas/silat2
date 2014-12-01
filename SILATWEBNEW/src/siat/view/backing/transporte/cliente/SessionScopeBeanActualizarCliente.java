@@ -59,6 +59,7 @@ public class SessionScopeBeanActualizarCliente implements Serializable {
     private String ruc;
     private String relacionEmpresa;
     private int exec = 0;
+    public String cCerInsFlota;
     
     public void setBeanListDire(List<BeanDireccion> beanListDire) {
         this.beanListDire = beanListDire;
@@ -396,5 +397,13 @@ public class SessionScopeBeanActualizarCliente implements Serializable {
 
     public int getExec() {
         return exec;
+    }
+
+    public void setCCerInsFlota(String cCerInsFlota) {
+        this.cCerInsFlota = cCerInsFlota;
+    }
+
+    public String getCCerInsFlota() {
+        return cCerInsFlota;
     }
 }

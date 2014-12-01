@@ -21,6 +21,7 @@ public interface LN_T_SFFlotaRemote {
                                       String marca, 
                                       String placa, 
                                       String configuracion, 
-                                      String descripcion);
+                                      String descripcion,
+                                      String cCeInsFlota);
     BeanFlota anularFlota(Integer nidFlota, String estado);
 }

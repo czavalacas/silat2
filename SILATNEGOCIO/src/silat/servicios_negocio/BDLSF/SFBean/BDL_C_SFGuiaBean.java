@@ -2,6 +2,8 @@ package silat.servicios_negocio.BDLSF.SFBean;
 
 import java.math.BigDecimal;
 
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -163,6 +165,27 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                            "AND g.trFactura IS NULL "+
                            "AND g.itemPreFactura IS NULL "+
                            "AND g.ordenServicio.adEmpresa.nidParty = "+nidCliente+" ";
+            List<TRGuia> guias = em.createQuery(ejbQl).getResultList();
+            return guias;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public List<TRGuia> findGuiasFiltered(BeanTRGuia filtro){
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String ejbQl = "SELECT g " +
+                           "FROM TRGuia g " +
+                           "WHERE g.nEstadoGuia = 1 "+
+                           //"AND g.fechaGuia BETWEEN "+filtro.getFecMin()+" AND "+filtro.getFecMax()+
+                           " AND g.trManifiesto.cTipoDoc = "+filtro.getManifiesto().getCTipoDoc();
+            if(filtro.getValoracion() == 1){
+                ejbQl += " AND g.valoracion BETWEEN 1 and 2";
+            } else {
+                ejbQl += " AND g.valoracion BETWEEN 3 and 5";
+            }
             List<TRGuia> guias = em.createQuery(ejbQl).getResultList();
             return guias;
         }catch(Exception e){

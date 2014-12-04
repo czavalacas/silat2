@@ -7,10 +7,13 @@ import java.util.Date;
 import java.util.List;
 
 import silat.servicios_negocio.Beans.BeanEstCliente;
+import silat.servicios_negocio.Beans.BeanTRGuia;
 
 public class SessionScopeEstadisticosViajes implements Serializable {
     @SuppressWarnings("compatibility:3574118774553731317")
     private static final long serialVersionUID = 1L;
+    private List<BeanTRGuia> guias;
+    private String titulo;
     private int columns= 2;
     private String rowHeights = "350px";
     private Date fecMin;
@@ -163,5 +166,21 @@ public class SessionScopeEstadisticosViajes implements Serializable {
 
     public List<BeanEstCliente> getListaProp() {
         return listaProp;
+    }
+
+    public void setGuias(List<BeanTRGuia> guias) {
+        this.guias = guias;
+    }
+
+    public List<BeanTRGuia> getGuias() {
+        return guias;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 }

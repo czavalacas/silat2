@@ -3,6 +3,35 @@
                 xmlns:f="http://java.sun.com/jsf/core" xmlns:adfsilat="/webapp/untitled1.taglib"
                 xmlns:h="http://java.sun.com/jsf/html" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
     <f:view>
+        <af:popup childCreation="deferred" autoCancel="disabled" id="popDetPie"
+                      binding="#{backingBeanScope.backing_estadistico_estadistico_cliente.popDetBar}">
+                <af:dialog id="d2" type="none" title="#{beanSessionEstadisticosCliente.titulo}">
+                    <af:table value="#{beanSessionEstadisticosCliente.listaFacturas}" var="row" rowBandingInterval="0"
+                              id="tDetal" width="600" varStatus="vs">
+                        <af:column width="18" frozen="true" id="c26">
+                            <af:outputText value="#{vs.index + 1}" id="ot15"/>
+                        </af:column>
+                        <af:column sortable="true" headerText="Fecha Hecha" align="center" id="c10"
+                                   sortProperty="endDate">
+                            <af:outputText value="#{row.fechaFactura}" id="ot16">
+                                <af:convertDateTime pattern="dd/MM/yyyy"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortable="true" headerText="Cid de Factura" align="start" id="c15">
+                            <af:outputText value="#{row.CCodFactura}" id="ot18"/>
+                        </af:column>
+                        <af:column sortable="true" headerText="Total de Ganancia" align="start" id="c16">
+                            <af:outputText value="#{row.totalConDetraccion}" id="ot17"/>
+                        </af:column>
+                        <af:column sortable="true" headerText="Detalle" align="start" id="c17">
+                            <af:outputText value="#{row.detalle}" id="ot19"/>
+                        </af:column>
+                        <af:column sortable="true" headerText="Direccion" align="start" id="c19">
+                            <af:outputText value="#{row.direccion}" id="ot20"/>
+                        </af:column>
+                    </af:table>
+                </af:dialog>
+        </af:popup>
         <af:panelGroupLayout id="pgl1" inlineStyle="height:70px; width:960px;" halign="left" layout="horizontal">
             <af:panelFormLayout id="pfl1" maxColumns="2" inlineStyle="width:50px;">
                 <af:inputDate label="Fecha Minima: " id="id1"
@@ -91,10 +120,12 @@
                         <af:panelBox text="Panel Ganancias Por Mes" id="pb6"
                                      binding="#{backingBeanScope.backing_estadistico_estadistico_cliente.pb6}">
                             <af:componentDragSource/>
-                            <dvt:lineGraph id="graph5" inlineStyle="height:300px; width:300px;" subType="LINE_VERT_ABS"
+                            <dvt:lineGraph id="graph5" inlineStyle="height:300px; width:500px;"
                                            binding="#{backingBeanScope.backing_estadistico_estadistico_cliente.graph5}"
                                            tabularData="#{beanSessionEstadisticosCliente.listaVacia}"
-                                           dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
+                                           dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale"
+                                          clickListener="#{backingBeanScope.backing_estadistico_estadistico_cliente.clickListenerGanMes}"
+                                          subType="LINE_VERT_ABS">
                                 <dvt:background>
                                     <dvt:specialEffects/>
                                 </dvt:background>
@@ -189,7 +220,8 @@
                             <dvt:pieGraph id="graph4" subType="PIE" inlineStyle="height:300px; width:300px;"
                                           tabularData="#{beanSessionEstadisticosCliente.listaVacia}"
                                           binding="#{backingBeanScope.backing_estadistico_estadistico_cliente.graph4}"
-                                          dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale">
+                                          dynamicResize="DYNAMIC_SIZE" hideAndShowBehavior="withRescale"
+                                          clickListener="#{backingBeanScope.backing_estadistico_estadistico_cliente.clickListenerGanPie}">
                                 <dvt:background>
                                     <dvt:specialEffects/>
                                 </dvt:background>

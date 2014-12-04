@@ -9,6 +9,7 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import silat.servicios_negocio.Beans.BeanEstCliente;
+import silat.servicios_negocio.Beans.BeanFactura;
 
 public class SessionScopedEstadisticosCliente implements Serializable{
     @SuppressWarnings("compatibility:-5648964018413670710")
@@ -30,6 +31,8 @@ public class SessionScopedEstadisticosCliente implements Serializable{
     private List<BeanEstCliente> lista_Ordenes_MES;
     private List<BeanEstCliente> lista_Clientes;
     private List<BeanEstCliente> lista_Clientes_MES;
+    private String titulo;
+    private List<BeanFactura> listaFacturas;
     private List<SelectItem> listChoice;
 
     public void setColumns(int columns) {
@@ -174,5 +177,21 @@ public class SessionScopedEstadisticosCliente implements Serializable{
 
     public List<SelectItem> getListChoice() {
         return listChoice;
+    }
+
+    public void setListaFacturas(List<BeanFactura> listaFacturas) {
+        this.listaFacturas = listaFacturas;
+    }
+
+    public List<BeanFactura> getListaFacturas() {
+        return listaFacturas;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 }

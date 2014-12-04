@@ -26,4 +26,5 @@ public interface LN_C_SFFacturaLocal {
                                             String simbNota, 
                                             BigDecimal busqMontoNota);
     int cantNotaByFactura_LN(Long nidFactura);
+    List<BeanFactura> findFacturaByAttr_LN(BeanFactura bean);
 }

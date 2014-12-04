@@ -66,6 +66,22 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
     public LN_C_SFGuiaBean() {
     }
     
+    public List<BeanTRGuia> getGuiasEstadisticas(BeanTRGuia filtro){
+        return converter(bdL_C_SFGuiaLocal.findGuiasFiltered(filtro));
+    }
+    
+    public List<BeanTRGuia> converter(List<TRGuia> entityList){
+        List<BeanTRGuia> lista = new ArrayList<BeanTRGuia>();
+        for(TRGuia entity : entityList ){
+            BeanTRGuia bean = new BeanTRGuia();
+            bean.setCidGuia(entity.getCidGuia());
+            bean.setFechaGuia(entity.getFechaGuia());
+            bean.setValoracion(entity.getValoracion());
+            lista.add(bean);
+        }
+        return lista;
+    }
+    
     public List<BeanTRGuia> findGuiasByAttr_LN(String cidGuia,Date fecEmisMin,Date fecEmisMax,Date fecDespMin, 
                                                Date fecDespMax,String empCliente,String empProvCarga,String estGuia,
                                                String hasManif,Integer nidManif,String prov,String cObservaciones,

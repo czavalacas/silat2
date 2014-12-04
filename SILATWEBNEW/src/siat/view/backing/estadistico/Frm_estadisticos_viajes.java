@@ -20,6 +20,8 @@ import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -34,6 +36,8 @@ import javax.naming.InitialContext;
 import javax.servlet.ServletContext;
 
 import oracle.adf.view.faces.bi.component.graph.UIGraph;
+import oracle.adf.view.faces.bi.event.ClickEvent;
+import oracle.adf.view.rich.component.rich.RichPopup;
 import oracle.adf.view.rich.component.rich.input.RichInputDate;
 
 import oracle.adf.view.rich.component.rich.input.RichSelectManyCheckbox;
@@ -42,6 +46,9 @@ import oracle.adf.view.rich.component.rich.layout.RichPanelBox;
 import oracle.adf.view.rich.component.rich.layout.RichPanelDashboard;
 import oracle.adf.view.rich.component.rich.nav.RichCommandButton;
 
+import oracle.dss.dataView.Attributes;
+import oracle.dss.dataView.ComponentHandle;
+import oracle.dss.dataView.DataComponentHandle;
 import oracle.dss.dataView.ImageView;
 
 import siat.view.backing.utiles.Utils;
@@ -49,13 +56,19 @@ import siat.view.backing.utiles.Utils;
 import siat.view.backing.utiles.fecha.FechaUtiles;
 
 import silat.servicios_negocio.Beans.BeanEstCliente;
+import silat.servicios_negocio.Beans.BeanFactura;
+import silat.servicios_negocio.Beans.BeanManifiesto;
+import silat.servicios_negocio.Beans.BeanTRGuia;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFEstaClienteRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFEstaViajesRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFGuiaRemote;
 
 public class Frm_estadisticos_viajes {
     private SessionScopeEstadisticosViajes beanSessionEstadisticosViajes;
     private final static String LOOKUP_NAME_SFESTAViajes = "map-LN_C_SFEstaViajes";
     private LN_C_SFEstaViajesRemote ln_C_SFEstaViajes;
+    private final static String LOOKUP_NAME_SFGuias = "mapLN_C_SFGuia";
+    private LN_C_SFGuiaRemote ln_C_SFGuiaRemote;
     private RichInputDate id1;
     private RichInputDate id2;
     private RichCommandButton cb1;
@@ -75,17 +88,83 @@ public class Frm_estadisticos_viajes {
     private RichPanelBox pb1;
     private UIGraph graph6;
     private UIGraph graph5;
-    
+    private RichPopup popDetBar;
     
     public Frm_estadisticos_viajes(){
         try{
             final Context ctx;
             ctx = new InitialContext();
             ln_C_SFEstaViajes = (LN_C_SFEstaViajesRemote)ctx.lookup(LOOKUP_NAME_SFESTAViajes);
+            ln_C_SFGuiaRemote = (LN_C_SFGuiaRemote)ctx.lookup(LOOKUP_NAME_SFGuias);
         }
         catch(Exception e){
             e.printStackTrace();
         }   
+    }
+    
+    public void clickListenerBarEST(ClickEvent clickEvent) {
+        ComponentHandle handle = clickEvent.getComponentHandle();
+        String nombre = null;
+        String tipo = null;
+        if (handle instanceof DataComponentHandle) {
+            DataComponentHandle dhandle = (DataComponentHandle) handle;
+            Attributes[] groupInfo = dhandle.getGroupAttributes();
+            Attributes[] seriesInfo = dhandle.getSeriesAttributes();
+            if (groupInfo != null) {
+                for (Attributes attrs : groupInfo) {
+                    nombre = (String) attrs.getValue(Attributes.LABEL_VALUE);
+                }
+                for (Attributes attrs : seriesInfo) {
+                    tipo = (String) attrs.getValue(Attributes.LABEL_VALUE);
+                }
+            }
+        }
+        String fec[] = nombre.split(" ");
+        Calendar calMin = Calendar.getInstance();
+        calMin.set(Integer.parseInt(fec[0]), Integer.parseInt(fec[1])-1,
+                calMin.getMinimum(Calendar.DAY_OF_MONTH),
+                calMin.getMinimum(Calendar.HOUR_OF_DAY),
+                calMin.getMinimum(Calendar.MINUTE),
+                calMin.getMinimum(Calendar.SECOND));
+        Calendar calMax = Calendar.getInstance();
+        calMax.set(Integer.parseInt(fec[0]), Integer.parseInt(fec[1])-1,
+                calMax.getMaximum(Calendar.DAY_OF_MONTH),
+                calMax.getMaximum(Calendar.HOUR_OF_DAY),
+                calMax.getMaximum(Calendar.MINUTE),
+                calMax.getMaximum(Calendar.SECOND));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(sdf.format(calMin.getTime()));
+        System.out.println(sdf.format(calMax.getTime()));
+        BeanTRGuia bean = new BeanTRGuia();
+        BeanManifiesto mani = new BeanManifiesto();
+        if(tipo.contains("No Exitoso")){
+            bean.setValoracion(1);
+        } else {
+            bean.setValoracion(3);    
+        }
+        bean.setManifiesto(mani);
+        if(tipo.contains("Propio")){
+            mani.setCTipoDoc(2+"");
+        } else {
+            mani.setCTipoDoc(1+"");    
+        }
+        beanSessionEstadisticosViajes.setGuias(Filter(ln_C_SFGuiaRemote.getGuiasEstadisticas(bean), calMin.getTime(), calMax.getTime()));
+        if(mani.getCTipoDoc().equals(2)){
+            beanSessionEstadisticosViajes.setTitulo("Ingresos del "+fec[0]+" al mes "+fec[1]+" para los viajes Propios");    
+        } else {
+            beanSessionEstadisticosViajes.setTitulo("Ingresos del "+fec[0]+" al mes "+fec[1]+" para los viajes Proveedores");
+        }
+        Utils.showPopUpMIDDLE(popDetBar);
+    }
+    
+    public List<BeanTRGuia> Filter(List<BeanTRGuia> lista, Date fecMin, Date fecMax){
+        List<BeanTRGuia> output = new ArrayList<BeanTRGuia>();
+        for(BeanTRGuia bean : lista){
+            if(bean.getFechaGuia().after(fecMin) && bean.getFechaGuia().before(fecMax)){
+                output.add(bean);
+            }
+        }
+        return output;
     }
     
     public void llenarGraficos(ActionEvent actionEvent){
@@ -606,5 +685,13 @@ public class Frm_estadisticos_viajes {
 
     public SessionScopeEstadisticosViajes getBeanSessionEstadisticosViajes() {
         return beanSessionEstadisticosViajes;
+    }
+
+    public void setPopDetBar(RichPopup popDetBar) {
+        this.popDetBar = popDetBar;
+    }
+
+    public RichPopup getPopDetBar() {
+        return popDetBar;
     }
 }

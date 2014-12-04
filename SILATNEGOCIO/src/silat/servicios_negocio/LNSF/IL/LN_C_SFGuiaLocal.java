@@ -59,4 +59,5 @@ public interface LN_C_SFGuiaLocal {
     List<BeanTRItem> passItems(List<TRItem> items);
     List<BeanTRItem> getListaItemsByCidGuia(String cidGuia);
     int contieneGuiasPendientesByOS(int nidOS);
+    List<BeanTRGuia> getGuiasEstadisticas(BeanTRGuia filtro);
 }

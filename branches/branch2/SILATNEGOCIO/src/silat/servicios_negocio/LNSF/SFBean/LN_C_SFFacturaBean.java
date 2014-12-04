@@ -33,7 +33,11 @@ public class LN_C_SFFacturaBean implements LN_C_SFFacturaRemote,
 
     public LN_C_SFFacturaBean() {
     }
-     
+    
+    public List<BeanFactura> findFacturaByAttr_LN(BeanFactura bean){
+        return bdL_C_SFFacturaLocal.findFacturasByAttr_BD(bean);
+    }
+    
     public List<BeanFactura> findFacturasByAttr_LN(Date fecMin,
                                                    Date fecMax,
                                                    BigDecimal subTotal,

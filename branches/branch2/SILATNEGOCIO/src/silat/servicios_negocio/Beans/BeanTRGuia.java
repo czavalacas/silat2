@@ -77,6 +77,7 @@ public class BeanTRGuia implements Serializable, Cloneable  {
     private String comentario;
     private Integer valoracion;
     private String nativeCidGuia;
+    private BeanManifiesto manifiesto;
     
     private String fechaGuiaWebMovilEmp;
     
@@ -497,5 +498,13 @@ public class BeanTRGuia implements Serializable, Cloneable  {
 
     public String getFechaGuiaWebMovilEmp() {
         return fechaGuiaWebMovilEmp;
+    }
+
+    public void setManifiesto(BeanManifiesto manifiesto) {
+        this.manifiesto = manifiesto;
+    }
+
+    public BeanManifiesto getManifiesto() {
+        return manifiesto;
     }
 }

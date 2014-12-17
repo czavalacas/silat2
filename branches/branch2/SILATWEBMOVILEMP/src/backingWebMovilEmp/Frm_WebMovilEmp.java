@@ -362,12 +362,15 @@ public class Frm_WebMovilEmp {
         }
         if(getFechaEmis().before(new Date())){
             getMensajeGuia().add("Elegir una Fecha de Emision Mayor");
+            entro = false;
         }
         if(getFechaTrans().before(new Date())){
             getMensajeGuia().add("Elegir una Fecha de Translado Mayor");
+            entro = false;
         }
         if(getFechaEmis().after(getFechaTrans())){
             getMensajeGuia().add("Elegir una Fecha de Translado mayor a Fecha de Emision");
+            entro = false;
         }
         if(entro == true){
         try{
@@ -634,7 +637,7 @@ public class Frm_WebMovilEmp {
         setNidDireccionDestino(direccion.get(0).getNidDireccion()+"");
         }
         
-        
+        getMensajeGuia().clear();
         String h4 = "";
         String g4 = "";
         if(lstBeanOrd.get(0).getNidDirecCli() == null || getNidDestinoElegido() == null){
@@ -916,6 +919,7 @@ public class Frm_WebMovilEmp {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/frm_login"));
+        System.out.println("URL:"+url);
         String h = url.replaceAll("LUBAL_SIAT_APP-SILATWEBMOVILEMP-context-root", "silat");
         try {
             extContext.redirect(h);

@@ -448,9 +448,17 @@ public class Frm_consultar_manifiesto {
         try{
             String oldVal = vce.getOldValue().toString();
             String val = vce.getNewValue().toString();
-            if(oldVal.equals("2") && (!val.equals("4") && !val.equals("5"))){
+            /**Comentado con el fin de que el manifiesto solo pueda pasar el destado Conforme X Relugarizar a X Cancelar**/
+        /*    if(oldVal.equals("2") && (!val.equals("4") && !val.equals("5"))){
                 manejarEstados(oldVal);
-            }
+            }*/
+        /*************************/
+            
+        /**codigo nuevo con el fin de que el manifiesto solo pueda pasar el destado Conforme X Relugarizar a X Cancelar**/
+             if(oldVal.equals("2") && !val.equals("5")){
+                      manejarEstados(oldVal);
+                  }
+            /*************************/
             if(oldVal.equals("5") && !val.equals("4")){
                 manejarEstados(oldVal);
             }
@@ -503,6 +511,7 @@ public class Frm_consultar_manifiesto {
                                                                                         getBeanSessionConsultarManifiesto().getNidManifies(), 
                                                                                         1,
                                                                                         getBeanSessionConsultarManifiesto().getEstadoManifNeg());
+            
             if(bManifiesto.getBeanError() != null){
                 BeanError error = bManifiesto.getBeanError();
                 int severidad = 0;

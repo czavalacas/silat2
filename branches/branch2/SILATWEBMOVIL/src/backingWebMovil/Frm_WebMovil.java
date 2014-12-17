@@ -481,13 +481,14 @@ public class Frm_WebMovil extends HttpServlet{
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/frm_login"));
+        System.out.println("URL:"+url);
         String h = url.replaceAll("LUBAL_SIAT_APP-SILATWEBMOVIL-context-root", "silat");
         try {
             extContext.redirect(h);
         } catch (IOException ioe) {
             throw new FacesException(ioe);
         }
-        return null; 
+        return null;
     }
     
     public void setExec(int exec) {

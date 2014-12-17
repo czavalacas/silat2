@@ -97,7 +97,9 @@ public class BDL_C_SFFlotaBean implements BDL_C_SFFlotaRemote,
             BeanFlota beanFlota = null;
             for (ADFlota flota : lstFlotas) {
                 beanFlota = (BeanFlota) mapper.map(flota, BeanFlota.class);
-                beanFlota.setCertificadoInscripcionEmpresa(flota.getEmpresa().getCCerins());
+            //  beanFlota.setCertificadoInscripcionEmpresa(flota.getEmpresa().getCCerins()); 
+                beanFlota.setCertificadoInscripcionEmpresa(flota.getCCerins()); /**Agregado porque ahora el certificado de Inscripcion
+                                                                                 * viene de flota, mas no ya de la empresa**/
                 lstBeanFlota.add(beanFlota);
             }
             return lstBeanFlota;

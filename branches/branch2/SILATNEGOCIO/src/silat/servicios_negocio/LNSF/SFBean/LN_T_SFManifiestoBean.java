@@ -24,6 +24,7 @@ import net.sf.dozer.util.mapping.MapperIF;
 
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFEmpresasLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_C_SFManifiestoLocal;
+import silat.servicios_negocio.BDLSF.IL.BDL_C_SFUtilsLocal;
 import silat.servicios_negocio.BDLSF.IL.BDL_T_ManifiestoLocal;
 import silat.servicios_negocio.Beans.BeanEmpresa;
 import silat.servicios_negocio.Beans.BeanError;
@@ -53,6 +54,8 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
     private BDL_C_SFManifiestoLocal bdL_C_SFManifiestoLocal;
     @EJB
     private BDL_T_ManifiestoLocal bdL_T_ManifiestoLocal;
+    @EJB
+    private BDL_C_SFUtilsLocal bdl_C_SFUtilsLocal;
 
     public LN_T_SFManifiestoBean() {
     }
@@ -76,7 +79,11 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
         try{
             if(nidManif != 0){//Actualizar
                 eManifiesto = bdL_C_SFManifiestoLocal.findTRManifiestoById(nidManif);
-                eManifiesto.setNEstManifiesto(estadoManif);
+                eManifiesto.setNEstManifiesto(estadoManif);/****/
+                System.out.println("estado es "+estadoManif);
+                if(estadoManifiestoNegocio.equals("4")){                   
+                    bdl_C_SFUtilsLocal.call_Procedure_PagarManifiesto(nidManif,fletePactado);
+                }
             }else{
                 eManifiesto.setNEstManifiesto(1);
                 eManifiesto.setCTipoDoc(tipDoc);

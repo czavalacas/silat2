@@ -458,6 +458,28 @@ public class BDL_C_SFUtilsBean implements BDL_C_SFUtilsRemote,
         return codFactura;
     }
     
+    public void call_Procedure_PagarManifiesto(int nidManifiesto, Double flete){     
+        try {
+            System.out.println("DENTRO DE PAGAR_MANIFIESTO");
+            conn = lubalDS.getConnection();
+            String query = "CALL PAGAR_MANIFIESTO(?,?); ";
+            CallableStatement stmt = conn.prepareCall(query);   
+            stmt.setInt(1, nidManifiesto);
+            stmt.setDouble(2, flete);
+            stmt.execute();
+            conn.close();        
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.close();
+            } catch (SQLException f) {
+                f.printStackTrace();
+            }
+          }
+    }
+    
     public int findCountByProperty(String propertyName, Object value, String entidad, boolean changeCase,boolean isUpdate, String oldValue) {
          try {
              String queryString = "select count(model) " +

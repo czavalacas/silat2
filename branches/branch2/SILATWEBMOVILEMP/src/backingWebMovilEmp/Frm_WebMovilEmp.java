@@ -332,6 +332,7 @@ public class Frm_WebMovilEmp {
         return "";
     }
     public String registrarGuia(){
+        System.out.println("IMPRIME MIERDA!!");
         boolean entro = true;
         getMensajeGuia().clear();
         if(nidDireccionDestino == null){
@@ -360,10 +361,12 @@ public class Frm_WebMovilEmp {
             getMensajeGuia().add("Insertar n°Paquetes");
             entro = false;
         }
+        System.out.println("FECHA EMIS : "+getFechaEmis());
         if(getFechaEmis().before(new Date())){
             getMensajeGuia().add("Elegir una Fecha de Emision Mayor");
             entro = false;
         }
+        System.out.println("FECHA TRANS : "+getFechaTrans());
         if(getFechaTrans().before(new Date())){
             getMensajeGuia().add("Elegir una Fecha de Translado Mayor");
             entro = false;

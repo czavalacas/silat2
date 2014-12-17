@@ -465,7 +465,9 @@
             </b:commandButton>
           </h:form>
           <h:form>
-            <b:commandButton icon="off" action="#{frm_WebMovilEmp.redirectLogin}" value="" style="border-color : #4169E1;color:white;background-color:#4169E1">
+            <b:commandButton icon="off" action="#{frm_WebMovilEmp.redirectLogin}" 
+            value="" 
+            style="border-color : #4169E1;color:white;background-color:#4169E1">
                 Salir
             </b:commandButton>
           </h:form>
@@ -719,7 +721,7 @@
     <h:outputText value="Fecha Emision"/>
     <b:datepicker  mode="icon-popup" value="#{frm_WebMovilEmp.fechaEmis}" id="fecha2"/>
     <div style="height:10px"/>
-    <b:inputText style="color:#000000;" onblur="isNull(this)" disabled="false"
+        <b:inputText style="color:#000000;" onblur="isNull(this)" disabled="false"
                      value="#{frm_WebMovilEmp.comentarioGuia}">
             <f:facet name="prepend">
                 <h:outputText value="Comentario"/>

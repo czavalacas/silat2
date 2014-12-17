@@ -59,4 +59,5 @@ public interface BDL_C_SFUtilsRemote {
                           String codigo);
     int traerSiguienteValorSequence(String sequence);
     int traerSiguienteValorCodigo(String app_seq_name);
+    void call_Procedure_PagarManifiesto(int nidManifiesto, Double flete);
 }

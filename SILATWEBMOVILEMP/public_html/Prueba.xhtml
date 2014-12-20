@@ -715,11 +715,12 @@
                             onclick="openModalItems();"/>
     </h:form>
     
-    <h:form id="lastForm" style="#{frm_WebMovilEmp.styleLastForm}">    
+    <h:form id="lastForm" style="#{frm_WebMovilEmp.styleLastForm}">   
+      <h:outputText value="Fecha Emision"/>
+    <b:datepicker  mode="icon-popup" value="#{frm_WebMovilEmp.fechaEmis}" id="fecha2"/>
     <h:outputText value="Fecha Translado"/>
     <b:datepicker  mode="icon-popup" value="#{frm_WebMovilEmp.fechaTrans}" id="fecha1"/>
-    <h:outputText value="Fecha Emision"/>
-    <b:datepicker  mode="icon-popup" value="#{frm_WebMovilEmp.fechaEmis}" id="fecha2"/>
+  
     <div style="height:10px"/>
         <b:inputText style="color:#000000;" onblur="isNull(this)" disabled="false"
                      value="#{frm_WebMovilEmp.comentarioGuia}">

@@ -200,10 +200,10 @@
                                sortable="true" headerText="Telefono" id="c8" width="60">
                         <af:outputText value="#{row.adParty.CTelf}" id="ot9"/>
                     </af:column>
-                    <af:column sortProperty="CCerins" headerText="Certificado de Inscripcion" 
+                 <!--   <af:column sortProperty="CCerins" headerText="Certificado de Inscripcion" 
                                filterable="true" sortable="true">
                         <af:outputText value="#{row.CCerins}"  id="ot21"/>
-                    </af:column>
+                    </af:column>  -->
                 </af:table>
                 </af:panelCollection>
             </af:panelGroupLayout>

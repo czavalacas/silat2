@@ -258,7 +258,7 @@ public class Frm_WebMovilEmp {
             //vista
             bean.setDetalleWebmovilCantidad(cantidad);
             bean.setDetalleWebmovilDescripcion(getDescripcionNewItem());
-            bean.setDetalleWebmovilUmedida(getNidUmedida());
+            bean.setDetalleWebmovilUmedida(getNidUmedida());            
             getLstItemsOrdsRespal().add(bean);
             getLstItemsOrds().add(bean);
             
@@ -362,7 +362,7 @@ public class Frm_WebMovilEmp {
             entro = false;
         }
         System.out.println("FECHA EMIS : "+getFechaEmis());
-        if(getFechaEmis().before(new Date())){
+    /*    if(getFechaEmis().before(new Date())){
             getMensajeGuia().add("Elegir una Fecha de Emision Mayor");
             entro = false;
         }
@@ -370,7 +370,8 @@ public class Frm_WebMovilEmp {
         if(getFechaTrans().before(new Date())){
             getMensajeGuia().add("Elegir una Fecha de Translado Mayor");
             entro = false;
-        }
+        }*/
+        ln_C_SFUtilsRemote.SystemOutPrint1nWebMovil(getFechaEmis(), getFechaTrans());
         if(getFechaEmis().after(getFechaTrans())){
             getMensajeGuia().add("Elegir una Fecha de Translado mayor a Fecha de Emision");
             entro = false;
@@ -420,31 +421,26 @@ public class Frm_WebMovilEmp {
         int nidDirecDest = Integer.parseInt(nidDireccionDestino);
         int opc = Integer.parseInt("1");
         String codUn = "001";
-        String estadoManif = "1";
-        
-        List<BeanTRItem> lstItems = new ArrayList<BeanTRItem>();
+        String estadoManif = "1";        
+        List<BeanTRItem> lstItems = new ArrayList<BeanTRItem>();   
+        int num=1;
         for(BeanTrItemXOrds bean : getLstItemsOrdsRespal()){
+            BeanTRGuia guia = new BeanTRGuia();
             BeanTRItem bean1 = new BeanTRItem();
             bean1.setNidItem(bean.getNidItem());
             bean1.setCDescItem(bean.getDetalleWebmovilDescripcion());
             bean1.setCUndMedida(bean.getDetalleWebmovilUmedida());
             bean1.setNCantidad(bean.getDetalleWebmovilCantidad());
-            bean1.setDPeso(bean.getDPeso());
-                BeanTRGuia guia = new BeanTRGuia();
+            bean1.setDPeso(bean.getDPeso());   
+            bean1.setOrden(num);
             guia.setCidGuia(cidGuia);
             bean1.setTrGuia(guia);
             bean1.setCidGuia(cidGuia);
-            lstItems.add(bean1);
+            lstItems.add(bean1);     
+            System.out.println("webmovil_EMP 1 "+num);
+            num=num+1;
         }
-/*             
-            for(BeanTrItemXOrds bean : getLstItemsOrdsRespal()){
-                for(BeanTrItemXOrds bean1 : getLstItemsOrds()){
-                    if(bean.getIndex().equals(bean1.getIndex())){
-                        
-                    }
-                }
-            } */
-        
+            System.out.println("webmovil_EMP 2");
         BeanTRGuia bGuia = ln_T_SFGuiaRemote.registrarGuia_LN(cidGuia, 
                                                               npaq, 
                                                               getComentarioGuia(), 
@@ -922,9 +918,9 @@ public class Frm_WebMovilEmp {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/frm_login"));
-        System.out.println("URL:"+url);
+        System.out.println("URL emp:"+url);
         String h = url.replaceAll("LUBAL_SIAT_APP-SILATWEBMOVILEMP-context-root", "silat");
-        try {
+        try {                                       
             extContext.redirect(h);
         } catch (IOException ioe) {
             throw new FacesException(ioe);

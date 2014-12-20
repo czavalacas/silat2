@@ -528,10 +528,10 @@
                                sortable="true" headerText="Telefono" id="c7" width="60">
                         <af:outputText value="#{row.adParty.CTelf}" id="ot8"/>
                     </af:column>
-                     <af:column  sortProperty="CCerins"  headerText="Certificado de Inscripcion" width="60"
+                    <!-- <af:column  sortProperty="CCerins"  headerText="Certificado de Inscripcion" width="60"
                                 sortable="true">
                         <af:outputText value="#{row.CCerins}" id="ot30"/>
-                    </af:column>
+                    </af:column>-->
                      <af:resource type="javascript">
                 function onDialogCancel_NewDireccion(evt){
                     var outcome = evt.getOutcome();

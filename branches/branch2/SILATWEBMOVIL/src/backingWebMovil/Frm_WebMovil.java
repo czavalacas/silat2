@@ -75,6 +75,7 @@ import silat.servicios_negocio.LNSF.IL.LN_T_SFManifiestoRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFEmpresasRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFGuiaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUsuarioRemote;
+import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFGuiaRemote;
 import silat.servicios_negocio.LNSF.SFBean.LN_C_SFEmpresasBean;
 
@@ -92,6 +93,8 @@ public class Frm_WebMovil extends HttpServlet{
     private final static String LOOKUP_NAME_SFEmpresa_REMOTO = "mapLN_C_SFEmpresas";
     private LN_T_SFManifiestoRemote ln_T_SFManifiestoRemote;
     private final static String LOOKUP_NAME_SFMANIFIESTO_REMOTO = "mapLN_T_SFManifiesto";
+    private LN_C_SFUtilsRemote ln_C_SFUtilsRemote;
+    private final static String LOOKUP_NAME_SFC_UTL_REMOTO        = "mapLN_C_SFUtils";
     private Base64 base;
     
     //VARIABLES LISTAS
@@ -147,6 +150,7 @@ public class Frm_WebMovil extends HttpServlet{
         ln_T_SFGuiaRemote = (LN_T_SFGuiaRemote)ctx.lookup(LOOKUP_NAME_TSFGUIA_REMOTO);
         ln_C_SFEmpresasRemote = (LN_C_SFEmpresasRemote)ctx.lookup(LOOKUP_NAME_SFEmpresa_REMOTO);
         ln_T_SFManifiestoRemote = (LN_T_SFManifiestoRemote) ctx.lookup(LOOKUP_NAME_SFMANIFIESTO_REMOTO);
+        ln_C_SFUtilsRemote = (LN_C_SFUtilsRemote) ctx.lookup(LOOKUP_NAME_SFC_UTL_REMOTO);
         }catch(Exception e){}
     }
     @PostConstruct
@@ -478,12 +482,13 @@ public class Frm_WebMovil extends HttpServlet{
     }
     
     public String redirectLogin() {
+        ln_C_SFUtilsRemote.SystemOutPrint1nWebMovil(null, null);
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/frm_login"));
-        System.out.println("URL:"+url);
+        System.out.println("URL movil:"+url);
         String h = url.replaceAll("LUBAL_SIAT_APP-SILATWEBMOVIL-context-root", "silat");
-        try {
+        try {                      
             extContext.redirect(h);
         } catch (IOException ioe) {
             throw new FacesException(ioe);

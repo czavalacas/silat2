@@ -103,12 +103,14 @@
                                      value="Guias Pendientes" icon="home" iconAlign="right"/>
                     <b:commandButton actionListener="#{frm_WebMovil.mostrarGuiasOK}" update="form:guias"
                                      style="font-size:15px;border-color : #222222;color:white;background-color: #222222;"
-                                     value="Historial de Guias" icon="time" iconAlign="right" href="#"/>
+                                     value="Historial de Guias" icon="time" iconAlign="right"/>
                     
-                    <h:commandButton style="font-size:15px;border-color : #222222;color:white;background-color: #222222;"
-                                     action="#{frm_WebMovil.redirectLogin}"
+                    <b:commandButton style="font-size:15px;border-color : #222222;color:white;background-color: #222222;"
+                                     actionListener="#{frm_WebMovil.redirectLogin}"
                                      value="Salir" 
-                                     icon="off" iconAlign="right"/>
+                                     icon="off" >
+                                     
+                                     </b:commandButton>
                                                             
                 </b:navbarLinks>
             </b:navBar>

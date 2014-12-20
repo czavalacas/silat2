@@ -105,6 +105,12 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                                        int nidChofer,int nidDirecRemi,
                                        int nidDirecDest,int opc,List<BeanTRItem> lstItems,String codUn,String estadoManif,
                                        String imgGuiaProv,boolean cerrarOS,boolean enTransManif){
+        System.out.println("LNT_SFUIA");
+        if(lstItems!=null){
+            for(int i=0; i<lstItems.size(); i++){
+                lstItems.get(i).setOrden(i+1);
+            }
+        }
         BeanError beanError = new BeanError();
         TRGuia eGuia = new TRGuia();
         BeanTRGuia bTRGuia = new BeanTRGuia();
@@ -164,7 +170,9 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                 /**czavalacas 17.11.2014
                  * Codigo para acttualizar el estado de los items que se usaron de la OS a 1 (En Uso o Activo)*/
                 
-               
+                for(int i=0; i<lstItems.size(); i++){
+                    System.out.println("(2) Orden : "+lstItems.get(i).getOrden());
+                } 
                 List<TRItemXOrds> itemXord=bdl_C_SFItemXOrdsLocal.getTrItemOrdenServicio_BD(nidOS,0);
                 if(lstItems!=null){
                     for(int i=0; i<lstItems.size(); i++){
@@ -197,7 +205,9 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                 }            
                                 
                 /***************************************/
-                
+                for(int i=0; i<lstItems.size(); i++){
+                    System.out.println("(3) Orden : "+lstItems.get(i).getOrden());
+                }
                 List<TRItem> itemsBefore = eGuia.getItemsList();
                 if(opc==1){
                    List<TRItem> eItems = LN_C_SFUtilsLocal.beanItemToEntity(lstItems,eGuia);    

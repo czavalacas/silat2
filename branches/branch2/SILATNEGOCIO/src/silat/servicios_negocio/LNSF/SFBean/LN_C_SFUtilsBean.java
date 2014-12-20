@@ -1,6 +1,7 @@
 package silat.servicios_negocio.LNSF.SFBean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import java.util.Iterator;
@@ -78,7 +79,9 @@ public class LN_C_SFUtilsBean implements LN_C_SFUtilsRemote,
         List<TRItem> items = new ArrayList<TRItem>();
         MapperIF mapper = new DozerBeanMapper();
         for(BeanTRItem item : lstItems){
+            System.out.println("Bean Ordenes : " +item.getOrden());
             TRItem eItem = (TRItem) mapper.map(item,TRItem.class);
+            System.out.println("Entidad Ordenes : " +eItem.getOrden());
             eItem.setTrGuia(eGuia);
             eItem.setNidItem(null);//Para que no chape el NidDel Item de OS
             items.add(eItem);
@@ -100,5 +103,9 @@ public class LN_C_SFUtilsBean implements LN_C_SFUtilsRemote,
     
     public int traerSiguienteValorSequence(String sequence){
         return bdL_C_SFUtilsLocal.traerSiguienteValorCodigo(sequence);
+    }
+    public void SystemOutPrint1nWebMovil(Date fecha1, Date fecha2){
+        System.out.println("IMPRIME CTM! ");
+        System.out.println("Fecha 1:"+fecha1 + " ---  Fecha 2:"+fecha2);
     }
 }

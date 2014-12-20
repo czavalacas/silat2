@@ -31,7 +31,7 @@ public class ADGasto implements Serializable {
     private byte[] blobImagenRecibo;
     @Column(name = "C_ESTREG", nullable = false, length = 1)
     private String estadoRegistro;
-    @Column(name = "CANPER")
+    @Column(name = "CANTPER")
     private Integer cantper;
     @Column(name = "CID_FACTURA", length = 15)
     private String cidFactura;

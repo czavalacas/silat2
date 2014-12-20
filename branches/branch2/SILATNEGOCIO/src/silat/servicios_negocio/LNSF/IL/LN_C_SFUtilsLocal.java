@@ -1,5 +1,6 @@
 package silat.servicios_negocio.LNSF.IL;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -25,4 +26,5 @@ public interface LN_C_SFUtilsLocal {
     List<BeanCombo> getListaParaCombo_LN(String nombreEntidad, String nombreCampo, String idCampo);
     List<BeanCodigo> getCodigos();
     int traerSiguienteValorSequence(String sequence);
+    void SystemOutPrint1nWebMovil(Date fecha1, Date fecha2);
 }

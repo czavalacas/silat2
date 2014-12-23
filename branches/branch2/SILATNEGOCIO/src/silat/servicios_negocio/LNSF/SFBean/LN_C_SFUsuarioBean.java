@@ -142,6 +142,7 @@ public class LN_C_SFUsuarioBean implements LN_C_SFUsuarioRemote,
               //  Calendar cal2 = Calendar.getInstance();
               //  System.out.println("fin : " + dateFormat.format(cal2.getTime()));
                 setUsuario(username);
+                System.out.println(""+usuario.getAdPersona().getNidParty());
                 setNidParty(""+usuario.getAdPersona().getNidParty());
                 return beanUsuario;
             }

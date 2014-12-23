@@ -403,7 +403,10 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
         return itemsListBeans;
     }
     public List<BeanTRGuia> guiasByNidParty(int nidCliente){
+        System.out.println(":::ENTRO 0:::");
         List<TRGuia> lstGuia = bdL_C_SFGuiaLocal.guiasPorParty(nidCliente);
+        if(lstGuia!=null){
+        System.out.println("::::::"+lstGuia.size());}
         List<BeanTRGuia> lstBeanGuias = new ArrayList<BeanTRGuia>();
         for(TRGuia guia : lstGuia){
                 BeanTRGuia beanGuias = new BeanTRGuia();
@@ -447,31 +450,40 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
         return lstBeanGuias;
     }
     public List<BeanTRGuia> guiasByNidPartyOK(int nidCliente){
+        System.out.println("::::ENTRO1::");
         List<TRGuia> lstGuia = bdL_C_SFGuiaLocal.guiasPorPartyOK(nidCliente);
+        if(lstGuia!=null){
+        System.out.println("::::::"+lstGuia.size());}
         List<BeanTRGuia> lstBeanGuias = new ArrayList<BeanTRGuia>();
         for(TRGuia guia : lstGuia){
                 BeanTRGuia beanGuias = new BeanTRGuia();
                 BeanEmpresa beanEm = new BeanEmpresa();
                 BeanEmpresa beanEm1 = new BeanEmpresa();
                 BeanManifiesto beanMan = new BeanManifiesto();
-            
+                System.out.println("::55::");
                 beanGuias.setCidGuia(guia.getCidGuia());
                 beanGuias.setCObservaciones(guia.getCObservaciones());
                 beanGuias.setCConformidad("OK");
+            System.out.println("::55::");
                 beanGuias.setImgGuia(guia.getImgGuia());
                 beanGuias.setFechaGuia(guia.getFechaGuia());
+            System.out.println("::55::");
                 beanGuias.setEmpCliente(guia.getOrdenServicio().getAdEmpresa().getCRazonSocial());
                 beanGuias.setItemsLista(this.itemsLista(guia.getItemsList()));
+            System.out.println("::55::");
                 beanGuias.setNumPaquetes(guia.getNumPaquetes());
-            
+            System.out.println("::55::");
                 beanEm.setCRazonSocial(guia.getAdEmpresa().getCRazonSocial());
                 beanGuias.setAdEmpresa(beanEm);
-            
+            System.out.println("::55::");
+            if(guia.getTrManifiesto()!=null){
                 beanEm1.setCRazonSocial(guia.getTrManifiesto().getTrManifiesto().getCRazonSocial());
                 beanMan.setTrManifiesto(beanEm1);
                 beanGuias.setTrManifiesto(beanMan);
+            }
+               
             
-            
+            System.out.println("::55::");
                 List<BeanDireccion> direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionDestino(),null,null);
                 if(direcs != null){
                     if(direcs.size() > 0){
@@ -484,7 +496,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                         beanGuias.setCDireccionRemitente(direcs.get(0).getCDireccion());
                     }
                 }
-            
+            System.out.println("::88888::");
                 lstBeanGuias.add(beanGuias);
             
         }

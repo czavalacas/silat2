@@ -109,7 +109,7 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                            "WHERE g.ordenServicio.adEmpresa.nidParty = '"+""+nidCliente+"' " +
                            "AND g.cConformidad = '2' "+
                            "AND g.trManifiesto.nEstManifiesto = '1'";
-            return em.createQuery(ejbQl).getResultList();
+            return em.createQuery(ejbQl).getResultList();            
     }
     
     public List<TRGuia> guiasPorPartyOK(int nidCliente){

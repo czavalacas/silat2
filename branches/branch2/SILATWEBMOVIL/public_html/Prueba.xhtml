@@ -66,7 +66,7 @@
                 }
     if(fileExtension == "jpg" || fileExtension == "png" || fileExtension == "jpeg" || fileExtension == "PNG" || fileExtension == "JPG" || fileExtension == "JPEG"){     
                 if (input.files || input.files[0]) {
-                if(500000>file.size){
+                if(3000000>file.size){
                   var reader = new FileReader();
                   reader.onload = function (e) {
                       var x = document.getElementById("img_prev").width;
@@ -77,7 +77,7 @@
                   reader.readAsDataURL(input.files[0]);
                   document.getElementById('alert').innerHTML= 'Imagen Perfecta!';
                 }else{
-                           document.getElementById('alert').innerHTML= 'Ingrese pequeña';
+                           document.getElementById('alert').innerHTML= 'Tamaño de la imagen excede los 3 MB permitidos, porfavor ingrese una imagen no mayor a 3 MB';
         document.getElementById("img_prev").style.visibility="hidden";
         document.getElementById("img_prev").style.width="0px";
               document.getElementById("img_prev").style.height="0px";

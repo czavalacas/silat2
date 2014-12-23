@@ -334,6 +334,7 @@ public class Frm_WebMovilEmp {
     public String registrarGuia(){
         System.out.println("IMPRIME MIERDA!!");
         boolean entro = true;
+        System.out.println("ESTADO!!  " + entro);
         getMensajeGuia().clear();
         if(nidDireccionDestino == null){
             getMensajeGuia().add("Elegir Direccion Destino");
@@ -372,10 +373,10 @@ public class Frm_WebMovilEmp {
             entro = false;
         }*/
         ln_C_SFUtilsRemote.SystemOutPrint1nWebMovil(getFechaEmis(), getFechaTrans());
-        if(getFechaEmis().after(getFechaTrans())){
+   /*     if(getFechaEmis().after(getFechaTrans())){
             getMensajeGuia().add("Elegir una Fecha de Translado mayor a Fecha de Emision");
             entro = false;
-        }
+        }*/
         if(entro == true){
         try{
         int npaq = Integer.parseInt(getNPaquetes());

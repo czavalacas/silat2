@@ -139,6 +139,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
     public List<BeanTRGuia> getListaGuias(List<TRGuia> listGuia){
         try{
         List<BeanTRGuia> listBeanGuias = new ArrayList<BeanTRGuia>();            
+        int idx = 0;
         for(TRGuia entidad:listGuia){
             BeanTRGuia beanGuia = new BeanTRGuia();
             BeanOrdenServicio beanOrdenervicio = new BeanOrdenServicio();
@@ -149,7 +150,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             BeanFactura beanFactGuia = new BeanFactura();
             
             //Solo Con TRGuia
-            beanGuia.setCidGuia(entidad.getCidGuia());
+            beanGuia.setCidGuia(entidad.getCidUnidadNegocio() +"-"+ entidad.getCidGuia());
             beanGuia.setCidUnidadNegocio(entidad.getCidUnidadNegocio());
             beanGuia.setNativeCidGuia(entidad.getCidGuia());
             beanGuia.setFechaGuia(entidad.getFechaGuia());
@@ -210,12 +211,42 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             //Solo Con Factur
             beanFactGuia.setCidUnidadNegocio(beanGuia.getCidUnidadNegocio());
             beanGuia.setTrFactura(beanFactGuia);
-            
+            if("0".equals(entidad.getNEstadoGuia())){
+                beanGuia.setStyleAnulado("background-color:Red;color:White;");
+            }
             if(entidad.getImgGuia()!=null){
                 beanGuia.setImgGuia(entidad.getImgGuia());
             }
             listBeanGuias.add(beanGuia); 
-            
+            if((idx + 1) < listGuia.size()){
+                int nextCidGuia = new Integer(listGuia.get((idx + 1 )).getCidGuia());
+                int thisGuia = new Integer(entidad.getCidGuia());
+                int cantGuiasFaltantes = thisGuia - nextCidGuia;
+                if(cantGuiasFaltantes > 1){//Quiere decir que faltan
+                    BeanTRGuia g = null;
+                    for(int i = 0 ; i < cantGuiasFaltantes - 1; i++){
+                        g = new BeanTRGuia();
+                        String newCidGuia = ""+((thisGuia - (i + 1)));
+                        if(newCidGuia.length() < 6){
+                            int cantCeros = 6 - newCidGuia.length();
+                            String ceros = "";
+                            for(int j = 0 ; j < cantCeros; j++){
+                                ceros = "0";
+                            }
+                            newCidGuia = ceros + newCidGuia;
+                        }
+                        if(!bdL_C_SFGuiaLocal.isGuiaExistente("001", newCidGuia)){
+                            g.setCidGuia("001-"+newCidGuia);
+                            g.setCidUnidadNegocio("001");
+                            g.setNEstadoGuia("0");
+                            g.setEmpCliente("GUIA AUN NO REGISTRADA");
+                            g.setStyleAnulado("background-color:Grey;color:Black;");
+                            listBeanGuias.add(g);
+                        }
+                    }
+                }
+            }
+            idx++;
         }
             
          return listBeanGuias;   

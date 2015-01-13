@@ -18,7 +18,7 @@ public interface BDL_C_SFGuiaRemote {
                                                Date fecDespMax,String empCliente,String empProvCarga,String estGuia,
                                                String hasManif,Integer nidManif,String prov,String cObservaciones,
                                                String nEstadoGuia,int nidOS,String detOS,String hasFactura,String codFactura,
-                                               int nEstadoFactura,BigDecimal nidParty,String descCidGuiaRemi_ITEM);
+                                               int nEstadoFactura,BigDecimal nidParty,String descCidGuiaRemi_ITEM,String descCidGuia_ITEM);
     TRGuia findGuiaByUNCid(String cidUn,
                            String cidGuia);
     int contGuiasConFactPagadas(int nidOrdenServicio, Long nidFactura);

@@ -125,6 +125,7 @@ public class Frm_consultar_guia {
     private RichCommandButton btnverImagen;
     private RichPopup popImagen;
     private RichImage imgGuia;
+    private RichInputText itGItm;
 
     public Frm_consultar_guia(){
         try{
@@ -182,6 +183,8 @@ public class Frm_consultar_guia {
         String nEstadoGuia = beanSessionConsultarGuia.getVigenciaGuia();
         Integer nidManif = beanSessionConsultarGuia.getNidManif();
         String filtroItemGuiaRemi = beanSessionConsultarGuia.getFiltroItemGuiaRemi();
+        String filtroGuiaItem= beanSessionConsultarGuia.getFiltroItemGuia();
+        System.out.println("Filtro Item : "+filtroItemGuiaRemi);
         int nidOS = 0;
         if(beanSessionConsultarGuia.getNidOS() != null){
             if(!beanSessionConsultarGuia.getNidOS().equals("")){
@@ -203,7 +206,7 @@ public class Frm_consultar_guia {
                                                                                                  hasMan,nidManif,prov,obs,nEstadoGuia,
                                                                                                  nidOS,detOS,hasFactura,
                                                                                                  beanSessionConsultarGuia.getCodigoFacturaFiltro(),
-                                                                                                 nEstadoFactura,new BigDecimal(0),filtroItemGuiaRemi));
+                                                                                                 nEstadoFactura,new BigDecimal(0),filtroItemGuiaRemi,filtroGuiaItem));
         if(tbGuias != null){
             tbGuias.setValue(beanSessionConsultarGuia.getLstGuiasTabla());
             Utils.addTarget(tbGuias);
@@ -240,7 +243,7 @@ public class Frm_consultar_guia {
         getBeanSessionConsultarGuia().setLstGuiasTabla(this.ln_C_SFGuiaRemote.findGuiasByAttr_LN(null,null,null,null,null,
                                                                                                  null,null,null,null,null,
                                                                                                  null,null,null,0,null,null,
-                                                                                                 null,0,new BigDecimal(0),null));
+                                                                                                 null,0,new BigDecimal(0),null,null));
         if(tbGuias != null){
             tbGuias.setValue(beanSessionConsultarGuia.getLstGuiasTabla());
             Utils.addTarget(tbGuias);
@@ -926,5 +929,13 @@ public class Frm_consultar_guia {
 
     public RichImage getImgGuia() {
         return imgGuia;
+    }
+
+    public void setItGItm(RichInputText itGItm) {
+        this.itGItm = itGItm;
+    }
+
+    public RichInputText getItGItm() {
+        return itGItm;
     }
 }

@@ -198,12 +198,22 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                                                Date fecDespMax,String empCliente,String empProvCarga,String estGuia,
                                                String hasManif,Integer nidManif,String prov,String cObservaciones,
                                                String nEstadoGuia,int nidOS,String detOS,String hasFactura,String codFactura,
-                                               int nEstadoFactura,BigDecimal nidParty,String descCidGuiaRemi_ITEM){
+                                               int nEstadoFactura,BigDecimal nidParty,String descCidGuiaRemi_ITEM,String descCidGuia_ITEM){
         try{
             String ejbQl = "SELECT g " +
                            "FROM TRGuia g ";
-            if(descCidGuiaRemi_ITEM != null){
-                ejbQl = ejbQl.concat(" ,TRItem it  WHERE it.trGuia.cidGuia = g.cidGuia AND UPPER(it.cCidGuiaRemitente) like UPPER('%"+descCidGuiaRemi_ITEM+"%') ");
+                        
+            if(descCidGuiaRemi_ITEM != null || descCidGuia_ITEM != null){        
+            ejbQl = ejbQl.concat(" ,TRItem it  WHERE it.trGuia.cidGuia = g.cidGuia ");
+            
+                if(descCidGuiaRemi_ITEM != null){ 
+              //  ejbQl = ejbQl.concat(" ,TRItem it  WHERE it.trGuia.cidGuia = g.cidGuia AND UPPER(it.cCidGuiaRemitente) like UPPER('%"+descCidGuiaRemi_ITEM+"%') ");
+              ejbQl = ejbQl.concat(" AND UPPER(it.cCidGuiaRemitente) like UPPER('%"+descCidGuiaRemi_ITEM+"%') ");
+                }
+                if(descCidGuia_ITEM !=null){
+              ejbQl = ejbQl.concat(" AND UPPER(it.cDescItem) like UPPER('%"+descCidGuia_ITEM+"%') ");      
+                              
+                }  
             }else{
                 ejbQl = ejbQl.concat(" WHERE 1 = 1 ");
             }

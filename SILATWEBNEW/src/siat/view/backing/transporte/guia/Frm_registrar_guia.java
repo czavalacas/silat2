@@ -907,7 +907,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         List<BeanTRGuia> guiasManifs = ln_C_SFGuiaRemote.findGuiasByAttr_LN(null,null, null, null, null, 
                                                                             null, null, null, null, nidManif,
                                                                             null,null,"1",0,null,
-                                                                            null,null,0,new BigDecimal(0),null);
+                                                                            null,null,0,new BigDecimal(0),null,null);
         if(guiasManifs != null){
             if(guiasManifs.size() > 0){ 
                 for (BeanTRGuia d : guiasManifs) {

@@ -122,7 +122,7 @@
                                           labelStyle="text-align: left;" maximumLength="100"
                                           value="#{beanSessionScopeRegistrarFactura.detalleFactura}" rows="3"
                                           visible="#{beanSessionScopeRegistrarFactura.editable == false}"
-                                          required="true" showRequired="true"/>
+                                          required="false" showRequired="false"/>
                         </af:panelFormLayout>
                     </af:gridCell>
                 </af:gridRow>

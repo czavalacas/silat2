@@ -34,7 +34,8 @@ public interface LN_C_SFGuiaLocal {
                                         String codFactura,
                                         int nEstadoFactura,
                                         BigDecimal nidParty,
-                                        String descCidGuiaRemi_ITEM);
+                                        String descCidGuiaRemi_ITEM,
+                                        String descCidGuia_ITEM);
     List<BeanConstraint> getListConformidad();
     List<BeanTRItem> entityItemListtoBean(List<TRItem> itemsList);
     List<BeanConstraint> getListADMCONS(String nombreTabla, String nombreCampo);

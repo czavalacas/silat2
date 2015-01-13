@@ -86,13 +86,13 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                                                Date fecDespMax,String empCliente,String empProvCarga,String estGuia,
                                                String hasManif,Integer nidManif,String prov,String cObservaciones,
                                                String nEstadoGuia,int nidOS,String detOS,String hasFactura,String codFactura,
-                                               int nEstadoFactura,BigDecimal nidParty,String descCidGuiaRemi_ITEM){
+                                               int nEstadoFactura,BigDecimal nidParty,String descCidGuiaRemi_ITEM,String descCidGuia_ITEM){
         try{      
             List<BeanTRGuia> getListaGuias = getListaGuias(bdL_C_SFGuiaLocal.findGuiasByAttributes_BD(cidGuia,fecEmisMin,fecEmisMax, fecDespMin, 
                                                 fecDespMax, empCliente, empProvCarga, estGuia,
                                                 hasManif, nidManif, prov, cObservaciones,
                                                 nEstadoGuia, nidOS, detOS, hasFactura, codFactura,
-                                                nEstadoFactura, nidParty, descCidGuiaRemi_ITEM));
+                                                nEstadoFactura, nidParty, descCidGuiaRemi_ITEM, descCidGuia_ITEM));
             return getListaGuias;
         }catch(Exception e){
             List<BeanTRGuia> getListaGuias = new ArrayList<BeanTRGuia>();
@@ -167,9 +167,13 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",entidad.getCConformidad());
             beanGuia.setDescConformidad(constr.getCDescrip());
             beanGuia.setCConformidad(entidad.getCConformidad());
-            /***Nuevo para Direcciones**/           
+            /***Nuevo para Direcciones**/   
+            if(entidad.getNidDireccionDestino()!=null){
             beanGuia.setCDireccionDestino(ln_C_SFDireccionLocal.getDescripcionDirecByNid(entidad.getNidDireccionDestino()));
+            }
+            if(entidad.getNidDireccionRemitente()!=null){
             beanGuia.setCDireccionRemitente(ln_C_SFDireccionLocal.getDescripcionDirecByNid(entidad.getNidDireccionRemitente()));
+            }
                 /****/  
                 //solo con Empresa-TRGuia
                 beanEmpGuia.setCRazonSocial(entidad.getAdEmpresa().getCRazonSocial());
@@ -209,8 +213,11 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             beanGuia.setTrManifiesto(beanManifGuia);
             }
             //Solo Con Factur
-            beanFactGuia.setCidUnidadNegocio(beanGuia.getCidUnidadNegocio());
+            if(entidad.getTrFactura()!=null){
+            beanFactGuia.setCidUnidadNegocio(entidad.getTrFactura().getCidUnidadNegocio());            
+            beanFactGuia.setCCodFactura(entidad.getTrFactura().getCCodFactura());
             beanGuia.setTrFactura(beanFactGuia);
+            }
             if("0".equals(entidad.getNEstadoGuia())){
                 beanGuia.setStyleAnulado("background-color:Red;color:White;");
             }
@@ -382,6 +389,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
         int nEstadoFactura = 0;
         BigDecimal nidParty = null;
         String descCidGuiaRemi_ITEM = null;
+        String descGuia_ITEM = null;
         try{
             BeanTRGuia beanGuia = new BeanTRGuia();
             if(nidOS != 0){
@@ -395,7 +403,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                                                 fecDespMax, empCliente, empProvCarga, estGuia,
                                                 hasManif, nidManif, prov, cObservaciones,
                                                 nEstadoGuia, nidOS, detOS, hasFactura, codFactura,
-                                                nEstadoFactura, nidParty, descCidGuiaRemi_ITEM));
+                                                nEstadoFactura, nidParty, descCidGuiaRemi_ITEM,descGuia_ITEM ));
             return getListaGuias;
         }catch(Exception e){
             List<BeanTRGuia> getListaGuias = new ArrayList<BeanTRGuia>();

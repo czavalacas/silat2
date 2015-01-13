@@ -321,7 +321,7 @@
                                               binding="#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.txtPlaca}"
                                               value="#{beanSessionActualizarCliente.placaVehiculo}"
                                               showRequired="true" required="true" maximumLength="16" autoSubmit="true">
-                                    <f:validator validatorId="validatorPlaca2"/>
+                                  <!--  <f:validator validatorId="validatorPlaca2"/>-->
                                 </af:inputText>
                                 <af:selectOneChoice label="Configuracion" id="choiceConfig" labelStyle="color: rgb(19,76,149);font-weight:800;text-align: left;"
                                                     binding="#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.choiceConfig}"

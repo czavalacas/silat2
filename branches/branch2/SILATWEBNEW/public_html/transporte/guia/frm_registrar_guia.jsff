@@ -83,20 +83,20 @@
                                       disabled="false"
                                       value="#{sessionScope.beanSessionRegistrarGuia.fechaEmision}"
                                       valueChangeListener="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.cambioFecEmision}"
-                                      autoSubmit="true" labelStyle="text-align: left;"
-                                      minValue="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Minima}"
-                                      maxValue="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Maxima}"
-                                      >
+                                      autoSubmit="true" labelStyle="text-align: left;" >
+                                  <!--    minValue="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Minima}"
+                                      maxValue="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Maxima}" -->
+                                      
                             <af:convertDateTime pattern="dd/MM/yyyy"/>
                         </af:inputDate>
                         <af:inputDate label="Fecha Inicio Traslado" id="fecDespacho"
                                       binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecDespacho}"
                                       columns="10" showRequired="true" required="true"
                                       value="#{sessionScope.beanSessionRegistrarGuia.fechaDespacho}" disabled="false"
-                                      labelStyle="text-align: left;" 
-                                      minValue="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Minima}"
-                                      maxValue="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Maxima}"
-                                      >
+                                      labelStyle="text-align: left;" >
+                                   <!---   minValue="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Minima}"
+                                      maxValue="#{backigBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Maxima}" -->
+                                      
                             <af:convertDateTime pattern="dd/MM/yyyy"/>
                         </af:inputDate>
             </af:panelFormLayout>

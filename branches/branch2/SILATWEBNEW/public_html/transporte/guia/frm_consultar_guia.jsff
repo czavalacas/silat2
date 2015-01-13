@@ -151,6 +151,10 @@
                                 <af:inputText label="Manifiesto" id="itManif" labelStyle="text-align: left;"
                                               binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.itManif}"
                                               value="#{beanSessionConsultarGuia.nidManif}"/>
+                                <af:inputText label="Item en Guia" id="itGItm" labelStyle="text-align: left;"
+                                                  value="#{beanSessionConsultarGuia.filtroItemGuia}"
+                                              binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.itGItm}"/>
+                           
                             </af:panelFormLayout>
                             </af:gridCell>
                         </af:gridRow>
@@ -325,5 +329,5 @@
             </af:popup>
         </af:panelGroupLayout>
     </f:view>
-    <!--oracle-jdev-comment:auto-binding-backing-bean-name:backing_transporte_guia_frm_consultar_guia-->
+   
 </ui:composition>

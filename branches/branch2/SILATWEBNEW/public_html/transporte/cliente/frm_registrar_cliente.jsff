@@ -215,7 +215,7 @@
                                               showRequired="true" required="true"
                                               value="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.placaVehiculo}"
                                               maximumLength="16" autoSubmit="true">
-                                    <f:validator validatorId="placaValidator"/>
+                                   <!-- <f:validator validatorId="placaValidator"/>-->
                                 </af:inputText>                               
                                 <af:selectOneChoice label="Configuracion Vehicular" id="choiceConfVehicular"
                                                     binding="#{backingBeanScope.backing_transporte_cliente_frm_registrar_cliente.choiceConfVehicular}"

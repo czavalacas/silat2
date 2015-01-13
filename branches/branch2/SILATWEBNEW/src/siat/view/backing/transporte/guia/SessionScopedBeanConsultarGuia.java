@@ -42,6 +42,8 @@ public class SessionScopedBeanConsultarGuia {
     
     private boolean renderBtnverImagen = true;
     private String img;
+    //czavalacas 07/01/2015 se agrega el filtro para b usqueda de items en guias
+    private String filtroItemGuia;
 
     public void setLstGuiasTabla(List<BeanTRGuia> lstGuiasTabla) {
         this.lstGuiasTabla = lstGuiasTabla;
@@ -281,5 +283,13 @@ public class SessionScopedBeanConsultarGuia {
 
     public String getImg() {
         return img;
+    }
+
+    public void setFiltroItemGuia(String filtroItemGuia) {
+        this.filtroItemGuia = filtroItemGuia;
+    }
+
+    public String getFiltroItemGuia() {
+        return filtroItemGuia;
     }
 }

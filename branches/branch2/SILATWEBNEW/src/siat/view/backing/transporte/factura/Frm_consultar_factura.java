@@ -166,9 +166,9 @@ public class Frm_consultar_factura {
             if(Utils.hasPermiso(beanUsuario.getLstPermisos(),new BigDecimal("57"))){//Pagar Factura
                 beanSessionScopeConsFactura.setRenderPagarFactura57(true);
             }
-        }else{
+        }/*else{
             buscarFacturas();
-        }
+        }*/
     }
 
     public String buscarFacturas(){

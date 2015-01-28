@@ -57,7 +57,7 @@ public class TRFactura implements Serializable {
     @ManyToOne
     @JoinColumn(name = "NID_MANIFIESTO")
     private TRManifiesto trManifiesto;
-    @OneToMany(mappedBy = "trFactura",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "trFactura"/*,cascade = CascadeType.ALL ,fetch = FetchType.EAGER */)
     private List<TRGuia> guiasList;
     @Column(name = "CIDREPO", length = 30)
     private String cidRepo;

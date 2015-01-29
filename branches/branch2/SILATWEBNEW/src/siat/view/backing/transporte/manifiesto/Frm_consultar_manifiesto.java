@@ -307,7 +307,7 @@ public class Frm_consultar_manifiesto {
                     case 2: manejarEdicionManif(false,false);break;//CONFORME X REGULARIZAR
                     case 3: manejarEdicionManif(false,false);break;//GUIAS X ASIGNAR
                     case 4: manejarEdicionManif(true,true);break;//CANCELADO
-                    case 5: manejarEdicionManif(true,false);break;//X CANCELAR
+                    case 5: manejarEdicionManif(false,false);break;//X CANCELAR //dfloresgonz 28.01.2015 pedido de Marco para poder editar
                 }
                 if(socEstdos != null){
                     socEstdos.resetValue();

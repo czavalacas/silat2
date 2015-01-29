@@ -493,13 +493,13 @@ public class Frm_consultar_manifiesto {
             if(obsv != null && obsv.length() >= 300){
                 obsv = obsv.substring(0,300);
             }
-            if(getBeanSessionConsultarManifiesto().getDadelanto() != null){
+         /*  if(getBeanSessionConsultarManifiesto().getDadelanto() != null){
                 if(getBeanSessionConsultarManifiesto().getDadelanto() >= getBeanSessionConsultarManifiesto().getDflete()){
                     Utils.throwError_Aux(ctx,"El monto del adelanto no puede ser mayor igual que el flete",4);
                     Utils.unselectFilas(tbManif);
                     return null;
                 }
-            }
+            }*/
             BeanManifiesto bManifiesto = ln_T_SFManifiestoRemote.registrarManifiesto_LN(0,
                                                                                         null, 
                                                                                         getBeanSessionConsultarManifiesto().getDflete(),

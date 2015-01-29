@@ -392,15 +392,15 @@ public class Frm_registrar_manifiesto {
         
             if(bManifiesto.getBeanError() != null){
             BeanError error = bManifiesto.getBeanError();
-            int severidad = 0;
-             if (error.getCidError().equals("000")) {
-                         severidad = 3;
-                      Utils.depurar("Grabo Manifiesto");
-                       Utils._redireccionar(ctx, "WEB-INF/consultar_manifiesto.xml#consultar_manifiesto");
-                              } else {
-                          severidad = 1;
-                    }
-            Utils.throwError_Aux(ctx, error.getCDescripcionError(), severidad);         
+                int severidad = 0;
+                if ("000".equals(error.getCidError())) {
+                    severidad = 3;
+                    Utils.depurar("Grabo Manifiesto");
+                    Utils._redireccionar(ctx, "WEB-INF/consultar_manifiesto.xml#consultar_manifiesto");
+                } else {
+                    severidad = 1;
+                }
+                Utils.throwError_Aux(ctx, error.getCDescripcionError(), severidad);
             }else{
                 Utils.throwError_Aux(ctx,"Error Inesperado", 1);
                 resetNewManif();
@@ -624,23 +624,17 @@ public class Frm_registrar_manifiesto {
                             txtLicCondu,txtConductor,socFlota,itMontoFin,itIGV,itDetraccion);
     }
     
-    public void checkBoxTransportePropio(ValueChangeEvent vc) {   
-        
-        if((Boolean) vc.getNewValue()==true && (Boolean) vc.getOldValue()==null){
-              camposManifiesto((Boolean) vc.getNewValue());
-          }          
-        if((Boolean) vc.getNewValue()==true && (Boolean) vc.getOldValue()!=null){
-            camposManifiesto((Boolean) vc.getNewValue());
-          }
-        if((Boolean) vc.getNewValue()==false && (Boolean) vc.getOldValue()!=null){
-            camposManifiesto((Boolean) vc.getNewValue());
-          }    
-        
+    public void checkBoxTransportePropio(ValueChangeEvent vc) {
+        Boolean select = (Boolean) vc.getNewValue();
+        Boolean selectOld = (Boolean) vc.getOldValue();
+        if( (select == true && selectOld == null) || (select == true && selectOld != null)
+           || (select == false && selectOld != null) ){
+              camposManifiesto(select);
+        }
     }
-    
+
     public String camposManifiesto(Boolean isPropio){
         try{
-            
             beanSessionRegistrarManifiesto.setTransportePropio(isPropio);
             txtAdelanto.resetValue();
             txtAdelanto.resetValue();

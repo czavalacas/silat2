@@ -81,7 +81,7 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
                 eManifiesto = bdL_C_SFManifiestoLocal.findTRManifiestoById(nidManif);
                 eManifiesto.setNEstManifiesto(estadoManif);/****/
                 System.out.println("estado es "+estadoManif);
-                if(estadoManifiestoNegocio.equals("4")){                   
+                if("4".equals(estadoManifiestoNegocio)){                   
                     bdl_C_SFUtilsLocal.call_Procedure_PagarManifiesto(nidManif,fletePactado);
                 }
             }else{
@@ -104,8 +104,11 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
             }*/
             eManifiesto.setNAdelanto(adelanto);
             if("000".equals(error)){
-                eManifiesto.setEstadoManifiestoNegocio(estadoManifiestoNegocio);
-               
+                if(nidEmpProvTrans == 5){//Transporte Propio (Lubal)
+                    eManifiesto.setEstadoManifiestoNegocio("4");//Cancelado
+                }else{
+                    eManifiesto.setEstadoManifiestoNegocio(estadoManifiestoNegocio);
+                }
                 eManifiesto = bdL_T_ManifiestoLocal.registrarManifiesto(eManifiesto);
                 MapperIF mapper = new DozerBeanMapper();
                 bManifiesto = (BeanManifiesto)mapper.map(eManifiesto, BeanManifiesto.class);

@@ -49,7 +49,7 @@ public class BDL_T_ManifiestoBean implements BDL_T_ManifiestoRemote,
     @TransactionAttribute(TransactionAttributeType.MANDATORY)
     public TRManifiesto registrarManifiesto(TRManifiesto eManifiesto){
         try{
-            if(eManifiesto.getNidManifiesto() != null){//MERGE/UPDATE            
+            if(eManifiesto.getNidManifiesto() != null){//MERGE/UPDATE
                 this.mergeTRManifiesto(eManifiesto);
             }else{//PERSIST/INSERT
                 this.persistTRManifiesto(eManifiesto);

@@ -95,13 +95,13 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
             }
             eManifiesto.setNFletePactado(fletePactado);
             eManifiesto.setCObservaciones(observ);   
-            if(adelanto != null){
+      /*      if(adelanto != null){ comentado por requerimiento del sponsored  marco flores
                 if(adelanto > fletePactado){
                     error = "LUB-0011";
                 }
             }else{
                 adelanto = 0.0;
-            }
+            }*/
             eManifiesto.setNAdelanto(adelanto);
             if("000".equals(error)){
                 eManifiesto.setEstadoManifiestoNegocio(estadoManifiestoNegocio);

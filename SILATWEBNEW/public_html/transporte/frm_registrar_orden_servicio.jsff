@@ -48,7 +48,7 @@
                     <af:panelGridLayout id="grid">
         <af:gridRow height="auto">
             <af:gridCell width="50%">          
-               <af:panelBox text="Remitente" id="pb2"                             
+               <af:panelBox text="Remitente" id="pb2" inlineStyle="width:50%;"
                                       showDisclosure="false" background="medium">
                   <af:panelFormLayout id="pfl3" rows="1" labelWidth="130">
                         <af:inputText label="Razon Social" id="razonSocProve"
@@ -93,7 +93,7 @@
             </af:gridCell>
             <af:gridCell width="50%">
                  <af:panelBox text="Cliente - Destino" id="pb1" showDisclosure="false"                                
-                              inlineStyle="width:50%;"   background="medium">
+                                 background="medium">
                             <af:panelFormLayout id="pfl4" rows="1" labelWidth="130">
                     <af:inputText label="Razón Social" id="razSocClie" disabled="true"
                                   binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.razSocClie}"

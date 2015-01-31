@@ -112,7 +112,6 @@ public class ShowPdfServlet extends HttpServlet {
                 }
                 String codFact = request.getParameter("codFact");
                 String estado = request.getParameter("estado");
-                System.out.println("showpdfservlet 117" );
                 String strFechaPago = request.getParameter("fecha_pago");
                  if(strFechaPago != null){
                      if(!strFechaPago.equals("null")){
@@ -124,9 +123,9 @@ public class ShowPdfServlet extends HttpServlet {
                      }
                  }
                 String tipo = "";
-                if(estado.equals("previo")){
+                if("previo".equals(estado)){
                     tipo = "PREVIO PREVIO";
-                }else if(estado.equals("3")){
+                }else if("3".equals(estado)){
                     tipo = "ANULADA ANULADA";
                 }
                 System.out.println("showpdfservlet "+estado );
@@ -200,7 +199,6 @@ public class ShowPdfServlet extends HttpServlet {
                     docxExporter = new JRDocxExporter();
                     nombreArchivo += ".docx";
                 }
-                System.out.println("NombreArchivo: " + nombreArchivo);
                 request.setAttribute("nombreArchivo", nombreArchivo);
                 response.setContentType(_contentType);
                 response.setHeader("content-disposition", "inline; filename=\""+codFact+".pdf\"");

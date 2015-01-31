@@ -59,10 +59,10 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{GUIAS}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="f23a972e-9f07-4679-b2f0-7684571172bd" x="301" y="221" width="243" height="22"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f23a972e-9f07-4679-b2f0-7684571172bd" x="301" y="211" width="243" height="43"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9" isPdfEmbedded="true"/>
+					<font size="8" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{DIRECCION} != null ? (!$P{DIRECCION}.equals("null") ? $P{DIRECCION} : "") : ""]]></textFieldExpression>
 			</textField>

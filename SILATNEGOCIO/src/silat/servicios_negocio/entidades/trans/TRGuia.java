@@ -59,7 +59,7 @@ public class TRGuia implements Serializable {
     @ManyToOne
     @JoinColumn(name = "NID_ORDEN_SERVICIO")
     private TROrdenServicio ordenServicio;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "trGuia",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "trGuia"/* ,fetch = FetchType.EAGER */)
     private List<TRItem> itemsList;
     @ManyToOne
     @JoinColumn(name = "NID_FACTURA")

@@ -16,8 +16,7 @@
             <af:panelTabbed id="pt1" 
                         inlineStyle="margin:0px 50px 0px 0px;"
                         dimensionsFrom="auto">
-        <af:showDetailItem text="Orden de Servicio" id="sdi1" immediate="false"
-                         >
+        <af:showDetailItem text="Orden de Servicio" id="sdi1" immediate="false">
             <af:panelFormLayout id="pfl1" binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.pfl1}">
                 <af:inputText label="Codigo Generado de OS" id="itNidOS" disabled="true" labelStyle="text-align: left;"
                               binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.itNidOS}"
@@ -49,43 +48,7 @@
                     <af:panelGridLayout id="grid">
         <af:gridRow height="auto">
             <af:gridCell width="50%">          
-                <af:panelBox text="Cliente - Destino" id="pb1" showDisclosure="false"                                
-                              inlineStyle="width:50%;"   background="medium">
-                            <af:panelFormLayout id="pfl4" rows="1" labelWidth="130">
-                    <af:inputText label="Razón Social" id="razSocClie" disabled="true"
-                                  binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.razSocClie}"
-                                  columns="35" rows="2" showRequired="true"
-                                  value="#{sessionScope.beanSessionScopedRegistrarOS.razSocCliente}"
-                                  labelStyle="text-align: left;"/>
-                                   <af:commandButton visible="#{sessionScope.beanSessionScopedRegistrarOS.visibOS}" immediate="true" 
-                                            inlineStyle="margin:0px 0px 0px -120px;" id="btnClien"
-                                            icon="/recursos/img/btn_buscar.png" iconPosition="leading"
-                                            actionListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.abrirPopEmp}">
-                       <!--     <af:showPopupBehavior popupId="" triggerType="click"/>  -->    
-                         </af:commandButton> 
-                  </af:panelFormLayout>
-                  <af:panelFormLayout labelWidth="130">
-                    <af:inputText label="R.U.C. Nº" id="rucClie" disabled="true"
-                                  binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.rucClie}"
-                                  columns="10" maximumLength="11"
-                                  value="#{sessionScope.beanSessionScopedRegistrarOS.rucCliente}"
-                                  labelStyle="text-align: left;"/>
-              <!--      <af:selectOneChoice label="Dirección"
-                                        disabled="#{sessionScope.beanSessionScopedRegistrarOS.disableComponents}"
-                                        requiredMessageDetail="Debe seleccionar una dirección" id="socDirecs"
-                                        binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.socDirecs}"
-                                        showRequired="true" unselectedLabel="Seleccionar dirección" required="true"
-                                        value="#{sessionScope.beanSessionScopedRegistrarOS.cidDirecDestino}" autoSubmit="true"
-                                        valueChangeListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.changeDirecDest}"
-                                        labelStyle="text-align: left;">
-                                     <f:selectItems value="#{beanSessionScopedRegistrarOS.lstDirecs}" id="si6"/>
-                    </af:selectOneChoice> -->
-                            </af:panelFormLayout>
-                    </af:panelBox>
-            </af:gridCell>
-            <af:gridCell width="50%">
-                                
-             <af:panelBox text="Remitente" id="pb2"                             
+               <af:panelBox text="Remitente" id="pb2"                             
                                       showDisclosure="false" background="medium">
                   <af:panelFormLayout id="pfl3" rows="1" labelWidth="130">
                         <af:inputText label="Razon Social" id="razonSocProve"
@@ -127,6 +90,41 @@
                             </af:selectOneChoice>-->
                     </af:panelFormLayout>
                 </af:panelBox>
+            </af:gridCell>
+            <af:gridCell width="50%">
+                 <af:panelBox text="Cliente - Destino" id="pb1" showDisclosure="false"                                
+                              inlineStyle="width:50%;"   background="medium">
+                            <af:panelFormLayout id="pfl4" rows="1" labelWidth="130">
+                    <af:inputText label="Razón Social" id="razSocClie" disabled="true"
+                                  binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.razSocClie}"
+                                  columns="35" rows="2" showRequired="true"
+                                  value="#{sessionScope.beanSessionScopedRegistrarOS.razSocCliente}"
+                                  labelStyle="text-align: left;"/>
+                                   <af:commandButton visible="#{sessionScope.beanSessionScopedRegistrarOS.visibOS}" immediate="true" 
+                                            inlineStyle="margin:0px 0px 0px -120px;" id="btnClien"
+                                            icon="/recursos/img/btn_buscar.png" iconPosition="leading"
+                                            actionListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.abrirPopEmp}">
+                       <!--     <af:showPopupBehavior popupId="" triggerType="click"/>  -->    
+                         </af:commandButton> 
+                  </af:panelFormLayout>
+                  <af:panelFormLayout labelWidth="130">
+                    <af:inputText label="R.U.C. Nº" id="rucClie" disabled="true"
+                                  binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.rucClie}"
+                                  columns="10" maximumLength="11"
+                                  value="#{sessionScope.beanSessionScopedRegistrarOS.rucCliente}"
+                                  labelStyle="text-align: left;"/>
+              <!--      <af:selectOneChoice label="Dirección"
+                                        disabled="#{sessionScope.beanSessionScopedRegistrarOS.disableComponents}"
+                                        requiredMessageDetail="Debe seleccionar una dirección" id="socDirecs"
+                                        binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.socDirecs}"
+                                        showRequired="true" unselectedLabel="Seleccionar dirección" required="true"
+                                        value="#{sessionScope.beanSessionScopedRegistrarOS.cidDirecDestino}" autoSubmit="true"
+                                        valueChangeListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.changeDirecDest}"
+                                        labelStyle="text-align: left;">
+                                     <f:selectItems value="#{beanSessionScopedRegistrarOS.lstDirecs}" id="si6"/>
+                    </af:selectOneChoice> -->
+                            </af:panelFormLayout>
+                    </af:panelBox>
                 </af:gridCell>
         </af:gridRow>
     </af:panelGridLayout>

@@ -82,7 +82,7 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
                 eManifiesto.setNEstManifiesto(estadoManif);/****/
                 System.out.println("estado es "+estadoManif);
                 if("4".equals(estadoManifiestoNegocio)){                   
-                    bdl_C_SFUtilsLocal.call_Procedure_PagarManifiesto(nidManif,fletePactado);
+                    bdl_C_SFUtilsLocal.call_Procedure_PagarManifiesto(nidManif,fletePactado);                    
                 }
             }else{
                 eManifiesto.setNEstManifiesto(1);
@@ -95,6 +95,9 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
             }
             eManifiesto.setNFletePactado(fletePactado);
             eManifiesto.setCObservaciones(observ);   
+            if(adelanto == null){
+                adelanto = 0.0;
+            }
       /*      if(adelanto != null){ comentado por requerimiento del sponsored  marco flores
                 if(adelanto > fletePactado){
                     error = "LUB-0011";
@@ -104,11 +107,12 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
             }*/
             eManifiesto.setNAdelanto(adelanto);
             if("000".equals(error)){
-                if(nidEmpProvTrans == 5){//Transporte Propio (Lubal)
+         /*       if(nidEmpProvTrans == 5){//Transporte Propio (Lubal)
                     eManifiesto.setEstadoManifiestoNegocio("4");//Cancelado
                 }else{
                     eManifiesto.setEstadoManifiestoNegocio(estadoManifiestoNegocio);
-                }
+                }*/
+                eManifiesto.setEstadoManifiestoNegocio(estadoManifiestoNegocio);
                 eManifiesto = bdL_T_ManifiestoLocal.registrarManifiesto(eManifiesto);
                 MapperIF mapper = new DozerBeanMapper();
                 bManifiesto = (BeanManifiesto)mapper.map(eManifiesto, BeanManifiesto.class);
@@ -155,8 +159,8 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
     
     public void cambiarEstadoManifiesto(int nidManif, String estadoManif){
         TRManifiesto eManifiesto = new TRManifiesto();
-        eManifiesto = bdL_C_SFManifiestoLocal.findTRManifiestoById(nidManif);
-        eManifiesto.setEstadoManifiestoNegocio(estadoManif);
+        eManifiesto = bdL_C_SFManifiestoLocal.findTRManifiestoById(nidManif);       
+        eManifiesto.setEstadoManifiestoNegocio(estadoManif);           
         eManifiesto = bdL_T_ManifiestoLocal.registrarManifiesto(eManifiesto);
     }
     

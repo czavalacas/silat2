@@ -231,7 +231,12 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                     BeanError bError = ln_C_SFManifiestoLocal.guiasOK(nidManif, codUn, cidGuia, 1);
                     if(bError != null){
                         if("000".equals(bError.getCidError())){//todas las guias OK, cambio de estado al manifiesto
+                        if(nidRemitente == 5){//Transporte Propio (Lubal)                                         
+                            ln_T_SFManifiestoLocal.cambiarEstadoManifiesto(nidManif, "4");//cancelado
+                        }         else{
                             ln_T_SFManifiestoLocal.cambiarEstadoManifiesto(nidManif, estadoManif);
+                        }
+                         
                         }
                     }
                 }

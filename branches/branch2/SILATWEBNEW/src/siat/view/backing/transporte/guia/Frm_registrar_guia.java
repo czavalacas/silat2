@@ -54,6 +54,8 @@ import org.apache.myfaces.trinidad.event.SelectionEvent;
 import org.apache.myfaces.trinidad.model.UploadedFile;
 import siat.view.backing.utiles.Utils;
 import siat.view.backing.utiles.fecha.FechaUtiles;
+
+import silat.servicios_negocio.BDLSF.IR.BDL_C_SFManifiestoRemote;
 import silat.servicios_negocio.Beans.BeanADRelacionEmpresa;
 import silat.servicios_negocio.Beans.BeanChofer;
 import silat.servicios_negocio.Beans.BeanConstraint;
@@ -82,6 +84,7 @@ import silat.servicios_negocio.LNSF.IR.LN_C_SFUnidadNegocioRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFGuiaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFUnidadMedidaRemote;
+import silat.servicios_negocio.entidades.trans.TRManifiesto;
 
 public class Frm_registrar_guia{//NUEVO CODIGO
     private RichOutputText otTitulo;
@@ -281,6 +284,9 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     private final static String LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO = "mapLN_C_SFUnidadMedida";
     private final static String LOOKUP_NAME_SFT_UND_MEDIDA_REMOTO = "mapLN_T_SFUnidadMedida";
     private final static String LOOKUP_NAME_SFITMOS_REMOTO  = "map-LN_C_SFItemOrdenServ";
+    
+    private final static String LOOKUP_NAME_SFCMANI_REMOTO  = "mapBDL_C_SFManifiesto";
+    
     private LN_C_SFManifiestoRemote ln_C_SFManifiestoRemote;
     private LN_C_SFRelacionEmpresaRemote ln_C_SFRelacionEmpresaRemote;
     private LN_C_SFGuiaRemote ln_C_SFGuiaRemote;
@@ -296,6 +302,10 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     private LN_C_SFUnidadMedidaRemote ln_C_SFUnidadMedidaRemote;
     private LN_T_SFUnidadMedidaRemote ln_T_SFUnidadMedidaRemote;
     private LN_C_SFItemOrdenServRemote ln_C_SFItemOrdenServRemote;
+    
+    private BDL_C_SFManifiestoRemote bdl_C_SFManifiestoRemote;
+    
+    
     private SessionScopedBeanRegistrarGuia beanSessionRegistrarGuia;
     private String correlativo = "";
     private BeanTRItem beanIteam = new BeanTRItem();
@@ -335,7 +345,10 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             ln_C_SFUtilsRemote = (LN_C_SFUtilsRemote)                       ctx.lookup(LOOKUP_NAME_SFC_UTL_REMOTO);
             ln_C_SFUnidadMedidaRemote = (LN_C_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO);
             ln_T_SFUnidadMedidaRemote = (LN_T_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFT_UND_MEDIDA_REMOTO);
-            ln_C_SFItemOrdenServRemote = (LN_C_SFItemOrdenServRemote)       ctx.lookup(LOOKUP_NAME_SFITMOS_REMOTO);    
+            ln_C_SFItemOrdenServRemote = (LN_C_SFItemOrdenServRemote)       ctx.lookup(LOOKUP_NAME_SFITMOS_REMOTO);   
+            
+            bdl_C_SFManifiestoRemote = (BDL_C_SFManifiestoRemote)   ctx.lookup(LOOKUP_NAME_SFCMANI_REMOTO); 
+                
             this.setFecha_Minima(FechaUtiles.fechaPast7());
             this.setFecha_Maxima(FechaUtiles.fechaFoward7());
         } catch (Exception e) {
@@ -568,7 +581,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             String estGuia = "1";
             Date fecEmis = getBeanSessionRegistrarGuia().getFechaEmision();
             Date fecDesp = getBeanSessionRegistrarGuia().getFechaDespacho();
-            int nidRemitente = getBeanSessionRegistrarGuia().getNidRemitente();
+            int nidRemitente = getBeanSessionRegistrarGuia().getNidRemitente();      
             int nidOS = getBeanSessionRegistrarGuia().getNidOs();
             int nidManif = getBeanSessionRegistrarGuia().getNidManifiesto();
             int nidFlota = 0;

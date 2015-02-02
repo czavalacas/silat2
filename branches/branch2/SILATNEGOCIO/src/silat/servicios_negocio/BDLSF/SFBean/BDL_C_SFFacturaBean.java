@@ -108,7 +108,7 @@ public class BDL_C_SFFacturaBean implements BDL_C_SFFacturaRemote,
             if(fac.getCliente() != null){
                 ejbQl = ejbQl.concat(" AND upper(f.cliente)  like '%"+fac.getCliente().toUpperCase()+"%' ");
             }
-            ejbQl = ejbQl.concat(" Orber By f.cCodFactura Desc ");
+            ejbQl = ejbQl.concat(" Order By f.cCodFactura Desc ");
             List<TRFactura> lstFacts = new ArrayList<TRFactura>();
             if(fac.getFecMin() != null && fac.getFecMax() != null){
                 lstFacts = em.createQuery(ejbQl).setParameter("fecMinFac",fac.getFecMin(), TemporalType.DATE).

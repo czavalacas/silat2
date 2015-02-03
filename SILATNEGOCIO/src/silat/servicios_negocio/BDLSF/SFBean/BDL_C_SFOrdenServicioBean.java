@@ -115,7 +115,7 @@ public class BDL_C_SFOrdenServicioBean implements BDL_C_SFOrdenServicioRemote,
                                      "OR o.cEstord = 'F' " +
                                      "OR o.cEstord = 'C' " +
                                      "AND o.nEstadoOrden = 1 " +
-                                     "ORDER BY o.fecOrdnServ DESC ";
+                                     "ORDER BY o.nidOrdnServ DESC ";
                 return em.createQuery(queryString).getResultList();     
             }
             if(beanParametro.getCDetalle()!=null || beanParametro.getCRazonSocial()!=null ||
@@ -136,7 +136,7 @@ public class BDL_C_SFOrdenServicioBean implements BDL_C_SFOrdenServicioRemote,
                 if(beanParametro.getCEstadoOrdenDesc() != null){
                     queryString = queryString.concat(" AND o.cEstord ='"+beanParametro.getCEstadoOrdenDesc()+"'");
                 }           
-                queryString= queryString.concat(" ORDER BY o.fecOrdnServ DESC ");
+                queryString= queryString.concat(" ORDER BY o.nidOrdnServ DESC ");
                 if(beanParametro.getFecOrdnMin() != null && beanParametro.getFecOrdnMax() != null){
                   // lstGasto = 
                       return  em.createQuery(queryString)
@@ -182,7 +182,7 @@ public class BDL_C_SFOrdenServicioBean implements BDL_C_SFOrdenServicioRemote,
                                      "FROM TROrdenServicio o " +
                                      "WHERE o.cEstord = 'P' " +
                                      "AND o.nEstadoOrden = 1 " +
-                                     "ORDER BY o.fecOrdnServ DESC ";
+                                     "ORDER BY o.nidOrdnServ DESC ";
                 return em.createQuery(queryString).getResultList();     
             }
             if(beanParametro.getCDetalle()!=null || beanParametro.getCRazonSocial()!=null ||
@@ -206,7 +206,7 @@ public class BDL_C_SFOrdenServicioBean implements BDL_C_SFOrdenServicioRemote,
                 if(beanParametro.getCEstadoOrdenDesc() != null){
                     queryString = queryString.concat(" AND o.cEstord ='"+beanParametro.getCEstadoOrdenDesc()+"'");
                 }           
-                queryString= queryString.concat(" ORDER BY o.fecOrdnServ DESC ");
+                queryString= queryString.concat(" ORDER BY o.nidOrdnServ DESC ");
                 if(beanParametro.getFecOrdnMin() != null && beanParametro.getFecOrdnMax() != null){
                   // lstGasto = 
                       return  em.createQuery(queryString)

@@ -278,7 +278,9 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                         }    
                     }
                 }else{
+                    System.out.println("hasFactura:::::  "+hasFactura);
                     ejbQl = ejbQl.concat(" AND g.trFactura IS NULL ");
+                    System.out.println("ejbQl1:::::  "+ejbQl);
                 }
             }else{
                 if(codFactura!= null){
@@ -299,6 +301,8 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                 }
             }
             ejbQl = ejbQl.concat(" ORDER BY g.cidGuia DESC ");
+            
+            System.out.println("ejbQl1:::::  "+ejbQl);
             //UtilsGeneral.depurar("query guias "+ejbQl);
             List<TRGuia> lstGuias = new ArrayList<TRGuia>();
             if((fecEmisMin != null && fecEmisMax != null) &&

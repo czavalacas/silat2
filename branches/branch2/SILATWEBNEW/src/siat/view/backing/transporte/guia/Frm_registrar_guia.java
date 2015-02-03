@@ -325,8 +325,9 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     //private BeanUsuarioAutenticado beanUsuario = (BeanUsuarioAutenticado) Utils.getSession("USER");
     private Date fecha_Minima;
     private Date fecha_Maxima;
-    
-    
+    private RichInputText inputManifiesto;
+
+
     public Frm_registrar_guia(){
         try{
             final Context ctx;
@@ -544,7 +545,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             Utils.throwError_Aux(ctx, "Debe seleccionar una empresa Remitente.",4);
             isOk = false;
         }
-        if(getBeanSessionRegistrarGuia().getValorComboManif() == 0){
+      /*  if(getBeanSessionRegistrarGuia().getValorComboManif() == 0){
             Utils.throwError_Aux(ctx, "Debe seleccionar/Registrar el Manifiesto.",4);
             isOk = false;
         }
@@ -554,7 +555,12 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                 Utils.throwError_Aux(ctx, "Debe seleccionar un Manifiesto.",4);
                 isOk = false;
             }
-        }
+        }*/
+      if(getBeanSessionRegistrarGuia().getNidManifiesto() == 0){
+          Utils.throwError_Aux(ctx, "Debe seleccionar un Manifiesto.",4);
+          isOk = false;
+      }
+      
         if(beanSessionRegistrarGuia.getNumPaquetes() == 0){
             Utils.throwError_Aux(ctx, "Debe poner el numero de paquetes y/o bultos diferente a 0.",4);
             isOk = false;
@@ -1144,7 +1150,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     public void selectManif(SelectionEvent selectionEvent) {
         RichTable t = (RichTable)selectionEvent.getSource();
         BeanManifiesto beanManifiesto = (BeanManifiesto)  t.getSelectedRowData();
-        beanSessionRegistrarGuia.setLstGuiasManif(this.llenarGuiasManif(beanManifiesto.getNidManifiesto()));
+     /*   beanSessionRegistrarGuia.setLstGuiasManif(this.llenarGuiasManif(beanManifiesto.getNidManifiesto()));
         txtFecManif.setValue(beanManifiesto.getFechaManifiesto());
         itCodManif.setValue(beanManifiesto.getNidManifiesto());
         txtAdelanto.setValue(beanManifiesto.getNAdelanto());
@@ -1183,11 +1189,15 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                 txtLicCondu.setValue(beanChofer.getLicencia());
                 txtConductor.setValue(beanChofer.getNombres());
             }
-        }
+        }*/
+     beanSessionRegistrarGuia.setManifIngresado(beanManifiesto);
+     beanSessionRegistrarGuia.setNidManifiesto(beanManifiesto.getNidManifiesto());
+     beanSessionRegistrarGuia.setManifiestoSeleccionado(beanManifiesto.getNidManifiesto()+" - "+beanManifiesto.getTrManifiesto().getCRazonSocial());
         popManif.hide();
-        Utils.addTargetMany(socChofer,itSaldo,socGuiasManif,txtFecManif,itCodManif,txtAdelanto,txtAdelanto,txtFletePact,tipoDocManif,
+        Utils.addTargetMany(inputManifiesto);   
+        /*Utils.addTargetMany(socChofer,itSaldo,socGuiasManif,txtFecManif,itCodManif,txtAdelanto,txtAdelanto,txtFletePact,tipoDocManif,
                             txtObsManif,txtRazSocEmpTransp2,rucEmpTransp,txtMarcVehi,txtPlaca,txtConfigVehi,txtCertInsc,
-                            txtLicCondu,txtConductor,socFlota,itMontoFin,itIGV,itDetraccion);
+                            txtLicCondu,txtConductor,socFlota,itMontoFin,itIGV,itDetraccion);*/
     }
     
     /* MANIFIESTO */
@@ -3575,6 +3585,16 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         return btnAsignarManifiesto;
     }*/
 
-  
 
+    public void setInputManifiesto(RichInputText inputManifiesto) {
+        this.inputManifiesto = inputManifiesto;
+    }
+
+    public RichInputText getInputManifiesto() {
+        return inputManifiesto;
+    }
+
+    public void showPopManifiestos(ActionEvent actionEvent) {
+    Utils.showPopUpMIDDLE(popManif);
+    }
 }

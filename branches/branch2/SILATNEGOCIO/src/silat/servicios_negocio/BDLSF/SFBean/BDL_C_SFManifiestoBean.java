@@ -100,6 +100,7 @@ public class BDL_C_SFManifiestoBean implements BDL_C_SFManifiestoRemote,
                     ejbQl = ejbQl.concat(" AND upper(m.trManifiesto.cRazonSocial) like '%"+beanManifiesto.getTrManifiesto().getCRazonSocial().toUpperCase()+"%' ");
                 }
             }
+            ejbQl = ejbQl.concat(" ORDER BY m.nidManifiesto DESC ");
             List<TRManifiesto> lstManif = new ArrayList<TRManifiesto>();
             if(beanManifiesto.getFechaManifiestoMIN() != null && beanManifiesto.getFechaManifiestoMAX() != null){
                 lstManif = em.createQuery(ejbQl)

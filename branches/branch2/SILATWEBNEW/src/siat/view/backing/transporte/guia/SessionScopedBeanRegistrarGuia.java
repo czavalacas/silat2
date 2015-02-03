@@ -152,6 +152,7 @@ public class SessionScopedBeanRegistrarGuia implements Serializable {
     //dfloresgonz 01.05.2014 - Variable que tendra la ruta de llamada al servlet de mostrar imagen
     private String rutaImgGuia;
     private boolean transportePropio = false;
+    private String manifiestoSeleccionado;
     
     public SessionScopedBeanRegistrarGuia() { 
         // System.out.println("CONSTRUCTOR DEL SESSION SCOPED BEAN");
@@ -1152,5 +1153,13 @@ public class SessionScopedBeanRegistrarGuia implements Serializable {
 
     public boolean isDisableComboManifiesto() {
         return disableComboManifiesto;
+    }
+
+    public void setManifiestoSeleccionado(String manifiestoSeleccionado) {
+        this.manifiestoSeleccionado = manifiestoSeleccionado;
+    }
+
+    public String getManifiestoSeleccionado() {
+        return manifiestoSeleccionado;
     }
 }

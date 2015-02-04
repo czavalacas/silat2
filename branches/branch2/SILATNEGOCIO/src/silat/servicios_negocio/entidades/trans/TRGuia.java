@@ -80,6 +80,9 @@ public class TRGuia implements Serializable {
     private String comentario;
     @Column(name = "VALORACION")
     private Integer valoracion;
+    @Column(name = "IMG_GUIA_PROVE")
+    private String imgGuiaProvedor;
+    
     
     
     public TRGuia() {
@@ -280,5 +283,13 @@ public class TRGuia implements Serializable {
 
     public Integer getValoracion() {
         return valoracion;
+    }
+
+    public void setImgGuiaProvedor(String imgGuiaProvedor) {
+        this.imgGuiaProvedor = imgGuiaProvedor;
+    }
+
+    public String getImgGuiaProvedor() {
+        return imgGuiaProvedor;
     }
 }

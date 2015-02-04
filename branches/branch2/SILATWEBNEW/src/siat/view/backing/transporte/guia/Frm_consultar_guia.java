@@ -48,6 +48,7 @@ import silat.servicios_negocio.Beans.BeanConstraint;
 import silat.servicios_negocio.Beans.BeanError;
 import silat.servicios_negocio.Beans.BeanTRGuia;
 import silat.servicios_negocio.Beans.BeanTRItem;
+import silat.servicios_negocio.Beans.BeanTRItemImgWebMovil;
 import silat.servicios_negocio.Beans.BeanUsuarioAutenticado;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFGuiaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
@@ -126,6 +127,11 @@ public class Frm_consultar_guia {
     private RichPopup popImagen;
     private RichImage imgGuia;
     private RichInputText itGItm;
+    
+    private RichCommandButton btnverImagenProv;
+    private RichPopup popImagen1;
+    private RichPanelFormLayout formVerImgProv;
+    private RichPanelFormLayout formVerImg;
 
     public Frm_consultar_guia(){
         try{
@@ -151,10 +157,12 @@ public class Frm_consultar_guia {
             if(Utils.hasPermiso(beanUsuario.getLstPermisos(),new BigDecimal(28))){
                 beanSessionConsultarGuia.setRenderBtnEditar(true);
                 beanSessionConsultarGuia.setRenderBtnverImagen(true);
+                beanSessionConsultarGuia.setRenderBtnverImagenProv(true);
                 beanSessionConsultarGuia.setRenderBtnAnular(true);
             }else{
                 beanSessionConsultarGuia.setRenderBtnEditar(false);
                 beanSessionConsultarGuia.setRenderBtnverImagen(false);
+                beanSessionConsultarGuia.setRenderBtnverImagenProv(false);
                 beanSessionConsultarGuia.setRenderBtnAnular(false);
             }
             if(Utils.hasPermiso(beanUsuario.getLstPermisos(),new BigDecimal(56))){//Cambiar Fechas
@@ -260,15 +268,30 @@ public class Frm_consultar_guia {
                 btnAnular.setDisabled(true);
                 btnEditar.setDisabled(true);
                 btnverImagen.setDisabled(true);
+                if(beanGuia.getImgGuiaProvedor()!=null){
+                    btnverImagenProv.setDisabled(false);
+                }else if(beanGuia.getImgGuiaProvedor()==null){
+                    btnverImagenProv.setDisabled(true);
+                }
             }else if("2".equals(beanGuia.getCConformidad())){//PENDIENTE
                 btnAnular.setDisabled(false);
                 btnEditar.setDisabled(false);
                 btnverImagen.setDisabled(true);
+                if(beanGuia.getImgGuiaProvedor()!=null){
+                    btnverImagenProv.setDisabled(false);
+                }else if(beanGuia.getImgGuiaProvedor()==null){
+                    btnverImagenProv.setDisabled(true);
+                }
             }else if("1".equals(beanGuia.getCConformidad())){//OK
                 btnAnular.setDisabled(true);
                 btnEditar.setDisabled(false);
-                if(beanGuia.getImgGuia()!=null){
+                if(beanGuia.getImgGuiaProv()!=null){
                     btnverImagen.setDisabled(false);
+                }
+                if(beanGuia.getImgGuiaProvedor()!=null){
+                    btnverImagenProv.setDisabled(false);
+                }else if(beanGuia.getImgGuiaProvedor()==null){
+                    btnverImagenProv.setDisabled(true);
                 }
             }                   
             Utils.addTargetMany(btnAnular,btnEditar);
@@ -379,31 +402,66 @@ public class Frm_consultar_guia {
     public void verImagen(ActionEvent ae){
         if(beanSessionConsultarGuia.getGuiaSelected() != null){
             beanSessionConsultarGuia.setImg("");
-            byte [] img = beanSessionConsultarGuia.getGuiaSelected().getImgGuia();
-            if(img!=null){
-            String s = new sun.misc.BASE64Encoder().encode(img);
-            
-            if(s!=""){
-                String ext = "";
-                try {
-                    ext = Magic.getMagicMatch(img).getExtension();
-                } catch (MagicParseException e) {
-                } catch (MagicMatchNotFoundException e) {
-                } catch (MagicException e) {
-                }
-                beanSessionConsultarGuia.setImg("data:image/"+ext+";base64,"+s);
-                Utils.showPopUpMIDDLE(popImagen);
+            if(beanSessionConsultarGuia.getGuiaSelected().getImgGuiaProv()!=null){
+                beanSessionConsultarGuia.setImg(beanSessionConsultarGuia.getGuiaSelected().getImgGuiaProv());
+                beanSessionConsultarGuia.setDescripImg("");
+                Utils.showPopUpMIDDLE(popImagen); 
             }else{
                 beanSessionConsultarGuia.setImg("#");
-                Utils.showPopUpMIDDLE(popImagen);
+                beanSessionConsultarGuia.setDescripImg("");
+                Utils.showPopUpMIDDLE(popImagen); 
             }
             }
-            
-            
-            
-            
         }
+    
+    public void verImagenProv(ActionEvent ae){
+        if(beanSessionConsultarGuia.getGuiaSelected() != null){
+            if(beanSessionConsultarGuia.getGuiaSelected().getImgGuiaProvedor()!=null){
+                beanSessionConsultarGuia.getLstItemsImg().clear();
+            String imagenes = beanSessionConsultarGuia.getGuiaSelected().getImgGuiaProvedor();
+                String[] parts = imagenes.split("data");
+                for(int i = 0;i<parts.length;i++){
+                    if(i!=0){
+                        BeanTRItemImgWebMovil bean = new BeanTRItemImgWebMovil();
+                        
+                        String[] parts_down = parts[i].split("dEsCrIp");
+                        
+                        String part1 = "";
+                        String part2 = "";
+                        
+                            part1 = parts_down[0];
+                            part2 = parts_down[1];
+                        
+                        bean.setImg("data"+part1);
+                        bean.setDescripimg("DESCRIPCION: "+part2);
+                        
+                        beanSessionConsultarGuia.getLstItemsImg().add(bean);
+                    }
+                }
+                Utils.addTarget(popImagen1);
+                Utils.showPopUpMIDDLE(popImagen1); 
+            }else{
+                beanSessionConsultarGuia.setImg("#");
+                beanSessionConsultarGuia.setDescripImg("");
+                Utils.showPopUpMIDDLE(popImagen1); 
+            }
+            }
+        }
+    
+    public String verImagenGrande(){
+        String index = beanSessionConsultarGuia.getIndexImg();
+        int ind = Integer.parseInt(index);
+        for(int i = 0;i<beanSessionConsultarGuia.getLstItemsImg().size();i++){
+            if(i == ind){
+                beanSessionConsultarGuia.setImg(beanSessionConsultarGuia.getLstItemsImg().get(i).getImg());
+                beanSessionConsultarGuia.setDescripImg(beanSessionConsultarGuia.getLstItemsImg().get(i).getDescripimg());
+            }
+        }
+        Utils.addTarget(popImagen);
+        Utils.showPopUpMIDDLE(popImagen); 
+        return "";
     }
+    
            
     public void dialogAnularGuiaListener(DialogEvent de) {
         if (de.getOutcome() == DialogEvent.Outcome.ok) {
@@ -937,5 +995,37 @@ public class Frm_consultar_guia {
 
     public RichInputText getItGItm() {
         return itGItm;
+    }
+
+    public void setBtnverImagenProv(RichCommandButton btnverImagenProv) {
+        this.btnverImagenProv = btnverImagenProv;
+    }
+
+    public RichCommandButton getBtnverImagenProv() {
+        return btnverImagenProv;
+    }
+
+    public void setPopImagen1(RichPopup popImagen1) {
+        this.popImagen1 = popImagen1;
+    }
+
+    public RichPopup getPopImagen1() {
+        return popImagen1;
+    }
+
+    public void setFormVerImgProv(RichPanelFormLayout formVerImgProv) {
+        this.formVerImgProv = formVerImgProv;
+    }
+
+    public RichPanelFormLayout getFormVerImgProv() {
+        return formVerImgProv;
+    }
+
+    public void setFormVerImg(RichPanelFormLayout formVerImg) {
+        this.formVerImg = formVerImg;
+    }
+
+    public RichPanelFormLayout getFormVerImg() {
+        return formVerImg;
     }
 }

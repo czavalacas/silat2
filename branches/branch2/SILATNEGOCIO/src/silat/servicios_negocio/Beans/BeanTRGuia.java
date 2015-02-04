@@ -80,6 +80,7 @@ public class BeanTRGuia implements Serializable, Cloneable  {
     private BeanManifiesto manifiesto;
     
     private String fechaGuiaWebMovilEmp;
+    private String imgGuiaProvedor;
     
     public Object clone() {
         Object clone = null;
@@ -506,5 +507,13 @@ public class BeanTRGuia implements Serializable, Cloneable  {
 
     public BeanManifiesto getManifiesto() {
         return manifiesto;
+    }
+
+    public void setImgGuiaProvedor(String imgGuiaProvedor) {
+        this.imgGuiaProvedor = imgGuiaProvedor;
+    }
+
+    public String getImgGuiaProvedor() {
+        return imgGuiaProvedor;
     }
 }

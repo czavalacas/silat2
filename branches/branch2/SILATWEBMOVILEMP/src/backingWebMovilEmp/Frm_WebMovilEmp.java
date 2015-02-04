@@ -31,6 +31,8 @@ import javax.faces.model.SelectItem;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
+import javax.servlet.http.HttpServletRequest;
+
 import silat.servicios_negocio.Beans.BeanADRelacionEmpresa;
 import silat.servicios_negocio.Beans.BeanChofer;
 import silat.servicios_negocio.Beans.BeanDireccion;
@@ -40,6 +42,7 @@ import silat.servicios_negocio.Beans.BeanManifiesto;
 import silat.servicios_negocio.Beans.BeanOrdenServicio;
 import silat.servicios_negocio.Beans.BeanTRGuia;
 import silat.servicios_negocio.Beans.BeanTRItem;
+import silat.servicios_negocio.Beans.BeanTRItemImgWebMovil;
 import silat.servicios_negocio.Beans.BeanTRItemsWebMovil;
 import silat.servicios_negocio.Beans.BeanTrItemXOrds;
 import silat.servicios_negocio.Beans.BeanUnidadMedida;
@@ -111,6 +114,8 @@ public class Frm_WebMovilEmp {
     
     private List<BeanTrItemXOrds> lstItemsOrds = new ArrayList<BeanTrItemXOrds>();
     private List<BeanTrItemXOrds> lstItemsOrdsRespal = new ArrayList<BeanTrItemXOrds>();
+    
+    private List<BeanTRItemImgWebMovil> lstItemsImg = new ArrayList<BeanTRItemImgWebMovil>();
     
     List<BeanADRelacionEmpresa> lstRemitentes = new ArrayList<BeanADRelacionEmpresa>();
     
@@ -184,6 +189,8 @@ public class Frm_WebMovilEmp {
     
     private String nidItem;
     
+    private String nidImg;
+    
     private String styleCreaGuia = "display:none";
     private String styleLastForm ="display:none"; 
     
@@ -200,6 +207,9 @@ public class Frm_WebMovilEmp {
     private String nidUmedida;
     private String cantidadNewItem;
     private String descripcionNewItem;
+    
+    private String descripcionImagen;
+    private String base64Img;
     
     //STYLES
     private String StylerazonSocialManifiesto = "background-color: #DDDDDD;color:#000000;";
@@ -244,6 +254,36 @@ public class Frm_WebMovilEmp {
         } else {
         }
     }
+    
+    public String añadirNuevaImagen(){
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String base= request.getParameter("byte64");
+        try{
+            BeanTRItemImgWebMovil bean = new BeanTRItemImgWebMovil(); 
+            bean.setDescripimg(getDescripcionImagen());
+            bean.setImg(base);
+            
+            getLstItemsImg().add(bean);
+            
+            setDescripcionImagen("");
+            setBase64Img("");
+        }catch(Exception e){
+            setDescripcionImagen("");
+            setBase64Img("");
+        }
+        
+        return ""; 
+    }
+    
+    public String eliminarImg(){
+        String h = nidImg;
+        int index = Integer.parseInt(h);
+        getLstItemsImg().remove(index);
+        setStyleCreaGuia("display:block");
+        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("creaGuia");
+        return "";
+    }
+    
     
     public String añardirnuevoItem(){
         try{
@@ -441,8 +481,14 @@ public class Frm_WebMovilEmp {
             System.out.println("webmovil_EMP 1 "+num);
             num=num+1;
         }
+            String img_prov = "";
+            if(!getLstItemsImg().isEmpty()){
+                for(BeanTRItemImgWebMovil bean : getLstItemsImg()){
+                    img_prov += bean.getImg()+"dEsCrIp"+bean.getDescripimg();
+                }
+            }
             System.out.println("webmovil_EMP 2");
-        BeanTRGuia bGuia = ln_T_SFGuiaRemote.registrarGuia_LN(cidGuia, 
+        BeanTRGuia bGuia = ln_T_SFGuiaRemote.registrarGuia_WebMovil(cidGuia, 
                                                               npaq, 
                                                               getComentarioGuia(), 
                                                               conf, 
@@ -462,7 +508,8 @@ public class Frm_WebMovilEmp {
                                                               estadoManif,
                                                               null,
                                                               isCerrarOS(),
-                                                              isManifTransito());
+                                                              isManifTransito(),
+                                                              img_prov);
             FacesContext ctx = FacesContext.getCurrentInstance();
             ExternalContext extContext = ctx.getExternalContext();
             String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/faces/Prueba.xhtml"));
@@ -1510,5 +1557,37 @@ public class Frm_WebMovilEmp {
 
     public List<String> getMensajeGuia() {
         return mensajeGuia;
+    }
+
+    public void setDescripcionImagen(String descripcionImagen) {
+        this.descripcionImagen = descripcionImagen;
+    }
+
+    public String getDescripcionImagen() {
+        return descripcionImagen;
+    }
+
+    public void setBase64Img(String base64Img) {
+        this.base64Img = base64Img;
+    }
+
+    public String getBase64Img() {
+        return base64Img;
+    }
+
+    public void setLstItemsImg(List<BeanTRItemImgWebMovil> lstItemsImg) {
+        this.lstItemsImg = lstItemsImg;
+    }
+
+    public List<BeanTRItemImgWebMovil> getLstItemsImg() {
+        return lstItemsImg;
+    }
+
+    public void setNidImg(String nidImg) {
+        this.nidImg = nidImg;
+    }
+
+    public String getNidImg() {
+        return nidImg;
     }
 }

@@ -221,6 +221,23 @@
                 document.getElementById("modal-background").style.display="none";
                 document.getElementById("creaGuia").style.display="block";
             }
+            function openModalImg(){
+                document.getElementById("modalImg").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalImg(){
+                document.getElementById("modalImg").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+                document.getElementById("creaGuia").style.display="block";
+            }
+            function openModalRegImg(){
+                document.getElementById("modalRegistrarImg").style.display="block";
+                document.getElementById("modal-background").style.display="block";
+            }
+            function closeModalRegImg(){
+                document.getElementById("modalRegistrarImg").style.display="none";
+                document.getElementById("modal-background").style.display="none";
+            }
             function openModalRegItems(){
                 document.getElementById("modalRegistrarItem").style.display="block";
                 document.getElementById("modal-background").style.display="block";
@@ -259,7 +276,42 @@
                 document.getElementById("modal-launcher").style.display="block";
              }
             }
+            
+        
         </script>
+        <script>
+            function readURL(input) {
+                var url = input.value;
+                var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+                var file = document.getElementById('file').files[0];
+                if(input.files || input.files[0]){
+                if (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg") {
+                        if(500000>file.size){
+                            var reader = new FileReader();              
+                            reader.onload = function (e) {
+                            var x = document.getElementById("img_prev").width;
+                            var y = document.getElementById("img_prev").height;
+                            $('#img_prev').attr('src', e.target.result).width(500).height(250);
+                            document.getElementById("img_prev").style.visibility="visible";
+                            
+                            document.getElementById('byte64').value = ''+e.target.result;
+                            $('#img_prev').attr('src', e.target.result);
+                        }
+                    }else{
+                    }
+            
+                    reader.readAsDataURL(input.files[0]);
+                }else{
+                     document.getElementById("img_prev").style.visibility="hidden";
+                }
+                }else{
+                    document.getElementById("img_prev").style.visibility="hidden";
+                }
+            }
+            
+        </script>
+
+        
         <style type="text/css" media="screen, print, projection">
     #modal-background {
         display: none;
@@ -404,7 +456,39 @@
         position: fixed;
         z-index: 1000;
     }
+    #modalImg {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
+        position: absolute;
+        position: fixed;
+        z-index: 1000;
+    }
         #modalRegistrarItem {
+        background-color: white;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-box-shadow: 0 0 20px 0 #222;
+        display: none;
+        top:30px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding: 30px;
+        position: absolute;
+        position: fixed;
+        z-index: 1000;
+    }
+    #modalRegistrarImg {
         background-color: white;
         border-radius: 10px;
         -webkit-border-radius: 10px;
@@ -713,6 +797,9 @@
         </b:inputText>
         <b:commandButton value="Seleccionar Items" ajax="true" style="background-color:#0087B3;width:100%;margin-top:10px;margin-bottom:10px;color:#ffffff;font-size: 110%"
                             onclick="openModalItems();"/>
+                            
+        <b:commandButton value="Ingresar Imagenes Proveedor" ajax="true" style="background-color:#0087B3;width:100%;margin-top:10px;margin-bottom:10px;color:#ffffff;font-size: 110%"
+                            onclick="openModalImg();"/>
     </h:form>
     
     <h:form id="lastForm" style="#{frm_WebMovilEmp.styleLastForm}">   
@@ -956,6 +1043,34 @@
                          onclick="closeModalItems()" value="Cerrar"/>  
     </div>
     
+    <div id="modalImg">
+        <h:form id="modImg">
+        <b:commandButton value="Agregar Imagen" ajax="true" onclick="openModalRegImg()"
+         style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"/>
+        <div style="overflow-y: scroll">
+        
+        <ui:repeat value="#{frm_WebMovilEmp.lstItemsImg}" var="row" varStatus="var">
+                <b:alert severity="info">
+                    <p style="margin-top: .1em;">
+                        <strong>
+                            imagen n° #{var.index}</strong>
+                    </p>
+                    <p class="ui-li-aside">
+                        Descripcion: 
+                        <strong>
+                            #{row.descripimg}</strong>
+                    </p>
+                    <b:commandButton value="Eliminar Imagen" action="#{frm_WebMovilEmp.eliminarImg}" ajax="true" update="modImg">
+                        <f:setPropertyActionListener target="#{frm_WebMovilEmp.nidImg}" value="#{var.index}"/>
+                    </b:commandButton>
+                </b:alert>
+        </ui:repeat>
+        
+        </div>
+    </h:form>
+        <h:commandButton ajax="true" id="modal-close8"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                         onclick="closeModalImg()" value="Cerrar"/>  
+    </div>
     
     <div id="modalRegistrarItem">
         <h:form id="modRegItem">
@@ -985,5 +1100,26 @@
         <h:commandButton ajax="true" id="modal-close10"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
                          onclick="closeModalRegItems()" value="Cerrar" update="modRegItem"/>  
     </div>
+    
+    
+    
+    <div id="modalRegistrarImg">
+        <h:form id="modRegImg" style="text-align:center">
+            <input type="file" onchange="readURL(this);" value="" name="fileName" id="file"/>
+            <img style="visibility:hidden;width:0px;height:0px;margin-top:10px" id="img_prev" src="#" alt="your image"/>
+            <input type="text" name="byte64" id="byte64" style="visibility:hidden"/>
+            <b:inputText style="color:#000000;" 
+                         value="#{frm_WebMovilEmp.descripcionImagen}">
+                <f:facet name="prepend">
+                    <h:outputText value="Descripcion"/>
+                </f:facet>
+            </b:inputText>
+            <b:commandButton id="tt" value="Agregar" action="#{frm_WebMovilEmp.añadirNuevaImagen}" onclick="closeModalRegImg()" ajax="true" update="modImg modRegImg"
+         style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"/>
+        </h:form>
+        <h:commandButton ajax="true" id="modal-close11"  style="margin-top:10px;font-size:15px;background-color: #428BCA; width: 100%;height:28px;border-color : #428BCA;color:#ffffff"
+                         onclick="closeModalRegImg()" value="Cerrar" update="modRegImg"/>  
+    </div>
+    
     </h:body>
 </html>

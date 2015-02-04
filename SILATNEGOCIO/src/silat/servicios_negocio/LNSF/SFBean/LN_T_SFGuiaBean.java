@@ -250,6 +250,161 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
         return bTRGuia;
     }
     
+    public BeanTRGuia registrarGuia_WebMovil(String cidGuia,int numPaquetes,String obs,String conf,String estGuia,
+                                       Date fecEmis,//max 1 semana antes y <= fecDesp
+                                       Date fecDesp,//hoy
+                                       int nidRemitente,
+                                       int nidOS,
+                                       int nidManif,
+                                       int nidFlota,
+                                       int nidChofer,int nidDirecRemi,
+                                       int nidDirecDest,int opc,List<BeanTRItem> lstItems,String codUn,String estadoManif,
+                                       String imgGuiaProv,boolean cerrarOS,boolean enTransManif,String imgProv){
+        System.out.println("LNT_SFUIA");
+        if(lstItems!=null){
+            for(int i=0; i<lstItems.size(); i++){
+                lstItems.get(i).setOrden(i+1);
+            }
+        }
+        BeanError beanError = new BeanError();
+        TRGuia eGuia = new TRGuia();
+        BeanTRGuia bTRGuia = new BeanTRGuia();
+        String error = "000";
+        error = validarFechasEmiDesp(fecEmis, fecDesp);
+        if(error.equals("000")){
+            try{
+                if(opc == 1){//Insertar
+                    eGuia.setNEstadoGuia("1");
+                    eGuia.setCidGuia(cidGuia);
+                }else{//Actualizar
+                    eGuia = bdL_C_SFGuiaLocal.findTRGuiaById(cidGuia);
+                    eGuia.setNEstadoGuia(estGuia);
+                }
+                ADEmpresa empresa = bdL_C_SFEmpresasLocal.getEmpresaById(new BigDecimal(nidRemitente));
+                eGuia.setAdEmpresa(empresa);
+                eGuia.setCConformidad(conf);
+                eGuia.setCObservaciones(obs);
+                eGuia.setFechaDespacho(fecDesp);
+                eGuia.setFechaGuia(fecEmis);
+                eGuia.setCidUnidadNegocio(codUn);
+                eGuia.setNidChof(nidChofer);
+                if(imgGuiaProv != null){
+                    eGuia.setImgGuia(UtilsGeneral.imagen(imgGuiaProv));
+                    /* if(!imgGuiaProv.equals("")){
+                        byte[] byt = extractBytes(imgGuiaProv);
+                        if(byt != null){
+                            eGuia.setImgGuia(byt);
+                        }
+                    } */
+                }
+                if(imgProv != null){
+                    eGuia.setImgGuiaProvedor(imgProv);
+                }else{
+                    eGuia.setImgGuiaProvedor("");
+                }
+                eGuia.setNidDireccionDestino(nidDirecDest);
+                eGuia.setNidDireccionRemitente(nidDirecRemi);
+                eGuia.setNidFlota(nidFlota);
+                eGuia.setNumPaquetes(numPaquetes);
+                List<TROrdenServicio> ordenServicio = bdL_C_SFOrdenServicioLocal.findByCorrelativo(nidOS);
+                if(cerrarOS){
+                    ordenServicio.get(0).setCEstord("C");//CERRAR LA OS
+                }
+                /**Asociar la Guia a Crear con la OS Previa*/
+                if(ordenServicio.get(0).getCDetalle().equals("SIN GUIAS")){
+                    ordenServicio.get(0).setCDetalle("# "+eGuia.getCidGuia());
+                }else {
+                    ordenServicio.get(0).setCDetalle(ordenServicio.get(0).getCDetalle()+"-"+eGuia.getCidGuia());
+                }         
+                /***********************************/
+                eGuia.setOrdenServicio(ordenServicio.get(0));
+                if(nidManif != 0){
+                    TRManifiesto manifiesto = bdL_C_SFManifiestoLocal.findTRManifiestoById(nidManif);
+                    if(enTransManif){
+                        manifiesto.setEstadoManifiestoNegocio("1");//cambiar a EN TRANSITO
+                    }
+                    eGuia.setTrManifiesto(manifiesto);
+                }
+              
+                
+                /**czavalacas 17.11.2014
+                 * Codigo para acttualizar el estado de los items que se usaron de la OS a 1 (En Uso o Activo)*/
+                
+                for(int i=0; i<lstItems.size(); i++){
+                    System.out.println("(2) Orden : "+lstItems.get(i).getOrden());
+                } 
+                List<TRItemXOrds> itemXord=bdl_C_SFItemXOrdsLocal.getTrItemOrdenServicio_BD(nidOS,0);
+                if(lstItems!=null){
+                    for(int i=0; i<lstItems.size(); i++){
+                        if(lstItems.get(i).getNidItem()!=null){                          
+                          for(int j=0; j<itemXord.size(); j++){                          
+                            if(itemXord.get(j).getNidItem().intValue()==lstItems.get(i).getNidItem().intValue()){
+                                itemXord.get(j).setCEstado("1");
+                                itemXord.get(j).setCidGuia(cidGuia);
+                                bdl_T_SFItemXOrdenServLocal.mergeTRItemXOrds(itemXord.get(j));
+                               }
+                            }
+                           
+                            } else{/**Al no tener un nidItem en el Bean Indica que es un item nuevo 
+                                    *y lo asociamos a la OS*/
+                                TRItemXOrds itmXOrd=new TRItemXOrds(); 
+                                TROrdenServicio ordenServ=new TROrdenServicio();
+                                ordenServ.setNidOrdnServ(nidOS);
+                                itmXOrd.setTrOrdenServicio(ordenServ);
+                                itmXOrd.setCCidGuiaRemitente(lstItems.get(i).getCCidGuiaRemitente());
+                                itmXOrd.setCDescItem(lstItems.get(i).getCDescItem());
+                                itmXOrd.setCUndMedida(lstItems.get(i).getCUndMedida());
+                                itmXOrd.setDPeso(lstItems.get(i).getDPeso());
+                                itmXOrd.setNCantidad(lstItems.get(i).getNCantidad());
+                                itmXOrd.setOrden(nidOS);
+                                itmXOrd.setCEstado("1");
+                                itmXOrd.setCidGuia(cidGuia);
+                                bdl_T_SFItemXOrdenServLocal.persistTRItemXOrds(itmXOrd);                             
+                            }                     
+                    }                
+                }            
+                                
+                /***************************************/
+                for(int i=0; i<lstItems.size(); i++){
+                    System.out.println("(3) Orden : "+lstItems.get(i).getOrden());
+                }
+                List<TRItem> itemsBefore = eGuia.getItemsList();
+                if(opc==1){
+                   List<TRItem> eItems = LN_C_SFUtilsLocal.beanItemToEntity(lstItems,eGuia);    
+                    eGuia.setItemsList(eItems);
+                }
+                eGuia = bdL_T_SFGuiaLocal.registrarGuia_BD(eGuia, opc);                
+           
+                if(itemsBefore != null){
+                    System.out.println("ENTRO:1::");
+                    System.out.println("ENTRO:1::"+itemsBefore.size());
+                    if(itemsBefore.size() > 0){
+                        System.out.println("ENTRO:2::");
+                        ln_T_SFItemLocal.borrarItems(lstItems,itemsBefore);
+                    }
+                }
+                
+                
+                
+                
+                if(estadoManif != null){
+                    BeanError bError = ln_C_SFManifiestoLocal.guiasOK(nidManif, codUn, cidGuia, 1);
+                    if(bError != null){
+                        if("000".equals(bError.getCidError())){//todas las guias OK, cambio de estado al manifiesto
+                            ln_T_SFManifiestoLocal.cambiarEstadoManifiesto(nidManif, estadoManif);
+                        }
+                    }
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+                error = "LUB-0012";
+            }
+        }
+        beanError = ln_C_SFCatalogoErroresLocal.getCatalogoErrores(error);
+        bTRGuia.setBeanError(beanError);
+        return bTRGuia;
+    }
+    
     public BeanTRGuia anularGuia(BeanTRGuia guia){
         BeanError beanError = new BeanError();
         TRGuia eGuia = new TRGuia();

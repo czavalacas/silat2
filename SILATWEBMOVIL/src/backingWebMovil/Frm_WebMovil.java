@@ -221,6 +221,7 @@ public class Frm_WebMovil extends HttpServlet{
                 setCconformidad(bean.getCConformidad());
                 if(getEs() == 1){
                 setImg(bean.getImgGuia());
+                setEncodeImg(bean.getImgGuiaProv());
                 }
                 setDireccionDestino(bean.getCDireccionDestino());
                 setDireccionRemitente(bean.getCDireccionRemitente());
@@ -231,14 +232,6 @@ public class Frm_WebMovil extends HttpServlet{
             }
         }
         if(getEs() == 1){
-            String ext = "";
-            try {
-                ext = Magic.getMagicMatch(getImg()).getExtension();
-            } catch (MagicParseException e) {
-            } catch (MagicMatchNotFoundException e) {
-            } catch (MagicException e) {
-            }
-            setEncodeImg("data:image/"+ext+";base64,"+encodeLines(getImg()));
         }else{
             setEncodeImg("#");
         }
@@ -281,43 +274,14 @@ public class Frm_WebMovil extends HttpServlet{
         if(radio.equals("5")){
             valoracion = 5;
         }
-        
-            
-            int cantGuias = lN_C_SFGuiaRemote.cantGuiasVigentesByManifiesto_LN(manif);
-        String string = "";    
+           
+        int cantGuias = lN_C_SFGuiaRemote.cantGuiasVigentesByManifiesto_LN(manif);
         String byte64 = request.getParameter("byte64");
-        String name = request.getParameter("fileName");
-        String fileName = request.getRealPath("") +"\\IMG\\"+ name; 
-        OutputStream outputStream = new FileOutputStream(fileName);
-        byte[] byt = extractBytes(fileName);
-            byte[] restoredBytes = null;
-            String parteBuena;
-            try{
-            String[] parts = byte64.split("\\,");
-            String part1 = parts[0];
-            String part2 = parts[1]; 
-            parteBuena = part2;
-                restoredBytes =  decodeLines(parteBuena);
-            }catch(Exception e){
-                String numerosBien = "";
-                StringTokenizer stringtokenizer = new StringTokenizer(byte64, "9j/");
-                int i = 0;
-                while (stringtokenizer.hasMoreElements()) {
-                    if(i == 2){
-                       numerosBien+=stringtokenizer.nextToken(); 
-                    }
-                    if(i<2){
-                    i++;
-                    stringtokenizer.nextToken();
-                    }
-                }
-                parteBuena = "/9j/"+numerosBien;
-                restoredBytes =  decodeLines(parteBuena);
-            }
-             
+        String fileName = byte64;
+        byte[] restoredBytes = null;
+
         ln_T_SFGuiaRemote.cambiarEstadoWebMovil(g, fileName, restoredBytes,valoracion,comentario);
             if(cantGuias<=1){
-                String f = "f";
                 ln_T_SFManifiestoRemote.cambiarEstadoManifiesto(manif, "2");
             }
         

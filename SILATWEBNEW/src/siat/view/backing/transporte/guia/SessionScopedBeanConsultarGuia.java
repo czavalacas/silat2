@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import silat.servicios_negocio.Beans.BeanTRGuia;
+import silat.servicios_negocio.Beans.BeanTRItemImgWebMovil;
 
 public class SessionScopedBeanConsultarGuia {
     private List<BeanTRGuia> lstGuiasTabla = new ArrayList<BeanTRGuia>();
@@ -41,9 +42,17 @@ public class SessionScopedBeanConsultarGuia {
     private boolean renderBtnFecha = false;
     
     private boolean renderBtnverImagen = true;
+    private boolean renderBtnverImagenProv = true;
     private String img;
     //czavalacas 07/01/2015 se agrega el filtro para b usqueda de items en guias
     private String filtroItemGuia;
+    
+    private String indexImg;
+    private String descripImg;
+    
+    private List<String> lstImgProv = new ArrayList<String>();
+    
+    private List<BeanTRItemImgWebMovil> lstItemsImg = new ArrayList<BeanTRItemImgWebMovil>();
 
     public void setLstGuiasTabla(List<BeanTRGuia> lstGuiasTabla) {
         this.lstGuiasTabla = lstGuiasTabla;
@@ -291,5 +300,45 @@ public class SessionScopedBeanConsultarGuia {
 
     public String getFiltroItemGuia() {
         return filtroItemGuia;
+    }
+
+    public void setRenderBtnverImagenProv(boolean renderBtnverImagenProv) {
+        this.renderBtnverImagenProv = renderBtnverImagenProv;
+    }
+
+    public boolean isRenderBtnverImagenProv() {
+        return renderBtnverImagenProv;
+    }
+
+    public void setLstImgProv(List<String> lstImgProv) {
+        this.lstImgProv = lstImgProv;
+    }
+
+    public List<String> getLstImgProv() {
+        return lstImgProv;
+    }
+
+    public void setIndexImg(String indexImg) {
+        this.indexImg = indexImg;
+    }
+
+    public String getIndexImg() {
+        return indexImg;
+    }
+
+    public void setLstItemsImg(List<BeanTRItemImgWebMovil> lstItemsImg) {
+        this.lstItemsImg = lstItemsImg;
+    }
+
+    public List<BeanTRItemImgWebMovil> getLstItemsImg() {
+        return lstItemsImg;
+    }
+
+    public void setDescripImg(String descripImg) {
+        this.descripImg = descripImg;
+    }
+
+    public String getDescripImg() {
+        return descripImg;
     }
 }

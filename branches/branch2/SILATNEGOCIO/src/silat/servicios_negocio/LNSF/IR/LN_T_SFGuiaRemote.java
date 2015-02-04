@@ -32,6 +32,16 @@ public interface LN_T_SFGuiaRemote {
                                 String imgGuiaProv,                                       
                                 boolean cerrarOS,
                                 boolean enTransManif);
+    BeanTRGuia registrarGuia_WebMovil(String cidGuia,int numPaquetes,String obs,String conf,String estGuia,
+                                           Date fecEmis,//max 1 semana antes y <= fecDesp
+                                           Date fecDesp,//hoy
+                                           int nidRemitente,
+                                           int nidOS,
+                                           int nidManif,
+                                           int nidFlota,
+                                           int nidChofer,int nidDirecRemi,
+                                           int nidDirecDest,int opc,List<BeanTRItem> lstItems,String codUn,String estadoManif,
+                                           String imgGuiaProv,boolean cerrarOS,boolean enTransManif,String imgProv);
     String validarFechasEmiDesp(Date fecEmis,//max 1 semana antes y <= fecDesp
                                 Date fecDesp);
     BeanTRGuia anularGuia(BeanTRGuia guia);

@@ -162,6 +162,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             beanGuia.setCObservaciones(entidad.getCObservaciones());
             beanGuia.setNidFlota(entidad.getNidFlota());
             beanGuia.setImgGuiaProv(entidad.getImgGuiaProv());
+            beanGuia.setImgGuiaProvedor(entidad.getImgGuiaProvedor());
             beanGuia.setNidDireccionRemitente(entidad.getNidDireccionRemitente());
             beanGuia.setNidDireccionDestino(entidad.getNidDireccionDestino());
             BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",entidad.getCConformidad());
@@ -505,6 +506,9 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                 beanGuias.setCConformidad("OK");
             System.out.println("::55::");
                 beanGuias.setImgGuia(guia.getImgGuia());
+            
+                beanGuias.setImgGuiaProv(guia.getImgGuiaProv());
+            
                 beanGuias.setFechaGuia(guia.getFechaGuia());
             System.out.println("::55::");
                 beanGuias.setEmpCliente(guia.getOrdenServicio().getAdEmpresa().getCRazonSocial());

@@ -177,6 +177,11 @@
                                                       actionListener="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.verImagen}"
                                                       rendered="#{beanSessionConsultarGuia.renderBtnverImagen}"
                                                       disabled="false"/>
+                                    <af:commandButton text="Ver Imagen Proveedor" id="btnverImagenProv"
+                                                      binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.btnverImagenProv}"
+                                                      actionListener="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.verImagenProv}"
+                                                      rendered="#{beanSessionConsultarGuia.renderBtnverImagenProv}"
+                                                      disabled="false"/>
                                     <af:commandButton text="Anular Guia" id="btnAnular"
                                                       binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.btnAnular}"
                                                       actionListener="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.anularGuia}"
@@ -323,7 +328,30 @@
                       <af:dialog id="diagImg"
                                title="Imagen de Confirmacion">
                            <af:panelFormLayout>
-                                <img src="#{beanSessionConsultarGuia.img}"/>
+                           
+                            
+                                <img src="#{beanSessionConsultarGuia.img}" width="400" height="400"/>
+                                
+                                
+                                <af:outputText value="#{beanSessionConsultarGuia.descripImg}"/>
+                           </af:panelFormLayout>
+                      </af:dialog>
+            </af:popup>
+            
+            <af:popup id="popImagen1"
+                      binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.popImagen1}"
+                      childCreation="deferred" animate="false">
+                      <af:dialog id="diagImg1"
+                               title="Imagen de Proveedor">
+                           <af:panelFormLayout>
+                           <ui:repeat var="row" varStatus="var" value="#{beanSessionConsultarGuia.lstItemsImg}">
+                             
+                             <af:commandButton text="Imagen n°#{var.index}" action="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.verImagenGrande}">
+                                <f:setPropertyActionListener value="#{var.index}"
+                                                     target="#{beanSessionConsultarGuia.indexImg}"/>
+                             </af:commandButton>
+                           
+                           </ui:repeat>
                            </af:panelFormLayout>
                       </af:dialog>
             </af:popup>

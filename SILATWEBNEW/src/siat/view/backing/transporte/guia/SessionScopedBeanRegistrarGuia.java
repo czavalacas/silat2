@@ -153,6 +153,8 @@ public class SessionScopedBeanRegistrarGuia implements Serializable {
     private String rutaImgGuia;
     private boolean transportePropio = false;
     private String manifiestoSeleccionado;
+    private boolean disableTxtSegunGuiaRem = true;
+    private boolean valueCheckBoxSegunGuiaRem = false;
     
     public SessionScopedBeanRegistrarGuia() { 
         // System.out.println("CONSTRUCTOR DEL SESSION SCOPED BEAN");
@@ -1161,5 +1163,21 @@ public class SessionScopedBeanRegistrarGuia implements Serializable {
 
     public String getManifiestoSeleccionado() {
         return manifiestoSeleccionado;
+    }
+
+    public void setDisableTxtSegunGuiaRem(boolean disableTxtSegunGuiaRem) {
+        this.disableTxtSegunGuiaRem = disableTxtSegunGuiaRem;
+    }
+
+    public boolean isDisableTxtSegunGuiaRem() {
+        return disableTxtSegunGuiaRem;
+    }
+
+    public void setValueCheckBoxSegunGuiaRem(boolean valueCheckBoxSegunGuiaRem) {
+        this.valueCheckBoxSegunGuiaRem = valueCheckBoxSegunGuiaRem;
+    }
+
+    public boolean isValueCheckBoxSegunGuiaRem() {
+        return valueCheckBoxSegunGuiaRem;
     }
 }

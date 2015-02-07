@@ -40,6 +40,7 @@ import oracle.adf.view.rich.component.rich.input.RichInputDate;
 import oracle.adf.view.rich.component.rich.input.RichInputFile;
 import oracle.adf.view.rich.component.rich.input.RichInputNumberSpinbox;
 import oracle.adf.view.rich.component.rich.input.RichInputText;
+import oracle.adf.view.rich.component.rich.input.RichSelectBooleanCheckbox;
 import oracle.adf.view.rich.component.rich.input.RichSelectOneChoice;
 import oracle.adf.view.rich.component.rich.layout.RichDecorativeBox;
 import oracle.adf.view.rich.component.rich.layout.RichPanelFormLayout;
@@ -171,6 +172,7 @@ public class Frm_registrar_orden_servicio {
     private RichDialog diagImg;
     private RichInputFile fileImg;
     private RichImage imgGuia;
+    private RichSelectBooleanCheckbox checkSegunGuiaRem;
 
 
     public Frm_registrar_orden_servicio(){
@@ -415,8 +417,7 @@ public class Frm_registrar_orden_servicio {
     }
     
     public void openPopUp(ActionEvent actionEvent){
-        beanSessionScopedRegistrarOS.setLstUndMedida(this.llenarUndMedidaCombo());
-        this.setCCidGuiaRemitente("Segun Guia Remitente "+ (razonSocProve.getValue() == null ? "" : razonSocProve.getValue()) +" #: ");    
+        beanSessionScopedRegistrarOS.setLstUndMedida(this.llenarUndMedidaCombo());        
         beanSessionScopedRegistrarOS.setAccion(1);//Grabar
         RichPopup.PopupHints ph = new RichPopup.PopupHints();
         ph.add(RichPopup.PopupHints.HintTypes.HINT_ALIGN,RichPopup.PopupHints.AlignTypes.ALIGN_AFTER_END);
@@ -425,6 +426,21 @@ public class Frm_registrar_orden_servicio {
         if(txtCantidad != null){
             resetearItems();
         }
+        beanSessionScopedRegistrarOS.setDisableTxtSegunGuiaRem(true);
+        this.setCCidGuiaRemitente("");
+        beanSessionScopedRegistrarOS.setValueCheckBoxSegunGuiaRem(false);
+       
+    }
+    
+    public void activarSegunGuiaRemitente(ValueChangeEvent valueChangeEvent) {    
+        if(valueChangeEvent.getNewValue().equals(true)){           
+            beanSessionScopedRegistrarOS.setDisableTxtSegunGuiaRem(false);
+            this.setCCidGuiaRemitente("Segun Guia Remitente "+ (razonSocProve.getValue() == null ? "" : razonSocProve.getValue()) +" #: ");   
+        }else{          
+            beanSessionScopedRegistrarOS.setDisableTxtSegunGuiaRem(true);
+            this.setCCidGuiaRemitente("");
+        }
+         Utils.addTarget(txtGuiRem);
     }
     
     public void resetearItems(){
@@ -1096,4 +1112,12 @@ public class Frm_registrar_orden_servicio {
         return imgGuia;
     }
 
+
+    public void setCheckSegunGuiaRem(RichSelectBooleanCheckbox checkSegunGuiaRem) {
+        this.checkSegunGuiaRem = checkSegunGuiaRem;
+    }
+
+    public RichSelectBooleanCheckbox getCheckSegunGuiaRem() {
+        return checkSegunGuiaRem;
+    }
 }

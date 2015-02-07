@@ -81,6 +81,8 @@ public class BeanTRGuia implements Serializable, Cloneable  {
     
     private String fechaGuiaWebMovilEmp;
     private String imgGuiaProvedor;
+    private String hasImgGuia;
+    private String hasImgGuiaProv;
     
     public Object clone() {
         Object clone = null;
@@ -515,5 +517,21 @@ public class BeanTRGuia implements Serializable, Cloneable  {
 
     public String getImgGuiaProvedor() {
         return imgGuiaProvedor;
+    }
+
+    public void setHasImgGuia(String hasImgGuia) {
+        this.hasImgGuia = hasImgGuia;
+    }
+
+    public String getHasImgGuia() {
+        return hasImgGuia;
+    }
+
+    public void setHasImgGuiaProv(String hasImgGuiaProv) {
+        this.hasImgGuiaProv = hasImgGuiaProv;
+    }
+
+    public String getHasImgGuiaProv() {
+        return hasImgGuiaProv;
     }
 }

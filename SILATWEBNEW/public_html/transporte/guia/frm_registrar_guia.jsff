@@ -282,10 +282,16 @@
                               binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.txtDescBien}"
                               value="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.CDescItem}"
                               labelStyle="color: rgb(19,76,149);font-weight:800;"/>
+                               <af:selectBooleanCheckbox text="Activar" label="Guia Remitente" id="sbc1"
+                                                          valueChangeListener="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.activarSegunGuiaRemitente}"
+                                                          immediate="true" autoSubmit="true"                                                          
+                                                          value="#{beanSessionRegistrarGuia.valueCheckBoxSegunGuiaRem}"
+                                                          disabled="#{beanSessionRegistrarGuia.valueCheckBoxSegunGuiaRem}"/>
+                                
                 <af:inputText label="Guía Remitente" id="txtGuiRem"  rows="3"
                               binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.txtGuiRem}"
                               value="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.CCidGuiaRemitente}"
-                              labelStyle="color: rgb(19,76,149);font-weight:800;"/>
+                              labelStyle="color: rgb(19,76,149);font-weight:800;" disabled="#{beanSessionRegistrarGuia.disableTxtSegunGuiaRem}"/>
                 
                 <af:commandButton text="Registrar" id="btnRegistrarItem"
                                   binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.btnRegistrarItem}"

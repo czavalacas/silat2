@@ -288,6 +288,12 @@
                         <af:column sortable="true" headerText="Factura" width="75" align="center" sortProperty="trFactura.CCodFactura" inlineStyle="#{row.styleAnulado}">
                             <af:outputText value="#{row.trFactura.cidUnidadNegocio}-#{row.trFactura.CCodFactura}"/>
                         </af:column>
+                         <af:column sortable="true" headerText="IMG Guia" width="75" align="center" sortProperty="trFactura.CCodFactura" inlineStyle="#{row.styleAnulado}">
+                            <af:outputText value="#{row.hasImgGuia}"/>
+                        </af:column>
+                         <af:column sortable="true" headerText="IMG Guia Proveedor" width="75" align="center" sortProperty="trFactura.CCodFactura" inlineStyle="#{row.styleAnulado}">
+                            <af:outputText value="#{row.hasImgGuiaProv}"/>
+                        </af:column>
                 </af:table>
                  </af:panelCollection>           
                 <af:popup id="popAnular"

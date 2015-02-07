@@ -1110,8 +1110,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     }
 
     public void openPopUp(ActionEvent actionEvent){
-        this.setCCidGuiaRemitente("Segun Guia Remitente "+ (razonSocProve.getValue() == null ? "" : razonSocProve.getValue()) +" #: ");    
-        beanSessionRegistrarGuia.setAccion(1);//Grabar
+         beanSessionRegistrarGuia.setAccion(1);//Grabar
         RichPopup.PopupHints ph = new RichPopup.PopupHints();
         ph.add(RichPopup.PopupHints.HintTypes.HINT_ALIGN,RichPopup.PopupHints.AlignTypes.ALIGN_AFTER_END);
         ph.add(RichPopup.PopupHints.HintTypes.HINT_ALIGN_ID,btnNewItem);
@@ -1119,6 +1118,20 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         if(txtCantidad != null){
             resetearItems();
         }
+        beanSessionRegistrarGuia.setDisableTxtSegunGuiaRem(true);
+        this.setCCidGuiaRemitente("");
+        beanSessionRegistrarGuia.setValueCheckBoxSegunGuiaRem(false);
+    }
+    
+    public void activarSegunGuiaRemitente(ValueChangeEvent valueChangeEvent) {    
+        if(valueChangeEvent.getNewValue().equals(true)){           
+            beanSessionRegistrarGuia.setDisableTxtSegunGuiaRem(false);
+            this.setCCidGuiaRemitente("Segun Guia Remitente "+ (razonSocProve.getValue() == null ? "" : razonSocProve.getValue()) +" #: ");   
+        }else{          
+            beanSessionRegistrarGuia.setDisableTxtSegunGuiaRem(true);
+            this.setCCidGuiaRemitente("");
+        }
+         Utils.addTarget(txtGuiRem);
     }
     
     public void resetearItems(){

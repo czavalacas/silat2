@@ -54,7 +54,7 @@ public class BDL_C_SFRelacionEmpresaBean implements BDL_C_SFRelacionEmpresaRemot
             }
             if(beanBusqueda.getNidTipoRelacion() != null && beanBusqueda.getAdEmpresa1().getCRazonSocial() != null && beanBusqueda.getNidEmpresa2() != null){
                 ejbQl = ejbQl.concat(" AND rel.adTipoRelacion.nidTipoRelacion = "+beanBusqueda.getNidTipoRelacion()+" ")
-                             .concat(" AND upper(rel.adEmpresa1.cRazonSocial) like :name ");
+                             .concat(" AND upper(rel.adEmpresa1.cRazonSocial) like :name OR rel.adEmpresa1.cRuc like :name ");//CAMABIADO CZVALACAS
             }
             if(beanBusqueda.getNidTipoRelacion() != null && beanBusqueda.getAdEmpresa1().getCRuc() != null && beanBusqueda.getNidEmpresa2() != null){
                 //dfloresgonz 26.04.2014 Se agrega este IF para buscar x RUC no buscaba a la hora de buscar remitente en registrar Guia

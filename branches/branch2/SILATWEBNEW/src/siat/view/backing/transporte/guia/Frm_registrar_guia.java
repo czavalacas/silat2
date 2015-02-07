@@ -405,103 +405,13 @@ public class Frm_registrar_guia{//NUEVO CODIGO
                 getBeanSessionRegistrarGuia().setDisabInputFile(false);//dfloresgonz 26.04.2014 se cambia por necesidad de adjuntar imagenes aun este OK
                 getBeanSessionRegistrarGuia().setDisableComboManifiesto(false);//czavalacas 02.10.2014 campo del choice elejir existente manifiesto cambiado
                
-                //Manifiesto
-                String tipoComboManif = "";
+                //Manifiesto            
                 if(beanGuia.getTrManifiesto() != null){
                 System.out.println("TIENE MANIFIESTO");
                     BeanManifiesto manif = beanGuia.getTrManifiesto();
-                    tipoComboManif = "2";//Manif Exist
-                    getBeanSessionRegistrarGuia().setPboxManifiestoVis(true);
-                    getBeanSessionRegistrarGuia().setPboxDatosEmpVis(true);//czavalacas 02.10.2014 valor original true, cambiado a false para que se pueda agregar manifiesto a una guia
-                    getBeanSessionRegistrarGuia().setEstadoFormManif(true);
-                    getBeanSessionRegistrarGuia().setNidManifiesto(manif.getNidManifiesto());
-                    getBeanSessionRegistrarGuia().setValorComboManif(Integer.parseInt(tipoComboManif));
-                    getBeanSessionRegistrarGuia().setFecManif(manif.getFechaManifiesto());
-                    getBeanSessionRegistrarGuia().setFletePactado(manif.getNFletePactado());
-                    getBeanSessionRegistrarGuia().setAdelanto(manif.getNAdelanto());
-                    getBeanSessionRegistrarGuia().setIgv(manif.getIgv());
-                    getBeanSessionRegistrarGuia().setMontoFinalVal(manif.getDetraccion());
-                    getBeanSessionRegistrarGuia().setDetraccionVal(manif.getDetraccionReal());
-                    getBeanSessionRegistrarGuia().setSaldo(manif.getDetraccion() - manif.getNAdelanto());
-                    getBeanSessionRegistrarGuia().setTipDoc(manif.getCTipoDoc());
-                    getBeanSessionRegistrarGuia().setObserv(manif.getCObservaciones());
-                    getBeanSessionRegistrarGuia().setTxtFleteDisable(true);
-                    beanSessionRegistrarGuia.setTxtAdelaDisable(true);
-                    beanSessionRegistrarGuia.setTxtObsvDisable(true);
-                    beanSessionRegistrarGuia.setDisabRegisManif(true);
-                    //@TODO darle solo permiso de editar el manifiesto al admin
-                    getBeanSessionRegistrarGuia().setEmpresaSC(manif.getTrManifiesto().getCRazonSocial());
-                    getBeanSessionRegistrarGuia().setRucEmpSC(manif.getTrManifiesto().getCRuc());
-                    getBeanSessionRegistrarGuia().setLstGuiasManif(this.llenarGuiasManif(manif.getNidManifiesto()));
-                    getBeanSessionRegistrarGuia().setVisibTxtRazSocProvTransBehav(false);
-                    getBeanSessionRegistrarGuia().setVisibTxtRazSocProvTrans2(true);//
-                    getBeanSessionRegistrarGuia().setDisabSocFlota(true);
-                    getBeanSessionRegistrarGuia().setVisibRucEmpTrans(true);
-                    getBeanSessionRegistrarGuia().setDisabSocChofer(true);
-                    getBeanSessionRegistrarGuia().setPboxDatosEmpTitulo("Datos de Empresa Proveedora de Transporte");
-                    getBeanSessionRegistrarGuia().setLstFlotas(this.llenarFlotasCombo(manif.getTrManifiesto().getNidParty().intValue(),null));
-                    getBeanSessionRegistrarGuia().setLstChofers(this.llenarChofersCombo(manif.getTrManifiesto().getNidParty().intValue(),null));
-                    getBeanSessionRegistrarGuia().setCidFlota(manif.getNidFlota().toString());
-                    getBeanSessionRegistrarGuia().setCidChofer(manif.getNidChof().toString());
-                    getBeanSessionRegistrarGuia().setVisibSocFlota(true);
-                    getBeanSessionRegistrarGuia().setVisibSocChofer(true);
-                    getBeanSessionRegistrarGuia().setPboxDatosTransVis(true);//czavalacas 02.10.2014 valor original true, cambiado a false para que se pueda agregar manifiesto a una guia
-                    List<BeanFlota> lstBeanFlota = ln_C_SFFlotaRemote.findFlotasByAttr_LN(null,beanGuia.getNidFlota());
-                    if(lstBeanFlota != null){
-                        if(lstBeanFlota.size() > 0){
-                            BeanFlota beanFlota = lstBeanFlota.get(0);
-                            getBeanSessionRegistrarGuia().setMarcaVehi(beanFlota.getCMarvehi());
-                            getBeanSessionRegistrarGuia().setPlaca(beanFlota.getCPlaca());
-                            getBeanSessionRegistrarGuia().setConfigVehi(beanFlota.getCConfveh());
-                            getBeanSessionRegistrarGuia().setCertiInsc(beanFlota.getCertificadoInscripcionEmpresa());
-                        } 
-                    }
-                    List<BeanChofer> lstBeanChofer = ln_C_SFChoferRemote.findChofersByAttr_LN(null,beanGuia.getNidChof());
-                    if(lstBeanChofer != null){
-                        if(lstBeanChofer.size() > 0){
-                            BeanChofer beanChofer = lstBeanChofer.get(0);
-                            getBeanSessionRegistrarGuia().setLicen(beanChofer.getLicencia());
-                            getBeanSessionRegistrarGuia().setConductor(beanChofer.getNombres());
-                        }
-                    }
-                }else{
-                    System.out.println("NO TIENE MANIFIESTO");
-                    tipoComboManif = "3";//Transp Propio
-                    getBeanSessionRegistrarGuia().setPboxDatosEmpVis(false); //czavalacas 02.10.2014 valor original true, cambiado a false para que se pueda agregar manifiesto a una guia
-                    getBeanSessionRegistrarGuia().setPboxDatosTransVis(false);//czavalacas 02.10.2014 valor original true, cambiado a false para que se pueda agregar manifiesto a una guia
-                    getBeanSessionRegistrarGuia().setVisibTxtRazSocProvTrans2(true);
-                    getBeanSessionRegistrarGuia().setVisibRucEmpTrans(true);
-                    getBeanSessionRegistrarGuia().setVisibSocFlota(true);
-                    getBeanSessionRegistrarGuia().setVisibSocChofer(true);
-                    BeanEmpresa empresa = ln_C_SFEmpresasRemote.selectedEmpresa(new BigDecimal(5));
-                    getBeanSessionRegistrarGuia().setEmpresaSC(empresa.getCRazonSocial());
-                    getBeanSessionRegistrarGuia().setRucEmpSC(empresa.getCRuc());
-                    getBeanSessionRegistrarGuia().setPboxDatosEmpTitulo("Transporte Lubal");
-                    getBeanSessionRegistrarGuia().setLstFlotas(this.llenarFlotasCombo(5,null));
-                    getBeanSessionRegistrarGuia().setLstChofers(this.llenarChofersCombo(5,null));
-                    List<BeanFlota> lstBeanFlota = ln_C_SFFlotaRemote.findFlotasByAttr_LN(null,beanGuia.getNidFlota());
-                    getBeanSessionRegistrarGuia().setCidFlota(beanGuia.getNidFlota().toString());
-                    getBeanSessionRegistrarGuia().setCidChofer(beanGuia.getNidChof().toString());
-                    if(lstBeanFlota != null){
-                        if(lstBeanFlota.size() > 0){
-                            BeanFlota beanFlota = lstBeanFlota.get(0);
-                            getBeanSessionRegistrarGuia().setMarcaVehi(beanFlota.getCMarvehi());
-                            getBeanSessionRegistrarGuia().setPlaca(beanFlota.getCPlaca());
-                            getBeanSessionRegistrarGuia().setConfigVehi(beanFlota.getCConfveh());
-                            getBeanSessionRegistrarGuia().setCertiInsc(beanFlota.getCertificadoInscripcionEmpresa());
-                        }
-                    }
-                    List<BeanChofer> lstBeanChofer = ln_C_SFChoferRemote.findChofersByAttr_LN(null,beanGuia.getNidChof());
-                    if(lstBeanChofer != null){
-                        if(lstBeanChofer.size() > 0){
-                            BeanChofer beanChofer = lstBeanChofer.get(0);
-                            getBeanSessionRegistrarGuia().setLicen(beanChofer.getLicencia());
-                            getBeanSessionRegistrarGuia().setConductor(beanChofer.getNombres());
-                        }
-                    }
+                    beanSessionRegistrarGuia.setManifiestoSeleccionado(manif.getNidManifiesto()+" - "+manif.getTrManifiesto().getCRazonSocial());
+                    beanSessionRegistrarGuia.setNidManifiesto(manif.getNidManifiesto());                
                 }
-                getBeanSessionRegistrarGuia().setValorComboManif(Integer.parseInt(tipoComboManif));
-                getBeanSessionRegistrarGuia().setComboTipoManif(tipoComboManif);
                 getBeanSessionRegistrarGuia().setConfo(beanGuia.getCConformidad());
             }else{
                 getBeanSessionRegistrarGuia().setVisibleSocConf(false);
@@ -544,18 +454,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         if(getBeanSessionRegistrarGuia().getNidRemitente() == 0){
             Utils.throwError_Aux(ctx, "Debe seleccionar una empresa Remitente.",4);
             isOk = false;
-        }
-      /*  if(getBeanSessionRegistrarGuia().getValorComboManif() == 0){
-            Utils.throwError_Aux(ctx, "Debe seleccionar/Registrar el Manifiesto.",4);
-            isOk = false;
-        }
-        if(getBeanSessionRegistrarGuia().getValorComboManif() == 2 || getBeanSessionRegistrarGuia().getValorComboManif() == 1){//Selecciono un manifiesto
-            //Revisar que se haya seleccionado uno.
-            if(getBeanSessionRegistrarGuia().getNidManifiesto() == 0){
-                Utils.throwError_Aux(ctx, "Debe seleccionar un Manifiesto.",4);
-                isOk = false;
-            }
-        }*/
+        }  
       if(getBeanSessionRegistrarGuia().getNidManifiesto() == 0){
           Utils.throwError_Aux(ctx, "Debe seleccionar un Manifiesto.",4);
           isOk = false;
@@ -648,7 +547,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         }
     }
     
-    public void validarManifiesto(ActionEvent actionEvent) {
+ /*   public void validarManifiesto(ActionEvent actionEvent) {
         if(beanSessionRegistrarGuia.getValorComboManif() == 1){//Nuevo Manif
             if(beanSessionRegistrarGuia.getNidEmpProvTrans() == 0){
                 Utils.throwError_Aux(ctx, "Debe seleccionar Empresa proveedora de transporte.",4);
@@ -657,7 +556,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             }
         }
     }
-    
+    */
     public void registrarGuiaAnulada(DialogEvent dialogEvent) {
         try {
             if (beanSessionRegistrarGuia.getCodUN() == null) {
@@ -702,71 +601,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
             return;
         }
         Utils.showPopUpMIDDLE(popAnul);
-    }
-    
-    public String registrarManifiesto(){
-        try{
-            String obsv = beanSessionRegistrarGuia.getObserv();
-            if(obsv != null && obsv.length() >= 300){
-                obsv = obsv.substring(0,300);
-            }
-            BeanManifiesto bManifiesto = ln_T_SFManifiestoRemote.registrarManifiesto_LN(getBeanSessionRegistrarGuia().getNidEmpProvTrans(),
-                                                                                        getBeanSessionRegistrarGuia().getFecManif(), 
-                                                                                        getBeanSessionRegistrarGuia().getFletePactado(),
-                                                                                        getBeanSessionRegistrarGuia().getAdelanto(),
-                                                                                        getBeanSessionRegistrarGuia().getTipDoc(),
-                                                                                        obsv,
-                                                                                        Integer.parseInt(getBeanSessionRegistrarGuia().getCidFlota()),
-                                                                                        Integer.parseInt(getBeanSessionRegistrarGuia().getCidChofer()),
-                                                                                        0,1,"3");//Guias x asignar
-            if(bManifiesto.getBeanError() != null){
-                BeanError error = bManifiesto.getBeanError();
-                int severidad = 0;
-                if("000".equals(error.getCidError()) ){
-                    severidad = 3;
-                    this.tipoManf.setValue("2");
-                    ValueChangeEvent vce = new ValueChangeEvent(tipoManf,"1","2");
-                    vce.queue();
-                    txtFecManif.setValue(bManifiesto.getFechaManifiesto());
-                    itCodManif.setValue(bManifiesto.getNidManifiesto());
-                    txtAdelanto.setValue(bManifiesto.getNAdelanto());
-                    txtFletePact.setValue(bManifiesto.getNFletePactado());
-                    tipoDocManif.setValue(bManifiesto.getCTipoDoc());
-                    txtObsManif.setValue(bManifiesto.getCObservaciones());
-                    itMontoFin.setValue(bManifiesto.getDetraccion());
-                    itDetraccion.setValue(bManifiesto.getDetraccionReal());
-                    Double adela = 0.0;
-                    if(bManifiesto.getNAdelanto() != null){
-                        adela = bManifiesto.getNAdelanto();
-                    }
-                    itSaldo.setValue(bManifiesto.getDetraccion() - adela);
-                    beanSessionRegistrarGuia.setFletePactado(bManifiesto.getNFletePactado());
-                    beanSessionRegistrarGuia.setAdelanto(bManifiesto.getNAdelanto());
-                    beanSessionRegistrarGuia.setMontoFinalVal(bManifiesto.getDetraccion());
-                    beanSessionRegistrarGuia.setDetraccionVal(bManifiesto.getDetraccionReal());
-                    beanSessionRegistrarGuia.setSaldo(bManifiesto.getDetraccion() - adela);
-                    beanSessionRegistrarGuia.setEmpresaSC(bManifiesto.getTrManifiesto().getCRazonSocial());
-                    beanSessionRegistrarGuia.setRucEmpSC(bManifiesto.getTrManifiesto().getCRuc());                   
-                    beanSessionRegistrarGuia.setManifIngresado(bManifiesto);
-                    beanSessionRegistrarGuia.setLlenarCombosAfterInsertManif(true);
-                    Utils.addTargetMany(txtFecManif,itCodManif,txtAdelanto,txtFletePact,tipoDocManif,txtObsManif,txtRazSocEmpTransp2,rucEmpTransp,tipoManf,itSaldo);
-                }else{
-                    severidad = 1;
-                    resetNewManif();
-                }
-                Utils.throwError_Aux(ctx,error.getCDescripcionError(), severidad);
-            }else{
-                Utils.throwError_Aux(ctx,"Error Inesperado", 1);
-                resetNewManif();
-            }
-            return null;
-        }catch(Exception e){
-            e.printStackTrace();
-            Utils.throwError_Aux(ctx,"Error Inesperado", 1);
-            resetNewManif();
-            return null;
-        }
-    }
+    }   
     
     public void seleccionarOS(SelectionEvent selectionEvent) {
         RichTable t = (RichTable)selectionEvent.getSource();
@@ -869,58 +704,6 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         return;
     }
     
-    public void seleccionarProveedor(SelectionEvent selectionEvent){
-        if(beanSessionRegistrarGuia.isTransportePropio() == false){
-            socFlota.resetValue();
-            socChofer.resetValue();
-            txtMarcVehi.resetValue();
-            txtPlaca.resetValue();
-            txtConfigVehi.resetValue();
-            txtCertInsc.resetValue();
-            txtLicCondu.resetValue();
-            txtConductor.resetValue();
-            beanSessionRegistrarGuia.setCidFlota(null);
-            beanSessionRegistrarGuia.setCidChofer(null);
-            beanSessionRegistrarGuia.setMarcaVehi(null);
-            beanSessionRegistrarGuia.setPlaca(null);
-            beanSessionRegistrarGuia.setConfigVehi(null);
-            beanSessionRegistrarGuia.setCertiInsc(null);
-            beanSessionRegistrarGuia.setLicen(null);
-            beanSessionRegistrarGuia.setConductor(null);
-            Utils.addTargetMany(txtLicCondu,txtConductor,txtMarcVehi,txtPlaca,txtConfigVehi,txtCertInsc,socFlota,socChofer);
-            try {
-                RichTable t = (RichTable)selectionEvent.getSource();
-                Object _selectedRowData = t.getSelectedRowData();
-                BeanADRelacionEmpresa beanEmpresaSubCont = (BeanADRelacionEmpresa) _selectedRowData;
-                beanSessionRegistrarGuia.setNidEmpProvTrans(beanEmpresaSubCont.getAdEmpresa1().getNidParty().intValue());
-                txtRazSocEmpTransp.setValue(beanEmpresaSubCont.getAdEmpresa1().getCRazonSocial());
-                rucEmpTransp.setValue(beanEmpresaSubCont.getAdEmpresa1().getCRuc());
-                beanSessionRegistrarGuia.setLstFlotas(this.llenarFlotasCombo(beanEmpresaSubCont.getAdEmpresa1().getNidParty().intValue(),null));
-                beanSessionRegistrarGuia.setLstChofers(this.llenarChofersCombo(beanEmpresaSubCont.getAdEmpresa1().getNidParty().intValue(),null));
-                Utils.unselectFilas(tbProv);
-                popProv.hide();
-                Utils.addTargetMany(tbProv,txtRazSocEmpTransp,rucEmpTransp,socFlota,socChofer);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }else{
-            popProv.hide();
-        }
-        return;
-    }
-
-    public ArrayList llenarFlotasCombo(Integer nidParty, Integer nidID) {
-        ArrayList flotasItems = new ArrayList();
-        flotasItems = llenarCombo(nidParty, nidID, flotasItems, 0);
-        return flotasItems;
-    }
-    
-    public ArrayList llenarChofersCombo(Integer nidParty,Integer nidID) {
-        ArrayList chofersItems = new ArrayList();
-        chofersItems = llenarCombo(nidParty,nidID,chofersItems,1);
-        return chofersItems;
-    }
-    
     public ArrayList llenarGuiasManif(int nidManif){
         ArrayList guias = new ArrayList(); 
         List<BeanTRGuia> guiasManifs = ln_C_SFGuiaRemote.findGuiasByAttr_LN(null,null, null, null, null, 
@@ -992,46 +775,6 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         return umItems;
     }
     
-    public void selectFlota(ValueChangeEvent vce) {
-        vce.getComponent().processUpdates(FacesContext.getCurrentInstance());
-        if(vce.getNewValue() != null){
-            String cidFlota = vce.getNewValue().toString(); 
-            int nidFlota = Integer.parseInt(cidFlota);
-            List<BeanFlota> lstBeanFlota = ln_C_SFFlotaRemote.findFlotasByAttr_LN(null,nidFlota);
-            if(lstBeanFlota != null){
-                BeanFlota beanFlota = lstBeanFlota.get(0);
-                txtMarcVehi.setValue(beanFlota.getCMarvehi());
-                txtPlaca.setValue(beanFlota.getCPlaca());
-                txtConfigVehi.setValue(beanFlota.getCConfveh());
-                txtCertInsc.setValue(beanFlota.getCertificadoInscripcionEmpresa());
-            }
-        }else{
-            txtMarcVehi.resetValue();
-            txtPlaca.resetValue();
-            txtConfigVehi.resetValue();
-            txtCertInsc.resetValue();
-        }
-        Utils.addTargetMany(txtMarcVehi,txtPlaca,txtConfigVehi,txtCertInsc);
-    }
-    
-    public void selectChofer(ValueChangeEvent vce) {
-        vce.getComponent().processUpdates(FacesContext.getCurrentInstance());
-        if(vce.getNewValue() != null){
-            String cidChofer = vce.getNewValue().toString();
-            int nidChofer = Integer.parseInt(cidChofer);
-            List<BeanChofer> lstBeanChofer = ln_C_SFChoferRemote.findChofersByAttr_LN(null,nidChofer);
-            if(lstBeanChofer != null){
-                BeanChofer beanChofer = lstBeanChofer.get(0);
-                txtLicCondu.setValue(beanChofer.getLicencia());
-                txtConductor.setValue(beanChofer.getNombres());
-            }
-        }else{
-            txtLicCondu.resetValue();
-            txtConductor.resetValue();
-        }
-        Utils.addTargetMany(txtLicCondu,txtConductor);
-    }  
-
     public void registrarItem(ActionEvent actionEvent) {
         int accion = beanSessionRegistrarGuia.getAccion();
         resetearItems();
@@ -1161,445 +904,15 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     }
     
     public void selectManif(SelectionEvent selectionEvent) {
-        RichTable t = (RichTable)selectionEvent.getSource();
-        BeanManifiesto beanManifiesto = (BeanManifiesto)  t.getSelectedRowData();
-     /*   beanSessionRegistrarGuia.setLstGuiasManif(this.llenarGuiasManif(beanManifiesto.getNidManifiesto()));
-        txtFecManif.setValue(beanManifiesto.getFechaManifiesto());
-        itCodManif.setValue(beanManifiesto.getNidManifiesto());
-        txtAdelanto.setValue(beanManifiesto.getNAdelanto());
-        txtFletePact.setValue(beanManifiesto.getNFletePactado());
-        Double igv = beanManifiesto.getIgv();
-        itSaldo.setValue(beanManifiesto.getDetraccion() - beanManifiesto.getNAdelanto());
-        itIGV.setValue(igv);
-        itDetraccion.setValue(beanManifiesto.getDetraccionReal());
-        itMontoFin.setValue(beanManifiesto.getDetraccion());
-        tipoDocManif.setValue(beanManifiesto.getCTipoDoc());
-        txtObsManif.setValue(beanManifiesto.getCObservaciones());
-        txtRazSocEmpTransp2.setValue(beanManifiesto.getTrManifiesto().getCRazonSocial());
-        rucEmpTransp.setValue(beanManifiesto.getTrManifiesto().getCRuc());
-        beanSessionRegistrarGuia.setLstFlotas(this.llenarFlotasCombo(null,beanManifiesto.getNidFlota()));
-        socFlota.setValue(beanManifiesto.getNidFlota().toString());
-        beanSessionRegistrarGuia.setCidFlota(beanManifiesto.getNidFlota().toString());
-        beanSessionRegistrarGuia.setCidChofer(beanManifiesto.getNidChof().toString());
-        beanSessionRegistrarGuia.setLstChofers(this.llenarChofersCombo(null,beanManifiesto.getNidChof()));
-        List<BeanFlota> lstBeanFlota = ln_C_SFFlotaRemote.findFlotasByAttr_LN(null,beanManifiesto.getNidFlota());
-        if(lstBeanFlota != null){
-            if(lstBeanFlota.size() > 0){
-                BeanFlota beanFlota = lstBeanFlota.get(0);
-                txtMarcVehi.setValue(beanFlota.getCMarvehi());
-                txtPlaca.setValue(beanFlota.getCPlaca());
-                txtConfigVehi.setValue(beanFlota.getCConfveh());
-                txtCertInsc.setValue(beanFlota.getCertificadoInscripcionEmpresa());
-            }
-        }
-        socChofer.setValue(beanManifiesto.getNidChof().toString());
-        beanSessionRegistrarGuia.setManifIngresado(beanManifiesto);
-        beanSessionRegistrarGuia.setNidManifiesto(beanManifiesto.getNidManifiesto());
-        List<BeanChofer> lstBeanChofer = ln_C_SFChoferRemote.findChofersByAttr_LN(null,beanManifiesto.getNidChof());
-        if(lstBeanChofer != null){
-            if(lstBeanChofer.size() > 0){
-                BeanChofer beanChofer = lstBeanChofer.get(0);
-                txtLicCondu.setValue(beanChofer.getLicencia());
-                txtConductor.setValue(beanChofer.getNombres());
-            }
-        }*/
+     RichTable t = (RichTable)selectionEvent.getSource();
+     BeanManifiesto beanManifiesto = (BeanManifiesto)  t.getSelectedRowData();    
      beanSessionRegistrarGuia.setManifIngresado(beanManifiesto);
      beanSessionRegistrarGuia.setNidManifiesto(beanManifiesto.getNidManifiesto());
      beanSessionRegistrarGuia.setManifiestoSeleccionado(beanManifiesto.getNidManifiesto()+" - "+beanManifiesto.getTrManifiesto().getCRazonSocial());
         popManif.hide();
         Utils.addTargetMany(inputManifiesto);   
-        /*Utils.addTargetMany(socChofer,itSaldo,socGuiasManif,txtFecManif,itCodManif,txtAdelanto,txtAdelanto,txtFletePact,tipoDocManif,
-                            txtObsManif,txtRazSocEmpTransp2,rucEmpTransp,txtMarcVehi,txtPlaca,txtConfigVehi,txtCertInsc,
-                            txtLicCondu,txtConductor,socFlota,itMontoFin,itIGV,itDetraccion);*/
-    }
+      }
     
-    /* MANIFIESTO */
-    public void cambioManif(ValueChangeEvent valueChangeEvent) {//1 nuevo, 2 existente, 3 propio
-     //   valueChangeEvent.getComponent().processUpdates(FacesContext.getCurrentInstance());
-        try{
-            String valorCombo = valueChangeEvent.getNewValue().toString();
-            int opc = 0;
-            opc = Integer.parseInt(valorCombo);
-            beanSessionRegistrarGuia.setValorComboManif(opc);
-            beanSessionRegistrarGuia.setNidEmpProvTrans(0);
-            ckbTraPro.setRendered(false);
-            ckbTraPro.setSelected(false);
-            switch(opc){
-                case 1 : nuevoManifiesto();break;
-                case 2 : existenteManifiesto();break;
-                case 3 : transportePropio();break;
-            }
-            Utils.addTarget(ckbTraPro);
-        }catch(Exception e){
-            Utils.throwError(ctx,"Elija una opcion","Elija una opcion");
-            beanSessionRegistrarGuia.setValorComboManif(0);e.printStackTrace();
-        }
-    }
-    
-    /* Metodo Para Seleccionar Manifiesto Existente = 2*/
-  /*  public void asignarManifiesto(ActionEvent actionEvent) {
-        
-        int opc = 2;
-       // opc = Integer.parseInt(valorCombo);
-        beanSessionRegistrarGuia.setValorComboManif(opc);
-        beanSessionRegistrarGuia.setNidEmpProvTrans(0);
-        ckbTraPro.setRendered(false);
-        ckbTraPro.setSelected(false);
-        switch(opc){
-            case 1 : nuevoManifiesto();break;
-            case 2 : existenteManifiesto();break;
-            case 3 : transportePropio();break;
-        }
-        Utils.showPopUpMIDDLE(popupSeleccionarManifiesto);
-       // Utils.addTarget(ckbTraPro);
-    }*/
-    
-    
-    public void cambioCheckTransPropio(ValueChangeEvent vce) {
-        try{
-            Boolean isPropio = (Boolean) vce.getNewValue();
-            beanSessionRegistrarGuia.setTransportePropio(isPropio);
-            txtAdelanto.resetValue();
-            txtAdelanto.resetValue();
-            beanSessionRegistrarGuia.setFletePactado(0.0);
-            beanSessionRegistrarGuia.setAdelanto(0.0);
-            itIGV.resetValue();
-            beanSessionRegistrarGuia.setIgv(0.0);
-            itDetraccion.resetValue();
-            beanSessionRegistrarGuia.setDetraccionVal(0.0);
-            itMontoFin.resetValue();
-            beanSessionRegistrarGuia.setMontoFinalVal(0.0);
-            itSaldo.resetValue();
-            beanSessionRegistrarGuia.setSaldo(0.0);
-            beanSessionRegistrarGuia.setLstGuiasManif(null);
-            socFlota.resetValue();
-            socChofer.resetValue();
-            txtMarcVehi.resetValue();
-            txtPlaca.resetValue();
-            txtConfigVehi.resetValue();
-            txtCertInsc.resetValue();
-            txtLicCondu.resetValue();
-            txtConductor.resetValue();
-            beanSessionRegistrarGuia.setCidFlota(null);
-            beanSessionRegistrarGuia.setCidChofer(null);
-            beanSessionRegistrarGuia.setMarcaVehi(null);
-            beanSessionRegistrarGuia.setPlaca(null);
-            beanSessionRegistrarGuia.setConfigVehi(null);
-            beanSessionRegistrarGuia.setCertiInsc(null);
-            beanSessionRegistrarGuia.setLicen(null);
-            beanSessionRegistrarGuia.setConductor(null);
-            Utils.addTargetMany(txtLicCondu,txtConductor,txtMarcVehi,txtPlaca,txtConfigVehi,txtCertInsc,socFlota,socChofer);
-            if(isPropio){//disabled = true
-                txtFletePact.setDisabled(true);
-                txtAdelanto.setDisabled(true);
-                beanSessionRegistrarGuia.setTipDoc("2");
-                beanSessionRegistrarGuia.setTxtTipDocuDisable(true);
-                
-                beanSessionRegistrarGuia.setCidChofer("0");
-                beanSessionRegistrarGuia.setCidFlota("0");
-                beanSessionRegistrarGuia.setPboxDatosEmpTitulo("Transporte Lubal");
-                pboxDatosEmp.setText("Transporte Lubal");
-                beanSessionRegistrarGuia.setLstFlotas(this.llenarFlotasCombo(5,null));
-                beanSessionRegistrarGuia.setLstChofers(this.llenarChofersCombo(5,null));
-                
-                BeanEmpresa empresa = ln_C_SFEmpresasRemote.selectedEmpresa(new BigDecimal(5));
-                beanSessionRegistrarGuia.setNidEmpProvTrans(empresa.getAdParty().getNidParty().intValue());
-                beanSessionRegistrarGuia.setEmpresaSC(empresa.getCRazonSocial());
-                beanSessionRegistrarGuia.setRucEmpSC(empresa.getCRuc());
-                txtRazSocEmpTransp2.setRendered(true);
-                txtRazSocEmpTransp2.setValue(empresa.getCRazonSocial());
-                beanSessionRegistrarGuia.setVisibTxtRazSocProvTrans2(true);
-                txtRazSocEmpTransp.setRendered(false);
-                txtRazSocEmpTransp.resetValue();
-                txtRazSocEmpTransp.setVisible(false);
-                beanSessionRegistrarGuia.setVisibTxtRazSocProvTransBehav(false);
-                rucEmpTransp.setValue(empresa.getCRuc());
-                rucEmpTransp.setRendered(true);
-                Utils.addTargetMany(itSaldo,itMontoFin,itDetraccion,itIGV,tipoDocManif,txtFletePact,txtAdelanto,pboxDatosEmp,txtRazSocEmpTransp2,txtRazSocEmpTransp,rucEmpTransp);
-            }else{
-                beanSessionRegistrarGuia.setNidEmpProvTrans(0);
-                txtFletePact.setDisabled(false);
-                txtAdelanto.setDisabled(false);
-                beanSessionRegistrarGuia.setTipDoc("1");
-                beanSessionRegistrarGuia.setTxtTipDocuDisable(true);
-                beanSessionRegistrarGuia.setVisibTxtRazSocProvTrans2(false);
-                beanSessionRegistrarGuia.setEstadoFormManif(true);
-                beanSessionRegistrarGuia.setVisibTxtRazSocProvTransBehav(true);
-                txtRazSocEmpTransp2.setRendered(false);
-                txtRazSocEmpTransp2.resetValue();
-                txtRazSocEmpTransp.setVisible(true);
-                txtRazSocEmpTransp.setRendered(true);
-                txtRazSocEmpTransp.resetValue();
-                beanSessionRegistrarGuia.setEmpresaSC(null);
-                beanSessionRegistrarGuia.setRucEmpSC(null);
-                rucEmpTransp.resetValue();
-                beanSessionRegistrarGuia.setPboxDatosEmpTitulo("Datos de Empresa Proveedora de Transporte");
-                pboxDatosEmp.setText("Datos de Empresa Proveedora de Transporte");
-                beanSessionRegistrarGuia.setLstFlotas(null);
-                beanSessionRegistrarGuia.setLstChofers(null);
-                Utils.addTargetMany(itSaldo,itMontoFin,itDetraccion,itIGV,tipoDocManif,txtFletePact,rucEmpTransp,txtAdelanto,txtRazSocEmpTransp2,txtRazSocEmpTransp,pboxDatosEmp);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    
-    public void nuevoManifiesto(){
-        beanSessionRegistrarGuia.setNidManifiesto(ln_C_SFUtilsRemote.traerSiguienteValorSequence("trmanifiesto.nid_manifiesto"));
-        ckbTraPro.setRendered(true);
-        panelNuevoManif(true);
-        txtFletePact.setDisabled(false);
-        txtAdelanto.setDisabled(false);
-        tipoDocManif.setDisabled(false);
-        txtObsManif.setDisabled(false);
-        beanSessionRegistrarGuia.setVisibTxtRazSocProvTransBehav(true);
-        socFlota.setDisabled(false);
-        socChofer.setDisabled(false);
-        itSaldo.resetValue();
-        beanSessionRegistrarGuia.setRendBuscManif(false);
-        itIGV.resetValue();
-        itDetraccion.resetValue();
-        itMontoFin.resetValue();
-        getBeanSessionRegistrarGuia().setSaldo(0.0);
-        txtAdelanto.resetValue();
-        txtFletePact.resetValue();
-        beanSessionRegistrarGuia.setLstChofers(null);
-        beanSessionRegistrarGuia.setLstFlotas(null);
-        socFlota.resetValue();
-        socChofer.resetValue();
-        txtRazSocEmpTransp.resetValue();
-        txtRazSocEmpTransp2.setRendered(false);
-        txtRazSocEmpTransp.setRendered(true);
-        txtRazSocEmpTransp.resetValue();
-        txtRazSocEmpTransp.setVisible(true);
-        beanSessionRegistrarGuia.setDisabRegisManif(false);
-        btnRegManif.setDisabled(false);
-        beanSessionRegistrarGuia.setVisibTxtRazSocProvTransBehav(true);
-        rucEmpTransp.resetValue();
-        //itBuscarManif.setRendered(false);
-        socGuiasManif.setRendered(false);
-        rucEmpTransp.setRendered(true);
-        beanSessionRegistrarGuia.setVisibRucEmpTrans(true);
-        beanSessionRegistrarGuia.setVisibSocChofer(true);
-        beanSessionRegistrarGuia.setVisibSocFlota(true);
-        socFlota.setRendered(true);
-        socChofer.setRendered(true);
-        txtMarcVehi.setRendered(true);
-        txtPlaca.setRendered(true);
-        txtConfigVehi.setRendered(true);
-        txtCertInsc.setRendered(true);
-        socGuiasManif.setRendered(false);
-        txtLicCondu.setRendered(true);
-        txtConductor.setRendered(true);
-        resetNewManif();
-        beanSessionRegistrarGuia.setFecManif(FechaUtiles.fechaActual());
-        beanSessionRegistrarGuia.setFletePactado(null);
-        beanSessionRegistrarGuia.setAdelanto(null);
-        beanSessionRegistrarGuia.setTipDoc(null);
-        beanSessionRegistrarGuia.setObserv(null);
-        beanSessionRegistrarGuia.setRucEmpSC(null);
-        beanSessionRegistrarGuia.setEmpresaSC(null);
-        txtMarcVehi.resetValue();
-        txtPlaca.resetValue();
-        txtConfigVehi.resetValue();
-        txtCertInsc.resetValue();
-        txtLicCondu.resetValue();
-        txtConductor.resetValue();
-        pboxDatosEmp.setText("Datos de Empresa Proveedora de Transporte");
-        Utils.addTargetMany(txtMarcVehi,txtPlaca,txtConfigVehi,txtCertInsc,txtLicCondu,txtConductor,socFlota,socChofer,
-                            itSaldo,txtFletePact,itIGV,itMontoFin,txtAdelanto,socGuiasManif,itDetraccion,btnRegManif);
-    }
-    
-    public void existenteManifiesto(){
-        resetNewManif();
-        beanSessionRegistrarGuia.setNidManifiesto(0);
-        beanSessionRegistrarGuia.setTransportePropio(false);
-        beanSessionRegistrarGuia.setLstGuiasManif(new ArrayList<BeanTRGuia>());
-        beanSessionRegistrarGuia.setPboxDatosTransVis(true);
-        beanSessionRegistrarGuia.setVisibTxtRazSocProvTrans2(true);
-        panelNuevoManif(true);
-        txtFecManif.setRendered(true);
-        txtFecManif.resetValue();
-        itCodManif.setRendered(true);
-        itCodManif.resetValue();
-        txtFletePact.setRendered(true);
-        itSaldo.setRendered(true);
-        itSaldo.resetValue();
-        itIGV.setRendered(true);
-        itIGV.resetValue();
-        itDetraccion.setRendered(true);
-        itDetraccion.resetValue();
-        itMontoFin.resetValue();
-        itMontoFin.setRendered(true);
-        socGuiasManif.setRendered(true);
-        itMontoFin.resetValue();
-        beanSessionRegistrarGuia.setDisabRegisManif(true);
-        btnRegManif.setDisabled(true);
-        beanSessionRegistrarGuia.setTxtTipDocuDisable(true);
-        beanSessionRegistrarGuia.setSaldo(0.0);
-        beanSessionRegistrarGuia.setFletePactado(0.0);
-        beanSessionRegistrarGuia.setAdelanto(0.0);
-        beanSessionRegistrarGuia.setMontoFinalVal(0.0);
-        beanSessionRegistrarGuia.setVisibRucEmpTrans(true);
-        beanSessionRegistrarGuia.setVisibSocChofer(true);
-        beanSessionRegistrarGuia.setDisabRegisManif(true);
-        beanSessionRegistrarGuia.setVisibSocFlota(true);
-        txtFletePact.resetValue();
-        txtAdelanto.setRendered(true);
-        txtAdelanto.resetValue();
-        tipoDocManif.setRendered(true);
-        txtObsManif.setRendered(true);
-        txtFletePact.setDisabled(true);
-        txtAdelanto.setDisabled(true);
-        tipoDocManif.setDisabled(true);
-        txtObsManif.setDisabled(true);
-    //    itBuscarManif.setRendered(true);
-        txtRazSocEmpTransp2.setRendered(true);
-        rucEmpTransp.setRendered(true);
-        txtRazSocEmpTransp2.resetValue();
-        rucEmpTransp.resetValue();
-        txtRazSocEmpTransp.setRendered(false);
-        txtRazSocEmpTransp.resetValue();
-        txtRazSocEmpTransp.setVisible(false);
-        beanSessionRegistrarGuia.setVisibTxtRazSocProvTransBehav(false);
-        socFlota.setRendered(true);
-        socFlota.setDisabled(true);
-        socChofer.setDisabled(true);
-        socFlota.resetValue();
-        socChofer.resetValue();
-        socChofer.setRendered(true);
-        beanSessionRegistrarGuia.setRendBuscManif(true);
-        beanSessionRegistrarGuia.setTxtFleteDisable(true);
-        beanSessionRegistrarGuia.setTxtAdelaDisable(true);
-        beanSessionRegistrarGuia.setTxtObsvDisable(true);
-        beanSessionRegistrarGuia.setLstChofers(null);
-        beanSessionRegistrarGuia.setLstFlotas(null);
-        beanSessionRegistrarGuia.setPboxDatosEmpTitulo("Datos de Empresa Proveedora de Transporte");
-        pboxDatosEmp.setText("Datos de Empresa Proveedora de Transporte");
-        txtMarcVehi.setRendered(true);
-        txtPlaca.setRendered(true);
-        txtConfigVehi.setRendered(true);
-        txtCertInsc.setRendered(true);
-        txtLicCondu.setRendered(true);
-        txtConductor.setRendered(true);
-        txtMarcVehi.resetValue();
-        txtPlaca.resetValue();
-        txtConfigVehi.resetValue();
-        txtCertInsc.resetValue();
-        txtLicCondu.resetValue();
-        txtConductor.resetValue();
-        if(beanSessionRegistrarGuia.isLlenarCombosAfterInsertManif() == true){
-            BeanManifiesto bManifiesto = getBeanSessionRegistrarGuia().getManifIngresado();
-            //this.setGuiasManif(this.llenarGuiasManif(bManifiesto.getNidManifiesto()));
-            beanSessionRegistrarGuia.setLstFlotas(this.llenarFlotasCombo(null,bManifiesto.getNidFlota()));
-            beanSessionRegistrarGuia.setCidFlota(bManifiesto.getNidFlota().toString());
-            beanSessionRegistrarGuia.setLstChofers(this.llenarChofersCombo(null,bManifiesto.getNidChof()));
-            beanSessionRegistrarGuia.setCidChofer(bManifiesto.getNidChof().toString());
-            beanSessionRegistrarGuia.setNidManifiesto(bManifiesto.getNidManifiesto());
-            txtFecManif.setValue(bManifiesto.getFechaManifiesto());
-            itCodManif.setValue(bManifiesto.getNidManifiesto());
-            txtAdelanto.setValue(bManifiesto.getNAdelanto());
-            txtFletePact.setValue(bManifiesto.getNFletePactado());
-            txtObsManif.setValue(bManifiesto.getCObservaciones());
-            itSaldo.setValue(bManifiesto.getNFletePactado() - bManifiesto.getNAdelanto());
-            txtRazSocEmpTransp2.setValue(beanSessionRegistrarGuia.getEmpresaSC());
-            rucEmpTransp.setValue(beanSessionRegistrarGuia.getRucEmpSC());
-            if(beanSessionRegistrarGuia.getFecManif() == null){
-                beanSessionRegistrarGuia.setFecManif(bManifiesto.getFechaManifiesto());
-                beanSessionRegistrarGuia.setFletePactado(bManifiesto.getNFletePactado());
-                beanSessionRegistrarGuia.setAdelanto(bManifiesto.getNAdelanto());
-                beanSessionRegistrarGuia.setTipDoc(bManifiesto.getCTipoDoc());
-                beanSessionRegistrarGuia.setObserv(bManifiesto.getCObservaciones());
-                beanSessionRegistrarGuia.setRucEmpSC(bManifiesto.getTrManifiesto().getCRuc());
-                beanSessionRegistrarGuia.setEmpresaSC(bManifiesto.getTrManifiesto().getCRazonSocial());
-            }
-        }else{
-            beanSessionRegistrarGuia.setEmpresaSC(null);
-            beanSessionRegistrarGuia.setRucEmpSC(null);
-        }
-        Utils.addTargetMany(txtConductor,txtMarcVehi,txtPlaca,txtConfigVehi,txtCertInsc,pboxDatosEmp,pboxManifiesto,txtLicCondu,
-                            txtFecManif,itCodManif,txtObsManif,txtRazSocEmpTransp,itIGV,txtRazSocEmpTransp2,itMontoFin,socFlota,
-                            itSaldo,socGuiasManif,txtFletePact,txtAdelanto,rucEmpTransp,socChofer,itDetraccion);
-    }
-    
-    public void transportePropio(){
-        panelNuevoManif(false);
-        beanSessionRegistrarGuia.setNidManifiesto(0);
-        beanSessionRegistrarGuia.setCidChofer("0");
-        beanSessionRegistrarGuia.setCidFlota("0");
-       // itBuscarManif.setRendered(false);
-        beanSessionRegistrarGuia.setVisibTxtRazSocProvTrans2(true);
-        beanSessionRegistrarGuia.setVisibSocFlota(true);
-        beanSessionRegistrarGuia.setVisibSocChofer(true);
-        resetNewManif();
-        beanSessionRegistrarGuia.setPboxDatosEmpVis(true);
-        beanSessionRegistrarGuia.setVisibRucEmpTrans(true);
-        beanSessionRegistrarGuia.setPboxDatosTransVis(true);
-        beanSessionRegistrarGuia.setDisabSocFlota(false);
-        beanSessionRegistrarGuia.setDisabSocChofer(false);
-        BeanEmpresa empresa = ln_C_SFEmpresasRemote.selectedEmpresa(new BigDecimal(5));
-        beanSessionRegistrarGuia.setEmpresaSC(empresa.getCRazonSocial());
-        beanSessionRegistrarGuia.setRucEmpSC(empresa.getCRuc());
-        txtRazSocEmpTransp2.setRendered(true);
-        txtRazSocEmpTransp2.setValue(empresa.getCRazonSocial());
-        txtRazSocEmpTransp.setRendered(false);
-        txtRazSocEmpTransp.resetValue();
-        txtRazSocEmpTransp.setVisible(false);
-        beanSessionRegistrarGuia.setVisibTxtRazSocProvTransBehav(false);
-        rucEmpTransp.setValue(empresa.getCRuc());
-        rucEmpTransp.setRendered(true);
-        pboxDatosEmp.setVisible(true);
-        beanSessionRegistrarGuia.setPboxDatosEmpTitulo("Transporte Lubal");
-        pboxDatosEmp.setText("Transporte Lubal");
-        pboxDatosTrans.setVisible(true);
-        socFlota.setDisabled(false);
-        socChofer.setDisabled(false);
-        socFlota.setRendered(true);
-        socChofer.setRendered(true);
-        txtMarcVehi.resetValue();
-        txtPlaca.resetValue();
-        txtConfigVehi.resetValue();
-        txtCertInsc.resetValue();
-        txtLicCondu.resetValue();
-        txtConductor.resetValue();
-        txtMarcVehi.setRendered(true);
-        txtPlaca.setRendered(true);
-        txtConfigVehi.setRendered(true);
-        txtCertInsc.setRendered(true);
-        socGuiasManif.setRendered(false);
-        txtLicCondu.setRendered(true);
-        txtConductor.setRendered(true);
-        beanSessionRegistrarGuia.setLstFlotas(this.llenarFlotasCombo(5,null));
-        beanSessionRegistrarGuia.setLstChofers(this.llenarChofersCombo(5,null));
-        Utils.addTargetMany(txtRazSocEmpTransp2,rucEmpTransp,socFlota,pboxDatosTrans,socChofer,pboxDatosEmp,txtMarcVehi,
-                            socGuiasManif,txtPlaca,txtConfigVehi,txtCertInsc,txtLicCondu,txtConductor,txtRazSocEmpTransp);
-    }
-    
-    public void resetNewManif(){
-        txtFecManif.resetValue();
-        itCodManif.resetValue();
-        txtAdelanto.resetValue();
-        txtFletePact.resetValue();
-        itSaldo.resetValue();
-        itIGV.resetValue();
-        itDetraccion.resetValue();
-        itMontoFin.resetValue();
-        tipoDocManif.resetValue();
-        txtObsManif.resetValue();
-        Utils.addTargetMany(txtFecManif,itCodManif,tipoDocManif,txtFletePact,txtAdelanto,txtObsManif,itDetraccion);  
-    }
-    
-    public void panelNuevoManif(boolean estado){
-        getBeanSessionRegistrarGuia().setEstadoFormManif(estado);
-        pboxDatosEmp.setVisible(estado);
-        pboxDatosTrans.setVisible(estado);
-        pboxManifiesto.setVisible(estado);
-        getBeanSessionRegistrarGuia().setPboxDatosEmpVis(estado);
-        getBeanSessionRegistrarGuia().setPboxDatosTransVis(estado);
-        getBeanSessionRegistrarGuia().setPboxManifiestoVis(estado);
-        Utils.addTargetMany(pboxDatosEmp,pboxDatosTrans,pflNewManif,pboxManifiesto);
-    }
-
     public void changeDireccRemi(ValueChangeEvent vce) {
         try{
             String val = vce.getNewValue().toString();
@@ -1721,28 +1034,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         }catch(Exception e){
             Utils.throwError_Aux(ctx,"Ingrese un valor numerico positivo mayor a 0",4);
         }
-    }
-    
-    public void cambioFecEmision(ValueChangeEvent vce) {
-       /* try{
-            Object oFecha = vce.getNewValue();
-            Date fec = (Date) oFecha;
-            String error = ln_T_SFGuiaRemote.validarFechasEmiDesp(fec,getBeanSessionRegistrarGuia().getFechaDespacho());
-            if(!error.equals("000")){
-                if(error.equals("LUB-0014")){
-                    Utils.throwError_Aux(ctx,"La fecha de emision no puede ser despues que la de despacho",4);
-                }
-                if(error.equals("LUB-0015")){
-                    Utils.throwError_Aux(ctx,"La fecha de emision no puede ser menos de 8 dias que la fecha de despacho",4);
-                }
-                getBeanSessionRegistrarGuia().setFechaEmision(FechaUtiles.fechaActual());
-                fecEmision.resetValue();
-                Utils.addTarget(fecEmision);
-            }
-        }catch(Exception e){
-            Utils.throwError_Aux(ctx,"Error al seleccionar fecha",4);
-        }*/
-    }
+    }  
     
     public void checkConformidad(ValueChangeEvent vce) {
         try{
@@ -3572,33 +2864,7 @@ public class Frm_registrar_guia{//NUEVO CODIGO
     public Date getFecha_Maxima() {
         return fecha_Maxima;
     }
-
-
-  /*  public void setPopupSeleccionarManifiesto(RichPopup p1) {
-        this.popupSeleccionarManifiesto = p1;
-    }
-
-    public RichPopup getPopupSeleccionarManifiesto() {
-        return popupSeleccionarManifiesto;
-    }
-
-    public void setPfl12(RichPanelFormLayout pfl12) {
-        this.pfl12 = pfl12;
-    }
-
-    public RichPanelFormLayout getPfl12() {
-        return pfl12;
-    }
-
-    public void setCb5(RichCommandButton cb5) {
-        this.btnAsignarManifiesto = cb5;
-    }
-
-    public RichCommandButton getCb5() {
-        return btnAsignarManifiesto;
-    }*/
-
-
+    
     public void setInputManifiesto(RichInputText inputManifiesto) {
         this.inputManifiesto = inputManifiesto;
     }

@@ -88,12 +88,12 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                                                String nEstadoGuia,int nidOS,String detOS,String hasFactura,String codFactura,
                                                int nEstadoFactura,BigDecimal nidParty,String descCidGuiaRemi_ITEM,String descCidGuia_ITEM){
         try{      
-            List<BeanTRGuia> getListaGuias = getListaGuias(bdL_C_SFGuiaLocal.findGuiasByAttributes_BD(cidGuia,fecEmisMin,fecEmisMax, fecDespMin, 
+           return getListaGuias(bdL_C_SFGuiaLocal.findGuiasByAttributes_BD(cidGuia,fecEmisMin,fecEmisMax, fecDespMin, 
                                                 fecDespMax, empCliente, empProvCarga, estGuia,
                                                 hasManif, nidManif, prov, cObservaciones,
                                                 nEstadoGuia, nidOS, detOS, hasFactura, codFactura,
                                                 nEstadoFactura, nidParty, descCidGuiaRemi_ITEM, descCidGuia_ITEM));
-            return getListaGuias;
+           
         }catch(Exception e){
             List<BeanTRGuia> getListaGuias = new ArrayList<BeanTRGuia>();
             return getListaGuias;
@@ -168,6 +168,16 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",entidad.getCConformidad());
             beanGuia.setDescConformidad(constr.getCDescrip());
             beanGuia.setCConformidad(entidad.getCConformidad());
+            if(entidad.getImgGuiaProv()!=null){
+                beanGuia.setHasImgGuia("SI");
+            }else{
+                beanGuia.setHasImgGuia("NO");
+                }            
+            if(entidad.getImgGuiaProvedor()!=null){
+                beanGuia.setHasImgGuiaProv("SI");
+            }else{
+                beanGuia.setHasImgGuiaProv("NO");
+                }            
             /***Nuevo para Direcciones**/   
             if(entidad.getNidDireccionDestino()!=null){
             beanGuia.setCDireccionDestino(ln_C_SFDireccionLocal.getDescripcionDirecByNid(entidad.getNidDireccionDestino()));

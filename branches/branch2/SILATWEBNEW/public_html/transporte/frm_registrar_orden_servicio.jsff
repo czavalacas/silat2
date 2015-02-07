@@ -222,10 +222,17 @@
                               binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.txtDescBien}"
                               value="#{backingBeanScope.backing_frm_registrar_orden_servicio.CDescItem}"
                               labelStyle="color: rgb(19,76,149);font-weight:800;"/>
-                <af:inputText label="Guía Remitente" id="txtGuiRem"  rows="3"
+                                <af:selectBooleanCheckbox text="Activar" label="Guia Remitente" id="sbc1"
+                                                          valueChangeListener="#{backingBeanScope.backing_frm_registrar_orden_servicio.activarSegunGuiaRemitente}"
+                                                          immediate="true" autoSubmit="true"
+                                                          binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.checkSegunGuiaRem}"
+                                                          value="#{beanSessionScopedRegistrarOS.valueCheckBoxSegunGuiaRem}"/>
+                                
+                                <af:inputText label="Guía Remitente" id="txtGuiRem"  rows="3"
                               binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.txtGuiRem}"
                               value="#{backingBeanScope.backing_frm_registrar_orden_servicio.CCidGuiaRemitente}"
-                              labelStyle="color: rgb(19,76,149);font-weight:800;"/>
+                              labelStyle="color: rgb(19,76,149);font-weight:800;"
+                                              disabled="#{beanSessionScopedRegistrarOS.disableTxtSegunGuiaRem}"/>
                 
                 <af:commandButton text="Registrar" id="btnRegistrarItem"
                                   binding="#{backingBeanScope.backing_frm_registrar_orden_servicio.btnRegistrarItem}"

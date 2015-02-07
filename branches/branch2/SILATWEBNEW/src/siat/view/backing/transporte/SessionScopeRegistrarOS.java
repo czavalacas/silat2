@@ -63,6 +63,8 @@ public class SessionScopeRegistrarOS {
     private String rucRemi; 
     private String cDetalleOS;
     private BigDecimal nidPartyOS;    
+    private boolean disableTxtSegunGuiaRem = true;
+    private boolean valueCheckBoxSegunGuiaRem = false;
     
     public void setLstEmpresasCliente(List<BeanEmpresa> lstEmpresasCliente) {
         this.lstEmpresasCliente = lstEmpresasCliente;
@@ -441,4 +443,19 @@ public class SessionScopeRegistrarOS {
         return nidPartyOS;
     }
 
+    public void setDisableTxtSegunGuiaRem(boolean disableTxtSegunGuiaRem) {
+        this.disableTxtSegunGuiaRem = disableTxtSegunGuiaRem;
+    }
+
+    public boolean isDisableTxtSegunGuiaRem() {
+        return disableTxtSegunGuiaRem;
+    }
+
+    public void setValueCheckBoxSegunGuiaRem(boolean valueCheckBoxSegunGuiaRem) {
+        this.valueCheckBoxSegunGuiaRem = valueCheckBoxSegunGuiaRem;
+    }
+
+    public boolean isValueCheckBoxSegunGuiaRem() {
+        return valueCheckBoxSegunGuiaRem;
+    }
 }

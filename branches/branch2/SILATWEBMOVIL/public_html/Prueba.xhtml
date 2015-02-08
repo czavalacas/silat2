@@ -66,13 +66,25 @@
                 }
     if(fileExtension == "jpg" || fileExtension == "png" || fileExtension == "jpeg" || fileExtension == "PNG" || fileExtension == "JPG" || fileExtension == "JPEG"){     
                 if (input.files || input.files[0]) {
-                if(3000000>file.size){
+                if(3000000000>file.size){
                   var reader = new FileReader();
                   reader.onload = function (e) {
+                  
+                  
                       var x = document.getElementById("img_prev").width;
                       var y = document.getElementById("img_prev").height;
                       $('#img_prev').attr('src', e.target.result).width(500).height(250);
-                  document.getElementById('byte64').value = ''+e.target.result;
+                      
+                      var c = document.getElementById("myCanvas");
+                      var ctx = c.getContext("2d");
+                      var img = document.getElementById("img_prev");
+                      ctx.drawImage(img, 0, 0, 330, 330);
+                            
+                      var dataURL = c.toDataURL("image/jpg");
+                      
+                      document.getElementById('byte64').value = ''+dataURL;
+
+                      
                   };
                   reader.readAsDataURL(input.files[0]);
                   document.getElementById('alert').innerHTML= 'Imagen Perfecta!';
@@ -135,6 +147,8 @@
             
         <b:modal id="amodal" title="Detalle de Guia de Remision" rendered="true">
             <form id="img" action="servlet"  method="POST">
+            <canvas id="myCanvas" width="340" height="340" style="border:1px solid #d3d3d3;display:none"/>
+            
             <input type="text" style="display:none" name="guiag" value="#{frm_WebMovil.idGuia}"/>
             <input type="text" style="display:none" name="manifg" value="${frm_WebMovil.nidManifGuia}"/>
             <input value="" type="text" style="visibility:hidden;width:0px;height:0px;margin-top:-20px" id="byte64" name="byte64"/>

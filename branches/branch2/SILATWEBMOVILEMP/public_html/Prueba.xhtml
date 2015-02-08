@@ -286,18 +286,107 @@
                 var file = document.getElementById('file').files[0];
                 if(input.files || input.files[0]){
                 if (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg") {
-                        if(500000>file.size){
+                        if(file.size>900000){
                             var reader = new FileReader();              
                             reader.onload = function (e) {
                             var x = document.getElementById("img_prev").width;
                             var y = document.getElementById("img_prev").height;
                             $('#img_prev').attr('src', e.target.result).width(500).height(250);
                             document.getElementById("img_prev").style.visibility="visible";
-                            
-                            document.getElementById('byte64').value = ''+e.target.result;
+
                             $('#img_prev').attr('src', e.target.result);
+                            
+                            var c = document.getElementById("myCanvas");
+                            var ctx = c.getContext("2d");
+                            var img = document.getElementById("img_prev");
+                            ctx.drawImage(img, 0, 0, 330, 330);
+                            
+                            var dataURL = c.toDataURL("image/jpg");
+                            document.getElementById('byte64').value = ''+dataURL; 
                         }
-                    }else{
+                    }
+                    else if(file.size>830000){
+                            var reader = new FileReader();              
+                            reader.onload = function (e) {
+                            var x = document.getElementById("img_prev").width;
+                            var y = document.getElementById("img_prev").height;
+                            $('#img_prev').attr('src', e.target.result).width(500).height(250);
+                            document.getElementById("img_prev").style.visibility="visible";
+
+                            $('#img_prev').attr('src', e.target.result);
+                            
+                            var c = document.getElementById("myCanvas");
+                            var ctx = c.getContext("2d");
+                            var img = document.getElementById("img_prev");
+                            ctx.drawImage(img, 0, 0, 330, 330);
+                            
+                            var dataURL = c.toDataURL("image/jpg");
+                            
+                            document.getElementById('byte64').value = ''+dataURL;
+                        }
+                    }
+                    
+                    else if(file.size > 600000){
+                            var reader = new FileReader();              
+                            reader.onload = function (e) {
+                            var x = document.getElementById("img_prev").width;
+                            var y = document.getElementById("img_prev").height;
+                            $('#img_prev').attr('src', e.target.result).width(500).height(250);
+                            document.getElementById("img_prev").style.visibility="visible";
+
+                            $('#img_prev').attr('src', e.target.result);
+                            
+                            var c = document.getElementById("myCanvas");
+                            var ctx = c.getContext("2d");
+                            var img = document.getElementById("img_prev");
+                            ctx.drawImage(img, 0, 0, 330, 330);
+                            
+                            var dataURL = c.toDataURL("image/jpg");
+                            
+                            document.getElementById('byte64').value = ''+dataURL; 
+                        }
+                    }
+                    
+                    else if(file.size > 380000){
+                            var reader = new FileReader();              
+                            reader.onload = function (e) {
+                            var x = document.getElementById("img_prev").width;
+                            var y = document.getElementById("img_prev").height;
+                            $('#img_prev').attr('src', e.target.result).width(500).height(250);
+                            document.getElementById("img_prev").style.visibility="visible";
+
+                            $('#img_prev').attr('src', e.target.result);
+                            
+                            var c = document.getElementById("myCanvas");
+                            var ctx = c.getContext("2d");
+                            var img = document.getElementById("img_prev");
+                            ctx.drawImage(img, 0, 0, 330, 330);
+                            
+                            var dataURL = c.toDataURL("image/jpg");
+                            
+                            document.getElementById('byte64').value = ''+dataURL;
+                            
+                        }
+                    }
+                    else{
+                        var reader = new FileReader();              
+                            reader.onload = function (e) {
+                            var x = document.getElementById("img_prev").width;
+                            var y = document.getElementById("img_prev").height;
+                            $('#img_prev').attr('src', e.target.result).width(500).height(250);
+                            document.getElementById("img_prev").style.visibility="visible";
+
+                            $('#img_prev').attr('src', e.target.result);
+                            
+                            var c = document.getElementById("myCanvas");
+                            var ctx = c.getContext("2d");
+                            var img = document.getElementById("img_prev");
+                            ctx.drawImage(img, 0, 0, 330, 330);
+                            
+                            var dataURL = c.toDataURL("image/jpg");
+                            document.getElementById('byte64').value = ''+dataURL; 
+
+                            }
                     }
             
                     reader.readAsDataURL(input.files[0]);
@@ -1107,7 +1196,11 @@
         <h:form id="modRegImg" style="text-align:center">
             <input type="file" onchange="readURL(this);" value="" name="fileName" id="file"/>
             <img style="visibility:hidden;width:0px;height:0px;margin-top:10px" id="img_prev" src="#" alt="your image"/>
+            
+            <canvas id="myCanvas" width="340" height="340" style="border:1px solid #d3d3d3;display:none"/>
+            
             <input type="text" name="byte64" id="byte64" style="visibility:hidden"/>
+            
             <b:inputText style="color:#000000;" 
                          value="#{frm_WebMovilEmp.descripcionImagen}">
                 <f:facet name="prepend">

@@ -81,8 +81,7 @@
                                       binding="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecEmision}"
                                       columns="10" showRequired="true" required="true"
                                       disabled="false"
-                                      value="#{sessionScope.beanSessionRegistrarGuia.fechaEmision}"
-                                      valueChangeListener="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.cambioFecEmision}"
+                                      value="#{sessionScope.beanSessionRegistrarGuia.fechaEmision}"                                     
                                       autoSubmit="true" labelStyle="text-align: left;" >
                                   <!--    minValue="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Minima}"
                                       maxValue="#{backingBeanScope.backing_transporte_guia_frm_registrar_guia.fecha_Maxima}" -->

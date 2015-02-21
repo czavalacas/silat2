@@ -24,4 +24,6 @@ public interface LN_T_SFManifiestoLocal {
     void depurar(Object o);
     BeanManifiesto anularManifiesto(int nidManif);
     String cambiarFechaManifiestoPermiso56(int nidManif,Date fechaManif);
+    
+    String actualizarManifiesto(String observ, double fPactado,double nAdelanto, int nidMan, int nidFlota, int nidChof);
 }

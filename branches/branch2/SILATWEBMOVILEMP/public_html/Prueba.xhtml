@@ -28,6 +28,7 @@
             document.getElementById("lastForm").style.display="none";
             document.getElementById("detOrden").style.display="none";
             document.getElementById("manifiestoInfo").style.display="none";
+            document.getElementById("manifiestoEdit").style.display="none";
                 }
           function ocultarForm(){
               document.getElementById("ordenServicio").style.display="none";
@@ -46,6 +47,7 @@
               document.getElementById("lastForm").style.display="none";
               document.getElementById("detOrden").style.display="none";
               document.getElementById("manifiestoInfo").style.display="none";
+              document.getElementById("manifiestoEdit").style.display="none";
           }
           function mostrarForm(){
               document.getElementById("subManifiesto").style.display="none";
@@ -64,6 +66,7 @@
               document.getElementById("lastForm").style.display="none";
               document.getElementById("detOrden").style.display="none";
               document.getElementById("manifiestoInfo").style.display="none";
+              document.getElementById("manifiestoEdit").style.display="none";
           }
           function mostrarFormregManif(){
               document.getElementById("subManifiesto").style.display="block";
@@ -80,7 +83,27 @@
               document.getElementById("lastForm").style.display="none";
               document.getElementById("detOrden").style.display="none";
               document.getElementById("manifiestoInfo").style.display="none";
+              document.getElementById("manifiestoEdit").style.display="none";
           }
+          
+          function mostrarFormeditManif(){
+              document.getElementById("subManifiesto").style.display="none";
+              document.getElementById("manifiesto").style.display="none";
+              document.getElementById("regManifiesto0").style.display="none";
+              document.getElementById("regManifiesto").style.display="none";
+              document.getElementById("regManifiesto1").style.display="none";
+              document.getElementById("regManifiesto2").style.display="none";
+              document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiestoGuardar").style.display="none";
+              document.getElementById("modal-launcher").style.display="none";
+              document.getElementById("abrirModalFlotas").style.display="none";
+              document.getElementById("abrirModalChoferes").style.display="none";
+              document.getElementById("lastForm").style.display="none";
+              document.getElementById("detOrden").style.display="none";
+              document.getElementById("manifiestoInfo").style.display="none";
+              document.getElementById("manifiestoEdit").style.display="block";
+          }
+          
             function mostrarFormregOrds(){
               document.getElementById("subManifiesto").style.display="none";
               document.getElementById("manifiesto").style.display="none";
@@ -98,6 +121,7 @@
               document.getElementById("detOrden").style.display="block";
               document.getElementById("lastForm").style.display="none";
               document.getElementById("manifiestoInfo").style.display="none";
+              document.getElementById("manifiestoEdit").style.display="none";
           }
           
         function mostrarFormCreaGuia(){
@@ -118,6 +142,7 @@
               document.getElementById("lastForm").style.display="block";
               document.getElementById("detOrden").style.display="none";
               document.getElementById("manifiestoInfo").style.display="none";
+              document.getElementById("manifiestoEdit").style.display="none";
           }
           function mostrarFormInfoManif(){
               document.getElementById("subManifiesto").style.display="none";
@@ -137,6 +162,8 @@
               document.getElementById("lastForm").style.display="none";
               document.getElementById("detOrden").style.display="none";
               document.getElementById("manifiestoInfo").style.display="block";
+              document.getElementById("manifiestoEdit").style.display="none";
+              document.getElementById("manifiestoEdit").style.display="none";
           }
           
           
@@ -673,7 +700,7 @@
      <ul class="pricing-table">
      </ul>
         <b:commandButton value="#{row.detalleWebMovilEMPManifiesto}" action="#{frm_WebMovilEmp.traeInfoManifiessto}" onclick="mostrarFormInfoManif();" ajax="true" style="background-color:#0087B3;width:100%;margin-top:-20px;color:#ffffff;font-weight: bold;"
-                          update="manifiestoInfo" >                                                                                                                            
+                          update="manifiestoInfo manifiestoEdit" >                                                                                                                            
                         <f:setPropertyActionListener value="#{row.nidManifiesto}"
                                                      target="#{frm_WebMovilEmp.manifiestoElegido}"/>
      </b:commandButton>
@@ -937,6 +964,9 @@
     </h:form>
     
     <h:form id="manifiestoInfo">
+    
+    <b:commandButton value="Editar Manifiesto" onclick="mostrarFormeditManif();return false;" icon="pencil" style="width:100%;margin-bottom:10px;border-color : #696b72;color:white;background-color:#6888e7"/>
+    
         <b:inputText style="color:#000000;" disabled="true"
                          value="#{frm_WebMovilEmp.fechaMnifiestoInfo}">
                 <f:facet name="prepend">
@@ -964,6 +994,20 @@
                     <h:outputText value="Adelanto"/>
                 </f:facet>
         </b:inputText>
+        
+        <b:inputText style="color:#000000;" disabled="true"
+                         value="#{frm_WebMovilEmp.flotaManifiestoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Flota"/>
+                </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="color:#000000;" disabled="true"
+                         value="#{frm_WebMovilEmp.choferManifiestoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Chofer"/>
+                </f:facet>
+        </b:inputText>
         Guias Relacionadas
         <ui:repeat value="#{frm_WebMovilEmp.lstGuiasdeManifiesto}" var="row" varStatus="var">
                 <b:alert severity="info">
@@ -978,6 +1022,75 @@
                     </p>
                 </b:alert>
         </ui:repeat>
+    </h:form>
+    
+    
+    
+    <h:form id="manifiestoEdit" style="display:none">
+    
+    <div style="background-color:#DDDDDD;text-align:center;margin-bottom:10px">
+       <h:outputText value="Edicion de Manifiesto" style="font-size: 180%;"/>
+       </div>
+    
+        <b:inputText style="color:#000000;" disabled="true"
+                         value="#{frm_WebMovilEmp.fechaMnifiestoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Fecha"/>
+                </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="color:#000000;"
+                         value="#{frm_WebMovilEmp.observacionesInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Observacion"/>
+                </f:facet>
+        </b:inputText>
+    
+        <b:inputText style="color:#000000;"
+                         value="#{frm_WebMovilEmp.fletePactadoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Flete Pactado"/>
+                </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="color:#000000;"
+                         value="#{frm_WebMovilEmp.adelantoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Adelanto"/>
+                </f:facet>
+        </b:inputText>
+        
+        <b:inputText style="color:#000000;" disabled="true"
+                         value="#{frm_WebMovilEmp.flotaManifiestoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Flota"/>
+                </f:facet>
+        </b:inputText>
+        <br/>
+        Elegir Nueva Flota
+        <h:selectOneMenu value="#{frm_WebMovilEmp.flotaElegidaEditManif}"> 
+                    <f:selectItem itemLabel="Select One" itemValue="0" />
+                    <f:selectItems value="#{frm_WebMovilEmp.listaFlotaEditManif}" var="row" 
+                                   itemLabel="#{row.placaWebMovil}" itemValue="#{row.nidFlota}"/>
+        </h:selectOneMenu>
+        
+        <b:inputText style="color:#000000;" disabled="true"
+                         value="#{frm_WebMovilEmp.choferManifiestoInfo}">
+                <f:facet name="prepend">
+                    <h:outputText value="Chofer"/>
+                </f:facet>
+        </b:inputText>
+        <br/>
+        Elegir Nuevo Chofer
+        <h:selectOneMenu value="#{frm_WebMovilEmp.choferElegidoEditManif}"> 
+                    <f:selectItem itemLabel="Select One" itemValue="0" />
+                    <f:selectItems value="#{frm_WebMovilEmp.listaChoferEditManif}" var="row" 
+                                   itemLabel="#{row.nombres}" itemValue="#{row.nidChofer}"/>
+        </h:selectOneMenu>
+        
+        <b:commandButton action="#{frm_WebMovilEmp.editarManifiesto}" ajax="true" value="Guardar" style="font-size:15px;background-color: #6888E7; width: 100%;height:50px;border-color : #000000;font-size: 110%;color:#ffffff"
+                     icon="save" iconAlign="right"/>
+        
     </h:form>
     
     

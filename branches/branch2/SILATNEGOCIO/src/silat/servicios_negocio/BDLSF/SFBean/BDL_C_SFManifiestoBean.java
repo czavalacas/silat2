@@ -196,7 +196,7 @@ public class BDL_C_SFManifiestoBean implements BDL_C_SFManifiestoRemote,
     
     public List<TRManifiesto> findManifiestobyEstadoporAsignar(){
         String ejbQl = "SELECT m " +
-                       "FROM TRManifiesto m " +
+                       "FROM TRManifiesto m JOIN FETCH m.trManifiesto " +
                        "WHERE 1 = 1 " +
                        "AND m.estadoManifiestoNegocio = 3";
         return em.createQuery(ejbQl).getResultList();

@@ -12,4 +12,6 @@ public interface BDL_T_ManifiestoRemote {
 
     void removeTRManifiesto(TRManifiesto TRManifiesto);
     TRManifiesto registrarManifiesto(TRManifiesto eManifiesto);
+    
+    String actualizarManifiesto(String observ, double fPactado,double nAdelanto, int nidMan, int nidFlota, int nidChof);
 }

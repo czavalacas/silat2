@@ -1,5 +1,7 @@
 package silat.servicios_negocio.BDLSF.SFBean;
 
+import java.math.BigDecimal;
+
 import javax.annotation.Resource;
 
 import javax.ejb.SessionContext;
@@ -59,5 +61,24 @@ public class BDL_T_ManifiestoBean implements BDL_T_ManifiestoRemote,
             return null;
         }
         return eManifiesto;
+    }
+    
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public String actualizarManifiesto(String observ, double fPactado,double nAdelanto, int nidMan, int nidFlota, int nidChof){
+        String ejbQL =  "UPDATE TRMMANI man " +
+                          "SET man.C_OBSERVACIONES = '"+observ+"', " +
+                          "man.N_FLETE_PACTADO = "+fPactado+", "+
+                          "man.N_ADELANTO = "+nAdelanto+" ";
+                          
+        if(nidFlota != 0){
+            ejbQL+=",man.NID_FLOTA = "+nidFlota+" ";
+        }
+        if(nidChof != 0){
+            ejbQL+=",man.NID_CHOF = "+nidChof+" ";
+        }
+        ejbQL+=" WHERE man.NID_MANIFIESTO = "+nidMan;
+                          
+         em.createNativeQuery(ejbQL).executeUpdate();
+        return null;      
     }
 }

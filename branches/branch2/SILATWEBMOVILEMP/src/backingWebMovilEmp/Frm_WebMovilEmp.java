@@ -203,6 +203,8 @@ public class Frm_WebMovilEmp {
     private String fletePactadoInfo;
     private String adelantoInfo;
     private String observacionesInfo;
+    private String choferManifiestoInfo;
+    private String flotaManifiestoInfo;
     
     private String nidUmedida;
     private String cantidadNewItem;
@@ -216,7 +218,13 @@ public class Frm_WebMovilEmp {
     
     private String mensajeManifiesto = "";
     
-
+    //EDIT MANIFIESTO
+    private String nidManifiestoEdit;
+    private String flotaElegidaEditManif;
+    private String choferElegidoEditManif;
+    
+    private List<BeanChofer> listaChoferEditManif = new ArrayList<BeanChofer>();
+    private List<BeanFlota> listaFlotaEditManif = new ArrayList<BeanFlota>();
 
     public Frm_WebMovilEmp() {
         try {
@@ -352,6 +360,29 @@ public class Frm_WebMovilEmp {
         setFletePactadoInfo(manif.get(0).getNFletePactado()+"");
         setAdelantoInfo(manif.get(0).getNAdelanto()+"");
         setObservacionesInfo(manif.get(0).getCObservaciones());
+        int ma = manif.get(0).getTrManifiesto().getNidParty().intValueExact();
+        
+        int nidChofer = manif.get(0).getNidChof();
+        int nidFlota = manif.get(0).getNidFlota();
+        
+        List<BeanChofer> listaChof = ln_C_SFChoferRemote.findChofersByAttr_LN(null, nidChofer);
+        List<BeanFlota> listaFlot = ln_C_SFFlotaRemote.findFlotasByAttr_LN(null, nidFlota);
+        
+        setListaChoferEditManif(ln_C_SFChoferRemote.traerChoferesPorEmpresa(ma));
+        for(int i = 0;i <getListaChoferEditManif().size();i++){
+            if(listaChof.get(0).getLicencia().equals(getListaChoferEditManif().get(i).getLicencia())){
+                getListaChoferEditManif().remove(i);
+            }
+        }
+        setListaFlotaEditManif(ln_C_SFFlotaRemote.getFlotasPorEmpresa(ma));
+        for(int i = 0;i <getListaFlotaEditManif().size();i++){
+            if(listaFlot.get(0).getCPlaca().equals(getListaFlotaEditManif().get(i).getCPlaca())){
+                getListaFlotaEditManif().remove(i);
+            }
+        }
+        
+        setFlotaManifiestoInfo(listaFlot.get(0).getCPlaca());
+        setChoferManifiestoInfo(listaChof.get(0).getNombres());
         
         setLstGuiasdeManifiesto(ln_C_SFGuiaRemote.getGuiasByManifiesto_LN(g));
         
@@ -427,7 +458,7 @@ public class Frm_WebMovilEmp {
         Date fechaEmision = getFechaEmis();
         Date fechaDespacho = getFechaTrans();
             
-        Date fechaActual = new Date();
+/*         Date fechaActual = new Date();
             if(fechaEmision.before(fechaActual)){
                 String g = "";
                 int i = Integer.parseInt(g);
@@ -447,7 +478,7 @@ public class Frm_WebMovilEmp {
             if(getComentarioGuia().trim().equals("")){
                 String g = "";
                 int i = Integer.parseInt(g);
-            }
+            } */
             
         int nidRemitente = Integer.parseInt(nidRemitenteElegido);
         int nidOS = Integer.parseInt(ordenServElegida);
@@ -537,6 +568,66 @@ public class Frm_WebMovilEmp {
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("creaGuia");
         return "";
     }
+    
+    public String editarManifiesto(){
+        boolean entro = true;
+        if(getObservacionesInfo().trim().equals("")){
+            entro = false;
+        }
+        if(getFletePactadoInfo().trim().equals("")){
+            if(!isNumber(getFletePactado().trim())){
+                entro = false;  
+            }
+        }
+        if(getAdelantoInfo().trim().equals("")){
+            if(!isNumber(getAdelantoInfo().trim())){
+                entro = false;  
+            }
+        }
+        
+        if(entro){
+            int f = Integer.parseInt(getFlotaElegidaEditManif());
+            int c = Integer.parseInt(getChoferElegidoEditManif());
+            double fp = Double.parseDouble(getFletePactadoInfo());
+            double na = Double.parseDouble(getAdelantoInfo());
+            int nm = Integer.parseInt(getManifiestoElegido());
+            ln_T_SFManifiestoRemote.actualizarManifiesto(getObservacionesInfo(), fp, na, nm, f, c);
+            
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ExternalContext extContext = ctx.getExternalContext();
+            String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/faces/Prueba.xhtml"));
+            try {
+                extContext.redirect(url);
+            } catch (IOException ioe) {
+                
+            }
+        }
+        
+        return "";
+    }
+    
+    public boolean isNumber(String number){
+            boolean result = true;
+            try{
+                Integer.parseInt(number);
+                result = true;
+            }catch(Exception e){
+                result = false;
+            }
+            return result;
+        }
+        
+        public boolean isLetter(String letter){
+            boolean result = true;
+            char[] chars = letter.toCharArray();
+
+            for (char c : chars) {
+                if(!Character.isLetter(c)) {
+                    return false;
+                }
+            }
+            return true;
+        }
     
     public String traeInfoDireccionDestino(){
         String h = nidDireccionDestino;
@@ -1589,5 +1680,61 @@ public class Frm_WebMovilEmp {
 
     public String getNidImg() {
         return nidImg;
+    }
+
+    public void setChoferManifiestoInfo(String choferManifiestoInfo) {
+        this.choferManifiestoInfo = choferManifiestoInfo;
+    }
+
+    public String getChoferManifiestoInfo() {
+        return choferManifiestoInfo;
+    }
+
+    public void setFlotaManifiestoInfo(String flotaManifiestoInfo) {
+        this.flotaManifiestoInfo = flotaManifiestoInfo;
+    }
+
+    public String getFlotaManifiestoInfo() {
+        return flotaManifiestoInfo;
+    }
+
+    public void setFlotaElegidaEditManif(String flotaElegidaEditManif) {
+        this.flotaElegidaEditManif = flotaElegidaEditManif;
+    }
+
+    public String getFlotaElegidaEditManif() {
+        return flotaElegidaEditManif;
+    }
+
+    public void setChoferElegidoEditManif(String choferElegidoEditManif) {
+        this.choferElegidoEditManif = choferElegidoEditManif;
+    }
+
+    public String getChoferElegidoEditManif() {
+        return choferElegidoEditManif;
+    }
+
+    public void setNidManifiestoEdit(String nidManifiestoEdit) {
+        this.nidManifiestoEdit = nidManifiestoEdit;
+    }
+
+    public String getNidManifiestoEdit() {
+        return nidManifiestoEdit;
+    }
+
+    public void setListaChoferEditManif(List<BeanChofer> listaChoferEditManif) {
+        this.listaChoferEditManif = listaChoferEditManif;
+    }
+
+    public List<BeanChofer> getListaChoferEditManif() {
+        return listaChoferEditManif;
+    }
+
+    public void setListaFlotaEditManif(List<BeanFlota> listaFlotaEditManif) {
+        this.listaFlotaEditManif = listaFlotaEditManif;
+    }
+
+    public List<BeanFlota> getListaFlotaEditManif() {
+        return listaFlotaEditManif;
     }
 }

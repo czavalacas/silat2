@@ -164,6 +164,13 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
         eManifiesto = bdL_T_ManifiestoLocal.registrarManifiesto(eManifiesto);
     }
     
+    public String actualizarManifiesto(String observ, double fPactado,double nAdelanto, int nidMan, int nidFlota, int nidChof){
+        bdL_T_ManifiestoLocal.actualizarManifiesto(observ, fPactado, nAdelanto, nidMan, nidFlota, nidChof);
+        return "";
+    }
+        
+    
+    
     public void depurar(Object o){
         System.out.println(o);
     }

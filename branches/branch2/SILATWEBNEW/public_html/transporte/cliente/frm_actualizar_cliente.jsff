@@ -386,7 +386,7 @@
                                               binding="#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.txtLicencia}"
                                               required="true" autoSubmit="true" showRequired="true"
                                               value="#{beanSessionActualizarCliente.licenciaChofer}" maximumLength="9">
-                                    <f:validator validatorId="licenciaValidator"/>
+                                <!--    <f:validator validatorId="licenciaValidator"/> -->
                                 </af:inputText>
                                 <af:commandButton text="Registrar" id="btnADDChof"
                                                   binding="#{backingBeanScope.backing_transporte_cliente_frm_actualizar_cliente.btnADDChof}"

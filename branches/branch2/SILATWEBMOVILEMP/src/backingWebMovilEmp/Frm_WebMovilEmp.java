@@ -225,6 +225,9 @@ public class Frm_WebMovilEmp {
     
     private List<BeanChofer> listaChoferEditManif = new ArrayList<BeanChofer>();
     private List<BeanFlota> listaFlotaEditManif = new ArrayList<BeanFlota>();
+    
+    private String cidGuiaRemision;
+    private int nidManifiestoEditable;
 
     public Frm_WebMovilEmp() {
         try {
@@ -451,8 +454,10 @@ public class Frm_WebMovilEmp {
         if(entro == true){
         try{
         int npaq = Integer.parseInt(getNPaquetes());
-        String cidGuia = "";
-        cidGuia  = ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"); 
+        //String cidGuia = "";
+        String cidGuia  = cidGuiaRemision;
+            System.out.println("CID GUIA ::: "+cidGuia );
+            //ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"); 
         String conf = "2";
         String estGuia = "1";
         Date fechaEmision = getFechaEmis();
@@ -789,6 +794,8 @@ public class Frm_WebMovilEmp {
             setNombreDireccionDestino(direccion1.get(0).getCDireccion());
             setNidDireccionRemitente(direccion1.get(0).getNidDireccion()+"");
         }
+        
+        setCidGuiaRemision(ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"));/**New**/
         
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("detOrden");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("creaGuia");
@@ -1736,5 +1743,21 @@ public class Frm_WebMovilEmp {
 
     public List<BeanFlota> getListaFlotaEditManif() {
         return listaFlotaEditManif;
+    }
+
+    public void setCidGuiaRemision(String cidGuiaRemision) {
+        this.cidGuiaRemision = cidGuiaRemision;
+    }
+
+    public String getCidGuiaRemision() {
+        return cidGuiaRemision;
+    }
+
+    public void setNidManifiestoEditable(int nidManifiestoEditable) {
+        this.nidManifiestoEditable = nidManifiestoEditable;
+    }
+
+    public int getNidManifiestoEditable() {
+        return nidManifiestoEditable;
     }
 }

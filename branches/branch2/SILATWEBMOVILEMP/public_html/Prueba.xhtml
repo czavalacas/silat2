@@ -694,12 +694,12 @@
     
     <h:form id="manifiesto" style="display:none">
      <div style="background-color:#DDDDDD;text-align:center;margin-bottom:10px">
-       <h:outputText value="Manifiesto.Guias por asignar" style="font-size: 180%;"/>
+       <h:outputText value="Manifiesto Guias por asignar" style="font-size: 180%;"/>
        </div>
      <ui:repeat value="#{frm_WebMovilEmp.listaManifiesto}" var="row">
      <ul class="pricing-table">
      </ul>
-        <b:commandButton value="#{row.detalleWebMovilEMPManifiesto}" action="#{frm_WebMovilEmp.traeInfoManifiessto}" onclick="mostrarFormInfoManif();" ajax="true" style="background-color:#0087B3;width:100%;margin-top:-20px;color:#ffffff;font-weight: bold;"
+        <b:commandButton value="Nº #{row.nidManifiesto} || #{row.detalleWebMovilEMPManifiesto}" action="#{frm_WebMovilEmp.traeInfoManifiessto}" onclick="mostrarFormInfoManif();" ajax="true" style="background-color:#0087B3;width:100%;margin-top:-20px;color:#ffffff;font-weight: bold;"
                           update="manifiestoInfo manifiestoEdit" >                                                                                                                            
                         <f:setPropertyActionListener value="#{row.nidManifiesto}"
                                                      target="#{frm_WebMovilEmp.manifiestoElegido}"/>
@@ -714,7 +714,12 @@
         <f:ajax listener="#{frm_WebMovilEmp.onDelete}" render="modFlot modChof"/>
     </h:selectBooleanCheckbox>
     </div>
-    
+     <b:inputText style="color:#000000;" disabled="false"
+                     value="#{frm_WebMovilEmp.nidManifiestoEditable}">
+            <f:facet name="prepend">
+                <h:outputText value="Nº de Manifiesto"/>
+            </f:facet>
+        </b:inputText>
     <button id="modal-launcher" style="width:100%;display:none;background-color:#0087B3;font-size: 110%" onclick="openModalClientes()">Elegir Razon.Soc</button>
     <h:form id="regManifiesto">
         <b:inputText style="#{frm_WebMovilEmp.stylerazonSocialManifiesto}" disabled="true"
@@ -854,6 +859,12 @@
       <div style="background-color:#DDDDDD;text-align:center;margin-bottom:10px">
        <h:outputText value="Creacion de Guia de Remision" style="font-size: 180%;"/>
        </div>
+         <b:inputText style="color:#000000;" disabled="false"
+                     value="#{frm_WebMovilEmp.cidGuiaRemision}">
+            <f:facet name="prepend">
+                <h:outputText value="Guia Remision nº"/>
+            </f:facet>
+        </b:inputText>        
         <b:inputText style="color:#000000;" disabled="true"
                      value="#{frm_WebMovilEmp.nidOrds}">
             <f:facet name="prepend">

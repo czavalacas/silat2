@@ -1,14 +1,21 @@
 package siat.view.backing.transporte.factura;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
 import java.math.BigDecimal;
 
 import java.net.URLEncoder;
 
+import java.text.SimpleDateFormat;
+
 import org.apache.myfaces.trinidad.event.SelectionEvent;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.component.UISelectItems;
@@ -17,6 +24,8 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+
+import jxl.write.WriteException;
 
 import oracle.adf.view.rich.component.rich.RichDialog;
 import oracle.adf.view.rich.component.rich.RichPanelWindow;
@@ -36,10 +45,13 @@ import oracle.adf.view.rich.component.rich.output.RichInlineFrame;
 import oracle.adf.view.rich.component.rich.output.RichOutputText;
 import oracle.adf.view.rich.event.DialogEvent;
 
+import org.apache.myfaces.trinidad.model.CollectionModel;
+
 import siat.view.backing.utiles.Utils;
 
 import siat.view.backing.utiles.fecha.FechaUtiles;
 
+import silat.servicios_negocio.Beans.BeanCuadre;
 import silat.servicios_negocio.Beans.BeanError;
 import silat.servicios_negocio.Beans.BeanFactura;
 import silat.servicios_negocio.Beans.BeanNota;
@@ -132,6 +144,7 @@ public class Frm_consultar_factura {
     private BeanUsuarioAutenticado beanUsuario = new BeanUsuarioAutenticado();
     private final static String sep = "&";
     FacesContext ctx = FacesContext.getCurrentInstance();
+    private final static String SEPARADOR_CSV = ";";
 
     public Frm_consultar_factura() {
         try {
@@ -475,6 +488,68 @@ public class Frm_consultar_factura {
                                        r.getCidUnidadNegocio().toString()));
         }
         return unItems;
+    }
+    
+    public void exportData(FacesContext facesContext, OutputStream outputStream) throws IOException,
+                                                                                        WriteException {
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+        List<BeanFactura> listaFacturas = beanSessionScopeConsFactura.getLstFacturas();
+        writer.write("Codigo"); writer.write(SEPARADOR_CSV);
+        writer.write("Serie"); writer.write(SEPARADOR_CSV);
+        writer.write("Editable"); writer.write(SEPARADOR_CSV);
+        writer.write("Estado"); writer.write(SEPARADOR_CSV);
+        writer.write("Cliente"); writer.write(SEPARADOR_CSV);
+        writer.write("RUC"); writer.write(SEPARADOR_CSV);
+        writer.write("Fecha"); writer.write(SEPARADOR_CSV);
+        writer.write("Sub Total"); writer.write(SEPARADOR_CSV);
+        writer.write("IGV"); writer.write(SEPARADOR_CSV);
+        writer.write("Total"); writer.write(SEPARADOR_CSV);
+        writer.write("Detraccion"); writer.write(SEPARADOR_CSV);
+        writer.write("Monto Final"); writer.write(SEPARADOR_CSV);
+        writer.write("Fecha Pago"); writer.write(SEPARADOR_CSV);
+        writer.write("Comentario"); writer.write(SEPARADOR_CSV);
+        writer.write("Nota"); writer.write(SEPARADOR_CSV);
+        writer.write("Monto");
+        writer.newLine();       
+        exportarFilasExcelAux(listaFacturas, writer);
+        writer.flush();     
+        writer.close();
+    }
+    
+    public String darFormatoFecha(Date fecha){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        if(fecha!=null){
+        return sdf.format(fecha);
+        }else{ return "";}
+        }
+    
+    public void exportarFilasExcelAux(List<BeanFactura> listaFacturas,BufferedWriter writer) throws IOException, 
+        WriteException{
+        Iterator it = listaFacturas.iterator();
+        while(it.hasNext()){
+            BeanFactura factura = (BeanFactura) it.next();
+            writer.write(factura.getCCodFactura()+"");writer.write(SEPARADOR_CSV);
+            writer.write(factura.getCidUnidadNegocio()+"");writer.write(SEPARADOR_CSV);
+            if(factura.getEditable().equals("1")){
+            writer.write("SI");writer.write(SEPARADOR_CSV);    
+            }else{
+            writer.write("NO");writer.write(SEPARADOR_CSV);     
+            }
+            writer.write(factura.getDescEstado()+"");writer.write(SEPARADOR_CSV);
+            writer.write(factura.getCliente());writer.write(SEPARADOR_CSV);
+            writer.write(factura.getRuc()+"");writer.write(SEPARADOR_CSV);
+            writer.write(darFormatoFecha(factura.getFechaFactura())+"");writer.write(SEPARADOR_CSV);
+            writer.write(factura.getDSubTotal().toString().replace(".", ","));writer.write(SEPARADOR_CSV);
+            writer.write(factura.getIgvFact().toString().replace(".", ","));writer.write(SEPARADOR_CSV);
+            writer.write(factura.getDTotal().toString().replace(".", ","));writer.write(SEPARADOR_CSV);
+            writer.write(factura.getDetraccion().toString().replace(".", ","));writer.write(SEPARADOR_CSV);
+            writer.write(factura.getTotalConDetraccion().toString().replace(".", ","));writer.write(SEPARADOR_CSV);
+            writer.write(darFormatoFecha(factura.getFechaPago())+"");writer.write(SEPARADOR_CSV);
+            writer.write(factura.getComentarioAnulacion()+"");writer.write(SEPARADOR_CSV);
+            writer.write(factura.getBeanNota().getDescTipoNota()+"");writer.write(SEPARADOR_CSV);
+            writer.write(factura.getBeanNota().getDMonto()+"");writer.write(SEPARADOR_CSV);
+            writer.newLine();       
+        }
     }
     
     public void setOtTitulo(RichOutputText ot1) {

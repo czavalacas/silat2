@@ -206,8 +206,11 @@
             <af:separator/>
             <af:commandButton text="Exportar Excel" id="cb1"
                               binding="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.cb1}">
-                <af:exportCollectionActionListener type="excelHTML" exportedId="pc1:tbFact"
-                                                   filename="reporteFacturas.xls" title="Reporte de Facturas"/>
+             <!--   <af:exportCollectionActionListener type="excelHTML" exportedId="pc1:tbFact"
+                                                   filename="reporteFacturas.xls" title="Reporte de Facturas"/> -->
+                                                         <af:fileDownloadActionListener filename="Factuas.csv" contentType="text/csv"
+                                                               method="#{backingBeanScope.backing_transporte_factura_frm_consultar_factura.exportData}"/>
+                         
             </af:commandButton>
             <af:panelCollection id="pc1" inlineStyle="width:inherit;">
                          <f:facet name="menus"/>

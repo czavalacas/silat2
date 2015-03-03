@@ -16,12 +16,13 @@
           $('a.custom-close-reveal-modal').click(function(){
               $('#myModal').foundation('reveal', 'close');
             });
-            function load(){
+            function load(){            
             document.getElementById("regManifiesto0").style.display="none";
             document.getElementById("regManifiesto").style.display="none";
             document.getElementById("regManifiesto1").style.display="none";
             document.getElementById("regManifiesto2").style.display="none";
             document.getElementById("regManifiesto3").style.display="none";
+            document.getElementById("regManifiesto4").style.display="none";
             document.getElementById("regManifiestoGuardar").style.display="none";
             document.getElementById("detOrden").style.display="none"; 
             document.getElementById("creaGuia").style.display="none";
@@ -39,6 +40,7 @@
               document.getElementById("regManifiesto1").style.display="none";
               document.getElementById("regManifiesto2").style.display="none";
               document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiesto4").style.display="none";
               document.getElementById("regManifiestoGuardar").style.display="none";
               document.getElementById("modal-launcher").style.display="none";
               document.getElementById("abrirModalFlotas").style.display="none";
@@ -58,6 +60,7 @@
               document.getElementById("regManifiesto1").style.display="none";
               document.getElementById("regManifiesto2").style.display="none";
               document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiesto4").style.display="none";
               document.getElementById("regManifiestoGuardar").style.display="none";
               document.getElementById("modal-launcher").style.display="none";
               document.getElementById("abrirModalFlotas").style.display="none";
@@ -76,6 +79,7 @@
               document.getElementById("regManifiesto1").style.display="block";
               document.getElementById("regManifiesto2").style.display="block";
               document.getElementById("regManifiesto3").style.display="block";
+              document.getElementById("regManifiesto4").style.display="block";
               document.getElementById("regManifiestoGuardar").style.display="block";
               document.getElementById("modal-launcher").style.display="block";
               document.getElementById("abrirModalFlotas").style.display="block";
@@ -94,6 +98,7 @@
               document.getElementById("regManifiesto1").style.display="none";
               document.getElementById("regManifiesto2").style.display="none";
               document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiesto4").style.display="none";
               document.getElementById("regManifiestoGuardar").style.display="none";
               document.getElementById("modal-launcher").style.display="none";
               document.getElementById("abrirModalFlotas").style.display="none";
@@ -112,6 +117,7 @@
               document.getElementById("regManifiesto1").style.display="none";
               document.getElementById("regManifiesto2").style.display="none";
               document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiesto4").style.display="none";
               document.getElementById("regManifiestoGuardar").style.display="none";
               document.getElementById("modal-launcher").style.display="none";
               document.getElementById("abrirModalFlotas").style.display="none";
@@ -132,6 +138,7 @@
               document.getElementById("regManifiesto1").style.display="none";
               document.getElementById("regManifiesto2").style.display="none";
               document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiesto4").style.display="none";
               document.getElementById("regManifiestoGuardar").style.display="none";
               document.getElementById("modal-launcher").style.display="none";
               document.getElementById("abrirModalFlotas").style.display="none";
@@ -152,6 +159,7 @@
               document.getElementById("regManifiesto1").style.display="none";
               document.getElementById("regManifiesto2").style.display="none";
               document.getElementById("regManifiesto3").style.display="none";
+              document.getElementById("regManifiesto4").style.display="none";
               document.getElementById("regManifiestoGuardar").style.display="none";
               document.getElementById("modal-launcher").style.display="none";
               document.getElementById("abrirModalFlotas").style.display="none";
@@ -714,15 +722,16 @@
         <f:ajax listener="#{frm_WebMovilEmp.onDelete}" render="modFlot modChof"/>
     </h:selectBooleanCheckbox>
     </div>
-     <b:inputText style="color:#000000;" disabled="false"
-                     value="#{frm_WebMovilEmp.nidManifiestoEditable}">
-            <f:facet name="prepend">
-                <h:outputText value="Nº de Manifiesto"/>
-            </f:facet>
-        </b:inputText>
+    
+    <h:form id="regManifiesto4">
+ 
+    </h:form>
+    
     <button id="modal-launcher" style="width:100%;display:none;background-color:#0087B3;font-size: 110%" onclick="openModalClientes()">Elegir Razon.Soc</button>
-    <h:form id="regManifiesto">
-        <b:inputText style="#{frm_WebMovilEmp.stylerazonSocialManifiesto}" disabled="true"
+    
+  
+   <h:form id="regManifiesto">
+           <b:inputText style="#{frm_WebMovilEmp.stylerazonSocialManifiesto}" disabled="true"
                      value="#{frm_WebMovilEmp.razonSocialEmpresaElegida}">
             <f:facet name="prepend">
                 <h:outputText value="Razon Social"/>
@@ -756,7 +765,7 @@
         </b:inputText>
     </h:form>
     
-    <h:form id="regManifiesto3">
+    <h:form id="regManifiesto3">  
         <b:inputText style="background-color: #DDDDDD;color:#000000;" disabled="true"
                      value="#{frm_WebMovilEmp.fechaRegManifiesto}">
             <f:facet name="prepend">
@@ -779,6 +788,12 @@
                      value="#{frm_WebMovilEmp.comentario}">
             <f:facet name="prepend">
                 <h:outputText value="Observaciones"/>
+            </f:facet>
+        </b:inputText>
+           <b:inputText onblur="isNumber(this)" style="background-color: #DDDDDD;color:#000000;"
+                     value="#{frm_WebMovilEmp.nidManifiestoEditable}">
+            <f:facet name="prepend">
+                <h:outputText style="background-color: #92d492;color:#000000;" value="Nº Manifiesto"/>
             </f:facet>
         </b:inputText>
         <b:alert severity="danger">

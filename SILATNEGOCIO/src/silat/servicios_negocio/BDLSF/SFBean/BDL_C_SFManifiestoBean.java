@@ -201,4 +201,21 @@ public class BDL_C_SFManifiestoBean implements BDL_C_SFManifiestoRemote,
                        "AND m.estadoManifiestoNegocio = 3";
         return em.createQuery(ejbQl).getResultList();
     }
+    
+    public int existeManifiesto(int nidManifiesto){
+        try{
+            String query = "SELECT count(m.nidManifiesto) " +
+                           "FROM TRManifiesto m " +
+                           "WHERE m.nidManifiesto = :nidManifiesto ";                           
+            Object o = em.createQuery(query).setParameter("nidManifiesto",nidManifiesto).getSingleResult();
+            int cant = 0;
+            if(o != null){
+                cant = Integer.parseInt(o.toString());
+            }
+            return cant;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

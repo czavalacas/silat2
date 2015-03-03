@@ -79,8 +79,7 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
         try{
             if(nidManif != 0){//Actualizar
                 eManifiesto = bdL_C_SFManifiestoLocal.findTRManifiestoById(nidManif);
-                eManifiesto.setNEstManifiesto(estadoManif);/****/
-                System.out.println("estado es "+estadoManif);
+                eManifiesto.setNEstManifiesto(estadoManif);
                 if("4".equals(estadoManifiestoNegocio)){                   
                     bdl_C_SFUtilsLocal.call_Procedure_PagarManifiesto(nidManif,fletePactado);                    
                 }
@@ -98,20 +97,10 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
             if(adelanto == null){
                 adelanto = 0.0;
             }
-      /*      if(adelanto != null){ comentado por requerimiento del sponsored  marco flores
-                if(adelanto > fletePactado){
-                    error = "LUB-0011";
-                }
-            }else{
-                adelanto = 0.0;
-            }*/
+            
             eManifiesto.setNAdelanto(adelanto);
             if("000".equals(error)){
-         /*       if(nidEmpProvTrans == 5){//Transporte Propio (Lubal)
-                    eManifiesto.setEstadoManifiestoNegocio("4");//Cancelado
-                }else{
-                    eManifiesto.setEstadoManifiestoNegocio(estadoManifiestoNegocio);
-                }*/
+   
                 eManifiesto.setEstadoManifiestoNegocio(estadoManifiestoNegocio);
                 eManifiesto = bdL_T_ManifiestoLocal.registrarManifiesto(eManifiesto);
                 MapperIF mapper = new DozerBeanMapper();
@@ -168,10 +157,56 @@ public class LN_T_SFManifiestoBean implements LN_T_SFManifiestoRemote,
         bdL_T_ManifiestoLocal.actualizarManifiesto(observ, fPactado, nAdelanto, nidMan, nidFlota, nidChof);
         return "";
     }
-        
-    
     
     public void depurar(Object o){
         System.out.println(o);
+    }
+    
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public BeanManifiesto registrarManifiestoMovilConIDEditable(int nidEmpProvTrans,
+                                                 Date fecManif,
+                                                 Double fletePactado,
+                                                 Double adelanto,
+                                                 String tipDoc,
+                                                 String observ,
+                                                 int nidFlota,
+                                                 int nidChofer,
+                                                 int nidManif,
+                                                 int estadoManif,
+                                                 String estadoManifiestoNegocio){
+        System.out.println("nidManif a Insertar 1 "+nidManif);
+        String error = "000";
+        TRManifiesto eManifiesto = new TRManifiesto();
+        BeanManifiesto bManifiesto = new BeanManifiesto();
+        BeanError beanError = new BeanError();
+        try{       
+            System.out.println("nidManif a Insertar 2 "+nidManif);
+                eManifiesto.setNidManifiesto(nidManif);
+                eManifiesto.setNEstManifiesto(1);
+                eManifiesto.setCTipoDoc(tipDoc);
+                eManifiesto.setFechaManifiesto(fecManif);
+                eManifiesto.setNidChof(nidChofer);
+                eManifiesto.setNidFlota(nidFlota);
+                ADEmpresa eEmpresa = bdL_C_SFEmpresasLocal.getEmpresaById(new BigDecimal(nidEmpProvTrans));
+                eManifiesto.setTrManifiesto(eEmpresa);     
+                eManifiesto.setNFletePactado(fletePactado);
+                eManifiesto.setCObservaciones(observ);   
+            if(adelanto == null){
+                adelanto = 0.0;
+            }            
+                eManifiesto.setNAdelanto(adelanto);
+            if("000".equals(error)){    
+                eManifiesto.setEstadoManifiestoNegocio(estadoManifiestoNegocio);
+                eManifiesto = bdL_T_ManifiestoLocal.persistTRManifiesto(eManifiesto);
+                MapperIF mapper = new DozerBeanMapper();
+                bManifiesto = (BeanManifiesto)mapper.map(eManifiesto, BeanManifiesto.class);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            error = "LUB-0010";
+        }
+        beanError = ln_C_SFCatalogoErroresLocal.getCatalogoErrores(error);
+        bManifiesto.setBeanError(beanError);
+        return bManifiesto;
     }
 }

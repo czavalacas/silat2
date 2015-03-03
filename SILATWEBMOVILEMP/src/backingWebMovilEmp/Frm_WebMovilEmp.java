@@ -227,7 +227,7 @@ public class Frm_WebMovilEmp {
     private List<BeanFlota> listaFlotaEditManif = new ArrayList<BeanFlota>();
     
     private String cidGuiaRemision;
-    private int nidManifiestoEditable;
+    private String nidManifiestoEditable;
 
     public Frm_WebMovilEmp() {
         try {
@@ -808,7 +808,7 @@ public class Frm_WebMovilEmp {
         int nidParty = Integer.parseInt(h);
         for(BeanFlota bean : getLstFlotas()){
             if(bean.getNidFlota().equals(nidParty)){
-                setNombreFlota(""+bean.getNidFlota());
+                setNombreFlota(""+bean.getCPlaca());
             }
         }
         return "";
@@ -943,51 +943,60 @@ public class Frm_WebMovilEmp {
 
     public String registrarManifiesto(){
         getMensajeManif().clear();
-        getMensajeManif().add("FALTA:");
+        getMensajeManif().add("Porfavor Ingrese Correctamente los Datos");
         String msm = "";
         boolean entro = true;
+        if(getNidManifiestoEditable().equals("")){
+            entro = false;
+            msm = "Ingresar Nº de Manifiesto";
+            getMensajeManif().add(msm);
+        }else{
+        if(ln_C_SFManifiestoRemote.existeManif(Integer.parseInt(getNidManifiestoEditable()))!=0){
+            entro = false;
+            msm = "Ya Existe el Manifiesto Nº"+getNidManifiestoEditable();
+            getMensajeManif().add(msm);
+        }  
+            }
         if(getNidPartyEmpresaElegida() == null){
             entro = false;
-            msm = "Elegir Empresa";
+            msm = "Seleccionar Empresa";
             getMensajeManif().add(msm);
         }
         if(getFlotaElegida() == null){
             entro = false;
-            msm = "Elegir Flota";
+            msm = "Seleccionar Flota";
             getMensajeManif().add(msm);
         }
         if(getChoferElegido() == null){
             entro = false;
-            msm = "Elegir Chofer";
+            msm = "Seleccionar Chofer";
             getMensajeManif().add(msm);
         }
         if (!getAdelanto().equals("")) {
         } else {
             entro = false;
-            msm = "Insertar Adelanto";
+            msm = "Ingresar Adelanto";
             getMensajeManif().add(msm);
         }
         if (!getFletePactado().equals("")) {
         } else {
             entro = false;
-            msm = "Insertar flete pactado";
+            msm = "Ingresar flete pactado";
             getMensajeManif().add(msm);
         }
         if (!getComentario().equals("")) {
         } else {
             entro = false;
-            msm += "Insertar Comentario";
+            msm += "Ingresar Comentario";
             getMensajeManif().add(msm);
         }
+        System.out.println("MANI 2"+getNidManifiestoEditable());
         if(entro == true){
         try{
+            System.out.println("MANI 3"+getNidManifiestoEditable());
             Date date  =  new Date();
-            Double pactado= Double.parseDouble(getFletePactado());
-            Double adel= Double.parseDouble(getAdelanto());
-            Double igv = pactado + (pactado*0.18);
-            Double montoFinal = igv - (igv*0.04);
-            Double saldo = montoFinal- adel;
-         BeanManifiesto bManifiesto = ln_T_SFManifiestoRemote.registrarManifiesto_LN(Integer.parseInt(""+getNidPartyEmpresaElegida()),
+            Double pactado= Double.parseDouble(getFletePactado());                          
+            ln_T_SFManifiestoRemote.registrarManifiestoMovilConIDEditable(Integer.parseInt(""+getNidPartyEmpresaElegida()),
                                                                                     date, 
                                                                                     pactado,
                                                                                     Double.parseDouble(getAdelanto()),
@@ -995,7 +1004,7 @@ public class Frm_WebMovilEmp {
                                                                                     getComentario(),
                                                                                     Integer.parseInt(getFlotaElegida()),
                                                                                     Integer.parseInt(getChoferElegido()),
-                                                                                    0,1,"3");//Guias x asignar 
+                                                                                    Integer.parseInt(getNidManifiestoEditable()),1,"3");//Guias x asignar 
          
         setRucEmpresaElegida("");
         setRazonSocialEmpresaElegida("");
@@ -1004,10 +1013,12 @@ public class Frm_WebMovilEmp {
         setFletePactado("");
         setAdelanto("");
         setComentario("");
-        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto");
+        setNidManifiestoEditable("");
+        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto");      
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto1");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto2");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto3");
+        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto4");
             
             FacesContext ctx = FacesContext.getCurrentInstance();
             ExternalContext extContext = ctx.getExternalContext();
@@ -1021,9 +1032,10 @@ public class Frm_WebMovilEmp {
         }catch(Exception e){
             getMensajeManif().add("Algo Ocurrio");
             FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto3");
+            FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto");
         }
         }else{
-            
+            FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto");
             FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto3");
         }
         return "";
@@ -1040,10 +1052,12 @@ public class Frm_WebMovilEmp {
         setNombreChofer("");
         setFletePactado("");
         setAdelanto("");
+        setNidManifiestoEditable("");
         setComentario("");
         getLstChofers().clear();
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto1");
+        FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto4");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto2");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto3");
         return "";
@@ -1753,11 +1767,11 @@ public class Frm_WebMovilEmp {
         return cidGuiaRemision;
     }
 
-    public void setNidManifiestoEditable(int nidManifiestoEditable) {
+    public void setNidManifiestoEditable(String nidManifiestoEditable) {
         this.nidManifiestoEditable = nidManifiestoEditable;
     }
 
-    public int getNidManifiestoEditable() {
+    public String getNidManifiestoEditable() {
         return nidManifiestoEditable;
     }
 }

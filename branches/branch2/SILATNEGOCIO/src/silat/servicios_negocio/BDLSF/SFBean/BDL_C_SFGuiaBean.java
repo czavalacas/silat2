@@ -323,8 +323,10 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                 lstGuias = em.createQuery(ejbQl).setMaxResults(600).getResultList();
             }
             int size = lstGuias == null ? 0 : lstGuias.size();
+            
             if (size > 0) {               
                 return lstGuias;               
+
             } else {
                 return new ArrayList<TRGuia>();
             }

@@ -27,4 +27,15 @@ public interface LN_T_SFManifiestoRemote {
     String cambiarFechaManifiestoPermiso56(int nidManif,Date fechaManif);
     
     String actualizarManifiesto(String observ, double fPactado,double nAdelanto, int nidMan, int nidFlota, int nidChof);
+    BeanManifiesto registrarManifiestoMovilConIDEditable(int nidEmpProvTrans,
+                                                     Date fecManif,
+                                                     Double fletePactado,
+                                                     Double adelanto,
+                                                     String tipDoc,
+                                                     String observ,
+                                                     int nidFlota,
+                                                     int nidChofer,
+                                                     int nidManif,
+                                                     int estadoManif,
+                                                     String estadoManifiestoNegocio);
 }

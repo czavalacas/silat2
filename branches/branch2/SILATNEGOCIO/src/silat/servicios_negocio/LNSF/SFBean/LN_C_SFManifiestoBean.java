@@ -174,4 +174,8 @@ public class LN_C_SFManifiestoBean implements LN_C_SFManifiestoRemote,
         }   
         return listaManifiesto;
     }
+    
+    public int existeManif(int nidManifiesto){
+        return bdL_C_SFManifiestoLocal.existeManifiesto(nidManifiesto);
+    }
 }

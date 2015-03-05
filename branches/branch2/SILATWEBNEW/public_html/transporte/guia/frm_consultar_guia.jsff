@@ -327,7 +327,18 @@
                            </af:panelFormLayout>
                       </af:dialog>
             </af:popup>
-            
+              <af:popup autoCancel="disabled" id="popImg"                     
+                binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.popImg}">
+                <af:dialog id="diagImg2" 
+                           title="Subir Imagen de la Guia del proveedor" type="okCancel">
+             
+                      <af:panelGroupLayout layout="scroll" inlineStyle="height:400px; width:600px;">            
+                        <af:image id="imgGuia2"                                 
+                                  source="#{beanSessionConsultarGuia.img}"
+                                  binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.imgGuia2}"/>
+                     </af:panelGroupLayout>
+                </af:dialog>
+            </af:popup>
             <af:popup id="popImagen"
                       binding="#{backingBeanScope.backing_transporte_guia_frm_consultar_guia.popImagen}"
                       childCreation="deferred" animate="false">

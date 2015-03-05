@@ -151,6 +151,7 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             
             //Solo Con TRGuia
             beanGuia.setCidGuia(entidad.getCidUnidadNegocio() +"-"+ entidad.getCidGuia());
+            beanGuia.setCidGuiaToImg(entidad.getCidGuia());
             beanGuia.setCidUnidadNegocio(entidad.getCidUnidadNegocio());
             beanGuia.setNativeCidGuia(entidad.getCidGuia());
             beanGuia.setFechaGuia(entidad.getFechaGuia());

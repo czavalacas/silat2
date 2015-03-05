@@ -279,6 +279,12 @@ public class Frm_consultar_guia {
                 btnAnular.setDisabled(false);
                 btnEditar.setDisabled(false);
                 btnverImagen.setDisabled(true);
+                if(beanGuia.getImgGuiaProv()!=null || beanGuia.getImgGuia()!=null){
+                    btnverImagen.setDisabled(false);
+                }    
+                if(beanGuia.getImgGuiaProv()==null  && beanGuia.getImgGuia()==null){
+                    btnverImagen.setDisabled(true);
+                }
                 if(beanGuia.getImgGuiaProvedor()!=null){
                     btnverImagenProv.setDisabled(false);
                 }else if(beanGuia.getImgGuiaProvedor()==null){
@@ -287,8 +293,11 @@ public class Frm_consultar_guia {
             }else if("1".equals(beanGuia.getCConformidad())){//OK
                 btnAnular.setDisabled(true);
                 btnEditar.setDisabled(false);
-                if(beanGuia.getImgGuiaProv()!=null){
+                if(beanGuia.getImgGuiaProv()!=null || beanGuia.getImgGuia()!=null){
                     btnverImagen.setDisabled(false);
+                }    
+                if(beanGuia.getImgGuiaProv()==null  && beanGuia.getImgGuia()==null){
+                    btnverImagen.setDisabled(true);
                 }
                 if(beanGuia.getImgGuiaProvedor()!=null){
                     btnverImagenProv.setDisabled(false);
@@ -296,7 +305,7 @@ public class Frm_consultar_guia {
                     btnverImagenProv.setDisabled(true);
                 }
             }                   
-            Utils.addTargetMany(btnAnular,btnEditar);
+            Utils.addTargetMany(btnAnular,btnEditar,btnverImagen,btnverImagenProv);
             beanSessionConsultarGuia.setGuiaSelected(beanGuia);
         }
         if(beanSessionConsultarGuia.isRenderBtnFecha()){

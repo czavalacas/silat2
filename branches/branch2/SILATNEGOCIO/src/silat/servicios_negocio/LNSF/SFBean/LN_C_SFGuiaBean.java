@@ -169,9 +169,10 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",entidad.getCConformidad());
             beanGuia.setDescConformidad(constr.getCDescrip());
             beanGuia.setCConformidad(entidad.getCConformidad());
-            if(entidad.getImgGuiaProv()!=null){
+            if(entidad.getImgGuiaProv()!=null || entidad.getImgGuia()!=null){
                 beanGuia.setHasImgGuia("SI");
-            }else{
+            }
+            if(entidad.getImgGuiaProv()==null && entidad.getImgGuia()==null){
                 beanGuia.setHasImgGuia("NO");
                 }            
             if(entidad.getImgGuiaProvedor()!=null){

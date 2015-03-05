@@ -1090,7 +1090,9 @@ public class Frm_registrar_guia{//NUEVO CODIGO
         ///imageservlet?cidguia=#{sessionScope.beanSessionRegistrarGuia.cidGuia}&#38;cidunin=#{sessionScope.beanSessionRegistrarGuia.codUN}
         String rutaImg = "/imageservlet?cidguia="+beanSessionRegistrarGuia.getCidGuia()+"&cidunin="+beanSessionRegistrarGuia.getCodUN();
         beanSessionRegistrarGuia.setRutaImgGuia(rutaImg);
+        System.out.println(" RUTA 01.. "+rutaImg);
         if(imgGuia != null){
+            System.out.println(" RUTA 01.. "+rutaImg);
             imgGuia.setSource(rutaImg);
             Utils.addTarget(imgGuia);
         }

@@ -132,6 +132,8 @@ public class Frm_consultar_guia {
     private RichPopup popImagen1;
     private RichPanelFormLayout formVerImgProv;
     private RichPanelFormLayout formVerImg;
+    private RichPopup popImg;
+    private RichImage imgGuia2;
 
     public Frm_consultar_guia(){
         try{
@@ -399,18 +401,39 @@ public class Frm_consultar_guia {
         }
     }
     
+    public void abrirPopImg(ActionEvent ae) {
+        ///imageservlet?cidguia=#{sessionScope.beanSessionRegistrarGuia.cidGuia}&#38;cidunin=#{sessionScope.beanSessionRegistrarGuia.codUN}
+        String rutaImg = "/imageservlet?cidguia="+beanSessionConsultarGuia.getGuiaSelected().getCidGuiaToImg()+"&cidunin="+beanSessionConsultarGuia.getGuiaSelected().getCidUnidadNegocio();
+        beanSessionConsultarGuia.setImg(rutaImg);
+        beanSessionConsultarGuia.setDescripImg("");
+        System.out.println(" RUTA 01.. "+rutaImg);
+        if(imgGuia2 != null){
+            System.out.println(" RUTA 01.. "+rutaImg);
+            imgGuia2.setSource(rutaImg);
+            Utils.addTarget(imgGuia2);
+        }
+        Utils.showPopUpMIDDLE(popImg);
+    }
+    
     public void verImagen(ActionEvent ae){
+        
         if(beanSessionConsultarGuia.getGuiaSelected() != null){
-            beanSessionConsultarGuia.setImg("");
-            if(beanSessionConsultarGuia.getGuiaSelected().getImgGuiaProv()!=null){
-                beanSessionConsultarGuia.setImg(beanSessionConsultarGuia.getGuiaSelected().getImgGuiaProv());
-                beanSessionConsultarGuia.setDescripImg("");
-                Utils.showPopUpMIDDLE(popImagen); 
+            if(beanSessionConsultarGuia.getGuiaSelected().getImgGuia()!=null){
+            System.out.println("HAY IMAGEN BLOB");
+                abrirPopImg(ae);
             }else{
-                beanSessionConsultarGuia.setImg("#");
-                beanSessionConsultarGuia.setDescripImg("");
-                Utils.showPopUpMIDDLE(popImagen); 
+                beanSessionConsultarGuia.setImg("");
+                if(beanSessionConsultarGuia.getGuiaSelected().getImgGuiaProv()!=null){
+                    beanSessionConsultarGuia.setImg(beanSessionConsultarGuia.getGuiaSelected().getImgGuiaProv());
+                    beanSessionConsultarGuia.setDescripImg("");
+                    Utils.showPopUpMIDDLE(popImagen); 
+                }else{
+                    beanSessionConsultarGuia.setImg("#");
+                    beanSessionConsultarGuia.setDescripImg("");
+                    Utils.showPopUpMIDDLE(popImagen); 
+                }
             }
+            
             }
         }
     
@@ -1027,5 +1050,21 @@ public class Frm_consultar_guia {
 
     public RichPanelFormLayout getFormVerImg() {
         return formVerImg;
+    }
+
+    public void setPopImg(RichPopup popImg) {
+        this.popImg = popImg;
+    }
+
+    public RichPopup getPopImg() {
+        return popImg;
+    }
+
+    public void setImgGuia2(RichImage imgGuia2) {
+        this.imgGuia2 = imgGuia2;
+    }
+
+    public RichImage getImgGuia2() {
+        return imgGuia2;
     }
 }

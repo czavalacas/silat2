@@ -271,11 +271,21 @@ public class Frm_WebMovilEmp {
         String base= request.getParameter("byte64");
         try{
             BeanTRItemImgWebMovil bean = new BeanTRItemImgWebMovil(); 
+            if(getLstItemsImg()!=null){
+            if(getDescripcionImagen().equals("")){           
+                System.out.println("Nº Imagenes ::" +getLstItemsImg().size());
+                setDescripcionImagen("Guia Proveedor Nº"+(getLstItemsImg().size()+1));
+            }                
+            }else{
+                if(getDescripcionImagen().equals("")){         
+                    System.out.println("NULA ::");
+                    setDescripcionImagen("Guia Proveedor Nº 1");
+                }
+            }
             bean.setDescripimg(getDescripcionImagen());
             bean.setImg(base);
             
-            getLstItemsImg().add(bean);
-            
+            getLstItemsImg().add(bean);            
             setDescripcionImagen("");
             setBase64Img("");
         }catch(Exception e){

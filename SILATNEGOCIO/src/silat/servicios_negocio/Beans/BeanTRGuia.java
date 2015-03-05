@@ -83,6 +83,7 @@ public class BeanTRGuia implements Serializable, Cloneable  {
     private String imgGuiaProvedor;
     private String hasImgGuia;
     private String hasImgGuiaProv;
+    private String cidGuiaToImg;
     
     public Object clone() {
         Object clone = null;
@@ -533,5 +534,13 @@ public class BeanTRGuia implements Serializable, Cloneable  {
 
     public String getHasImgGuiaProv() {
         return hasImgGuiaProv;
+    }
+
+    public void setCidGuiaToImg(String cidGuiaToImg) {
+        this.cidGuiaToImg = cidGuiaToImg;
+    }
+
+    public String getCidGuiaToImg() {
+        return cidGuiaToImg;
     }
 }

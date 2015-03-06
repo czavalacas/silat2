@@ -17,8 +17,7 @@ public class BeanCodigo implements Serializable {
                       String tipdoc){
         this.cidunin = cidunin;
         this.codigo = codigo;
-        this.tipdoc = tipdoc;
-        this.descTipDoc = this.tipdoc.equals("F") ? "Factura" : "Guia";
+        this.tipdoc = tipdoc;    
     }
     
     public BeanCodigo(){
@@ -50,7 +49,6 @@ public class BeanCodigo implements Serializable {
     }
     
     public void setDescTipDoc(String descTipDoc) {
-        descTipDoc = this.tipdoc.equals("F") ? "Factura" : "Guia";
         this.descTipDoc = descTipDoc;
     }
 

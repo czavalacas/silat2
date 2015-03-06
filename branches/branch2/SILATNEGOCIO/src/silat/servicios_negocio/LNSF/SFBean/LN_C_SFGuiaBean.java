@@ -661,4 +661,8 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
         return bdL_C_SFGuiaLocal.getCountGuiasVigentesByOrdenServ(nidOS);
     }
     
+    public int existeGuiaByCidGuia(String cidGuia){
+        return bdL_C_SFGuiaLocal.existeGuia(cidGuia);
+    }
+    
 }

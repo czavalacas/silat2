@@ -59,6 +59,7 @@ import silat.servicios_negocio.LNSF.IR.LN_C_SFUnidadMedidaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUsuarioRemote;
 
 import silat.servicios_negocio.LNSF.IR.LN_C_SFUtilsRemote;
+import silat.servicios_negocio.LNSF.IR.LN_T_SFCodigoRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFGuiaRemote;
 import silat.servicios_negocio.LNSF.IR.LN_T_SFItemxOrdsRemota;
 import silat.servicios_negocio.LNSF.SFBean.LN_C_SFFlotaBean;
@@ -101,6 +102,8 @@ public class Frm_WebMovilEmp {
     private final static String LOOKUP_NAME_SFCGUIA_REMOTO = "mapLN_C_SFGuia";
     private LN_C_SFUnidadMedidaRemote ln_C_SFUnidadMedidaRemote; 
     private final static String LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO = "mapLN_C_SFUnidadMedida";
+    private LN_T_SFCodigoRemote ln_T_SFCodigoRemote;
+    private final static String LOOKUP_NAME_SFT_CODIGO = "mapLN_T_SFCodigo";
     
     //VARIABLES LISTAS
     private List<BeanOrdenServicio> listaOrdenServicio = new ArrayList<BeanOrdenServicio>();
@@ -247,7 +250,7 @@ public class Frm_WebMovilEmp {
         lN_T_SFItemxOrdsRemota = (LN_T_SFItemxOrdsRemota)       ctx.lookup(LOOKUP_NAME_SFITEMORDS_REMOTO);
         ln_C_SFGuiaRemote = (LN_C_SFGuiaRemote) ctx.lookup(LOOKUP_NAME_SFCGUIA_REMOTO);
         ln_C_SFUnidadMedidaRemote = (LN_C_SFUnidadMedidaRemote)         ctx.lookup(LOOKUP_NAME_SFC_UND_MEDIDA_REMOTO);
-        
+        ln_T_SFCodigoRemote = (LN_T_SFCodigoRemote) ctx.lookup(LOOKUP_NAME_SFT_CODIGO);        
         }catch(Exception e){}
     }
     @PostConstruct
@@ -273,12 +276,10 @@ public class Frm_WebMovilEmp {
             BeanTRItemImgWebMovil bean = new BeanTRItemImgWebMovil(); 
             if(getLstItemsImg()!=null){
             if(getDescripcionImagen().equals("")){           
-                System.out.println("Nº Imagenes ::" +getLstItemsImg().size());
                 setDescripcionImagen("Guia Proveedor Nº"+(getLstItemsImg().size()+1));
             }                
             }else{
-                if(getDescripcionImagen().equals("")){         
-                    System.out.println("NULA ::");
+                if(getDescripcionImagen().equals("")){     
                     setDescripcionImagen("Guia Proveedor Nº 1");
                 }
             }
@@ -310,8 +311,9 @@ public class Frm_WebMovilEmp {
         try{
             String g = nidUmedida;
             BeanTrItemXOrds bean = new BeanTrItemXOrds();
-            String cidGuia  = ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"); 
-            bean.setCCidGuiaRemitente(cidGuia);
+          //  String cidGuia  = getCidGuiaRemision();//ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"); 
+          //  bean.setCCidGuiaRemitente(cidGuia);
+            System.out.println(""+getCidGuiaRemision());
             bean.setCDescItem(getDescripcionNewItem());
             bean.setCUndMedida(getNidUmedida());
             double cantidad = Double.parseDouble(getCantidadNewItem());
@@ -416,10 +418,30 @@ public class Frm_WebMovilEmp {
         return "";
     }
     public String registrarGuia(){
-        System.out.println("IMPRIME MIERDA!!");
+        System.out.println("valor de cidguia : "+getCidGuiaRemision());
         boolean entro = true;
-        System.out.println("ESTADO!!  " + entro);
         getMensajeGuia().clear();
+        if(getCidGuiaRemision().equals("")){
+            entro = false;
+            getMensajeGuia().add("Debe Ingresar Nº Guia Remision");      
+        }else{
+              if(isNumber(getCidGuiaRemision())){
+                         if(getCidGuiaRemision().length()==6){
+                                   if(ln_C_SFGuiaRemote.existeGuiaByCidGuia(getCidGuiaRemision())!=0){
+                                      entro = false;
+                                      getMensajeGuia().add("Nº Guia de Remision Ya Existe");     
+                          }
+                         }else{
+                                  getMensajeGuia().add("Nº Guia debe tener 6 Digitos (ejemp.  012750)"); 
+                                  entro = false;
+                                  }
+              }else{
+                    getMensajeGuia().add("Nº De Guia Debe Ser Numerico");    
+                    entro = false;
+                    }
+            }
+        
+        
         if(nidDireccionDestino == null){
             getMensajeGuia().add("Elegir Direccion Destino");
             entro = false;
@@ -445,60 +467,18 @@ public class Frm_WebMovilEmp {
         } else {
             getMensajeGuia().add("Insertar n°Paquetes");
             entro = false;
-        }
-        System.out.println("FECHA EMIS : "+getFechaEmis());
-    /*    if(getFechaEmis().before(new Date())){
-            getMensajeGuia().add("Elegir una Fecha de Emision Mayor");
-            entro = false;
-        }
-        System.out.println("FECHA TRANS : "+getFechaTrans());
-        if(getFechaTrans().before(new Date())){
-            getMensajeGuia().add("Elegir una Fecha de Translado Mayor");
-            entro = false;
-        }*/
-        ln_C_SFUtilsRemote.SystemOutPrint1nWebMovil(getFechaEmis(), getFechaTrans());
-   /*     if(getFechaEmis().after(getFechaTrans())){
-            getMensajeGuia().add("Elegir una Fecha de Translado mayor a Fecha de Emision");
-            entro = false;
-        }*/
+        }     
         if(entro == true){
         try{
         int npaq = Integer.parseInt(getNPaquetes());
-        //String cidGuia = "";
-        String cidGuia  = cidGuiaRemision;
-            System.out.println("CID GUIA ::: "+cidGuia );
-            //ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"); 
+        String cidGuia  = getCidGuiaRemision();
         String conf = "2";
         String estGuia = "1";
         Date fechaEmision = getFechaEmis();
-        Date fechaDespacho = getFechaTrans();
-            
-/*         Date fechaActual = new Date();
-            if(fechaEmision.before(fechaActual)){
-                String g = "";
-                int i = Integer.parseInt(g);
-            }
-            if(fechaDespacho.before(fechaActual)){
-                String g = "";
-                int i = Integer.parseInt(g);
-            }
-            if(fechaEmision.after(fechaDespacho)){
-                String g = "";
-                int i = Integer.parseInt(g);
-            }
-            if(getComentarioGuia().trim().equals("")){
-                String g = "";
-                int i = Integer.parseInt(g);
-            }
-            if(getComentarioGuia().trim().equals("")){
-                String g = "";
-                int i = Integer.parseInt(g);
-            } */
-            
+        Date fechaDespacho = getFechaTrans();            
         int nidRemitente = Integer.parseInt(nidRemitenteElegido);
         int nidOS = Integer.parseInt(ordenServElegida);
-        int nidManif = Integer.parseInt(nidManifiestoEleg);
-        
+        int nidManif = Integer.parseInt(nidManifiestoEleg);        
         String h = nidManifiestoEleg;
         int g = Integer.parseInt(h);
         List<BeanManifiesto> manif= ln_C_SFManifiestoRemote._findManifiestosByAttr_LN(null, null, g, null, null, null, null, null, null, null, null, null);
@@ -524,7 +504,6 @@ public class Frm_WebMovilEmp {
             bean1.setTrGuia(guia);
             bean1.setCidGuia(cidGuia);
             lstItems.add(bean1);     
-            System.out.println("webmovil_EMP 1 "+num);
             num=num+1;
         }
             String img_prov = "";
@@ -533,7 +512,6 @@ public class Frm_WebMovilEmp {
                     img_prov += bean.getImg()+"dEsCrIp"+bean.getDescripimg();
                 }
             }
-            System.out.println("webmovil_EMP 2");
         BeanTRGuia bGuia = ln_T_SFGuiaRemote.registrarGuia_WebMovil(cidGuia, 
                                                               npaq, 
                                                               getComentarioGuia(), 
@@ -805,7 +783,7 @@ public class Frm_WebMovilEmp {
             setNidDireccionRemitente(direccion1.get(0).getNidDireccion()+"");
         }
         
-        setCidGuiaRemision(ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"));/**New**/
+      //  setCidGuiaRemision(ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"));/**New**/
         
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("detOrden");
         FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("creaGuia");
@@ -873,7 +851,6 @@ public class Frm_WebMovilEmp {
             setRazonSocialEmpresaElegida(empresa.getCRazonSocial());
             setRucEmpresaElegida(empresa.getCRuc());
             setNidPartyEmpresaElegida(empresa.getNidParty());
-            System.out.println("Entroo1");
             FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("regManifiesto");
             setTipoDoc(1);
             setFlotaElegida("");
@@ -1000,10 +977,8 @@ public class Frm_WebMovilEmp {
             msm += "Ingresar Comentario";
             getMensajeManif().add(msm);
         }
-        System.out.println("MANI 2"+getNidManifiestoEditable());
         if(entro == true){
         try{
-            System.out.println("MANI 3"+getNidManifiestoEditable());
             Date date  =  new Date();
             Double pactado= Double.parseDouble(getFletePactado());                          
             ln_T_SFManifiestoRemote.registrarManifiestoMovilConIDEditable(Integer.parseInt(""+getNidPartyEmpresaElegida()),
@@ -1015,6 +990,8 @@ public class Frm_WebMovilEmp {
                                                                                     Integer.parseInt(getFlotaElegida()),
                                                                                     Integer.parseInt(getChoferElegido()),
                                                                                     Integer.parseInt(getNidManifiestoEditable()),1,"3");//Guias x asignar 
+            /**actualizando codManif de la Tabla codigo*/           
+            ln_T_SFCodigoRemote.actualizarCodigoManif((Integer.parseInt(getNidManifiestoEditable())+1)+"");
          
         setRucEmpresaElegida("");
         setRazonSocialEmpresaElegida("");
@@ -1079,7 +1056,6 @@ public class Frm_WebMovilEmp {
     }
     
     public String motrarOrdenServ(){
-        System.out.println("oServ");
         setListaOrdenServicio(lN_C_SFOrdenServicioRemote.ordenServicioPendiente());
         return "";
     }
@@ -1088,7 +1064,7 @@ public class Frm_WebMovilEmp {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/frm_login"));
-        System.out.println("URL emp:"+url);
+        
         String h = url.replaceAll("LUBAL_SIAT_APP-SILATWEBMOVILEMP-context-root", "silat");
         try {                                       
             extContext.redirect(h);

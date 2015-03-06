@@ -103,9 +103,5 @@ public class LN_C_SFUtilsBean implements LN_C_SFUtilsRemote,
     
     public int traerSiguienteValorSequence(String sequence){
         return bdL_C_SFUtilsLocal.traerSiguienteValorCodigo(sequence);
-    }
-    public void SystemOutPrint1nWebMovil(Date fecha1, Date fecha2){
-        System.out.println("IMPRIME CTM! ");
-        System.out.println("Fecha 1:"+fecha1 + " ---  Fecha 2:"+fecha2);
-    }
+    }  
 }

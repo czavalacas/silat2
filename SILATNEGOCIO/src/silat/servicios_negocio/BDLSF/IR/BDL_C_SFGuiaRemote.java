@@ -37,4 +37,5 @@ public interface BDL_C_SFGuiaRemote {
     List<TRGuia> guiasPorParty(int nidCliente);
     List<TRGuia> guiasPorPartyOK(int nidCliente);
     List<TRGuia> findGuiasFiltered(BeanTRGuia filtro);
+    int existeGuia(String cidGuia);
 }

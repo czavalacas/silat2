@@ -24,6 +24,7 @@
                                        binding="#{backingBeanScope.frm_configurar_codigos.siTipDoc1}"/>
                         <af:selectItem label="Factura" value="F" id="siTipDoc2"
                                        binding="#{backingBeanScope.frm_configurar_codigos.siTipDoc2}"/>
+                        <af:selectItem label="Manifiesto" value="M" />                
                     </af:selectOneChoice>
                     <af:inputText label="Codigo" id="itCod"
                                   binding="#{backingBeanScope.frm_configurar_codigos.itCod}" maximumLength="6"

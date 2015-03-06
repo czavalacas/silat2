@@ -60,10 +60,30 @@ public class Frm_configurar_codigos {
     public void methodOnPostConstruct(){
         if(beanSessionConfigCodigos.getExec() == 0){
             beanSessionConfigCodigos.setExec(1);
-            beanSessionConfigCodigos.setLstCodigos(this.LN_C_SFUtilsRemote.getCodigos());
+            beanSessionConfigCodigos.setLstCodigos(getCodes());
+           
         }else{
-            beanSessionConfigCodigos.setLstCodigos(this.LN_C_SFUtilsRemote.getCodigos());
+            beanSessionConfigCodigos.setLstCodigos(getCodes());
         }
+    }
+    
+    public List<BeanCodigo> getCodes(){
+        List<BeanCodigo> listCodigos=this.LN_C_SFUtilsRemote.getCodigos();
+        for(BeanCodigo bean: listCodigos){
+            if(bean.getTipdoc().equals("F")){
+                bean.setDescTipDoc("Facura");
+            }
+            if(bean.getTipdoc().equals("G")){
+                bean.setDescTipDoc("Guia");
+            }            
+        }
+        BeanCodigo bean=new BeanCodigo();     
+        bean.setCidunin("001");
+        bean.setCodigo(LN_C_SFUtilsRemote.traerSiguienteValorSequence("trmanifiesto.nid_manifiesto")+"");
+        bean.setDescTipDoc("Manifiesto");
+        bean.setTipdoc("M");
+        listCodigos.add(bean);
+        return listCodigos;
     }
     
     
@@ -96,13 +116,19 @@ public class Frm_configurar_codigos {
             Utils.throwError_Aux(ctx,"Llene todos los campos",4);
             return null;
         }
-        BeanCodigo bCodigo = ln_T_SFCodigoRemote.actualizarCodigo(cidUnin,code,tipDoc);
+        BeanCodigo bCodigo =new BeanCodigo();
+        if(tipDoc.equals("M")){
+            bCodigo = ln_T_SFCodigoRemote.actualizarCodigoManif(code);
+        }else{
+           bCodigo = ln_T_SFCodigoRemote.actualizarCodigo(cidUnin,code,tipDoc); 
+        }
+       
         if(bCodigo.getBeanError() != null){
             BeanError error = bCodigo.getBeanError();
             if(error != null){
                 int severidad = 3;
                 if(error.getCidError().equals("000")){
-                    beanSessionConfigCodigos.setLstCodigos(this.LN_C_SFUtilsRemote.getCodigos());
+                    beanSessionConfigCodigos.setLstCodigos(getCodes());
                     tbCodig.setValue(beanSessionConfigCodigos.getLstCodigos());
                     Utils.unselectFilas(tbCodig);
                     beanSessionConfigCodigos.setCodUN(null);

@@ -37,4 +37,5 @@ public interface BDL_C_SFGuiaLocal {
     List<TRGuia> guiasPorParty(int nidCliente);
     List<TRGuia> guiasPorPartyOK(int nidCliente);
     List<TRGuia> findGuiasFiltered(BeanTRGuia filtro);
+    int existeGuia(String cidGuia);
 }

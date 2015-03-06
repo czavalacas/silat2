@@ -512,4 +512,21 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
             return 0;
         }
     }
+    
+    public int existeGuia(String cidGuia){
+        try{
+            String query = "SELECT count(m.cidGuia) " +
+                           "FROM TRGuia m " +
+                           "WHERE m.cidGuia = :cidGuia ";                           
+            Object o = em.createQuery(query).setParameter("cidGuia",cidGuia).getSingleResult();
+            int cant = 0;
+            if(o != null){
+                cant = Integer.parseInt(o.toString());
+            }
+            return cant;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

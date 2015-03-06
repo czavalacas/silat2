@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="../LIBS/css/normalize.css"/>
         <link rel="stylesheet" href="../LIBS/css/foundation.css"/>
         <script src="../LIBS/js/vendor/modernizr.js"></script>
-        <title>SILA-WEBMOVIL</title>
+        <title>SILA-WEBMOVIL</title>      
         <script>
           $(document).foundation();
           $('a.custom-close-reveal-modal').click(function(){
@@ -873,13 +873,7 @@
     <h:form id="creaGuia" style="${frm_WebMovilEmp.styleCreaGuia}">
       <div style="background-color:#DDDDDD;text-align:center;margin-bottom:10px">
        <h:outputText value="Creacion de Guia de Remision" style="font-size: 180%;"/>
-       </div>
-         <b:inputText style="color:#000000;" disabled="false"
-                     value="#{frm_WebMovilEmp.cidGuiaRemision}">
-            <f:facet name="prepend">
-                <h:outputText value="Guia Remision nº"/>
-            </f:facet>
-        </b:inputText>        
+       </div>         
         <b:inputText style="color:#000000;" disabled="true"
                      value="#{frm_WebMovilEmp.nidOrds}">
             <f:facet name="prepend">
@@ -963,6 +957,12 @@
                 <h:outputText value="n°paquetes"/>
             </f:facet>
         </b:inputText>
+        <b:inputText style="color:#000000;" disabled="false" maxlength="6"
+                     value="#{frm_WebMovilEmp.cidGuiaRemision}">
+            <f:facet name="prepend">
+                <h:outputText value="Guia Remision nº"/>
+            </f:facet>
+        </b:inputText>        
         
         <b:alert severity="danger">
         <ui:repeat var="sms" value="#{frm_WebMovilEmp.mensajeGuia}">

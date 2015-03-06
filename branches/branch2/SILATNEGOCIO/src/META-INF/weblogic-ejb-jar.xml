@@ -1045,4 +1045,22 @@
             </business-interface-jndi-name-map>
         </stateless-session-descriptor>
     </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>BDL_C_SFCodigoSequence</ejb-name>
+        <stateless-session-descriptor>
+            <business-interface-jndi-name-map>
+                <business-remote>silat.servicios_negocio.BDLSF.IR.BDL_C_SFCodigoSequenceRemoto</business-remote>
+                <jndi-name>map-SILATNEGOCIO-BDL_C_SFCodigoSequence</jndi-name>
+            </business-interface-jndi-name-map>
+        </stateless-session-descriptor>
+    </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>BDL_T_SFCodigoSequenceBean</ejb-name>
+        <stateless-session-descriptor>
+            <business-interface-jndi-name-map>
+                <business-remote>silat.servicios_negocio.BDLSF.IR.BDL_T_SFCodigoSequenceRemoto</business-remote>
+                <jndi-name>map-BDL_T_SFCodigoSequence</jndi-name>
+            </business-interface-jndi-name-map>
+        </stateless-session-descriptor>
+    </weblogic-enterprise-bean>
 </weblogic-ejb-jar>

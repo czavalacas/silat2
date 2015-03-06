@@ -261,6 +261,7 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                                        int nidDirecDest,int opc,List<BeanTRItem> lstItems,String codUn,String estadoManif,
                                        String imgGuiaProv,boolean cerrarOS,boolean enTransManif,String imgProv){
         System.out.println("LNT_SFUIA");
+        System.out.println("LNT_SFUIA  fff " +lstItems.get(0).getCidGuia() + " :: "+lstItems.get(0).getCCidGuiaRemitente());
         if(lstItems!=null){
             for(int i=0; i<lstItems.size(); i++){
                 lstItems.get(i).setOrden(i+1);
@@ -369,10 +370,12 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                     System.out.println("(3) Orden : "+lstItems.get(i).getOrden());
                 }
                 List<TRItem> itemsBefore = eGuia.getItemsList();
-                if(opc==1){
-                   List<TRItem> eItems = LN_C_SFUtilsLocal.beanItemToEntity(lstItems,eGuia);    
-                    eGuia.setItemsList(eItems);
+                System.out.println("ENTRO:1::");
+                if(opc==1){                    
+                   List<TRItem> eItems = LN_C_SFUtilsLocal.beanItemToEntity(lstItems,eGuia);                     
+                   eGuia.setItemsList(eItems);                    
                 }
+                System.out.println("::: "+eGuia.getCidGuia() +" ::: " +eGuia.getItemsList().get(0).getCCidGuiaRemitente()+" :: "+eGuia.getItemsList().get(0).getCDescItem());
                 eGuia = bdL_T_SFGuiaLocal.registrarGuia_BD(eGuia, opc);                
            
                 if(itemsBefore != null){

@@ -9,4 +9,5 @@ public interface LN_T_SFCodigoLocal {
     BeanCodigo actualizarCodigo(String cidUnin,
                                 String codigo,
                                 String tipDoc);
+    BeanCodigo actualizarCodigoManif(String codigo);
 }

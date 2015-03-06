@@ -9,4 +9,5 @@ public interface LN_T_SFCodigoRemote {
     BeanCodigo actualizarCodigo(String cidUnin,
                                 String codigo,
                                 String tipDoc);
+    BeanCodigo actualizarCodigoManif(String codigo);
 }

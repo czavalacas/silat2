@@ -170,9 +170,6 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                 /**czavalacas 17.11.2014
                  * Codigo para acttualizar el estado de los items que se usaron de la OS a 1 (En Uso o Activo)*/
                 
-                for(int i=0; i<lstItems.size(); i++){
-                    System.out.println("(2) Orden : "+lstItems.get(i).getOrden());
-                } 
                 List<TRItemXOrds> itemXord=bdl_C_SFItemXOrdsLocal.getTrItemOrdenServicio_BD(nidOS,0);
                 if(lstItems!=null){
                     for(int i=0; i<lstItems.size(); i++){
@@ -204,22 +201,16 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                     }                
                 }            
                                 
-                /***************************************/
-                for(int i=0; i<lstItems.size(); i++){
-                    System.out.println("(3) Orden : "+lstItems.get(i).getOrden());
-                }
+                /***************************************/              
                 List<TRItem> itemsBefore = eGuia.getItemsList();
                 if(opc==1){
                    List<TRItem> eItems = LN_C_SFUtilsLocal.beanItemToEntity(lstItems,eGuia);    
                     eGuia.setItemsList(eItems);
                 }
-                eGuia = bdL_T_SFGuiaLocal.registrarGuia_BD(eGuia, opc);                
+                eGuia = bdL_T_SFGuiaLocal.registrarGuia_BD(eGuia, opc);               
            
-                if(itemsBefore != null){
-                    System.out.println("ENTRO:1::");
-                    System.out.println("ENTRO:1::"+itemsBefore.size());
+                if(itemsBefore != null){                   
                     if(itemsBefore.size() > 0){
-                        System.out.println("ENTRO:2::");
                         ln_T_SFItemLocal.borrarItems(lstItems,itemsBefore);
                     }
                 }
@@ -261,8 +252,7 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                                        int nidDirecDest,int opc,List<BeanTRItem> lstItems,String codUn,String estadoManif,
                                        String imgGuiaProv,boolean cerrarOS,boolean enTransManif,String imgProv){
         System.out.println("LNT_SFUIA");
-        System.out.println("LNT_SFUIA  fff " +lstItems.get(0).getCidGuia() + " :: "+lstItems.get(0).getCCidGuiaRemitente());
-        if(lstItems!=null){
+         if(lstItems!=null){
             for(int i=0; i<lstItems.size(); i++){
                 lstItems.get(i).setOrden(i+1);
             }
@@ -329,11 +319,8 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
               
                 
                 /**czavalacas 17.11.2014
-                 * Codigo para acttualizar el estado de los items que se usaron de la OS a 1 (En Uso o Activo)*/
-                
-                for(int i=0; i<lstItems.size(); i++){
-                    System.out.println("(2) Orden : "+lstItems.get(i).getOrden());
-                } 
+                 * Codigo para acttualizar el estado de los items que se usaron de la OS a 1 (En Uso o Activo)*/              
+            
                 List<TRItemXOrds> itemXord=bdl_C_SFItemXOrdsLocal.getTrItemOrdenServicio_BD(nidOS,0);
                 if(lstItems!=null){
                     for(int i=0; i<lstItems.size(); i++){
@@ -366,23 +353,16 @@ public class LN_T_SFGuiaBean implements LN_T_SFGuiaRemote,
                 }            
                                 
                 /***************************************/
-                for(int i=0; i<lstItems.size(); i++){
-                    System.out.println("(3) Orden : "+lstItems.get(i).getOrden());
-                }
+             
                 List<TRItem> itemsBefore = eGuia.getItemsList();
-                System.out.println("ENTRO:1::");
                 if(opc==1){                    
                    List<TRItem> eItems = LN_C_SFUtilsLocal.beanItemToEntity(lstItems,eGuia);                     
                    eGuia.setItemsList(eItems);                    
                 }
-                System.out.println("::: "+eGuia.getCidGuia() +" ::: " +eGuia.getItemsList().get(0).getCCidGuiaRemitente()+" :: "+eGuia.getItemsList().get(0).getCDescItem());
                 eGuia = bdL_T_SFGuiaLocal.registrarGuia_BD(eGuia, opc);                
            
                 if(itemsBefore != null){
-                    System.out.println("ENTRO:1::");
-                    System.out.println("ENTRO:1::"+itemsBefore.size());
                     if(itemsBefore.size() > 0){
-                        System.out.println("ENTRO:2::");
                         ln_T_SFItemLocal.borrarItems(lstItems,itemsBefore);
                     }
                 }

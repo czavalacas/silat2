@@ -312,8 +312,7 @@ public class Frm_WebMovilEmp {
             String g = nidUmedida;
             BeanTrItemXOrds bean = new BeanTrItemXOrds();
           //  String cidGuia  = getCidGuiaRemision();//ln_C_SFUtilsRemote.generarCorrelativoLN("TRGuia","G",6,"001"); 
-          //  bean.setCCidGuiaRemitente(cidGuia);
-            System.out.println(""+getCidGuiaRemision());
+          //  bean.setCCidGuiaRemitente(cidGuia);    
             bean.setCDescItem(getDescripcionNewItem());
             bean.setCUndMedida(getNidUmedida());
             double cantidad = Double.parseDouble(getCantidadNewItem());
@@ -418,7 +417,6 @@ public class Frm_WebMovilEmp {
         return "";
     }
     public String registrarGuia(){
-        System.out.println("valor de cidguia : "+getCidGuiaRemision());
         boolean entro = true;
         getMensajeGuia().clear();
         if(getCidGuiaRemision().equals("")){

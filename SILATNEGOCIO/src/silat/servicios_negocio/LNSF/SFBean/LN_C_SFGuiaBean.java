@@ -342,18 +342,44 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
     
     public List<BeanTRGuia> getListaGuias_PorFacturar(List<TRGuia> lstGuia){
         try{
-            MapperIF mapper = new DozerBeanMapper();
+          // MapperIF mapper = new DozerBeanMapper();
             List<BeanTRGuia> lstBeanGuias = new ArrayList<BeanTRGuia>();
-            BeanTRGuia beanGuias = new BeanTRGuia();
+         //   BeanTRGuia beanGuias = new BeanTRGuia();
             for(TRGuia guia : lstGuia){
-                beanGuias = (BeanTRGuia) mapper.map(guia,BeanTRGuia.class);
+                BeanTRGuia beanGuias = new BeanTRGuia();
+ //               beanGuias = (BeanTRGuia) mapper.map(guia,BeanTRGuia.class);
+                
+                beanGuias.setFechaGuia(guia.getFechaGuia());
+                beanGuias.setFechaDespacho(guia.getFechaDespacho());
+                
+                BeanOrdenServicio orden=new BeanOrdenServicio();
+                orden.setNidOrdnServ(guia.getOrdenServicio().getNidOrdnServ());
+                beanGuias.setOrdenServicio(orden);
+                
+                BeanEmpresa empresa=new BeanEmpresa();
+                empresa.setCRazonSocial(guia.getAdEmpresa().getCRazonSocial());
+                beanGuias.setAdEmpresa(empresa);
+                
+                beanGuias.setCObservaciones(guia.getCObservaciones());
+                
                 BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",guia.getCConformidad());
                 beanGuias.setDescConformidad(constr.getCDescrip());
                 if(guia.getOrdenServicio().getAdEmpresa() != null){
                     beanGuias.setEmpCliente(guia.getOrdenServicio().getAdEmpresa().getCRazonSocial());    
                 }
-                beanGuias.setCidGuia(beanGuias.getCidUnidadNegocio()+"-"+beanGuias.getCidGuia());
-                if(guia.getNidDireccionDestino() != null && guia.getNidDireccionRemitente() != null){
+                
+                beanGuias.setNativeCidGuia(guia.getCidGuia());
+                beanGuias.setCidGuia(guia.getCidUnidadNegocio()+"-"+guia.getCidGuia());
+                                
+                if(guia.getNidDireccionDestino()!=null){
+                beanGuias.setNidDireccionDestino(guia.getNidDireccionDestino());
+                beanGuias.setCDireccionDestino(ln_C_SFDireccionLocal.getDescripcionDirecByNid(guia.getNidDireccionDestino()));
+                }
+                if(guia.getNidDireccionRemitente()!=null){
+                beanGuias.setNidDireccionRemitente(guia.getNidDireccionRemitente());
+                beanGuias.setCDireccionRemitente(ln_C_SFDireccionLocal.getDescripcionDirecByNid(guia.getNidDireccionRemitente()));
+                }
+         /*       if(guia.getNidDireccionDestino() != null && guia.getNidDireccionRemitente() != null){
                     List<BeanDireccion> direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionDestino(),null,null);
                     if(direcs != null){
                         if(direcs.size() > 0){
@@ -366,8 +392,8 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
                             beanGuias.setCDireccionRemitente(direcs.get(0).getCDireccion());
                         }
                     }    
-                }
-                beanGuias.setItemsLista(this.entityItemListtoBean(guia.getItemsList()));
+                }*/
+               // beanGuias.setItemsLista(this.entityItemListtoBean(guia.getItemsList()));
                 beanGuias.setPrecio(new BigDecimal(0));
                 lstBeanGuias.add(beanGuias);
             }
@@ -651,7 +677,13 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
             bean.setNCantidad(entidad.getNCantidad());
             bean.setNidItem(entidad.getNidItem());
             bean.setOrden(entidad.getOrden());
-            
+          /**Nuevo debido a que registro de facturas necesita 
+           * estos parametros(Agiliza registro de factura)17-03-2015**/ 
+            BeanTRGuia guia=new BeanTRGuia();
+            guia.setCidGuia(entidad.getTrGuia().getCidGuia());
+            guia.setCidUnidadNegocio(entidad.getTrGuia().getCidUnidadNegocio());
+            bean.setTrGuia(guia);
+          /****/              
             it.add(bean);
         }
         return it;

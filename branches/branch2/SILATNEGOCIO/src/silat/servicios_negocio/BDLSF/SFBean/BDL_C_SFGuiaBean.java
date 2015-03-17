@@ -147,7 +147,8 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                            "AND g.cConformidad = '1' "+
                            "AND g.trFactura IS NULL "+
                            "AND g.itemPreFactura IS NULL "+
-                           "AND g.ordenServicio.adEmpresa.nidParty = "+nidCliente+" ";
+                           "AND g.ordenServicio.adEmpresa.nidParty = "+nidCliente+" " +
+                           "ORDER BY g.cidGuia DESC ";
             List<TRGuia> guias = em.createQuery(ejbQl).getResultList();
             return guias;
         }catch(Exception e){

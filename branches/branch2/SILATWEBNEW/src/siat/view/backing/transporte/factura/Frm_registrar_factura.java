@@ -764,7 +764,8 @@ public class Frm_registrar_factura {
         try {
             RichTable t = (RichTable)selectionEvent.getSource();
             BeanTRGuia beanGuia = (BeanTRGuia)t.getSelectedRowData();
-            beanSessionScopeRegistrarFactura.setGuia(beanGuia);
+            beanGuia.setItemsLista(ln_C_SFGuiaRemote.getListaItemsByCidGuia(beanGuia.getNativeCidGuia()));  /**Agregamos Items**/          
+            beanSessionScopeRegistrarFactura.setGuia(beanGuia);                  
             if(beanSessionScopeRegistrarFactura.isEditable()){//Se hizo check en editable
                 if(beanGuia.isSelected()){
                     beanGuia.setSelected(false);

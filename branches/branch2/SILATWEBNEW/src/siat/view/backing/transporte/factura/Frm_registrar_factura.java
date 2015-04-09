@@ -217,7 +217,6 @@ public class Frm_registrar_factura {
             Date fechaFactura = beanSessionScopeRegistrarFactura.getFecFactura();
             BigDecimal subTotal = beanSessionScopeRegistrarFactura.getSub_total().setScale(2, RoundingMode.DOWN);
             String cidSerie = beanSessionScopeRegistrarFactura.getCodUN();
-            System.out.println(":::CIDREPO 2 ::: "+beanSessionScopeRegistrarFactura.getCidRepoToDelete());
             
             String cidRepo = beanSessionScopeRegistrarFactura.getCidRepoToDelete();
             

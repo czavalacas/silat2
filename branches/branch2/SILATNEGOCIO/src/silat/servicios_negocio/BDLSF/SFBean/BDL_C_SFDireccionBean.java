@@ -61,7 +61,7 @@ public class BDL_C_SFDireccionBean implements BDL_C_SFDireccionRemote,
             }
             if(beanDireccion.getCDireccion() != null){
                 ejbQl = ejbQl.concat(" AND upper(f.cDireccion) = "+beanDireccion.getCDireccion().toUpperCase());
-            }//System.out.println("query: "+ejbQl);
+            }System.out.println("query: "+ejbQl);            
             List<ADDireccion> lstDirecs = em.createQuery(ejbQl).getResultList();
             int size = lstDirecs == null ? 0 : lstDirecs.size();
             if (size > 0) {

@@ -143,7 +143,7 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
     public List<TRGuia> findGuiasByNidCliente(int nidCliente){
         try{
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date fechaGuia = formatter.parse("2014-04-18");
+            Date fechaGuia = formatter.parse("2014-08-18");
             String ejbQl = "SELECT g " +
                            "FROM TRGuia g " +
                            "WHERE g.nEstadoGuia = 1 " +

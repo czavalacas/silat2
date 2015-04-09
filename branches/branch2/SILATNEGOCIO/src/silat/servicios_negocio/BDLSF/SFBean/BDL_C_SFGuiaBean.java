@@ -2,6 +2,7 @@ package silat.servicios_negocio.BDLSF.SFBean;
 
 import java.math.BigDecimal;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -141,15 +142,18 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
     
     public List<TRGuia> findGuiasByNidCliente(int nidCliente){
         try{
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechaGuia = formatter.parse("2014-04-18");
             String ejbQl = "SELECT g " +
                            "FROM TRGuia g " +
                            "WHERE g.nEstadoGuia = 1 " +
                            "AND g.cConformidad = '1' "+
                            "AND g.trFactura IS NULL "+
                            "AND g.itemPreFactura IS NULL "+
-                           "AND g.ordenServicio.adEmpresa.nidParty = "+nidCliente+" " +
+                           "AND g.ordenServicio.adEmpresa.nidParty = :nidCliente "+
+                           " And g.fechaGuia >= :fechaGuia "+//dfloresgonz 09.04.2015 Peticion sra Lucy no mostrar guias antes de esta fecha al crear la factura
                            "ORDER BY g.cidGuia DESC ";
-            List<TRGuia> guias = em.createQuery(ejbQl).getResultList();
+            List<TRGuia> guias = em.createQuery(ejbQl).setParameter("nidCliente", nidCliente).setParameter("fechaGuia",fechaGuia,TemporalType.DATE).getResultList();
             return guias;
         }catch(Exception e){
             e.printStackTrace();
@@ -203,7 +207,6 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
         try{
             String ejbQl = "SELECT g " +
                            "FROM TRGuia g ";
-                        
             if(descCidGuiaRemi_ITEM != null || descCidGuia_ITEM != null){        
             ejbQl = ejbQl.concat(" ,TRItem it  WHERE it.trGuia.cidGuia = g.cidGuia ");
             
@@ -212,8 +215,7 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
               ejbQl = ejbQl.concat(" AND UPPER(it.cCidGuiaRemitente) like UPPER('%"+descCidGuiaRemi_ITEM+"%') ");
                 }
                 if(descCidGuia_ITEM !=null){
-              ejbQl = ejbQl.concat(" AND UPPER(it.cDescItem) like UPPER('%"+descCidGuia_ITEM+"%') ");      
-                              
+                    ejbQl = ejbQl.concat(" AND UPPER(it.cDescItem) like UPPER('%"+descCidGuia_ITEM+"%') ");
                 }  
             }else{
                 ejbQl = ejbQl.concat(" WHERE 1 = 1 ");
@@ -279,9 +281,7 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                         }    
                     }
                 }else{
-                    System.out.println("hasFactura:::::  "+hasFactura);
                     ejbQl = ejbQl.concat(" AND g.trFactura IS NULL ");
-                    System.out.println("ejbQl1:::::  "+ejbQl);
                 }
             }else{
                 if(codFactura!= null){
@@ -302,8 +302,6 @@ public class BDL_C_SFGuiaBean implements BDL_C_SFGuiaRemote,
                 }
             }
             ejbQl = ejbQl.concat(" ORDER BY g.cidGuia DESC ");
-            
-            System.out.println("ejbQl1:::::  "+ejbQl);
             //UtilsGeneral.depurar("query guias "+ejbQl);
             List<TRGuia> lstGuias = new ArrayList<TRGuia>();
             if((fecEmisMin != null && fecEmisMax != null) &&

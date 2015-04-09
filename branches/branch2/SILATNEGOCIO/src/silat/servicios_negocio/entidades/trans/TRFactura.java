@@ -61,7 +61,7 @@ public class TRFactura implements Serializable {
     private List<TRGuia> guiasList;
     @Column(name = "CIDREPO", length = 30)
     private String cidRepo;
-    @Column(name = "CIDGUIAS", length = 1000)
+    @Column(name = "CIDGUIAS", length = 5000)
     private String guias;
     @Column(name = "NID_CLIENTE")
     private BigDecimal nidParty;

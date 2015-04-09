@@ -342,65 +342,48 @@ public class LN_C_SFGuiaBean implements LN_C_SFGuiaRemote,
     
     public List<BeanTRGuia> getListaGuias_PorFacturar(List<TRGuia> lstGuia){
         try{
-          // MapperIF mapper = new DozerBeanMapper();
-            List<BeanTRGuia> lstBeanGuias = new ArrayList<BeanTRGuia>();
-         //   BeanTRGuia beanGuias = new BeanTRGuia();
-            for(TRGuia guia : lstGuia){
-                BeanTRGuia beanGuias = new BeanTRGuia();
- //               beanGuias = (BeanTRGuia) mapper.map(guia,BeanTRGuia.class);
-                
-                beanGuias.setFechaGuia(guia.getFechaGuia());
-                beanGuias.setFechaDespacho(guia.getFechaDespacho());
-                
-                BeanOrdenServicio orden=new BeanOrdenServicio();
-                orden.setNidOrdnServ(guia.getOrdenServicio().getNidOrdnServ());
-                beanGuias.setOrdenServicio(orden);
-                
-                BeanEmpresa empresa=new BeanEmpresa();
-                empresa.setCRazonSocial(guia.getAdEmpresa().getCRazonSocial());
-                beanGuias.setAdEmpresa(empresa);
-                
-                beanGuias.setCObservaciones(guia.getCObservaciones());
-                
-                BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",guia.getCConformidad());
-                beanGuias.setDescConformidad(constr.getCDescrip());
-                if(guia.getOrdenServicio().getAdEmpresa() != null){
-                    beanGuias.setEmpCliente(guia.getOrdenServicio().getAdEmpresa().getCRazonSocial());    
-                }
-                
-                beanGuias.setNativeCidGuia(guia.getCidGuia());
-                beanGuias.setCidGuia(guia.getCidUnidadNegocio()+"-"+guia.getCidGuia());
-                                
-                if(guia.getNidDireccionDestino()!=null){
-                beanGuias.setNidDireccionDestino(guia.getNidDireccionDestino());
-                beanGuias.setCDireccionDestino(ln_C_SFDireccionLocal.getDescripcionDirecByNid(guia.getNidDireccionDestino()));
-                }
-                if(guia.getNidDireccionRemitente()!=null){
-                beanGuias.setNidDireccionRemitente(guia.getNidDireccionRemitente());
-                beanGuias.setCDireccionRemitente(ln_C_SFDireccionLocal.getDescripcionDirecByNid(guia.getNidDireccionRemitente()));
-                }
-         /*       if(guia.getNidDireccionDestino() != null && guia.getNidDireccionRemitente() != null){
-                    List<BeanDireccion> direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionDestino(),null,null);
-                    if(direcs != null){
-                        if(direcs.size() > 0){
-                            beanGuias.setCDireccionDestino(direcs.get(0).getCDireccion());
-                        }
-                    }
-                    direcs = ln_C_SFDireccionLocal.getDireccionByProp_LN(guia.getNidDireccionRemitente(),null,null);
-                    if(direcs != null){
-                        if(direcs.size() > 0){
-                            beanGuias.setCDireccionRemitente(direcs.get(0).getCDireccion());
-                        }
-                    }    
-                }*/
-               // beanGuias.setItemsLista(this.entityItemListtoBean(guia.getItemsList()));
-                beanGuias.setPrecio(new BigDecimal(0));
-                lstBeanGuias.add(beanGuias);
-            }
-            return lstBeanGuias;
+      
+          List<BeanTRGuia> lstBeanGuias = new ArrayList<BeanTRGuia>();      
+          for(TRGuia guia : lstGuia){
+              BeanTRGuia beanGuias = new BeanTRGuia();
+ 
+              beanGuias.setFechaGuia(guia.getFechaGuia());
+              beanGuias.setFechaDespacho(guia.getFechaDespacho());
+              
+              BeanOrdenServicio orden=new BeanOrdenServicio();
+              orden.setNidOrdnServ(guia.getOrdenServicio().getNidOrdnServ());
+              beanGuias.setOrdenServicio(orden);
+              
+              BeanEmpresa empresa=new BeanEmpresa();
+              empresa.setCRazonSocial(guia.getAdEmpresa().getCRazonSocial());
+              beanGuias.setAdEmpresa(empresa);
+              
+              beanGuias.setCObservaciones(guia.getCObservaciones());
+              
+              BeanConstraint constr = bdL_C_SFUtilsLocal.getCatalogoConstraints("C_CONFORMIDAD","TRMGUIA",guia.getCConformidad());
+              beanGuias.setDescConformidad(constr.getCDescrip());
+              if(guia.getOrdenServicio().getAdEmpresa() != null){
+                  beanGuias.setEmpCliente(guia.getOrdenServicio().getAdEmpresa().getCRazonSocial());    
+              }
+              
+              beanGuias.setNativeCidGuia(guia.getCidGuia());
+              beanGuias.setCidGuia(guia.getCidUnidadNegocio()+"-"+guia.getCidGuia());
+                              
+              if(guia.getNidDireccionDestino()!=null){
+              beanGuias.setNidDireccionDestino(guia.getNidDireccionDestino());
+              beanGuias.setCDireccionDestino(ln_C_SFDireccionLocal.getDescripcionDirecByNid(guia.getNidDireccionDestino()));
+              }
+              if(guia.getNidDireccionRemitente()!=null){
+              beanGuias.setNidDireccionRemitente(guia.getNidDireccionRemitente());
+              beanGuias.setCDireccionRemitente(ln_C_SFDireccionLocal.getDescripcionDirecByNid(guia.getNidDireccionRemitente()));
+              }     
+              beanGuias.setPrecio(new BigDecimal(0));
+              lstBeanGuias.add(beanGuias);
+          }
+          return lstBeanGuias;
         }catch(Exception e){
-            e.printStackTrace();
-            return new ArrayList<BeanTRGuia>();
+          e.printStackTrace();
+          return new ArrayList<BeanTRGuia>();
         }
     }
     
